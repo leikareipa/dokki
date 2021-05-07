@@ -1,0 +1,343 @@
+:root
+{
+    --header-height: 80px;
+    --side-panel-width: 330px;
+    --topics-width: 850px;
+    --content-margin: 20px;
+    --header-bottom-margin: 25px;
+    --topics-top-margin: calc(35px - var(--header-bottom-margin));
+
+    /* Margins on the left and right of the page outside of which no content
+     * is allowed.*/
+    --page-outer-side-margin: 11%;
+}
+
+body
+{
+    font-family: "Roboto Slab";
+    text-align: center;
+    align-content: center;
+    background-color: white;
+    color: black;
+    padding: 0;
+    margin: 0;
+}
+
+.dokki-header
+{
+    border-bottom: 1px solid lightgray;
+    font-family: "Lato";
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    overflow-x: auto;
+    white-space: nowrap;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    box-sizing: border-box;
+    background-color: whitesmoke;
+    padding-left: var(--page-outer-side-margin);
+    padding-right: var(--page-outer-side-margin);
+    text-align: left;
+    font-weight: bold;
+    font-size: 160%;
+    color: black;
+    white-space: normal;
+    height: var(--header-height);
+    position: fixed;
+    width: 100%;
+}
+
+.dokki-header .software-tag
+{
+    margin-left: auto;
+    font-size: 60%;
+    font-weight: normal;
+}
+
+a
+{
+    text-decoration: none;
+    color: inherit;
+}
+
+a:hover
+{
+    text-decoration: underline;
+}
+
+.dokki-side-panel
+{
+    box-sizing: border-box;
+    position: fixed;
+    z-index: 0;
+    top: var(--header-height);
+    left: var(--page-outer-side-margin);
+    background-color: transparent;
+    width: var(--side-panel-width);
+    text-align: left;
+    margin-top: var(--header-bottom-margin);
+    height: calc(100% - 100px);
+    overflow-y: auto;
+    height: calc(100% - var(--header-height) - var(--header-bottom-margin));
+}
+
+.dokki-side-panel ul
+{
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.dokki-side-panel li
+{
+    counter-increment: line;
+    padding-bottom: 4px;
+    padding-top: 4px;
+}
+
+.dokki-side-panel li a
+{
+    padding-bottom: 4px;
+    padding-top: 4px;
+}
+
+.dokki-side-panel li::before
+{
+    content: counter(line) ". ";
+}
+
+.dokki-side-panel li:first-of-type
+{
+    padding-top: 0;
+}
+
+.dokki-topics
+{
+    margin: var(--content-margin);
+    margin-top: calc(var(--header-height) + var(--header-bottom-margin) - 1px);
+    margin-left: 5px;
+    margin-bottom: 60vh;
+    width: var(--topics-width);
+    padding: 0;
+    background-color: transparent;
+    color: black;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: left;
+    position: relative;
+    left: calc(10% + var(--side-panel-width));
+    top: 0;
+    z-index: 0;
+}
+
+.dokki-topic
+{
+    box-sizing: border-box;
+    padding: 15px;
+    width: 100%;
+}
+
+.dokki-topic p
+{
+    line-height: 1.5;
+}
+
+.dokki-topic:first-of-type
+{
+    margin-top: 0;
+}
+
+.dokki-topic li
+{
+    margin-top: 10px;
+}
+
+.dokki-topic > *:not(img):last-of-type
+{
+    margin-bottom: 0;
+}
+
+.dokki-topic img
+{
+    display: block;
+    margin: var(--content-margin);
+    margin-left: auto;
+    margin-right: auto;
+    border: 1px solid black;
+    border-radius: 0;
+    max-width: 100%;
+    width: 65%;
+    box-sizing: border-box;
+}
+
+.dokki-topic > table img
+{
+    all: initial;
+}
+
+.dokki-topic > table
+{
+    margin: auto;
+    margin-top: var(--content-margin);
+    margin-bottom: var(--content-margin);
+}
+
+.dokki-topic .permalink
+{
+    visibility: hidden;
+    padding-left: 10px;
+    color: gray;
+}
+
+.dokki-topic:hover .permalink
+{
+    visibility: visible;
+}
+
+.dokki-topic h1,
+.dokki-topic h2,
+.dokki-topic h3,
+.dokki-topic h4,
+.dokki-side-panel h2
+{
+    display: inline-block;
+    font-family: "Lato";
+    font-size: 100%;
+    font-weight: bold;
+    color: black;
+    padding: 0;
+    margin: 0;
+}
+
+.dokki-topic h2
+{
+    font-size: 160%;
+}
+
+.dokki-topic h3
+{
+    font-size: 130%;
+}
+
+.dokki-topic h3:not(:first-child)
+{
+    margin-top: var(--content-margin);
+}
+
+.dokki-topic-anchor
+{
+    visibility: hidden;
+    position: relative;
+    top: calc(var(--header-height) * -1 - var(--content-margin) + var(--topics-top-margin) + 1px);
+}
+
+.dokki-topic-anchor:first-child
+{
+    margin-top: calc(var(--content-margin) - var(--header-bottom-margin) - var(--topics-top-margin));
+}
+
+.dokki-tip,
+.dokki-warning
+{
+    font-size: 95%;
+    border: 1px solid black;
+    padding: 14px;
+    border-top-width: 32px;
+    border-radius: 0 10px 10px;
+}
+
+.dokki-tip
+{
+    border-color: deepskyblue;
+    background-color: #f2f8ff;
+}
+
+.dokki-warning
+{
+    border-color: #ff7838;
+    background-color: #fff2ec;
+}
+
+.dokki-tip .header,
+.dokki-warning .header
+{
+    font-family: "Lato";
+    margin-bottom: 18px;
+    margin-top: -40px;
+    font-weight: bold;
+    display: block;
+    color: white;
+}
+
+@media only screen and (max-width: 1500px)
+{
+    :root
+    {
+        --page-outer-side-margin: 20px;
+        --topics-width: 750px;
+    }
+
+    .dokki-topics
+    {
+        left: calc(var(--content-margin) + var(--side-panel-width));
+    }
+}
+
+@media only screen and (max-width: 1300px)
+{
+    :root
+    {
+        --side-panel-width: 265px;
+        --topics-width: 700px;
+    }
+}
+
+@media only screen and (max-width: 1000px)
+{
+    :root
+    {
+        --topics-width: calc(100% - var(--page-outer-side-margin) - var(--side-panel-width) - 5px);
+    }
+}
+
+
+@media only screen and (max-width: 850px)
+{
+    .dokki-header
+    {
+        position: absolute;
+    }
+
+    .dokki-side-panel
+    {
+        display: none;
+    }
+
+    .dokki-topics
+    {
+        left: 0;
+        width: 100%;
+        margin-left: 0;
+    }
+}
+
+@media only screen and (max-width: 600px)
+{
+    :root
+    {
+        --page-outer-side-margin: 10px;
+    }
+
+    .dokki-header
+    {
+        justify-content: center;
+    }
+
+    .dokki-header .software-tag
+    {
+        display: none;
+    }
+}
