@@ -14,7 +14,7 @@
 
 body
 {
-    font-family: "Roboto Slab";
+    font-family: sans-serif;
     text-align: center;
     align-content: center;
     background-color: white;
@@ -26,7 +26,6 @@ body
 .dokki-header
 {
     border-bottom: 1px solid lightgray;
-    font-family: "Lato";
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -203,8 +202,6 @@ a:hover
 .dokki-topic h4,
 .dokki-side-panel h2
 {
-    display: inline-block;
-    font-family: "Lato";
     font-size: 100%;
     font-weight: bold;
     color: black;
@@ -214,6 +211,7 @@ a:hover
 
 .dokki-topic h2
 {
+    display: inline-block; /* To allow permalink icons next to the h2 heading.*/
     font-size: 160%;
 }
 
@@ -242,7 +240,6 @@ a:hover
 .dokki-tip,
 .dokki-warning
 {
-    font-size: 95%;
     border: 1px solid black;
     padding: 14px;
     border-top-width: 32px;
@@ -264,7 +261,6 @@ a:hover
 .dokki-tip .header,
 .dokki-warning .header
 {
-    font-family: "Lato";
     margin-bottom: 18px;
     margin-top: -40px;
     font-weight: bold;
