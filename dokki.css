@@ -1,10 +1,10 @@
 :root
 {
-    --header-height: 80px;
+    --header-height: 70px;
     --side-panel-width: 330px;
     --topics-width: 850px;
     --content-margin: 20px;
-    --header-bottom-margin: 25px;
+    --header-bottom-margin: 20px;
     --topics-top-margin: calc(35px - var(--header-bottom-margin));
 
     /* Margins on the left and right of the page outside of which no content
