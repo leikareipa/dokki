@@ -101,7 +101,7 @@ function create_app()
         `,
     });
 
-    app.component("dokki-navbar", {
+    app.component("dokki-side-panel", {
         computed: {
             topics()
             {
@@ -109,14 +109,18 @@ function create_app()
             },
         },
         template: `
-            <div class="dokki-navbar">
-                <ul>
-                    <li v-for="topic in topics">
-                        <a :href="'#'+topic.simplifiedTitle">
-                            {{topic.title}}
-                        </a>
-                    </li>
-                </ul>
+            <div class="dokki-side-panel">
+
+                <div class="dokki-navbar">
+                    <ul>
+                        <li v-for="topic in topics">
+                            <a :href="'#'+topic.simplifiedTitle">
+                                {{topic.title}}
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            
             </div>
         `,
     });
