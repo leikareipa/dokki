@@ -7,16 +7,6 @@
 
 window.addEventListener("DOMContentLoaded", create_app);
 
-// Takes in a guide topic title string (e.g. "System requirements") and returns
-// a reduced version of the string such that it can be used e.g. as a DOM element
-// id (e.g. "System requirements" -> "system-requirements").
-function simplified_topic_title(title)
-{
-    return title.toLowerCase()
-                .replace(/[^a-zA-Z\d\s]/g, "")
-                .replace(/\s+/g, "-")
-}
-
 function create_app()
 {
     const store = new Vuex.Store({
@@ -39,7 +29,8 @@ function create_app()
 
     app.component("dokki-header", {
         props: {
-            title: {default: "Untitled guide"},
+            icon: {default: "fas fa-book"},
+            title: {default: "Untitled"},
             software: {default: undefined},
         },
         beforeCreate()
@@ -48,12 +39,15 @@ function create_app()
         },
         template: `
             <div class="dokki-header">
-                <slot/>
+                <i :class="icon" style="margin-right: 10px;"/>
+
                 {{title}}
 
-                <div class="software-tag"
-                     v-if="software !== undefined">
+                <div v-if="software !== undefined"
+                     class="software-tag">
+
                     {{software}}
+
                 </div>
             </div>
         `,
@@ -153,4 +147,14 @@ function create_app()
 
     app.use(store);
     app.mount("body");
+
+    // Takes in a guide topic title string (e.g. "System requirements") and returns
+    // a reduced version of the string such that it can be used e.g. as a DOM element
+    // id (e.g. "System requirements" -> "system-requirements").
+    function simplified_topic_title(title)
+    {
+        return title.toLowerCase()
+                    .replace(/[^a-zA-Z\d\s]/g, "")
+                    .replace(/\s+/g, "-")
+    }
 }
