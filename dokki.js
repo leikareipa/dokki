@@ -146,18 +146,18 @@ function create_app()
             }
         },
         template: `
-            <p class="dokki-image"
+            <p class="dokki-embedded dokki-image"
                :class="{expanded: isExpanded}">
 
                 <header @click="isExpanded = !isExpanded">
+
                     <i class="fas fa-fw fa-image"/>
                     Image
 
                     <aside class="revealer">
-
                         {{isExpanded? "Hide" : "Show"}}
-
                     </aside>
+
                 </header>
 
                 <img v-if=isExpanded
@@ -172,24 +172,34 @@ function create_app()
 
     app.component("dokki-tip", {
         template: `
-            <p class="dokki-tip">
-                <div class="header">
+            <p class="dokki-embedded dokki-tip">
+
+                <header>
                     <i class="fas fa-info-circle"/>
                     Tip
-                </div>
-                <slot/>
+                </header>
+
+                <footer>
+                    <slot/>
+                </footer>
+
             </p>
         `,
     });
 
     app.component("dokki-warning", {
         template: `
-            <p class="dokki-warning">
-                <div class="header">
+            <p class="dokki-embedded dokki-warning">
+
+                <header>
                     <i class="fas fa-exclamation-triangle"/>
                     Warning
-                </div>
-                <slot/>
+                </header>
+
+                <footer>
+                    <slot/>
+                </footer>
+
             </p>
         `,
     });

@@ -164,71 +164,6 @@ body
     margin-bottom: 0;
 }
 
-.dokki-image
-{
-    display: flex;
-    flex-direction: column;
-    margin: var(--content-margin);
-    margin-left: auto;
-    margin-right: auto;
-    border: 1px solid lightgray;
-    border-radius: 10px;
-    width: 100%;
-    box-sizing: border-box;
-    overflow: hidden;
-}
-
-.dokki-image img
-{
-    min-width: 100%;
-    max-width: 100%;
-}
-
-.dokki-image header
-{
-    display: flex;
-    align-items: baseline;
-    box-sizing: border-box;
-    padding: 6px;
-    padding-left: 15px;
-    padding-right: 15px;
-    background-color: white;
-    font-weight: bold;
-    cursor: pointer;
-    user-select: none;
-}
-
-.dokki-image header .fas,
-.dokki-image header .far
-{
-    margin-right: 5px;
-}
-
-.dokki-image header .revealer
-{
-    color: deepskyblue;
-    font-weight: normal;
-    display: inline-block;
-    margin-left: auto;
-    font-variant: small-caps;
-    text-transform: lowercase;
-}
-
-.dokki-image footer
-{
-    padding: 8px;
-    text-align: center;
-    font-style: italic;
-    border-top: 1px dashed transparent;
-    transition: border-top-color 0.2s ease-out;
-}
-
-.dokki-image:not(.expanded) footer
-{
-    border-top-color: lightgray;
-    transition: none;
-}
-
 .dokki-topic > table img
 {
     all: initial;
@@ -294,35 +229,101 @@ body
     margin-top: calc(var(--content-margin) - var(--header-bottom-margin) - var(--topics-top-margin));
 }
 
-.dokki-tip,
-.dokki-warning
+.dokki-embedded
 {
+    width: 100%;
+    box-sizing: border-box;
     border: 1px solid;
-    padding: 14px;
-    border-top-width: 32px;
     border-radius: 10px;
+    overflow: hidden;
 }
 
-.dokki-tip
+.dokki-embedded header
+{
+    font-weight: bold;
+    padding: 6px;
+    padding-left: 14px;
+    padding-right: 14px;
+}
+
+.dokki-embedded footer
+{
+    padding: 8px;
+    padding-left: 14px;
+    padding-right: 14px;
+}
+
+.dokki-embedded.dokki-tip
 {
     border-color: deepskyblue;
     background-color: #f2f8ff;
 }
 
-.dokki-warning
+.dokki-embedded.dokki-tip header
+{
+    color: white;
+    background-color: deepskyblue;
+}
+
+.dokki-embedded.dokki-warning
 {
     border-color: #ff7838;
     background-color: #fff2ec;
 }
 
-.dokki-tip .header,
-.dokki-warning .header
+.dokki-embedded.dokki-warning header
 {
-    margin-bottom: 18px;
-    margin-top: -40px;
-    font-weight: bold;
-    display: block;
     color: white;
+    background-color: #ff7838;
+}
+
+.dokki-embedded.dokki-image
+{
+    display: flex;
+    flex-direction: column;
+    margin: var(--content-margin);
+    margin-left: auto;
+    margin-right: auto;
+    border: 1px solid lightgray;
+    border-radius: 10px;
+}
+
+.dokki-embedded.dokki-image img
+{
+    min-width: 100%;
+    max-width: 100%;
+}
+
+.dokki-embedded.dokki-image header
+{
+    display: flex;
+    align-items: baseline;
+    box-sizing: border-box;
+    background-color: white;
+    cursor: pointer;
+    user-select: none;
+}
+
+.dokki-embedded.dokki-image header .fas,
+.dokki-embedded.dokki-image header .far
+{
+    margin-right: 5px;
+}
+
+.dokki-embedded.dokki-image header .revealer
+{
+    color: deepskyblue;
+    font-weight: normal;
+    display: inline-block;
+    margin-left: auto;
+    font-variant: small-caps;
+    text-transform: lowercase;
+}
+
+.dokki-embedded.dokki-image footer
+{
+    text-align: center;
+    font-style: italic;
 }
 
 @media only screen and (max-width: 1500px)
