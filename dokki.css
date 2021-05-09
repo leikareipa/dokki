@@ -12,6 +12,17 @@
     --page-outer-side-margin: 11%;
 }
 
+a
+{
+    text-decoration: none;
+    color: inherit;
+}
+
+a:hover
+{
+    text-decoration: underline;
+}
+
 body
 {
     font-family: sans-serif;
@@ -53,17 +64,6 @@ body
     margin-left: auto;
     font-size: 60%;
     font-weight: normal;
-}
-
-a
-{
-    text-decoration: none;
-    color: inherit;
-}
-
-a:hover
-{
-    text-decoration: underline;
 }
 
 .dokki-side-panel
@@ -144,6 +144,11 @@ a:hover
     line-height: 1.5;
 }
 
+.dokki-topic p a
+{
+    color: deepskyblue;
+}
+
 .dokki-topic:first-of-type
 {
     margin-top: 0;
@@ -187,7 +192,7 @@ a:hover
 .dokki-topic .permalink
 {
     visibility: hidden;
-    padding-left: 10px;
+    padding-left: 5px;
     color: gray;
 }
 
@@ -240,10 +245,10 @@ a:hover
 .dokki-tip,
 .dokki-warning
 {
-    border: 1px solid black;
+    border: 2px solid;
     padding: 14px;
     border-top-width: 32px;
-    border-radius: 0 10px 10px;
+    border-radius: 10px;
 }
 
 .dokki-tip
