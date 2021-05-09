@@ -38,7 +38,7 @@ function create_app()
             document.title = this.title;
         },
         template: `
-            <div class="dokki-header">
+            <header class="dokki-header">
                 <i :class="icon" style="margin-right: 10px;"/>
 
                 {{title}}
@@ -49,7 +49,15 @@ function create_app()
                     {{software}}
 
                 </div>
-            </div>
+            </header>
+        `,
+    });
+
+    app.component("dokki-topics", {
+        template: `
+            <main class="dokki-topics">
+                <slot/>
+            </main>
         `,
     });
 
@@ -79,7 +87,7 @@ function create_app()
                   :id=simplifiedTitle>
             </span>
 
-            <div class="dokki-topic"
+            <section class="dokki-topic"
                  :id=simplifiedTitle>
             
                 <h2 class="title">
@@ -97,7 +105,7 @@ function create_app()
 
                 <slot/>
 
-            </div>
+            </section>
         `,
     });
 
@@ -109,7 +117,7 @@ function create_app()
             },
         },
         template: `
-            <div class="dokki-side-panel">
+            <nav class="dokki-side-panel">
 
                 <div class="dokki-navbar">
                     <ul>
@@ -121,7 +129,7 @@ function create_app()
                     </ul>
                 </div>
             
-            </div>
+            </nav>
         `,
     });
 
