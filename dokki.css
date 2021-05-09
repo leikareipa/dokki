@@ -159,22 +159,74 @@ body
     margin-top: 10px;
 }
 
-.dokki-topic > *:not(img):last-of-type
+.dokki-topic > *:last-of-type
 {
     margin-bottom: 0;
 }
 
-.dokki-topic img
+.dokki-image
 {
-    display: block;
+    display: flex;
+    flex-direction: column;
     margin: var(--content-margin);
     margin-left: auto;
     margin-right: auto;
-    border: 1px solid black;
-    border-radius: 0;
-    max-width: 100%;
-    width: 65%;
+    border: 1px solid lightgray;
+    border-radius: 10px;
+    width: 100%;
     box-sizing: border-box;
+    overflow: hidden;
+}
+
+.dokki-image img
+{
+    min-width: 100%;
+    max-width: 100%;
+}
+
+.dokki-image header
+{
+    display: flex;
+    align-items: baseline;
+    box-sizing: border-box;
+    padding: 6px;
+    padding-left: 15px;
+    padding-right: 15px;
+    background-color: white;
+    font-weight: bold;
+    cursor: pointer;
+    user-select: none;
+}
+
+.dokki-image header .fas,
+.dokki-image header .far
+{
+    margin-right: 5px;
+}
+
+.dokki-image header .revealer
+{
+    color: deepskyblue;
+    font-weight: normal;
+    display: inline-block;
+    margin-left: auto;
+    font-variant: small-caps;
+    text-transform: lowercase;
+}
+
+.dokki-image footer
+{
+    padding: 8px;
+    text-align: center;
+    font-style: italic;
+    border-top: 1px dashed transparent;
+    transition: border-top-color 0.2s ease-out;
+}
+
+.dokki-image:not(.expanded) footer
+{
+    border-top-color: lightgray;
+    transition: none;
 }
 
 .dokki-topic > table img
@@ -245,7 +297,7 @@ body
 .dokki-tip,
 .dokki-warning
 {
-    border: 2px solid;
+    border: 1px solid;
     padding: 14px;
     border-top-width: 32px;
     border-radius: 10px;
@@ -277,7 +329,7 @@ body
 {
     :root
     {
-        --page-outer-side-margin: 20px;
+        --page-outer-side-margin: 5%;
         --topics-width: 750px;
     }
 
@@ -296,14 +348,22 @@ body
     }
 }
 
+@media only screen and (max-width: 1200px)
+{
+    :root
+    {
+        --page-outer-side-margin: 2%;
+    }
+}
+
 @media only screen and (max-width: 1000px)
 {
     :root
     {
         --topics-width: calc(100% - var(--page-outer-side-margin) - var(--side-panel-width) - 5px);
+        --page-outer-side-margin: 20px;
     }
 }
-
 
 @media only screen and (max-width: 850px)
 {

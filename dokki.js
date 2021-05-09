@@ -63,8 +63,7 @@ function create_app()
 
     app.component("dokki-topic", {
         props: ["title"],
-        data()
-        {
+        data() {
             return {
                 idx: -1,
             }
@@ -130,6 +129,44 @@ function create_app()
                 </div>
             
             </nav>
+        `,
+    });
+
+    app.component("dokki-image", {
+        props: ["src"],
+        data() {
+            return {
+                isExpanded: false,
+            }
+        },
+        computed: {
+            hasFooter()
+            {
+                return !!this.$slots.default;
+            }
+        },
+        template: `
+            <p class="dokki-image"
+               :class="{expanded: isExpanded}">
+
+                <header @click="isExpanded = !isExpanded">
+                    <i class="fas fa-fw fa-image"/>
+                    Image
+
+                    <aside class="revealer">
+
+                        {{isExpanded? "Hide" : "Show"}}
+
+                    </aside>
+                </header>
+
+                <img v-if=isExpanded
+                     :src="src">
+
+                <footer v-if=hasFooter>
+                    <slot/>
+                </footer>
+            </p>
         `,
     });
 
