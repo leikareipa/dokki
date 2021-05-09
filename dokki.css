@@ -164,18 +164,6 @@ body
     margin-bottom: 0;
 }
 
-.dokki-topic > table img
-{
-    all: initial;
-}
-
-.dokki-topic > table
-{
-    margin: auto;
-    margin-top: var(--content-margin);
-    margin-bottom: var(--content-margin);
-}
-
 .dokki-topic .permalink
 {
     visibility: hidden;
@@ -246,11 +234,31 @@ body
     padding-right: 14px;
 }
 
+.dokki-embedded header.clickable
+{
+    display: flex;
+    align-items: baseline;
+    box-sizing: border-box;
+    cursor: pointer;
+    user-select: none;
+    background-color: #f6f6f6;
+}
+
 .dokki-embedded footer
 {
     padding: 8px;
     padding-left: 14px;
     padding-right: 14px;
+}
+
+.dokki-embedded .revealer
+{
+    color: deepskyblue;
+    font-weight: normal;
+    display: inline-block;
+    margin-left: auto;
+    font-variant: small-caps;
+    text-transform: lowercase;
 }
 
 .dokki-embedded.dokki-tip
@@ -277,13 +285,60 @@ body
     background-color: #ff7838;
 }
 
+.dokki-embedded.dokki-output
+{
+    border-color: lightgray;
+}
+
+.dokki-embedded.dokki-output footer > *:first-child
+{
+    margin-top: 0;
+}
+
+.dokki-embedded.dokki-output footer > *:last-child
+{
+    margin-bottom: 0;
+}
+
+.dokki-embedded.dokki-output footer
+{
+    font-family: monospace;
+    padding: 14px;
+}
+
+.dokki-embedded.dokki-code
+{
+    counter-reset: codeLineNumber;
+    border-color: #ffe318;
+    background-color: #fffce2;
+}
+
+.dokki-embedded.dokki-code code
+{
+    counter-increment: codeLineNumber;
+    white-space: pre;
+}
+
+.dokki-embedded.dokki-code code::before
+{
+    content: counter(codeLineNumber) ": ";
+}
+
+.dokki-embedded.dokki-code header
+{
+    color: black;
+    background-color: #ffe318;
+}
+
+.dokki-embedded.dokki-code footer
+{
+    overflow: auto;
+}
+
 .dokki-embedded.dokki-image
 {
     display: flex;
     flex-direction: column;
-    margin: var(--content-margin);
-    margin-left: auto;
-    margin-right: auto;
     border: 1px solid lightgray;
     border-radius: 10px;
 }
@@ -294,36 +349,17 @@ body
     max-width: 100%;
 }
 
-.dokki-embedded.dokki-image header
-{
-    display: flex;
-    align-items: baseline;
-    box-sizing: border-box;
-    background-color: white;
-    cursor: pointer;
-    user-select: none;
-}
-
 .dokki-embedded.dokki-image header .fas,
 .dokki-embedded.dokki-image header .far
 {
-    margin-right: 5px;
-}
-
-.dokki-embedded.dokki-image header .revealer
-{
-    color: deepskyblue;
-    font-weight: normal;
-    display: inline-block;
-    margin-left: auto;
-    font-variant: small-caps;
-    text-transform: lowercase;
+    margin-right: 4px;
 }
 
 .dokki-embedded.dokki-image footer
 {
     text-align: center;
     font-style: italic;
+    padding: 10px;
 }
 
 @media only screen and (max-width: 1500px)

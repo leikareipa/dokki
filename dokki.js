@@ -149,7 +149,8 @@ function create_app()
             <p class="dokki-embedded dokki-image"
                :class="{expanded: isExpanded}">
 
-                <header @click="isExpanded = !isExpanded">
+                <header class="clickable"
+                        @click="isExpanded = !isExpanded">
 
                     <i class="fas fa-fw fa-image"/>
                     Image
@@ -175,7 +176,7 @@ function create_app()
             <p class="dokki-embedded dokki-tip">
 
                 <header>
-                    <i class="fas fa-info-circle"/>
+                    <i class="fas fa-fw fa-info-circle"/>
                     Tip
                 </header>
 
@@ -192,12 +193,115 @@ function create_app()
             <p class="dokki-embedded dokki-warning">
 
                 <header>
-                    <i class="fas fa-exclamation-triangle"/>
+                    <i class="fas fa-fw fa-exclamation-triangle"/>
                     Warning
                 </header>
 
                 <footer>
                     <slot/>
+                </footer>
+
+            </p>
+        `,
+    });
+
+    // For showcasing the output of something; e.g. of a block of sample code.
+    //
+    // Sample usage:
+    //
+    //   <dokki-output>
+    //       Hello there.
+    //       <div>Hello again</div>
+    //   </dokki-output>
+    //
+    app.component("dokki-output", {
+        data() {
+            return {
+                isExpanded: false,
+            }
+        },
+        template: `
+            <p class="dokki-embedded dokki-output">
+
+                <header class="clickable"
+                        @click="isExpanded = !isExpanded">
+                    <i class="fas fa-fw fa-chevron-right"/>
+                    Output
+
+                    <aside class="revealer">
+                        {{isExpanded? "Hide" : "Show"}}
+                    </aside>
+                </header>
+
+                <footer v-if=isExpanded>
+                    <slot/>
+                </footer>
+
+            </p>
+        `,
+    });
+
+    // For embedding blocks of source code.
+    //
+    // Sample usage:
+    //
+    //   <dokki-code lang="C"
+    //               code="
+    //               int main(void)
+    //               {
+    //                   const char *str = ``Hello there.``;
+    //                   printf(``The string says: '%s'\\n``, str);
+    //                   return 0;
+    //               }
+    //               ">
+    //   </dokki-code>
+    //
+    // NOTE: Two backticks (``) must be used in place of double quotes (").
+    //
+    // NOTE: Escape sequences (e.g. \n) must be doubly escaped (e.g. \\n).
+    //
+    app.component("dokki-code", {
+        props: {
+            lang: {default: "unknown language"},
+            code: {},
+        },
+        computed: {
+            formattedCode()
+            {
+                if (!this.code) {
+                    return "";
+                }
+
+                let lines = this.code.split("\n").filter(s=>s.length);
+                
+                if (!lines.length) {
+                    return "";
+                }
+                
+                const numPreSpaces = Math.max(0, lines[0].search(/\S/));
+
+                for (let i = 0; i < lines.length; i++)
+                {
+                    lines[i] = lines[i].slice(numPreSpaces);
+                    lines[i] = lines[i].replace(/``/g, "\"");
+                    lines[i] = lines[i].replace(/\\\\/g, "\\");
+                }
+
+                return lines.filter(s=>s.length);
+            }
+        },
+        template: `
+            <p class="dokki-embedded dokki-code">
+
+                <header>
+                    <i class="fas fa-code"/>
+                    {{lang}}
+                </header>
+
+                <footer>
+                    <code v-for="line in formattedCode">
+                        {{line}}<br>
+                    </code>
                 </footer>
 
             </p>
