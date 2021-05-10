@@ -144,10 +144,13 @@ function create_app()
     });
 
     app.component("dokki-image", {
-        props: ["src"],
+        props: {
+            src: {},
+            expanded: {default: undefined},
+        },
         data() {
             return {
-                isExpanded: false,
+                isExpanded: ((this.$props.expanded === undefined)? false : true),
             }
         },
         computed: {

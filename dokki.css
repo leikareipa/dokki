@@ -39,7 +39,6 @@ body
     margin-top: var(--content-margin);
     font-size: 80%;
     color: gray;
-    font-style: italic;
 }
 
 .dokki-header
@@ -377,7 +376,7 @@ body
 
 .dokki-embedded.dokki-image footer
 {
-    text-align: center;
+    font-style: italic;
 }
 
 @media only screen and (max-width: 1500px)
