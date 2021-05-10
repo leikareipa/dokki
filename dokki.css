@@ -1,15 +1,15 @@
 :root
 {
-    --header-height: 70px;
-    --side-panel-width: 330px;
-    --topics-width: 850px;
+    --header-height: 65px;
+    --side-panel-width: 270px;
+    --topics-width: 810px;
     --content-margin: 20px;
-    --header-bottom-margin: 20px;
+    --header-bottom-margin: 23px;
     --topics-top-margin: calc(35px - var(--header-bottom-margin));
 
     /* Margins on the left and right of the page outside of which no content
      * is allowed.*/
-    --page-outer-side-margin: 11%;
+    --page-vertical-margin: calc(50% - var(--topics-width)/2 - var(--side-panel-width) - var(--content-margin));
 }
 
 a
@@ -47,10 +47,10 @@ body
     z-index: 1;
     box-sizing: border-box;
     background-color: whitesmoke;
-    padding-left: var(--page-outer-side-margin);
-    padding-right: var(--page-outer-side-margin);
+    padding-left: var(--page-vertical-margin);
+    padding-right: var(--page-vertical-margin);
     text-align: left;
-    font-weight: bold;
+    font-weight: normal;
     font-size: 160%;
     color: black;
     white-space: normal;
@@ -72,7 +72,7 @@ body
     position: fixed;
     z-index: 0;
     top: var(--header-height);
-    left: var(--page-outer-side-margin);
+    left: var(--page-vertical-margin);
     background-color: transparent;
     width: var(--side-panel-width);
     text-align: left;
@@ -127,7 +127,7 @@ body
     align-items: center;
     text-align: left;
     position: relative;
-    left: calc(10% + var(--side-panel-width));
+    left: calc(50% - var(--topics-width)/2);
     top: 0;
     z-index: 0;
 }
@@ -135,7 +135,10 @@ body
 .dokki-topic
 {
     box-sizing: border-box;
-    padding: 15px;
+    padding: 0;
+    margin: 0;
+    padding-top: 15px;
+    padding-bottom: 25px;
     width: 100%;
 }
 
@@ -146,7 +149,7 @@ body
 
 .dokki-topic p a
 {
-    color: deepskyblue;
+    color: #00ade6;
 }
 
 .dokki-topic:first-of-type
@@ -183,7 +186,7 @@ body
 .dokki-side-panel h2
 {
     font-size: 100%;
-    font-weight: bold;
+    font-weight: normal;
     color: black;
     padding: 0;
     margin: 0;
@@ -228,7 +231,7 @@ body
 
 .dokki-embedded header
 {
-    font-weight: bold;
+    font-weight: normal;
     padding: 6px;
     padding-left: 14px;
     padding-right: 14px;
@@ -253,7 +256,7 @@ body
 
 .dokki-embedded .revealer
 {
-    color: deepskyblue;
+    color: #00ade6;
     font-weight: normal;
     display: inline-block;
     margin-left: auto;
@@ -321,6 +324,7 @@ body
 
 .dokki-embedded.dokki-code code::before
 {
+    color: gray;
     content: counter(codeLineNumber) ": ";
 }
 
@@ -332,6 +336,8 @@ body
 
 .dokki-embedded.dokki-code footer
 {
+    padding-bottom: 10px;
+    padding-top: 10px;
     overflow: auto;
 }
 
@@ -358,30 +364,22 @@ body
 .dokki-embedded.dokki-image footer
 {
     text-align: center;
-    font-style: italic;
-    padding: 10px;
 }
 
 @media only screen and (max-width: 1500px)
 {
     :root
     {
-        --page-outer-side-margin: 5%;
-        --topics-width: 750px;
-    }
-
-    .dokki-topics
-    {
-        left: calc(var(--content-margin) + var(--side-panel-width));
+        --topics-width: 710px;
     }
 }
 
-@media only screen and (max-width: 1300px)
+@media only screen and (max-width: 1350px)
 {
     :root
     {
-        --side-panel-width: 265px;
-        --topics-width: 700px;
+        --side-panel-width: 240px;
+        --topics-width: 610px;
     }
 }
 
@@ -389,21 +387,47 @@ body
 {
     :root
     {
-        --page-outer-side-margin: 2%;
+        --page-vertical-margin: 30px;
+    }
+
+    .dokki-topics
+    {
+        left: calc(var(--page-vertical-margin) + var(--side-panel-width));
+        width: calc(90% - var(--side-panel-width) - var(--page-vertical-margin));
+        margin-left: 0;
     }
 }
 
-@media only screen and (max-width: 1000px)
+@media only screen and (max-width: 1050px)
 {
     :root
     {
-        --topics-width: calc(100% - var(--page-outer-side-margin) - var(--side-panel-width) - 5px);
-        --page-outer-side-margin: 20px;
+        --page-vertical-margin: 25px;
+    }
+
+    .dokki-topics
+    {
+        width: calc(100% - var(--side-panel-width) - var(--page-vertical-margin) - var(--content-margin));
     }
 }
 
-@media only screen and (max-width: 850px)
+@media only screen and (max-width: 900px)
 {
+    :root
+    {
+        --page-vertical-margin: 20px;
+        --side-panel-width: 220px;
+    }
+}
+
+@media only screen and (max-width: 800px)
+{
+    :root
+    {
+        --page-vertical-margin: 10px;
+        --side-panel-width: 0;
+    }
+
     .dokki-header
     {
         position: absolute;
@@ -414,11 +438,17 @@ body
         display: none;
     }
 
+    .dokki-topic
+    {
+        padding-left: 0;
+        padding-right: 0;
+    }
+
     .dokki-topics
     {
-        left: 0;
-        width: 100%;
+        left: var(--page-vertical-margin);
         margin-left: 0;
+        padding-left: 0;
     }
 }
 
@@ -426,12 +456,8 @@ body
 {
     :root
     {
-        --page-outer-side-margin: 10px;
-    }
-
-    .dokki-header
-    {
-        justify-content: center;
+        --header-height: 80px;
+        --header-bottom-margin: 25px;
     }
 
     .dokki-header .software-tag
