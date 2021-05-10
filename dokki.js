@@ -127,6 +127,17 @@ function create_app()
                         </li>
                     </ul>
                 </div>
+
+                <div class="dokki-tag">
+                    Documented with
+
+                    <a href="https://github.com/leikareipa/dokki"
+                       target="_blank"
+                       rel="noopener noreferrer">
+                       
+                        dokki
+                    </a>
+                </div>
             
             </nav>
         `,

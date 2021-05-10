@@ -34,6 +34,14 @@ body
     margin: 0;
 }
 
+.dokki-tag
+{
+    margin-top: var(--content-margin);
+    font-size: 80%;
+    color: gray;
+    font-style: italic;
+}
+
 .dokki-header
 {
     border-bottom: 1px solid lightgray;
@@ -138,8 +146,13 @@ body
     padding: 0;
     margin: 0;
     padding-top: 15px;
-    padding-bottom: 25px;
+    padding-bottom: 15px;
     width: 100%;
+}
+
+.dokki-topic ul
+{
+    padding-inline-start: 20px;
 }
 
 .dokki-topic p
@@ -336,6 +349,7 @@ body
 
 .dokki-embedded.dokki-code footer
 {
+    font-size: 110%;
     padding-bottom: 10px;
     padding-top: 10px;
     overflow: auto;
