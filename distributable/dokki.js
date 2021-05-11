@@ -307,18 +307,28 @@ function create_app()
     //                   return 0;
     //               }
     //               ">
+    //
+    //       <!-- Optional. -->
+    //       <dokki-output>
+    //           The string says: 'Hello there.'
+    //       </dokki-output>
+    //
     //   </dokki-code>
     //
-    // NOTE: Two backticks (``) must be used in place of double quotes (").
+    // NOTE: In the 'code' prop, two backticks (``) must be used in place of double quotes (").
     //
-    // NOTE: Escape sequences (e.g. \n) must be doubly escaped (e.g. \\n).
+    // NOTE: In the 'code' prop, escape sequences (e.g. \n) must be doubly escaped (e.g. \\n).
     //
     app.component("dokki-code", {
         props: {
-            lang: {default: "unknown language"},
+            title: {default: "Untitled"},
             code: {},
         },
         computed: {
+            hasOutput()
+            {
+                return !!this.$slots.default;
+            },
             formattedCode()
             {
                 if (!this.code) {
@@ -344,12 +354,13 @@ function create_app()
             }
         },
         template: `
-            <p class="dokki-embedded dokki-code">
+            <p class="dokki-embedded dokki-code"
+               :class="{'has-output': hasOutput}">
 
                 <header>
                     <span class="title">
                         <i class="fas fa-code"/>
-                        {{lang}}
+                        {{title}}
                     </span>
                 </header>
 
@@ -360,6 +371,8 @@ function create_app()
                 </footer>
 
             </p>
+
+            <slot/>
         `,
     });
 

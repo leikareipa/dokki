@@ -278,6 +278,7 @@ body
 
 .dokki-embedded .revealer
 {
+    margin-left: 10px;
     color: #00ade6;
     font-weight: normal;
     display: inline-block;
@@ -325,6 +326,13 @@ body
     border-color: lightgray;
 }
 
+.dokki-embedded.dokki-code.has-output + .dokki-embedded.dokki-output
+{
+    margin-top: 0;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
+
 .dokki-embedded.dokki-output footer
 {
     font-family: monospace;
@@ -341,14 +349,15 @@ body
     margin-top: 0;
 }
 
-.dokki-embedded.dokki-output footer > *:not(iframe):last-child
+.dokki-embedded.dokki-output footer > *:last-child
 {
     margin-bottom: 0;
 }
 
-.dokki-embedded.dokki-output footer > iframe
+.dokki-embedded.dokki-output footer > iframe,
+.dokki-embedded.dokki-output footer > canvas
 {
-    margin-bottom: calc(var(--embedded-element-border-radius) / 2 * -1);
+    margin-bottom: calc(var(--embedded-element-border-radius) / 2 * -1) !important;
 }
 
 .dokki-embedded.dokki-code
@@ -356,6 +365,14 @@ body
     counter-reset: codeLineNumber;
     border-color: #ffe318;
     background-color: #fffce2;
+}
+
+.dokki-embedded.dokki-code.has-output
+{
+    margin-bottom: 0;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    border-bottom: none;
 }
 
 .dokki-embedded.dokki-code code
