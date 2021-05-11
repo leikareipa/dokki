@@ -89,6 +89,11 @@ body
     padding-bottom: var(--content-margin);
 }
 
+.dokki-side-panel.scrollable
+{
+    border-right: 1px solid lightgray;
+}
+
 .dokki-side-panel ul
 {
     list-style-type: none;

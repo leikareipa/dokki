@@ -109,34 +109,58 @@ function create_app()
     });
 
     app.component("dokki-side-panel", {
+        data() {
+            return {
+                isScrollable: false,
+            }
+        },
         computed: {
             topics()
             {
                 return this.$store.state.topics;
             },
         },
+        mounted()
+        {
+            window.addEventListener("resize", update_scrollable_status.bind(this)); 
+            Vue.nextTick(update_scrollable_status.bind(this));
+
+            function update_scrollable_status()
+            {
+                const margin = parseInt(window.getComputedStyle(document.body).getPropertyValue("--content-margin"));
+                const height = (this.$refs.container.clientHeight + (margin * 2));
+                this.isScrollable = (height >= this.$refs.panel.clientHeight);
+            };
+        },
         template: `
-            <nav class="dokki-side-panel">
+            <nav ref="panel"
+                 class="dokki-side-panel"
+                 :class="{scrollable: isScrollable}">
 
-                <div class="dokki-navbar">
-                    <ul>
-                        <li v-for="topic in topics">
-                            <a :href="'#'+topic.simplifiedTitle">
-                                {{topic.title}}
-                            </a>
-                        </li>
-                    </ul>
-                </div>
+                <div ref="container"
+                     class="container">
 
-                <div class="dokki-tag">
-                    Documented with
+                    <div class="dokki-navbar">
+                        <ul>
+                            <li v-for="topic in topics">
+                                <a :href="'#'+topic.simplifiedTitle">
+                                    {{topic.title}}
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
 
-                    <a href="https://github.com/leikareipa/dokki"
-                       target="_blank"
-                       rel="noopener noreferrer">
-                       
-                        dokki
-                    </a>
+                    <div class="dokki-tag">
+                        Documented with
+
+                        <a href="https://github.com/leikareipa/dokki"
+                        target="_blank"
+                        rel="noopener noreferrer">
+                        
+                            dokki
+                        </a>
+                    </div>
+
                 </div>
             
             </nav>
