@@ -246,16 +246,20 @@ function create_app()
         `,
     });
 
-    // For showcasing the output of something; e.g. of a block of sample code.
+    // For showcasing the output of something; e.g. of a block of sample code or
+    // another website (via an <iframe>).
     //
     // Sample usage:
     //
-    //   <dokki-output>
+    //   <dokki-output title="Expected output">
     //       Hello there.
     //       <div>Hello again</div>
     //   </dokki-output>
     //
     app.component("dokki-output", {
+        props: {
+            title: {default: "Output"}
+        },
         data() {
             return {
                 isExpanded: false,
@@ -269,6 +273,7 @@ function create_app()
 
                     <span class="title">
                         <i class="fas fa-chevron-right"/>
+                        {{title}}
                     </span>
 
                     <aside class="revealer">
