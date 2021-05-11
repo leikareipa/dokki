@@ -247,7 +247,7 @@ function create_app()
     });
 
     // For showcasing the output of something; e.g. of a block of sample code or
-    // another website (via an <iframe>).
+    // another website (via an <iframe> combined with the 'unpadded' prop).
     //
     // Sample usage:
     //
@@ -258,7 +258,8 @@ function create_app()
     //
     app.component("dokki-output", {
         props: {
-            title: {default: "Output"}
+            title: {default: "Output"},
+            unpadded: {default: undefined},
         },
         data() {
             return {
@@ -282,8 +283,11 @@ function create_app()
 
                 </header>
 
-                <footer v-if=isExpanded>
+                <footer v-if=isExpanded
+                        :class="{unpadded: (unpadded !== undefined)}">
+
                     <slot/>
+                    
                 </footer>
 
             </p>

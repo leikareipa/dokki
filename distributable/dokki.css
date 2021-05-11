@@ -331,6 +331,11 @@ body
     padding: 14px;
 }
 
+.dokki-embedded.dokki-output footer.unpadded
+{
+    padding: 0;
+}
+
 .dokki-embedded.dokki-output footer > *:first-child
 {
     margin-top: 0;
