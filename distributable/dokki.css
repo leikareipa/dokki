@@ -246,7 +246,7 @@ body
 {
     width: 100%;
     box-sizing: border-box;
-    border: 1px solid;
+    border: 1px solid lightgray;
     border-radius: var(--embedded-element-border-radius);
     overflow: hidden;
 }

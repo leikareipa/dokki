@@ -386,6 +386,36 @@ function create_app()
         `,
     });
 
+    app.component("dokki-spoiler", {
+        props: {
+            title: {default: "Spoiler"},
+        },
+        data() {
+            return {
+                isExpanded: false,
+            }
+        },
+        template: `
+            <p class="dokki-embedded dokki-spoiler">
+
+                <header class="clickable"
+                        @click="isExpanded = !isExpanded">
+
+                    <span class="title">
+                        <i class="fas fa-chevron-right"/>
+                        {{title}}
+                    </span>
+                    
+                </header>
+
+                <footer v-if=isExpanded>
+                    <slot/>
+                </footer>
+
+            </p>
+        `,
+    });
+
     app.use(store);
     app.mount("body");
 
