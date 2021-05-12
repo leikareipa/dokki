@@ -362,7 +362,6 @@ body
 
 .dokki-embedded.dokki-code
 {
-    counter-reset: codeLineNumber;
     border-color: #ffe318;
     background-color: #fffce2;
 }
@@ -373,18 +372,6 @@ body
     border-bottom-left-radius: 0;
     border-bottom-right-radius: 0;
     border-bottom: none;
-}
-
-.dokki-embedded.dokki-code code
-{
-    counter-increment: codeLineNumber;
-    white-space: pre;
-}
-
-.dokki-embedded.dokki-code code::before
-{
-    color: gray;
-    content: counter(codeLineNumber) ": ";
 }
 
 .dokki-embedded.dokki-code header
@@ -399,6 +386,18 @@ body
     padding-bottom: 10px;
     padding-top: 10px;
     overflow: auto;
+}
+
+.dokki-embedded.dokki-code footer table
+{
+    font-family: monospace;
+    white-space: pre;
+}
+
+.dokki-embedded.dokki-code footer table .line-number
+{
+    color: gray;
+    user-select: none;
 }
 
 .dokki-embedded.dokki-image

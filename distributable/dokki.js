@@ -365,9 +365,19 @@ function create_app()
                 </header>
 
                 <footer>
-                    <code v-for="line in formattedCode">
-                        {{line}}<br>
-                    </code>
+                    <table>
+                        <tr v-for="(line, index) in formattedCode">
+
+                            <td class="line-number">
+                                {{index+1}}:
+                            </td>
+                            
+                            <td class="code-line">
+                                {{line}}
+                            </td>
+                            
+                        </tr>
+                    </table>
                 </footer>
 
             </p>
