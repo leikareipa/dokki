@@ -405,7 +405,11 @@ function create_app()
                         <i class="fas fa-chevron-right"/>
                         {{title}}
                     </span>
-                    
+
+                    <aside class="revealer">
+                        {{isExpanded? "Hide" : "Show"}}
+                    </aside>
+
                 </header>
 
                 <footer v-if=isExpanded>
