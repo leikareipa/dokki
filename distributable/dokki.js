@@ -248,6 +248,79 @@ function create_app()
         `,
     });
 
+    // Displays a video from a given source.
+    //
+    // Sample usage:
+    //
+    //   <dokki-video platform="youtube"
+    //                src="ZgWGmggi5Xo">
+    //   </dokki-video>
+    //
+    // NOTE: The 'src' prop is a video identifier whose exact meaning depends on the
+    // host platform (identified by the 'platform' prop).
+    //
+    app.component("dokki-video", {
+        props: {
+            src: {},
+            platform: {default: "youtube"}
+        },
+        data() {
+            return {
+                isExpanded: false,
+            }
+        },
+        computed: {
+            hasFooter()
+            {
+                return !!this.$slots.default;
+            },
+            videoUrl()
+            {
+                switch (this.platform)
+                {
+                    // Note: Only YouTube is supported at this time.
+                    default: return `https://www.youtube-nocookie.com/embed/${this.src}?autoplay=1`;
+                }
+            },
+            headerIcon()
+            {
+                switch (this.platform)
+                {
+                    case "youtube": return "fab fa-youtube";
+                    default: return "fas fa-film";
+                }
+            }
+        },
+        template: `
+            <p class="dokki-embedded dokki-video"
+               :class=platform>
+
+               <header class="clickable"
+                       @click="isExpanded = !isExpanded">
+
+                    <span class="title">
+                        <i :class="headerIcon"/>
+                    </span>
+
+                    <aside class="revealer">
+                        {{isExpanded? "Hide" : "Show"}}
+                    </aside>
+
+                </header>
+
+                <iframe v-if=isExpanded
+                        :src=videoUrl
+                        allow="fullscreen; autoplay;">
+                </iframe>
+
+                <footer v-if=hasFooter>
+                    <slot/>
+                </footer>
+
+            </p>
+        `,
+    });
+
     // For displaying terminal commands and their output.
     //
     // Sample usage:
@@ -474,33 +547,10 @@ function create_app()
         props: {
             title: {default: "Spoiler"},
         },
-        data() {
-            return {
-                isExpanded: false,
-            }
-        },
         template: `
-            <p class="dokki-embedded dokki-spoiler">
-
-                <header class="clickable"
-                        @click="isExpanded = !isExpanded">
-
-                    <span class="title">
-                        <i class="fas fa-chevron-right"/>
-                        {{title}}
-                    </span>
-
-                    <aside class="revealer">
-                        {{isExpanded? "Hide" : "Show"}}
-                    </aside>
-
-                </header>
-
-                <footer v-if=isExpanded>
-                    <slot/>
-                </footer>
-
-            </p>
+            <dokki-output :title=title>
+                <slot/>
+            </dokki-output>
         `,
     });
 

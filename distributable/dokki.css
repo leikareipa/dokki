@@ -294,6 +294,17 @@ body
     margin-bottom: 0;
 }
 
+.dokki-embedded footer.unpadded
+{
+    padding: 0 !important;
+}
+
+.dokki-embedded footer > iframe,
+.dokki-embedded footer > canvas
+{
+    margin-bottom: calc(var(--embedded-element-border-radius) / 2 * -1) !important;
+}
+
 .dokki-embedded .revealer
 {
     margin-left: 10px;
@@ -303,6 +314,31 @@ body
     margin-left: auto;
     font-variant: small-caps;
     text-transform: lowercase;
+}
+
+.dokki-embedded.dokki-video
+{
+    display: flex;
+    flex-direction: column;
+    border: 1px solid lightgray;
+}
+
+.dokki-embedded.dokki-video.youtube > iframe
+{
+    min-width: 100%;
+    max-width: 100%;
+    height: 450px;
+    border: none;
+}
+
+.dokki-embedded.dokki-video footer
+{
+    font-style: italic;
+}
+
+.dokki-embedded.dokki-video header .title::after
+{
+    content: " Video";
 }
 
 .dokki-embedded.dokki-console
@@ -385,11 +421,6 @@ body
     padding: 14px;
 }
 
-.dokki-embedded.dokki-output footer.unpadded
-{
-    padding: 0;
-}
-
 .dokki-embedded.dokki-output footer > *:first-child
 {
     margin-top: 0;
@@ -398,12 +429,6 @@ body
 .dokki-embedded.dokki-output footer > *:last-child
 {
     margin-bottom: 0;
-}
-
-.dokki-embedded.dokki-output footer > iframe,
-.dokki-embedded.dokki-output footer > canvas
-{
-    margin-bottom: calc(var(--embedded-element-border-radius) / 2 * -1) !important;
 }
 
 .dokki-embedded.dokki-code
@@ -453,7 +478,7 @@ body
     border: 1px solid lightgray;
 }
 
-.dokki-embedded.dokki-image img
+.dokki-embedded.dokki-image > img
 {
     min-width: 100%;
     max-width: 100%;
