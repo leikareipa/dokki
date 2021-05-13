@@ -415,12 +415,6 @@ body
     border-top-right-radius: 0;
 }
 
-.dokki-embedded.dokki-output footer
-{
-    font-family: monospace;
-    padding: 14px;
-}
-
 .dokki-embedded.dokki-output footer > *:first-child
 {
     margin-top: 0;
