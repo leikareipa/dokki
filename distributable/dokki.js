@@ -1,5 +1,7 @@
 /*
- * 2021 Tarpeeksi Hyvae Soft.
+ * 2021 Tarpeeksi Hyvae Soft
+ *
+ * Software: dokki
  *
  */
 
@@ -123,7 +125,7 @@ function create_app()
         mounted()
         {
             window.addEventListener("resize", update_scrollable_status.bind(this)); 
-            Vue.nextTick(update_scrollable_status.bind(this));
+            this.$nextTick(update_scrollable_status);
 
             function update_scrollable_status()
             {
@@ -246,6 +248,56 @@ function create_app()
         `,
     });
 
+    // For displaying terminal commands and their output.
+    //
+    // Sample usage:
+    //
+    //   <dokki-console platform="unix"
+    //                  command="./run.sh"
+    //                  output="Hello there.">
+    //   </dokki-console>
+    //
+    app.component("dokki-console", {
+        props: {
+            command: {default: "undefined command"},
+            output: {default: ""},
+            platform: {default: "unix"}
+        },
+        computed: {
+            headerIcon()
+            {
+                switch (this.platform)
+                {
+                    case "windows": return "fas fa-terminal";
+                    case "unix": return "fas fa-dollar-sign";
+                    default: return "fas fa-dollar-sign";
+                }
+            }
+        },
+        template: `
+            <p class="dokki-embedded dokki-console">
+
+                <header>
+
+                    <span class="title">
+                        <i :class="headerIcon"/>
+                    </span>
+
+                    <span class="command">
+                        {{command}}
+                    </span>
+
+                </header>
+
+                <footer>
+                    <DOKKI0-text-block-with-line-numbers :text=output>
+                    </DOKKI0-text-block-with-line-numbers>
+                </footer>
+
+            </p>
+        `,
+    });
+
     // For showcasing the output of something; e.g. of a block of sample code or
     // another website (via an <iframe> combined with the 'unpadded' prop).
     //
@@ -294,48 +346,40 @@ function create_app()
         `,
     });
 
-    // For embedding blocks of source code.
+    // Internal component, not for the end-user.
+    //
+    // Displays a block of text with each line prefixed by a line number. Suitable
+    // for e.g. presenting source code or terminal output.
     //
     // Sample usage:
     //
-    //   <dokki-code lang="C"
-    //               code="
-    //               int main(void)
-    //               {
-    //                   const char *str = ``Hello there.``;
-    //                   printf(``The string says: '%s'\\n``, str);
-    //                   return 0;
-    //               }
-    //               ">
+    //   <DOKKI0-text-block-with-line-numbers text="
+    //                                        This is the first line.
+    //                                        This is another line.
+    //                                        ">
+    //   </DOKKI0-text-block-with-line-numbers>
     //
-    //       <!-- Optional. -->
-    //       <dokki-output>
-    //           The string says: 'Hello there.'
-    //       </dokki-output>
+    // Sample output:
     //
-    //   </dokki-code>
+    //   1: This is the first line.
+    //   2: This is another line.
     //
-    // NOTE: In the 'code' prop, two backticks (``) must be used in place of double quotes (").
+    // NOTE for the 'text' prop:
+    //   - Two backticks (``) must be used in place of double quotes (").
+    //   - Escape sequences (e.g. \n) must be doubly escaped (e.g. \\n).
     //
-    // NOTE: In the 'code' prop, escape sequences (e.g. \n) must be doubly escaped (e.g. \\n).
-    //
-    app.component("dokki-code", {
+    app.component("DOKKI0-text-block-with-line-numbers", {
         props: {
-            title: {default: "Untitled"},
-            code: {},
+            text: {},
         },
         computed: {
-            hasOutput()
+            formattedText()
             {
-                return !!this.$slots.default;
-            },
-            formattedCode()
-            {
-                if (!this.code) {
+                if (!this.text) {
                     return "";
                 }
 
-                let lines = this.code.split("\n").filter(s=>s.length);
+                let lines = this.text.split("\n").filter(s=>s.length);
                 
                 if (!lines.length) {
                     return "";
@@ -354,6 +398,57 @@ function create_app()
             }
         },
         template: `
+            <table class="dokki-text-block-with-line-numbers">
+
+                <tr v-for="(line, index) in formattedText">
+
+                    <td class="line-number">
+                        {{index+1}}:
+                    </td>
+                    
+                    <td class="line">
+                        {{line}}
+                    </td>
+                    
+                </tr>
+
+            </table>
+        `,
+    });
+
+    // For embedding blocks of source code.
+    //
+    // Sample usage:
+    //
+    //   <dokki-code title="C"
+    //               code="
+    //               int main(void)
+    //               {
+    //                   const char *str = ``Hello there.``;
+    //                   printf(``The string says: '%s'\\n``, str);
+    //                   return 0;
+    //               }
+    //               ">
+    //
+    //       <!-- Optional. -->
+    //       <dokki-output>
+    //           The string says: 'Hello there.'
+    //       </dokki-output>
+    //
+    //   </dokki-code>
+    //
+    app.component("dokki-code", {
+        props: {
+            title: {default: "Untitled"},
+            code: {},
+        },
+        computed: {
+            hasOutput()
+            {
+                return !!this.$slots.default;
+            },
+        },
+        template: `
             <p class="dokki-embedded dokki-code"
                :class="{'has-output': hasOutput}">
 
@@ -365,19 +460,8 @@ function create_app()
                 </header>
 
                 <footer>
-                    <table>
-                        <tr v-for="(line, index) in formattedCode">
-
-                            <td class="line-number">
-                                {{index+1}}:
-                            </td>
-                            
-                            <td class="code-line">
-                                {{line}}
-                            </td>
-                            
-                        </tr>
-                    </table>
+                    <DOKKI0-text-block-with-line-numbers :text=code>
+                    </DOKKI0-text-block-with-line-numbers>
                 </footer>
 
             </p>

@@ -186,7 +186,7 @@ body
 
 .dokki-topic .permalink
 {
-    visibility: hidden;
+    display: none;
     padding-left: 5px;
     color: lightgray;
 }
@@ -198,7 +198,7 @@ body
 
 .dokki-topic:hover .permalink
 {
-    visibility: visible;
+    display: inline-block;
 }
 
 .dokki-topic h1,
@@ -242,6 +242,18 @@ body
     margin-top: calc(var(--content-margin) - var(--header-bottom-margin) - var(--topics-top-margin));
 }
 
+.dokki-text-block-with-line-numbers
+{
+    font-family: monospace;
+    white-space: pre;
+}
+
+.dokki-text-block-with-line-numbers .line-number
+{
+    color: gray;
+    user-select: none;
+}
+
 .dokki-embedded
 {
     width: 100%;
@@ -276,6 +288,12 @@ body
     padding-right: 14px;
 }
 
+.dokki-embedded footer > *:only-child
+{
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
 .dokki-embedded .revealer
 {
     margin-left: 10px;
@@ -285,6 +303,34 @@ body
     margin-left: auto;
     font-variant: small-caps;
     text-transform: lowercase;
+}
+
+.dokki-embedded.dokki-console
+{
+    color: white;
+    border-color: black;
+}
+
+.dokki-embedded.dokki-console header
+{
+    background-color: black;
+    display: flex;
+    align-items: center;
+}
+
+.dokki-embedded.dokki-console header .title
+{
+    margin-right: 7px;
+}
+
+.dokki-embedded.dokki-console header .command
+{
+    font-family: monospace;
+}
+
+.dokki-embedded.dokki-console footer
+{
+    color: black;
 }
 
 .dokki-embedded.dokki-tip
