@@ -193,7 +193,8 @@ function create_app()
                         @click="isExpanded = !isExpanded">
 
                     <span class="title">
-                        <i class="fas fa-image"/>
+                        <i class="fas fa-image"/
+                           title="Image">
                     </span>
 
                     <aside class="revealer">
@@ -218,7 +219,8 @@ function create_app()
 
                 <header>
                     <div class="title">
-                        <i class="fas fa-info-circle"/>
+                        <i class="fas fa-info-circle"
+                           title="Tip"/>
                     </div>
                 </header>
 
@@ -236,7 +238,8 @@ function create_app()
 
                 <header>
                     <span class="title">
-                        <i class="fas fa-exclamation-triangle"/>
+                        <i class="fas fa-exclamation-triangle"
+                           title="Warning"/>
                     </span>
                 </header>
 
@@ -299,7 +302,8 @@ function create_app()
                        @click="isExpanded = !isExpanded">
 
                     <span class="title">
-                        <i :class="headerIcon"/>
+                        <i :class="headerIcon"
+                           title="Video"/>
                     </span>
 
                     <aside class="revealer">
@@ -353,7 +357,8 @@ function create_app()
                 <header>
 
                     <span class="title">
-                        <i :class="headerIcon"/>
+                        <i :class="headerIcon"
+                           title="Terminal command"/>
                     </span>
 
                     <span class="command">
@@ -536,7 +541,8 @@ function create_app()
 
                 <header>
                     <span class="title">
-                        <i class="fas fa-code"/>
+                        <i class="fas fa-code"
+                           title="Code"/>
                         {{title}}
                     </span>
                 </header>
