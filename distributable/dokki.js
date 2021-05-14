@@ -452,14 +452,18 @@ function create_app()
                     return "";
                 }
 
-                let lines = this.text.split("\n").filter(s=>s.length);
-                
-                if (!lines.length) {
-                    return "";
-                }
-                
-                const numPreSpaces = Math.max(0, lines[0].search(/\S/));
+                let lines = this.text.split("\n");
 
+                // Remove empty lines off the front.
+                while (lines.length && !lines[0].trim().length) {
+                    lines.shift();
+                }
+
+                if (!lines.length) {
+                    return [];
+                }
+
+                const numPreSpaces = Math.max(0, lines[0].search(/\S/));
                 for (let i = 0; i < lines.length; i++)
                 {
                     lines[i] = lines[i].slice(numPreSpaces);
@@ -467,7 +471,12 @@ function create_app()
                     lines[i] = lines[i].replace(/\\\\/g, "\\");
                 }
 
-                return lines.filter(s=>s.length);
+                // Remove empty lines off the back.
+                while (lines.length && !lines[lines.length-1].trim().length) {
+                    lines.pop();
+                }
+
+                return lines;
             }
         },
         template: `
@@ -543,6 +552,7 @@ function create_app()
         `,
     });
 
+    // A semantic alias of dokki-output.
     app.component("dokki-spoiler", {
         props: {
             title: {default: "Spoiler"},
