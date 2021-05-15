@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width">
+        <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+        <script src="https://cdn.jsdelivr.net/npm/vue@3.0.11/dist/vue.global.prod.js"></script>
+        <script src="https://unpkg.com/vuex@4.0.0/dist/vuex.global.prod.js"></script>
+        <script src="./distributable/dokki.js"></script>
+        <link rel="stylesheet"
+              type="text/css"
+              href="./distributable/dokki.css">
+        <link rel="stylesheet"
+              href="https://use.fontawesome.com/releases/v5.12.0/css/all.css"
+              crossorigin="anonymous">
+    </head>
+    <body>
+        <dokki-header title="dokki API reference"
+                      software="dokki beta.1">
+        </dokki-header>
+        
+        <dokki-side-panel>
+        </dokki-side-panel>
+    
+        <dokki-topics>
+
+            <dokki-topic title="Introduction">
+                <p>TODO</p>
+            </dokki-topic>
+
+            <dokki-topic title="dokki-tip">
+                <p>TODO</p>
+
+                <dokki-code title="HTML"
+                            code="
+                            <dokki-tip>
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                            </dokki-tip>
+                            ">
+
+                    <dokki-output>
+                        <p>
+                            Praesent blandit augue orci, vitae fringilla dui semper vel. Aliquam molestie porta quam, nec
+                            faucibus ex efficitur ut. Pellentesque sem nunc, feugiat sed enim ut, vestibulum sollicitudin nulla.
+                            Proin placerat arcu non varius tristique. Proin dapibus eleifend metus, a maximus lorem aliquam sed.
+                        </p>
+
+                        <dokki-tip>
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        </dokki-tip>
+
+                        <p>
+                            Aliquam sodales mi at erat ultrices faucibus. Curabitur non arcu diam. Sed et lacus risus. Nam risus
+                            nisi, fermentum eget sapien lacinia, rhoncus luctus metus. Fusce tincidunt efficitur ex a rhoncus.
+                            Aliquam lobortis lorem augue, at sollicitudin justo pretium vel. Ut mattis nibh in finibus rhoncus.
+                            Pellentesque consectetur erat quam, sit amet fermentum nibh accumsan eget.
+                        </p>
+                    </dokki-output>
+
+                </dokki-code>
+            </dokki-topic>
+
+            <dokki-topic title="dokki-warning">
+                <p>TODO</p>
+                
+                <dokki-code title="HTML"
+                            code="
+                            <dokki-warning>
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                            </dokki-warning>
+                            ">
+
+                    <dokki-output>
+                        <p>
+                            Praesent blandit augue orci, vitae fringilla dui semper vel. Aliquam molestie porta quam, nec
+                            faucibus ex efficitur ut. Pellentesque sem nunc, feugiat sed enim ut, vestibulum sollicitudin nulla.
+                            Proin placerat arcu non varius tristique. Proin dapibus eleifend metus, a maximus lorem aliquam sed.
+                        </p>
+
+                        <dokki-warning>
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        </dokki-warning>
+
+                        <p>
+                            Aliquam sodales mi at erat ultrices faucibus. Curabitur non arcu diam. Sed et lacus risus. Nam risus
+                            nisi, fermentum eget sapien lacinia, rhoncus luctus metus. Fusce tincidunt efficitur ex a rhoncus.
+                            Aliquam lobortis lorem augue, at sollicitudin justo pretium vel. Ut mattis nibh in finibus rhoncus.
+                            Pellentesque consectetur erat quam, sit amet fermentum nibh accumsan eget.
+                        </p>
+                    </dokki-output>
+
+                </dokki-code>
+            </dokki-topic>
+
+            <dokki-topic title="dokki-image">
+                <p>TODO</p>
+                
+                <dokki-code title="HTML"
+                            code="
+                            <dokki-image src='https://upload.wikimedia.org/wikipedia/commons/thumb/7/7f/Eublepharis_macularius_2009_G6.jpg/1280px-Eublepharis_macularius_2009_G6.jpg'>
+                            </dokki-image>
+                            ">
+
+                    <dokki-output>
+                        <p>
+                            Praesent blandit augue orci, vitae fringilla dui semper vel. Aliquam molestie porta quam, nec
+                            faucibus ex efficitur ut. Pellentesque sem nunc, feugiat sed enim ut, vestibulum sollicitudin nulla.
+                            Proin placerat arcu non varius tristique. Proin dapibus eleifend metus, a maximus lorem aliquam sed.
+                        </p>
+                        
+                        <dokki-image src='https://upload.wikimedia.org/wikipedia/commons/thumb/7/7f/Eublepharis_macularius_2009_G6.jpg/1280px-Eublepharis_macularius_2009_G6.jpg'>
+                        </dokki-image>
+
+                        <p>
+                            Aliquam sodales mi at erat ultrices faucibus. Curabitur non arcu diam. Sed et lacus risus. Nam risus
+                            nisi, fermentum eget sapien lacinia, rhoncus luctus metus. Fusce tincidunt efficitur ex a rhoncus.
+                            Aliquam lobortis lorem augue, at sollicitudin justo pretium vel. Ut mattis nibh in finibus rhoncus.
+                            Pellentesque consectetur erat quam, sit amet fermentum nibh accumsan eget.
+                        </p>
+                    </dokki-output>
+
+                </dokki-code>
+
+                <dokki-code title="HTML"
+                            code="
+                            <dokki-image src='https://upload.wikimedia.org/wikipedia/commons/thumb/7/7f/Eublepharis_macularius_2009_G6.jpg/1280px-Eublepharis_macularius_2009_G6.jpg'>
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit
+                            </dokki-image>
+                            ">
+
+                    <dokki-output>
+                        <p>
+                            Praesent blandit augue orci, vitae fringilla dui semper vel. Aliquam molestie porta quam, nec
+                            faucibus ex efficitur ut. Pellentesque sem nunc, feugiat sed enim ut, vestibulum sollicitudin nulla.
+                            Proin placerat arcu non varius tristique. Proin dapibus eleifend metus, a maximus lorem aliquam sed.
+                        </p>
+                        
+                        <dokki-image src='https://upload.wikimedia.org/wikipedia/commons/thumb/7/7f/Eublepharis_macularius_2009_G6.jpg/1280px-Eublepharis_macularius_2009_G6.jpg'>
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit
+                        </dokki-image>
+
+                        <p>
+                            Aliquam sodales mi at erat ultrices faucibus. Curabitur non arcu diam. Sed et lacus risus. Nam risus
+                            nisi, fermentum eget sapien lacinia, rhoncus luctus metus. Fusce tincidunt efficitur ex a rhoncus.
+                            Aliquam lobortis lorem augue, at sollicitudin justo pretium vel. Ut mattis nibh in finibus rhoncus.
+                            Pellentesque consectetur erat quam, sit amet fermentum nibh accumsan eget.
+                        </p>
+                    </dokki-output>
+
+                </dokki-code>
+            </dokki-topic>
+
+            <dokki-topic title="dokki-video">
+                <p>TODO</p>
+                
+                <dokki-code title="HTML"
+                            code="
+                            <dokki-video platform='youtube'
+                                         src='ZgWGmggi5Xo'>
+                            </dokki-video>
+                            ">
+
+                    <dokki-output>
+                        <p>
+                            Praesent blandit augue orci, vitae fringilla dui semper vel. Aliquam molestie porta quam, nec
+                            faucibus ex efficitur ut. Pellentesque sem nunc, feugiat sed enim ut, vestibulum sollicitudin nulla.
+                            Proin placerat arcu non varius tristique. Proin dapibus eleifend metus, a maximus lorem aliquam sed.
+                        </p>
+                        
+                        <dokki-video platform='youtube'
+                                     src='ZgWGmggi5Xo'>
+                        </dokki-video>
+
+                        <p>
+                            Aliquam sodales mi at erat ultrices faucibus. Curabitur non arcu diam. Sed et lacus risus. Nam risus
+                            nisi, fermentum eget sapien lacinia, rhoncus luctus metus. Fusce tincidunt efficitur ex a rhoncus.
+                            Aliquam lobortis lorem augue, at sollicitudin justo pretium vel. Ut mattis nibh in finibus rhoncus.
+                            Pellentesque consectetur erat quam, sit amet fermentum nibh accumsan eget.
+                        </p>
+                    </dokki-output>
+
+                </dokki-code>
+
+                <dokki-code title="HTML"
+                            code="
+                            <dokki-video platform='youtube'
+                                         src='ZgWGmggi5Xo'>
+                                Sriracha Mayoo + Curly Fries
+                            </dokki-video>
+                            ">
+
+                    <dokki-output>
+                        <p>
+                            Praesent blandit augue orci, vitae fringilla dui semper vel. Aliquam molestie porta quam, nec
+                            faucibus ex efficitur ut. Pellentesque sem nunc, feugiat sed enim ut, vestibulum sollicitudin nulla.
+                            Proin placerat arcu non varius tristique. Proin dapibus eleifend metus, a maximus lorem aliquam sed.
+                        </p>
+                        
+                        <dokki-video platform='youtube'
+                                     src='ZgWGmggi5Xo'>
+                            Sriracha Mayoo + Curly Fries
+                        </dokki-video>
+
+                        <p>
+                            Aliquam sodales mi at erat ultrices faucibus. Curabitur non arcu diam. Sed et lacus risus. Nam risus
+                            nisi, fermentum eget sapien lacinia, rhoncus luctus metus. Fusce tincidunt efficitur ex a rhoncus.
+                            Aliquam lobortis lorem augue, at sollicitudin justo pretium vel. Ut mattis nibh in finibus rhoncus.
+                            Pellentesque consectetur erat quam, sit amet fermentum nibh accumsan eget.
+                        </p>
+                    </dokki-output>
+
+                </dokki-code>
+            </dokki-topic>
+
+            <dokki-topic title="dokki-console">
+                <p>TODO</p>
+                
+                <dokki-code title="HTML"
+                            code="
+                            <dokki-console command='./lorem_ipsum -a'
+                                           output='
+                                           Lorem ipsum dolor sit amet,
+                                           consectetur adipiscing elit.
+                                           '>
+                            </dokki-console>
+                            ">
+
+                    <dokki-output>
+                        <p>
+                            Praesent blandit augue orci, vitae fringilla dui semper vel. Aliquam molestie porta quam, nec
+                            faucibus ex efficitur ut. Pellentesque sem nunc, feugiat sed enim ut, vestibulum sollicitudin nulla.
+                            Proin placerat arcu non varius tristique. Proin dapibus eleifend metus, a maximus lorem aliquam sed.
+                        </p>
+                        
+                        <dokki-console command="./lorem_ipsum -a"
+                                       output="
+                                       Lorem ipsum dolor sit amet,
+                                       consectetur adipiscing elit.
+                                       ">
+                        </dokki-console>
+
+                        <p>
+                            Aliquam sodales mi at erat ultrices faucibus. Curabitur non arcu diam. Sed et lacus risus. Nam risus
+                            nisi, fermentum eget sapien lacinia, rhoncus luctus metus. Fusce tincidunt efficitur ex a rhoncus.
+                            Aliquam lobortis lorem augue, at sollicitudin justo pretium vel. Ut mattis nibh in finibus rhoncus.
+                            Pellentesque consectetur erat quam, sit amet fermentum nibh accumsan eget.
+                        </p>
+                    </dokki-output>
+
+                </dokki-code>
+
+                <dokki-code title="HTML"
+                            code="
+                            <dokki-console platform='windows'
+                                           command='lorem_ipsum.exe -a'
+                                           output='
+                                           Lorem ipsum dolor sit amet,
+                                           consectetur adipiscing elit.
+                                           '>
+                            </dokki-console>
+                            ">
+
+                    <dokki-output>
+                        <p>
+                            Praesent blandit augue orci, vitae fringilla dui semper vel. Aliquam molestie porta quam, nec
+                            faucibus ex efficitur ut. Pellentesque sem nunc, feugiat sed enim ut, vestibulum sollicitudin nulla.
+                            Proin placerat arcu non varius tristique. Proin dapibus eleifend metus, a maximus lorem aliquam sed.
+                        </p>
+                        
+                        <dokki-console platform="windows"
+                                       command="lorem_ipsum.exe -a"
+                                       output="
+                                       Lorem ipsum dolor sit amet,
+                                       consectetur adipiscing elit.
+                                       ">
+                        </dokki-console>
+
+                        <p>
+                            Aliquam sodales mi at erat ultrices faucibus. Curabitur non arcu diam. Sed et lacus risus. Nam risus
+                            nisi, fermentum eget sapien lacinia, rhoncus luctus metus. Fusce tincidunt efficitur ex a rhoncus.
+                            Aliquam lobortis lorem augue, at sollicitudin justo pretium vel. Ut mattis nibh in finibus rhoncus.
+                            Pellentesque consectetur erat quam, sit amet fermentum nibh accumsan eget.
+                        </p>
+                    </dokki-output>
+
+                </dokki-code>
+            </dokki-topic>
+
+            <dokki-topic title="dokki-output">
+                <p>TODO</p>
+                
+                <dokki-code title="HTML"
+                            code="
+                            <dokki-output>
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit
+                            </dokki-output>
+                            ">
+
+                    <dokki-output>
+                        <p>
+                            Praesent blandit augue orci, vitae fringilla dui semper vel. Aliquam molestie porta quam, nec
+                            faucibus ex efficitur ut. Pellentesque sem nunc, feugiat sed enim ut, vestibulum sollicitudin nulla.
+                            Proin placerat arcu non varius tristique. Proin dapibus eleifend metus, a maximus lorem aliquam sed.
+                        </p>
+
+                        <dokki-output>
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit
+                        </dokki-output>
+
+                        <p>
+                            Aliquam sodales mi at erat ultrices faucibus. Curabitur non arcu diam. Sed et lacus risus. Nam risus
+                            nisi, fermentum eget sapien lacinia, rhoncus luctus metus. Fusce tincidunt efficitur ex a rhoncus.
+                            Aliquam lobortis lorem augue, at sollicitudin justo pretium vel. Ut mattis nibh in finibus rhoncus.
+                            Pellentesque consectetur erat quam, sit amet fermentum nibh accumsan eget.
+                        </p>
+                    </dokki-output>
+
+                </dokki-code>
+
+                <dokki-code title="HTML"
+                            code="
+                            <dokki-output title='Run'>
+                                Ran
+                            </dokki-output>
+                            ">
+
+                    <dokki-output>
+                        <p>
+                            Praesent blandit augue orci, vitae fringilla dui semper vel. Aliquam molestie porta quam, nec
+                            faucibus ex efficitur ut. Pellentesque sem nunc, feugiat sed enim ut, vestibulum sollicitudin nulla.
+                            Proin placerat arcu non varius tristique. Proin dapibus eleifend metus, a maximus lorem aliquam sed.
+                        </p>
+                        
+                        <dokki-output title="Run">
+                            Ran
+                        </dokki-output>
+
+                        <p>
+                            Aliquam sodales mi at erat ultrices faucibus. Curabitur non arcu diam. Sed et lacus risus. Nam risus
+                            nisi, fermentum eget sapien lacinia, rhoncus luctus metus. Fusce tincidunt efficitur ex a rhoncus.
+                            Aliquam lobortis lorem augue, at sollicitudin justo pretium vel. Ut mattis nibh in finibus rhoncus.
+                            Pellentesque consectetur erat quam, sit amet fermentum nibh accumsan eget.
+                        </p>
+                    </dokki-output>
+
+                </dokki-code>
+
+                <dokki-code title="HTML"
+                            code="
+                            <dokki-output unpadded title='Featured Pictures in the Public Domain'>
+                                
+                                <iframe src='https://commons.wikimedia.org/wiki/Featured_Pictures_in_the_Public_Domain'
+                                        loading='lazy'
+                                        style='width: 100%;
+                                               height: 500px;
+                                               border: none;'>
+                                </iframe>
+
+                            </dokki-output>
+                            ">
+
+                    <dokki-output>
+                        <p>
+                            Praesent blandit augue orci, vitae fringilla dui semper vel. Aliquam molestie porta quam, nec
+                            faucibus ex efficitur ut. Pellentesque sem nunc, feugiat sed enim ut, vestibulum sollicitudin nulla.
+                            Proin placerat arcu non varius tristique. Proin dapibus eleifend metus, a maximus lorem aliquam sed.
+                        </p>
+                        
+                        <dokki-output unpadded title='Featured Pictures in the Public Domain'>
+                            <iframe src='https://commons.wikimedia.org/wiki/Featured_Pictures_in_the_Public_Domain'
+                                    loading='lazy'
+                                    style='width: 100%;
+                                           height: 500px;
+                                           border: none;'>
+                            </iframe>
+                        </dokki-output>
+
+                        <p>
+                            Aliquam sodales mi at erat ultrices faucibus. Curabitur non arcu diam. Sed et lacus risus. Nam risus
+                            nisi, fermentum eget sapien lacinia, rhoncus luctus metus. Fusce tincidunt efficitur ex a rhoncus.
+                            Aliquam lobortis lorem augue, at sollicitudin justo pretium vel. Ut mattis nibh in finibus rhoncus.
+                            Pellentesque consectetur erat quam, sit amet fermentum nibh accumsan eget.
+                        </p>
+                    </dokki-output>
+
+                </dokki-code>
+
+            </dokki-topic>
+
+            <dokki-topic title="dokki-spoiler">
+                <p>TODO</p>
+                
+                <dokki-code title="HTML"
+                            code="
+                            <dokki-spoiler>
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                            </dokki-spoiler>
+                            ">
+
+                    <dokki-output>
+                        <p>
+                            Praesent blandit augue orci, vitae fringilla dui semper vel. Aliquam molestie porta quam, nec
+                            faucibus ex efficitur ut. Pellentesque sem nunc, feugiat sed enim ut, vestibulum sollicitudin nulla.
+                            Proin placerat arcu non varius tristique. Proin dapibus eleifend metus, a maximus lorem aliquam sed.
+                        </p>
+                        
+                        <dokki-spoiler>
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        </dokki-spoiler>
+
+                        <p>
+                            Aliquam sodales mi at erat ultrices faucibus. Curabitur non arcu diam. Sed et lacus risus. Nam risus
+                            nisi, fermentum eget sapien lacinia, rhoncus luctus metus. Fusce tincidunt efficitur ex a rhoncus.
+                            Aliquam lobortis lorem augue, at sollicitudin justo pretium vel. Ut mattis nibh in finibus rhoncus.
+                            Pellentesque consectetur erat quam, sit amet fermentum nibh accumsan eget.
+                        </p>
+                    </dokki-output>
+
+                </dokki-code>
+            </dokki-topic>
+
+            <dokki-topic title="dokki-code">
+                <p>TODO</p>
+                
+                <dokki-code title="HTML"
+                            code="
+                            <dokki-code title='C'
+                                        code='
+                                        int main(void)
+                                        {
+                                            printf(``Hello there.\\n``);
+                                            return 0;
+                                        }
+                                        '>
+                            </dokki-code>
+                            ">
+
+                    <dokki-output>
+                        <p>
+                            Praesent blandit augue orci, vitae fringilla dui semper vel. Aliquam molestie porta quam, nec
+                            faucibus ex efficitur ut. Pellentesque sem nunc, feugiat sed enim ut, vestibulum sollicitudin nulla.
+                            Proin placerat arcu non varius tristique. Proin dapibus eleifend metus, a maximus lorem aliquam sed.
+                        </p>
+                        
+                        <dokki-code title='C'
+                                    code='
+                                    int main(void)
+                                    {
+                                        printf(``Hello there.\\n``);
+                                        return 0;
+                                    }
+                                    '>
+                        </dokki-code>
+
+                        <p>
+                            Aliquam sodales mi at erat ultrices faucibus. Curabitur non arcu diam. Sed et lacus risus. Nam risus
+                            nisi, fermentum eget sapien lacinia, rhoncus luctus metus. Fusce tincidunt efficitur ex a rhoncus.
+                            Aliquam lobortis lorem augue, at sollicitudin justo pretium vel. Ut mattis nibh in finibus rhoncus.
+                            Pellentesque consectetur erat quam, sit amet fermentum nibh accumsan eget.
+                        </p>
+                    </dokki-output>
+
+                </dokki-code>
+
+                <dokki-code title="HTML"
+                            code="
+                            <dokki-code title='C'
+                                        code='
+                                        int main(void)
+                                        {
+                                            printf(``Hello there.\\n``);
+                                            return 0;
+                                        }
+                                        '>
+
+                                <dokki-output>
+                                    Hello there.
+                                </dokki-output>
+
+                            </dokki-code>
+                            ">
+
+                    <dokki-output>
+                        <p>
+                            Praesent blandit augue orci, vitae fringilla dui semper vel. Aliquam molestie porta quam, nec
+                            faucibus ex efficitur ut. Pellentesque sem nunc, feugiat sed enim ut, vestibulum sollicitudin nulla.
+                            Proin placerat arcu non varius tristique. Proin dapibus eleifend metus, a maximus lorem aliquam sed.
+                        </p>
+                        
+                        <dokki-code title='C'
+                                    code='
+                                    int main(void)
+                                    {
+                                        printf(``Hello there.\\n``);
+                                        return 0;
+                                    }
+                                    '>
+
+                            <dokki-output>
+                                Hello there.
+                            </dokki-output>
+                            
+                        </dokki-code>
+
+                        <p>
+                            Aliquam sodales mi at erat ultrices faucibus. Curabitur non arcu diam. Sed et lacus risus. Nam risus
+                            nisi, fermentum eget sapien lacinia, rhoncus luctus metus. Fusce tincidunt efficitur ex a rhoncus.
+                            Aliquam lobortis lorem augue, at sollicitudin justo pretium vel. Ut mattis nibh in finibus rhoncus.
+                            Pellentesque consectetur erat quam, sit amet fermentum nibh accumsan eget.
+                        </p>
+                    </dokki-output>
+
+                </dokki-code>
+
+            </dokki-topic>
+
+            <dokki-topic title="dokki-side-panel">
+                <p>TODO</p>
+            </dokki-topic>
+
+            <dokki-topic title="dokki-header">
+                <p>TODO</p>
+            </dokki-topic>
+
+            <dokki-topic title="dokki-topics">
+                <p>TODO</p>
+            </dokki-topic>
+
+            <dokki-topic title="dokki-topic">
+                <p>TODO</p>
+            </dokki-topic>
+
+        </dokki-topics>
+
+    </body>
+</html>

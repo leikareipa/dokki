@@ -526,7 +526,7 @@ function create_app()
     //
     app.component("dokki-code", {
         props: {
-            title: {default: "Untitled"},
+            title: {default: "Code"},
             code: {},
         },
         computed: {
