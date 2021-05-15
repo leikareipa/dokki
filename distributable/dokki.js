@@ -14,6 +14,7 @@ function create_app()
     const store = new Vuex.Store({
         state: {
             topics: [],
+            loremCount: 0,
         },
         mutations: {
             add_topic(state, topicTitle)
@@ -23,6 +24,10 @@ function create_app()
                     simplifiedTitle: simplified_topic_title(topicTitle),
                     url: `#${simplified_topic_title(topicTitle)}`
                 });
+            },
+            increment_lorem_count(state)
+            {
+                state.loremCount++;
             },
         }
     });
@@ -567,6 +572,64 @@ function create_app()
             <dokki-output :title=title>
                 <slot/>
             </dokki-output>
+        `,
+    });
+
+    // Displays a paragraph of lorem ipsum.
+    //
+    // Sample usage:
+    //
+    //   <dokki-lorem>
+    //   </dokki-lorem>
+    //
+    //   <dokki-lorem>
+    //   </dokki-lorem>
+    //
+    app.component("dokki-lorem", {
+        mounted() {
+            this.lorem = this.paragraphs[this.$store.state.loremCount % this.paragraphs.length];
+            this.$store.commit("increment_lorem_count");
+        },
+        data() {
+            return {
+                lorem: "",
+                paragraphs: [
+                    `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam faucibus sagittis urna,
+                     non egestas felis. Ut mollis, quam at aliquam sagittis, magna purus consequat mi, vitae
+                     gravida est nunc non neque. Quisque sit amet quam ac est hendrerit sagittis. Curabitur
+                     id volutpat mauris. Vivamus a ligula id est porttitor fermentum. Nulla ac enim lacinia,
+                     luctus augue at, placerat risus.`,
+
+                    `Vivamus quis fermentum nisi, vitae auctor elit. Suspendisse ut massa scelerisque, efficitur
+                     diam non, convallis nulla. Nunc viverra ex semper, scelerisque enim nec, egestas quam. Ut
+                     vitae porta erat. Vivamus ac dictum odio. Donec magna justo, cursus eu vestibulum consectetur,
+                     fringilla ac magna.  Proin mi urna, condimentum sed consectetur sed, mollis eu sem.`,
+
+                    `Aliquam sodales mi at erat ultrices faucibus. Curabitur non arcu diam. Sed et lacus
+                     risus. Nam risus nisi, fermentum eget sapien lacinia, rhoncus luctus metus. Fusce tincidunt
+                     efficitur ex a rhoncus. Aliquam lobortis lorem augue, at sollicitudin justo pretium vel.
+                     Ut mattis nibh in finibus rhoncus. Aliquam in odio quis ante vulputate venenatis nec eget
+                     nulla.`,
+
+                    `Maecenas aliquam lorem ac pharetra egestas. Interdum et malesuada fames ac ante ipsum
+                     primis in faucibus. Quisque hendrerit suscipit nibh et accumsan. Integer ipsum tellus,
+                     sollicitudin at est non, pulvinar dapibus erat. Cras rhoncus lobortis nunc vitae bibendum.
+                     Ut dictum nisi quis nibh finibus, euismod vulputate ipsum facilisis. Pellentesque congue,
+                     felis eu consequat molestie, est nibh vehicula eros, ac consectetur tortor nisi ac justo.
+                     Mauris fermentum justo eu est sagittis, ac iaculis mauris eleifend.`,
+
+                    `Suspendisse fringilla, purus non ornare imperdiet, turpis est blandit felis, sit amet
+                     ultricies urna lorem vitae erat. Cras nec ipsum vitae felis scelerisque malesuada id
+                     sollicitudin mauris. Nunc hendrerit laoreet odio. Aliquam facilisis nisi eget aliquam
+                     gravida. Sed ut velit bibendum arcu varius maximus. Proin nunc ipsum, congue at tristique
+                     ac, vehicula a purus. Pellentesque accumsan magna libero.`,
+                ],
+            }
+        },
+        template: `
+            <p>
+                {{lorem}}
+            </p>
         `,
     });
 
