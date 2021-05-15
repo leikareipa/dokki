@@ -354,7 +354,11 @@ function create_app()
                     case "unix": return "fas fa-dollar-sign";
                     default: return "fas fa-dollar-sign";
                 }
-            }
+            },
+            hasFooter()
+            {
+                return !!this.output.length;
+            },
         },
         template: `
             <p class="dokki-embedded dokki-console">
@@ -372,11 +376,10 @@ function create_app()
 
                 </header>
 
-                <footer>
+                <footer v-if=hasFooter>
                     <DOKKI0-text-block-with-line-numbers :text=output>
                     </DOKKI0-text-block-with-line-numbers>
                 </footer>
-
             </p>
         `,
     });
