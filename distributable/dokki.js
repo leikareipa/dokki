@@ -282,7 +282,7 @@ function create_app()
                 switch (this.platform)
                 {
                     // Note: Only YouTube is supported at this time.
-                    default: return `https://www.youtube-nocookie.com/embed/${this.src}?autoplay=1`;
+                    default: return `https://www.youtube-nocookie.com/embed/${this.src}`;
                 }
             },
             headerIcon()
