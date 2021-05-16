@@ -452,7 +452,6 @@ function create_app()
     //
     // NOTE for the 'text' prop:
     //   - Two backticks (``) must be used in place of double quotes (").
-    //   - Escape sequences (e.g. \n) must be doubly escaped (e.g. \\n).
     //
     app.component("DOKKI0-text-block-with-line-numbers", {
         props: {
@@ -520,7 +519,7 @@ function create_app()
     //               int main(void)
     //               {
     //                   const char *str = ``Hello there.``;
-    //                   printf(``The string says: '%s'\\n``, str);
+    //                   printf(``The string says: '%s'\n``, str);
     //                   return 0;
     //               }
     //               ">
@@ -532,10 +531,44 @@ function create_app()
     //
     //   </dokki-code>
     //
+    //
+    //   <dokki-code title="C">
+    //       <template #code>
+    //           <pre>
+    //               int main(void)
+    //               {
+    //                   const char *str = "Hello there.";
+    //                   printf("The string says: '%s'\n", str);
+    //                   return 0;
+    //               }
+    //           </pre>
+    //       </template>
+    //   </dokki-code>
+    //
     app.component("dokki-code", {
         props: {
             title: {default: "Code"},
-            code: {},
+            code: {default: undefined},
+        },
+        data() {
+            return {
+                codeFromSlot: undefined,
+            }
+        },
+        mounted()
+        {
+            if (!this.$slots.code ||
+                (typeof this.$slots.code !== "function"))
+            {
+                return;
+            }
+
+            const codeElement = this.$slots.code()[0];
+
+            if (codeElement)
+            {
+                this.codeFromSlot = codeElement.children;
+            }
         },
         computed: {
             hasOutput()
@@ -548,15 +581,19 @@ function create_app()
                :class="{'has-output': hasOutput}">
 
                 <header>
+
                     <span class="title">
+
                         <i class="fas fa-code"
                            title="Code"/>
                         {{title}}
+
                     </span>
+
                 </header>
 
                 <footer>
-                    <DOKKI0-text-block-with-line-numbers :text=code>
+                    <DOKKI0-text-block-with-line-numbers :text="codeFromSlot || code">
                     </DOKKI0-text-block-with-line-numbers>
                 </footer>
 
@@ -600,32 +637,28 @@ function create_app()
                     `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam faucibus sagittis urna,
                      non egestas felis. Ut mollis, quam at aliquam sagittis, magna purus consequat mi, vitae
                      gravida est nunc non neque. Quisque sit amet quam ac est hendrerit sagittis. Curabitur
-                     id volutpat mauris. Vivamus a ligula id est porttitor fermentum. Nulla ac enim lacinia,
-                     luctus augue at, placerat risus.`,
+                     id volutpat mauris.`,
 
                     `Vivamus quis fermentum nisi, vitae auctor elit. Suspendisse ut massa scelerisque, efficitur
                      diam non, convallis nulla. Nunc viverra ex semper, scelerisque enim nec, egestas quam. Ut
                      vitae porta erat. Vivamus ac dictum odio. Donec magna justo, cursus eu vestibulum consectetur,
-                     fringilla ac magna.  Proin mi urna, condimentum sed consectetur sed, mollis eu sem.`,
+                     fringilla ac magna.`,
 
                     `Aliquam sodales mi at erat ultrices faucibus. Curabitur non arcu diam. Sed et lacus
                      risus. Nam risus nisi, fermentum eget sapien lacinia, rhoncus luctus metus. Fusce tincidunt
                      efficitur ex a rhoncus. Aliquam lobortis lorem augue, at sollicitudin justo pretium vel.
-                     Ut mattis nibh in finibus rhoncus. Aliquam in odio quis ante vulputate venenatis nec eget
-                     nulla.`,
+                     Ut mattis nibh in finibus rhoncus.`,
 
                     `Maecenas aliquam lorem ac pharetra egestas. Interdum et malesuada fames ac ante ipsum
                      primis in faucibus. Quisque hendrerit suscipit nibh et accumsan. Integer ipsum tellus,
                      sollicitudin at est non, pulvinar dapibus erat. Cras rhoncus lobortis nunc vitae bibendum.
                      Ut dictum nisi quis nibh finibus, euismod vulputate ipsum facilisis. Pellentesque congue,
-                     felis eu consequat molestie, est nibh vehicula eros, ac consectetur tortor nisi ac justo.
-                     Mauris fermentum justo eu est sagittis, ac iaculis mauris eleifend.`,
+                     felis eu consequat molestie, est nibh vehicula eros, ac consectetur tortor nisi ac justo.`,
 
                     `Suspendisse fringilla, purus non ornare imperdiet, turpis est blandit felis, sit amet
                      ultricies urna lorem vitae erat. Cras nec ipsum vitae felis scelerisque malesuada id
                      sollicitudin mauris. Nunc hendrerit laoreet odio. Aliquam facilisis nisi eget aliquam
-                     gravida. Sed ut velit bibendum arcu varius maximus. Proin nunc ipsum, congue at tristique
-                     ac, vehicula a purus. Pellentesque accumsan magna libero.`,
+                     gravida. Sed ut velit bibendum arcu varius maximus.`,
                 ],
             }
         },
