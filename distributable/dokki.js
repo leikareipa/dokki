@@ -96,9 +96,9 @@ function create_app()
             <section class="dokki-topic"
                  :id=simplifiedTitle>
             
-                <h2 class="title">
+                <h1 class="title">
                     {{this.idx}}. {{this.title}}
-                </h2>
+                </h1>
 
                 <span class="permalink"
                       title="Permalink to this topic">

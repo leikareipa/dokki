@@ -94,15 +94,17 @@
                 <dokki-lorem>
                 </dokki-lorem>
 
-                <dokki-code title="C"
-                            code="
+                <dokki-code title="C">
+                    <template #code>
+                        <pre>
                             int main(void)
                             {
-                                const char *str = ``Hello there.``;
-                                printf(``The string says: '%s'\\n``, str);
+                                const char *str = "Hello there.";
+                                printf("The string says: '%s'\n", str);
                                 return 0;
                             }
-                            ">
+                        </pre>
+                    </template>
                 </dokki-code>
                 
                 <dokki-lorem>

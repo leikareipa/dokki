@@ -204,7 +204,6 @@ body
 .dokki-topic h1,
 .dokki-topic h2,
 .dokki-topic h3,
-.dokki-topic h4,
 .dokki-side-panel h2
 {
     font-size: 100%;
@@ -214,27 +213,27 @@ body
     margin: 0;
 }
 
-.dokki-topic h2
+.dokki-topic h1
 {
     display: inline-block; /* To allow permalink icons next to the h2 heading.*/
     font-size: 160%;
 }
 
-.dokki-topic h3
+.dokki-topic h2
 {
     font-size: 130%;
 }
 
-.dokki-topic h4
-{
-    display: inline-block;
-    font-weight: bold;
-}
-
-.dokki-topic h3:not(:first-child)
+.dokki-topic h2:not(:first-child)
 {
     margin-top: var(--content-margin);
     margin-bottom: 16px;
+}
+
+.dokki-topic h3
+{
+    display: inline-block;
+    font-weight: bold;
 }
 
 .dokki-topic-anchor
