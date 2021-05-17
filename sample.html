@@ -135,14 +135,16 @@
                 <dokki-lorem>
                 </dokki-lorem>
 
-                <dokki-console command="lsb_release -a"
-                               output="
-                               No LSB modules are available.
-                               Distributor ID: Ubuntu
-                               Description:    Ubuntu 20.04.2 LTS
-                               Release:        20.04
-                               Codename:       focal
-                               ">
+                <dokki-console command="lsb_release -a">
+                    <template #output>
+                        <pre>
+                            No LSB modules are available.
+                            Distributor ID: Ubuntu
+                            Description:    Ubuntu 20.04.2 LTS
+                            Release:        20.04
+                            Codename:       focal
+                        </pre>
+                    </template>
                 </dokki-console>
 
                 <dokki-lorem>
@@ -159,8 +161,8 @@
 
                 <dokki-table>
                     <template #caption>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit 
-                    </template #caption>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit
+                    </template>
 
                     <template #table>
                         <table>
@@ -180,7 +182,7 @@
                                 <td>3st</td>
                             </tr>
                         </table>
-                    </template #table>
+                    </template>
                 </dokki-table>
 
                 <dokki-lorem>

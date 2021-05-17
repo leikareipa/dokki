@@ -131,7 +131,7 @@ function create_app()
 
             function update_scrollable_status()
             {
-                const margin = parseInt(window.getComputedStyle(document.body).getPropertyValue("--content-margin"));
+                const margin = parseInt(window.getComputedStyle(document.body).getPropertyValue("--content-margin") || 20);
                 const height = (this.$refs.container.clientHeight + (margin * 2));
                 this.isScrollable = (height >= this.$refs.panel.clientHeight);
             };
@@ -328,15 +328,37 @@ function create_app()
     // Sample usage:
     //
     //   <dokki-console platform="unix"
-    //                  command="./run.sh"
-    //                  output="Hello there.">
+    //                  command="./run.sh">
+    //       <template #output>
+    //           Hello there.
+    //       </template #output>
     //   </dokki-console>
     //
     app.component("dokki-console", {
         props: {
             command: {default: "undefined command"},
-            output: {default: ""},
+            output: {default: undefined},
             platform: {default: "unix"}
+        },
+        data() {
+            return {
+                outputFromSlot: undefined,
+            }
+        },
+        mounted()
+        {
+            if (!this.$slots.output ||
+                (typeof this.$slots.output !== "function"))
+            {
+                return;
+            }
+
+            const outputElement = this.$slots.output()[0];
+
+            if (outputElement)
+            {
+                this.outputFromSlot = outputElement.children;
+            }
         },
         computed: {
             headerIcon()
@@ -350,7 +372,8 @@ function create_app()
             },
             hasFooter()
             {
-                return !!this.output.length;
+                return ((this.output !== undefined) ||
+                        (this.outputFromSlot !== undefined));
             },
         },
         template: `
@@ -369,7 +392,7 @@ function create_app()
                 </header>
 
                 <footer v-if=hasFooter>
-                    <DOKKI0-text-block-with-line-numbers :text=output>
+                    <DOKKI0-text-block-with-line-numbers :text="outputFromSlot || output">
                     </DOKKI0-text-block-with-line-numbers>
                 </footer>
             </p>

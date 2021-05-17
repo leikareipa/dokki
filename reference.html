@@ -369,7 +369,13 @@
                 <h3>output</h3>
 
                 <p>
-                    Output expected to be produced by the command.
+                    The command's expected output (optional) can be given either inside a
+                    <i>template #output</i> element or via this attribute (see examples, below).
+                </p>
+
+                <p>
+                    Note: Inside this attribute, double quotes (") must be replaced with two
+                    backticks (``). They'll be converted back into double quotes for display.
                 </p>
 
                 <h2>Examples</h2>
@@ -411,13 +417,86 @@
                     </dokki-output>
 
                 </dokki-code>
+
+                <p>
+                    The command's expected console output can be entered inside a
+                    <i>template #output</i> element:
+                </p>
                 
+                <dokki-code title="HTML"
+                            code="
+                            <dokki-console command='./lorem_ipsum -a'>
+                                <template #output>
+                                    <pre>
+                                        Lorem ipsum dolor sit amet,
+                                        consectetur adipiscing elit.
+                                    </pre>
+                                </template>
+                            </dokki-console>
+                            ">
+
+                    <dokki-output>
+                        <dokki-lorem>
+                        </dokki-lorem>
+                        
+                        <dokki-console command='./lorem_ipsum -a'>
+                            <template #output>
+                                <pre>
+                                    Lorem ipsum dolor sit amet,
+                                    consectetur adipiscing elit.
+                                </pre>
+                            </template>
+                        </dokki-console>
+
+                        <dokki-lorem>
+                        </dokki-lorem>
+                    </dokki-output>
+
+                </dokki-code>
+
+                <p>
+                    The nested <i>pre</i> element inside <i>template #output</i> isn't required,
+                    but whitespace won't be preserved without it:
+                </p>
+
+                <dokki-code title="HTML"
+                            code="
+                            <dokki-console command='./lorem_ipsum -a'>
+                                <template #output>
+                                    Lorem ipsum dolor sit amet,
+                                    consectetur adipiscing elit.
+                                </template>
+                            </dokki-console>
+                            ">
+
+                    <dokki-output>
+                        <dokki-lorem>
+                        </dokki-lorem>
+                        
+                        <dokki-console command='./lorem_ipsum -a'>
+                            <template #output>
+                                Lorem ipsum dolor sit amet,
+                                consectetur adipiscing elit.
+                            </template>
+                        </dokki-console>
+
+                        <dokki-lorem>
+                        </dokki-lorem>
+                    </dokki-output>
+
+                </dokki-code>
+
+                <p>
+                    Embedding the console output inside a <i>template #output</i> element may not always be
+                    technically possible or desired. You can use the <b>output</b> attribute as an alternative:
+                </p>
+
                 <dokki-code title="HTML"
                             code="
                             <dokki-console command='./lorem_ipsum -a'
                                            output='
-                                           Lorem ipsum dolor sit amet,
-                                           consectetur adipiscing elit.
+                                               Lorem ipsum dolor sit amet,
+                                               consectetur adipiscing elit.
                                            '>
                             </dokki-console>
                             ">
@@ -426,11 +505,11 @@
                         <dokki-lorem>
                         </dokki-lorem>
                         
-                        <dokki-console command="./lorem_ipsum -a"
-                                       output="
+                        <dokki-console command='./lorem_ipsum -a'
+                                       output='
                                        Lorem ipsum dolor sit amet,
                                        consectetur adipiscing elit.
-                                       ">
+                                       '>
                         </dokki-console>
 
                         <dokki-lorem>
@@ -438,6 +517,7 @@
                     </dokki-output>
 
                 </dokki-code>
+                
             </dokki-topic>
 
             <dokki-topic title="dokki-output">
@@ -613,8 +693,8 @@
                 </p>
 
                 <p>
-                    Note: Inside this attribute, double quotes (") must be replaced by two
-                    backticks (``).
+                    Note: Inside this attribute, double quotes (") must be replaced with two
+                    backticks (``). They'll be converted back into double quotes for display.
                 </p>
 
                 <h2>Examples</h2>
@@ -810,15 +890,15 @@
                             code="
                             <dokki-table>
                                 <template #caption>
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                                </template #caption>
-    
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit 
+                                </template>
+            
                                 <template #table>
                                     <table>
                                         <tr>
-                                            <th>1</th>
-                                            <th>2</th>
-                                            <th>3</th>
+                                            <th>One</th>
+                                            <th>Two</th>
+                                            <th>Three</th>
                                         </tr>
                                         <tr>
                                             <td>1st</td>
@@ -826,12 +906,12 @@
                                             <td>3rd</td>
                                         </tr>
                                         <tr>
-                                            <td>One</td>
-                                            <td>Two</td>
-                                            <td>Three</td>
+                                            <td>1nd</td>
+                                            <td>2rd</td>
+                                            <td>3st</td>
                                         </tr>
                                     </table>
-                                </template #table>
+                                </template>
                             </dokki-table>
                             ">
 
@@ -841,15 +921,15 @@
 
                         <dokki-table>
                             <template #caption>
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                            </template #caption>
-
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit 
+                            </template>
+        
                             <template #table>
                                 <table>
                                     <tr>
-                                        <th>1</th>
-                                        <th>2</th>
-                                        <th>3</th>
+                                        <th>One</th>
+                                        <th>Two</th>
+                                        <th>Three</th>
                                     </tr>
                                     <tr>
                                         <td>1st</td>
@@ -857,12 +937,12 @@
                                         <td>3rd</td>
                                     </tr>
                                     <tr>
-                                        <td>One</td>
-                                        <td>Two</td>
-                                        <td>Three</td>
+                                        <td>1nd</td>
+                                        <td>2rd</td>
+                                        <td>3st</td>
                                     </tr>
                                 </table>
-                            </template #table>
+                            </template>
                         </dokki-table>
 
                         <dokki-lorem>
