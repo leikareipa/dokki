@@ -100,13 +100,10 @@ function create_app()
                     {{this.idx}}. {{this.title}}
                 </h1>
 
-                <span class="permalink"
-                      title="Permalink to this topic">
-
+                <span class="permalink" title="Permalink to this topic">
                     <a :href="'#'+simplifiedTitle">
                         <i class="fas fa-link"/>
                     </a>
-
                 </span>
 
                 <slot/>
@@ -198,8 +195,7 @@ function create_app()
                         @click="isExpanded = !isExpanded">
 
                     <span class="title">
-                        <i class="fas fa-image"/
-                           title="Image">
+                        <i class="fas fa-image" title="Image"/>
                     </span>
 
                     <aside class="revealer">
@@ -224,8 +220,7 @@ function create_app()
 
                 <header>
                     <div class="title">
-                        <i class="fas fa-info-circle"
-                           title="Tip"/>
+                        <i class="fas fa-info-circle" title="Tip"/>
                     </div>
                 </header>
 
@@ -243,8 +238,7 @@ function create_app()
 
                 <header>
                     <span class="title">
-                        <i class="fas fa-exclamation-triangle"
-                           title="Warning"/>
+                        <i class="fas fa-exclamation-triangle" title="Warning"/>
                     </span>
                 </header>
 
@@ -307,8 +301,7 @@ function create_app()
                        @click="isExpanded = !isExpanded">
 
                     <span class="title">
-                        <i :class="headerIcon"
-                           title="Video"/>
+                        <i :class="headerIcon" title="Video"/>
                     </span>
 
                     <aside class="revealer">
@@ -366,8 +359,7 @@ function create_app()
                 <header>
 
                     <span class="title">
-                        <i :class="headerIcon"
-                           title="Terminal command"/>
+                        <i :class="headerIcon" title="Terminal command"/>
                     </span>
 
                     <span class="command">
@@ -426,6 +418,46 @@ function create_app()
 
                     <slot/>
                     
+                </footer>
+
+            </p>
+        `,
+    });
+
+    app.component("dokki-table", {
+        data() {
+            return {
+                isExpanded: false,
+            }
+        },
+        computed: {
+            hasFooter()
+            {
+                return !!this.$slots.caption;
+            }
+        },
+        template: `
+            <p class="dokki-embedded dokki-table">
+
+                <header class="clickable"
+                        @click="isExpanded = !isExpanded">
+
+                    <span class="title">
+                        <i class="fas fa-border-all" title="Table"/>
+                    </span>
+
+                    <aside class="revealer">
+                        {{isExpanded? "Hide" : "Show"}}
+                    </aside>
+
+                </header>
+
+                <div v-if=isExpanded class="table-container">
+                    <slot name="table"/>
+                </div>
+
+                <footer v-if=hasFooter>
+                    <slot name="caption">
                 </footer>
 
             </p>
@@ -583,11 +615,8 @@ function create_app()
                 <header>
 
                     <span class="title">
-
-                        <i class="fas fa-code"
-                           title="Code"/>
+                        <i class="fas fa-code" title="Code"/>
                         {{title}}
-
                     </span>
 
                 </header>

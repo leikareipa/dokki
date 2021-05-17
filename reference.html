@@ -760,7 +760,92 @@
                     </dokki-output>
 
                 </dokki-code>
+            </dokki-topic>
 
+            <dokki-topic title="dokki-table">
+                <h2>Description</h2>
+
+                <p>
+                    The <i>dokki-table</i> element displays a table with an optional caption.
+                </p>
+
+                <p>
+                    The table's contents will be hidden until the user clicks the header of the
+                    <i>dokki-table</i> element.
+                </p>
+
+                <h2>Attributes</h2>
+
+                <p>
+                    None.
+                </p>
+
+                <h2>Examples</h2>
+
+                <dokki-code title="HTML"
+                            code="
+                            <dokki-table>
+                                <template #caption>
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                                </template #caption>
+    
+                                <template #table>
+                                    <table>
+                                        <tr>
+                                            <th>1</th>
+                                            <th>2</th>
+                                            <th>3</th>
+                                        </tr>
+                                        <tr>
+                                            <td>1st</td>
+                                            <td>2nd</td>
+                                            <td>3rd</td>
+                                        </tr>
+                                        <tr>
+                                            <td>One</td>
+                                            <td>Two</td>
+                                            <td>Three</td>
+                                        </tr>
+                                    </table>
+                                </template #table>
+                            </dokki-table>
+                            ">
+
+                    <dokki-output>
+                        <dokki-lorem>
+                        </dokki-lorem>
+
+                        <dokki-table>
+                            <template #caption>
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                            </template #caption>
+
+                            <template #table>
+                                <table>
+                                    <tr>
+                                        <th>1</th>
+                                        <th>2</th>
+                                        <th>3</th>
+                                    </tr>
+                                    <tr>
+                                        <td>1st</td>
+                                        <td>2nd</td>
+                                        <td>3rd</td>
+                                    </tr>
+                                    <tr>
+                                        <td>One</td>
+                                        <td>Two</td>
+                                        <td>Three</td>
+                                    </tr>
+                                </table>
+                            </template #table>
+                        </dokki-table>
+
+                        <dokki-lorem>
+                        </dokki-lorem>
+                    </dokki-output>
+
+                </dokki-code>
             </dokki-topic>
 
             <dokki-topic title="dokki-side-panel">
