@@ -248,7 +248,9 @@
                 <dokki-code title="HTML"
                             code="
                             <dokki-image src='https://upload.wikimedia.org/wikipedia/commons/thumb/7/7f/Eublepharis_macularius_2009_G6.jpg/1280px-Eublepharis_macularius_2009_G6.jpg'>
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit
+                                <template #caption>
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit
+                                </template>
                             </dokki-image>
                             ">
 
@@ -257,7 +259,9 @@
                         </dokki-lorem>
                         
                         <dokki-image src='https://upload.wikimedia.org/wikipedia/commons/thumb/7/7f/Eublepharis_macularius_2009_G6.jpg/1280px-Eublepharis_macularius_2009_G6.jpg'>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit
+                            <template #caption>
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit
+                            </template>
                         </dokki-image>
 
                         <dokki-lorem>
@@ -303,8 +307,7 @@
                 
                 <dokki-code title="HTML"
                             code="
-                            <dokki-video platform='youtube'
-                                         src='ZgWGmggi5Xo'>
+                            <dokki-video platform='youtube' src='ZgWGmggi5Xo'>
                             </dokki-video>
                             ">
 
@@ -312,8 +315,7 @@
                         <dokki-lorem>
                         </dokki-lorem>
                         
-                        <dokki-video platform='youtube'
-                                     src='ZgWGmggi5Xo'>
+                        <dokki-video platform='youtube' src='ZgWGmggi5Xo'>
                         </dokki-video>
 
                         <dokki-lorem>
@@ -324,9 +326,10 @@
 
                 <dokki-code title="HTML"
                             code="
-                            <dokki-video platform='youtube'
-                                         src='ZgWGmggi5Xo'>
-                                Sriracha Mayoo + Curly Fries
+                            <dokki-video platform='youtube' src='ZgWGmggi5Xo'>
+                                <template #caption>
+                                    Sriracha Mayoo + Curly Fries
+                                </template>
                             </dokki-video>
                             ">
 
@@ -334,9 +337,10 @@
                         <dokki-lorem>
                         </dokki-lorem>
                         
-                        <dokki-video platform='youtube'
-                                     src='ZgWGmggi5Xo'>
-                            Sriracha Mayoo + Curly Fries
+                        <dokki-video platform='youtube' src='ZgWGmggi5Xo'>
+                            <template #caption>
+                                Sriracha Mayoo + Curly Fries
+                            </template>
                         </dokki-video>
 
                         <dokki-lorem>
@@ -391,8 +395,7 @@
 
                 <dokki-code title="HTML"
                             code="
-                            <dokki-console platform='windows'
-                                           command='lorem_ipsum.exe -a'>
+                            <dokki-console platform='windows' command='lorem_ipsum.exe -a'>
                             </dokki-console>
                             ">
 
@@ -400,8 +403,7 @@
                         <dokki-lorem>
                         </dokki-lorem>
                         
-                        <dokki-console platform="windows"
-                                       command="lorem_ipsum.exe -a">
+                        <dokki-console platform="windows" command="lorem_ipsum.exe -a">
                         </dokki-console>
 
                         <dokki-lorem>
@@ -618,7 +620,7 @@
                 <h2>Examples</h2>
 
                 <p>
-                    The source code can be given inside a <i>template #code</i> element:
+                    The source code can be entered inside a <i>template #code</i> element:
                 </p>
 
                 <dokki-code title="HTML"
@@ -659,6 +661,44 @@
                 </dokki-code>
 
                 <p>
+                    The nested <i>pre</i> element inside <i>template #code</i> isn't required, but
+                    whitespace won't be preserved without it:
+                </p>
+
+                <dokki-code title="HTML"
+                            code="
+                            <dokki-code title='C'>
+                                <template #code>
+                                    int main(void)
+                                    {
+                                        printf(``Hello there.\n``);
+                                        return 0;
+                                    }
+                                </template>
+                            </dokki-code>
+                            ">
+
+                    <dokki-output>
+                        <dokki-lorem>
+                        </dokki-lorem>
+                        
+                        <dokki-code title='C'>
+                            <template #code>
+                                int main(void)
+                                {
+                                    printf("Hello there.\n");
+                                    return 0;
+                                }
+                            </template>
+                        </dokki-code>
+
+                        <dokki-lorem>
+                        </dokki-lorem>
+                    </dokki-output>
+
+                </dokki-code>
+
+                <p>
                     Embedding a <i>dokki-output</i> element lets you document the code's
                     expected output:
                 </p>
@@ -667,19 +707,11 @@
                             code="
                             <dokki-code title='C'>
                                 <template #code>
-                                    <pre>
-                                        int main(void)
-                                        {
-                                            printf(``Hello there.\n``);
-                                            return 0;
-                                        }
-                                    </pre>
+                                    printf(``Hello there %s.\n``, ``you``);
                                 </template>
     
                                 <dokki-output>
-                                    <samp>
-                                        Hello there.
-                                    </samp>
+                                    <samp>Hello there you.</samp>
                                 </dokki-output>
                             </dokki-code>
                             ">
@@ -690,19 +722,11 @@
                         
                         <dokki-code title='C'>
                             <template #code>
-                                <pre>
-                                    int main(void)
-                                    {
-                                        printf(``Hello there.\n``);
-                                        return 0;
-                                    }
-                                </pre>
+                                printf("Hello there %s.\n", "you");
                             </template>
 
                             <dokki-output>
-                                <samp>
-                                    Hello there.
-                                </samp>
+                                <samp>Hello there you.</samp>
                             </dokki-output>
                         </dokki-code>
 
@@ -714,8 +738,8 @@
 
                 <p>
                     Embedding the source code inside a <i>template #code</i> element may not always be
-                    possible or desired, e.g. if the code is HTML. You can use the <b>code</b> attribute
-                    as an alternative:
+                    technically possible or desired, e.g. if the code is HTML. You can use the <b>code</b>
+                    attribute as an alternative:
                 </p>
 
                 <dokki-code title="HTML"

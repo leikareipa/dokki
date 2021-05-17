@@ -72,25 +72,16 @@
                 </dokki-lorem>
             </dokki-topic>
 
-            <dokki-topic title="Pictures">
-                <dokki-lorem>
-                </dokki-lorem>
-
-                <dokki-image src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ab/William_Merritt_Chase_-_Seaside_Flowers%2C_1890s.jpg/634px-William_Merritt_Chase_-_Seaside_Flowers%2C_1890s.jpg">
-                    "Seaside Flowers" (William Merritt Chase, 1890s)
-                </dokki-image>
-
-                <dokki-lorem>
-                </dokki-lorem>
-
-                <dokki-image src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ab/William_Merritt_Chase_-_Seaside_Flowers%2C_1890s.jpg/634px-William_Merritt_Chase_-_Seaside_Flowers%2C_1890s.jpg">
-                </dokki-image>
-
-                <dokki-lorem>
-                </dokki-lorem>
-            </dokki-topic>
-
             <dokki-topic title="Embedded">
+                <dokki-lorem>
+                </dokki-lorem>
+
+                <dokki-image src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ab/William_Merritt_Chase_-_Seaside_Flowers%2C_1890s.jpg/634px-William_Merritt_Chase_-_Seaside_Flowers%2C_1890s.jpg">
+                    <template #caption>
+                        "Seaside Flowers" (William Merritt Chase, 1890s)
+                    </template>
+                </dokki-image>
+
                 <dokki-lorem>
                 </dokki-lorem>
 
@@ -100,11 +91,15 @@
                             int main(void)
                             {
                                 const char *str = "Hello there.";
-                                printf("The string says: '%s'\n", str);
+                                printf("%s\n", str);
                                 return 0;
                             }
                         </pre>
                     </template>
+
+                    <dokki-output>
+                        <samp>Hello there.</samp>
+                    </dokki-output>
                 </dokki-code>
                 
                 <dokki-lorem>
@@ -128,7 +123,7 @@
                 <dokki-lorem>
                 </dokki-lorem>
 
-                <dokki-output unpadded title="Run app">
+                <dokki-output unpadded title="Run">
                     <iframe src="https://www.tarpeeksihyvaesoft.com/experimental/retro-ngon/samples/tomb-raider-home/"
                             loading="lazy"
                             style="width: 100%;
@@ -153,11 +148,10 @@
                 <dokki-lorem>
                 </dokki-lorem>
 
-                <dokki-lorem>
-                </dokki-lorem>
-
                 <dokki-video platform="youtube" src="ZgWGmggi5Xo">
-                    Sriracha Mayoo & Curly Fries
+                    <template #caption>
+                        Sriracha Mayoo & Curly Fries
+                    </template>
                 </dokki-video>
                 
                 <dokki-lorem>
@@ -165,15 +159,15 @@
 
                 <dokki-table>
                     <template #caption>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit 
                     </template #caption>
 
                     <template #table>
                         <table>
                             <tr>
-                                <th>1</th>
-                                <th>2</th>
-                                <th>3</th>
+                                <th>One</th>
+                                <th>Two</th>
+                                <th>Three</th>
                             </tr>
                             <tr>
                                 <td>1st</td>
@@ -181,9 +175,9 @@
                                 <td>3rd</td>
                             </tr>
                             <tr>
-                                <td>One</td>
-                                <td>Two</td>
-                                <td>Three</td>
+                                <td>1nd</td>
+                                <td>2rd</td>
+                                <td>3st</td>
                             </tr>
                         </table>
                     </template #table>

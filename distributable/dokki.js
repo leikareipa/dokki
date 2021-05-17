@@ -184,7 +184,7 @@ function create_app()
         computed: {
             hasFooter()
             {
-                return !!this.$slots.default;
+                return !!this.$slots.caption;
             }
         },
         template: `
@@ -208,7 +208,7 @@ function create_app()
                      :src="src">
 
                 <footer v-if=hasFooter>
-                    <slot/>
+                    <slot name="caption"/>
                 </footer>
             </p>
         `,
@@ -220,7 +220,7 @@ function create_app()
 
                 <header>
                     <div class="title">
-                        <i class="fas fa-info-circle" title="Tip"/>
+                        <i class="fas fa-info-circle"/>
                     </div>
                 </header>
 
@@ -238,7 +238,7 @@ function create_app()
 
                 <header>
                     <span class="title">
-                        <i class="fas fa-exclamation-triangle" title="Warning"/>
+                        <i class="fas fa-exclamation-triangle"/>
                     </span>
                 </header>
 
@@ -274,7 +274,7 @@ function create_app()
         computed: {
             hasFooter()
             {
-                return !!this.$slots.default;
+                return !!this.$slots.caption;
             },
             videoUrl()
             {
@@ -316,7 +316,7 @@ function create_app()
                 </iframe>
 
                 <footer v-if=hasFooter>
-                    <slot/>
+                    <slot name="caption"/>
                 </footer>
 
             </p>
