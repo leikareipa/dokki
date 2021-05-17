@@ -678,7 +678,7 @@ function create_app()
     function simplified_topic_title(title)
     {
         return title.toLowerCase()
-                    .replace(/[^a-zA-Z\d\s]/g, "")
+                    .replace(/[^a-zA-Z\d\s-]/g, "")
                     .replace(/\s+/g, "-")
     }
 }
