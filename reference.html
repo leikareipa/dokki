@@ -49,10 +49,6 @@
         
             <dokki-topics>
 
-                <dokki-topic title="Introduction">
-                    <p>TODO</p>
-                </dokki-topic>
-
                 <dokki-topic title="dokki-tip">
                     <h2>Description</h2>
 
@@ -739,7 +735,7 @@
                     <h3>title</h3>
 
                     <p>
-                        The title to be shown in the header of the <i>dokki-output</i> element.
+                        The title to be shown in the header of the <i>dokki-code</i> element.
                     </p>
 
                     <h3>code</h3>
@@ -844,11 +840,17 @@
                                 code="
                                 <dokki-code title='C'>
                                     <template #code>
-                                        printf(``Hello there %s.\n``, ``you``);
+                                        <pre>
+                                            int main(void)
+                                            {
+                                                printf(``Hello there.\n``);
+                                                return 0;
+                                            }
+                                        </pre>
                                     </template>
         
                                     <dokki-output>
-                                        <samp>Hello there you.</samp>
+                                        <samp>Hello there.</samp>
                                     </dokki-output>
                                 </dokki-code>
                                 ">
@@ -859,11 +861,17 @@
                             
                             <dokki-code title='C'>
                                 <template #code>
-                                    printf("Hello there %s.\n", "you");
+                                    <pre>
+                                        int main(void)
+                                        {
+                                            printf(``Hello there.\n``);
+                                            return 0;
+                                        }
+                                    </pre>
                                 </template>
 
                                 <dokki-output>
-                                    <samp>Hello there you.</samp>
+                                    <samp>Hello there.</samp>
                                 </dokki-output>
                             </dokki-code>
 
