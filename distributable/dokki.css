@@ -328,11 +328,6 @@ body
     margin-bottom: 0;
 }
 
-.dokki-embedded > footer.unpadded
-{
-    padding: 0 !important;
-}
-
 .dokki-embedded > footer > iframe,
 .dokki-embedded > footer > canvas
 {
@@ -362,6 +357,18 @@ body
 .dokki-embedded > hr + hr
 {
     display: none;
+}
+
+.dokki-embedded.dokki-iframe > footer
+{
+    padding: 0;
+}
+
+.dokki-embedded.dokki-iframe > footer > iframe
+{
+    max-width: 100%;
+    min-width: 100%;
+    border: none;
 }
 
 .dokki-embedded.dokki-table > header .title::after

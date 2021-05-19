@@ -173,6 +173,49 @@ function create_app()
         `,
     });
 
+    app.component("dokki-iframe", {
+        props: {
+            src: {default: ""},
+            height: {default: "500px"},
+            title: {default: "Inline frame"},
+        },
+        data() {
+            return {
+                isExpanded: false,
+            }
+        },
+        template: `
+            <p class="dokki-embedded dokki-iframe">
+
+                <header class="clickable"
+                        @click="isExpanded = !isExpanded">
+
+                    <span class="title">
+                        <i class="fas fa-expand"/>
+                        {{title}}
+                    </span>
+
+                    <aside class="revealer">
+                        {{isExpanded? "Close frame" : "Expand frame"}}
+                    </aside>
+
+                </header>
+
+                <hr v-if=isExpanded>
+
+                <footer v-if=isExpanded>
+
+                    <iframe class="dokki-iframe"
+                            :style="{height: height}"
+                            :src=src>
+                    </iframe>
+                    
+                </footer>
+
+            </p>
+        `,
+    });
+
     app.component("dokki-image", {
         props: {
             src: {},
@@ -411,8 +454,7 @@ function create_app()
         `,
     });
 
-    // For showcasing the output of something; e.g. of a block of sample code or
-    // another website (via an <iframe> combined with the 'unpadded' prop).
+    // For showcasing the output of something; e.g. of a block of sample code.
     //
     // Sample usage:
     //
@@ -424,17 +466,10 @@ function create_app()
     app.component("dokki-output", {
         props: {
             title: {default: "Output"},
-            unpadded: {default: undefined},
         },
         data() {
             return {
                 isExpanded: false,
-            }
-        },
-        computed: {
-            isUnpadded()
-            {
-                return (this.$props.unpadded !== undefined);
             }
         },
         template: `
@@ -454,10 +489,7 @@ function create_app()
 
                 </header>
 
-                <hr v-if="isUnpadded && isExpanded">
-
-                <footer v-if=isExpanded
-                        :class="{unpadded: (unpadded !== undefined)}">
+                <footer v-if=isExpanded>
 
                     <slot/>
                     

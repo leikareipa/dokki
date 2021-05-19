@@ -185,13 +185,8 @@
                     </p>
 
                     <p>
-                        By default, the image will be hidden until the user clicks the header of the
-                        <i>dokki-image</i> element. Hidden images will begin loading only when revealed.
-                    </p>
-
-                    <p>
-                        Any content within <i>dokki-image</i> <i>/dokki-image</i> will be displayed as the image
-                        caption.
+                        By default, the image won't be loaded until the user clicks the header of the
+                        <i>dokki-image</i> element, revealing the image.
                     </p>
 
                     <h2>Attributes</h2>
@@ -199,14 +194,13 @@
                     <h3>src</h3> (required)
 
                     <p>
-                        The source of the image. Corresponds to the <b>src</b> attribute of the standard
-                        <i>img</i> element. 
+                        Corresponds to the <b>src</b> attribute of the standard <i>img</i> element. 
                     </p>
 
                     <h3>expanded</h3>
 
                     <p>
-                        If present, the image will be visible by default, rather than requiring the user
+                        If present, the image will be visible by default rather than requiring the user
                         to reveal it manually.
                     </p>
 
@@ -284,13 +278,8 @@
                     </p>
 
                     <p>
-                        By default, the video will be hidden until the user clicks the header of the
-                        <i>dokki-video</i> element. Hidden videos will begin loading only when revealed.
-                    </p>
-
-                    <p>
-                        Any content within <i>dokki-video</i> <i>/dokki-video</i> will be displayed as the video
-                        caption.
+                        The video won't be loaded until the user clicks the header of the <i>dokki-video</i>
+                        element, revealing the video.
                     </p>
 
                     <h2>Attributes</h2>
@@ -347,6 +336,76 @@
                                     Sriracha Mayoo + Curly Fries
                                 </template>
                             </dokki-video>
+
+                            <dokki-lorem>
+                            </dokki-lorem>
+                        </dokki-output>
+
+                    </dokki-code>
+                </dokki-topic>
+
+                <dokki-topic title="dokki-iframe">
+                    <h2>Description</h2>
+
+                    <p>
+                        The <i>dokki-iframe</i> element provides a target for embedding an inline frame.
+                    </p>
+
+                    <p>
+                        The frame and its contents won't be loaded until the user clicks the header of
+                        the <i>dokki-iframe</i> element, revealing the frame.
+                    </p>
+
+                    <h2>Attributes</h2>
+
+                    <h3>src</h3> (required)
+                    <p>
+                        Corresponds to the <b>src</b> attribute of the standard <i>iframe</i> element.
+                    </p>
+
+                    <h3>title</h3>
+                    <p>
+                        The title to be shown in the header of the <i>dokki-iframe</i> element.
+                    </p>
+
+                    <h3>height</h3>
+                    <p>
+                        The CSS height of the <i>dokki-iframe</i> element.
+                    </p>
+
+                    <h2>Examples</h2>
+                    
+                    <dokki-code title="HTML"
+                                code="
+                                <dokki-iframe src='https://www.wikipedia.org' height='400px'>
+                                </dokki-iframe>
+                                ">
+
+                        <dokki-output>
+                            <dokki-lorem>
+                            </dokki-lorem>
+
+                            <dokki-iframe src='https://www.wikipedia.org' height='400px'>
+                            </dokki-iframe>
+
+                            <dokki-lorem>
+                            </dokki-lorem>
+                        </dokki-output>
+
+                    </dokki-code>
+
+                    <dokki-code title="HTML"
+                                code="
+                                <dokki-iframe src='https://www.wikipedia.org' title=``Wikipedia's front page``>
+                                </dokki-iframe>
+                                ">
+
+                        <dokki-output>
+                            <dokki-lorem>
+                            </dokki-lorem>
+
+                            <dokki-iframe src='https://www.wikipedia.org' title="Wikipedia's front page">
+                            </dokki-iframe>
 
                             <dokki-lorem>
                             </dokki-lorem>
@@ -529,17 +588,13 @@
                     <h2>Description</h2>
 
                     <p>
-                        The <i>dokki-output</i> element provides a target for embedding content.
+                        The <i>dokki-output</i> element provides a target for showcasing the output of
+                        something, e.g. of a piece of code.
                     </p>
 
                     <p>
-                        By default, the content will be hidden until the user clicks the header of the
-                        <i>dokki-output</i> element.
-                    </p>
-
-                    <p>
-                        Any content within <i>dokki-output</i> <i>/dokki-output</i> will be displayed inside
-                        the expanded <i>dokki-output</i> element.
+                        The contents of the <i>dokki-output</i> element will be hidden until the user clicks
+                        the element's header.
                     </p>
 
                     <h2>Attributes</h2>
@@ -548,13 +603,6 @@
 
                     <p>
                         The title to be shown in the header of the <i>dokki-output</i> element.
-                    </p>
-
-                    <h3>unpadded</h3>
-
-                    <p>
-                        If present, the content container of the <i>dokki-output</i> element will have zero
-                        padding. This is useful e.g. for embedding an <i>iframe</i>.
                     </p>
 
                     <h2>Examples</h2>
@@ -601,39 +649,43 @@
 
                     </dokki-code>
 
+                    <p>
+                        The <i>dokki-output</i> element can be embedded inside a <i>dokki-code</i>
+                        element for symbiotic styling:
+                    </p>
+
                     <dokki-code title="HTML"
                                 code="
-                                <dokki-output unpadded title='Featured Pictures in the Public Domain'>
-                                    
-                                    <iframe src='https://commons.wikimedia.org/wiki/Featured_Pictures_in_the_Public_Domain'
-                                            loading='lazy'
-                                            style='width: 100%;
-                                                height: 500px;
-                                                border: none;'>
-                                    </iframe>
-
-                                </dokki-output>
+                                <dokki-code title='C'>
+                                    <template #code>
+                                        printf(``Hello there %s.\n``, ``you``);
+                                    </template>
+        
+                                    <dokki-output>
+                                        <samp>Hello there you.</samp>
+                                    </dokki-output>
+                                </dokki-code>
                                 ">
 
                         <dokki-output>
                             <dokki-lorem>
                             </dokki-lorem>
                             
-                            <dokki-output unpadded title='Featured Pictures in the Public Domain'>
-                                <iframe src='https://commons.wikimedia.org/wiki/Featured_Pictures_in_the_Public_Domain'
-                                        loading='lazy'
-                                        style='width: 100%;
-                                            height: 500px;
-                                            border: none;'>
-                                </iframe>
-                            </dokki-output>
+                            <dokki-code title='C'>
+                                <template #code>
+                                    printf("Hello there %s.\n", "you");
+                                </template>
+
+                                <dokki-output>
+                                    <samp>Hello there you.</samp>
+                                </dokki-output>
+                            </dokki-code>
 
                             <dokki-lorem>
                             </dokki-lorem>
                         </dokki-output>
 
                     </dokki-code>
-
                 </dokki-topic>
 
                 <dokki-topic title="dokki-spoiler">
