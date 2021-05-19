@@ -3,209 +3,217 @@
     <head>
         <meta name="viewport" content="width=device-width">
         <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-        <script src="https://cdn.jsdelivr.net/npm/vue@3.0.11/dist/vue.global.prod.js"></script>
-        <script src="https://unpkg.com/vuex@4.0.0/dist/vuex.global.prod.js"></script>
-        <script src="./distributable/dokki.js"></script>
         <link rel="stylesheet"
               type="text/css"
               href="./distributable/dokki.css">
         <link rel="stylesheet"
               href="https://use.fontawesome.com/releases/v5.12.0/css/all.css"
               crossorigin="anonymous">
+        <script defer src="https://cdn.jsdelivr.net/npm/vue@3.0.11/dist/vue.global.prod.js"></script>
+        <script defer src="https://unpkg.com/vuex@4.0.0/dist/vuex.global.prod.js"></script>
+        <script defer src="./distributable/dokki.js"></script>
     </head>
     <body>
-        <dokki-header icon="fas fa-atlas"
-                      title="Sample dokki manual"
-                      software="SampleApp v1.6">
-        </dokki-header>
+        <div while-dokki-initializing>
+            Preparing the document...
+        </div>
+
+        <template id="dokki-document">
+
+            <dokki-header icon="fas fa-atlas"
+                          title="Sample dokki manual"
+                          software="SampleApp v1.6">
+            </dokki-header>
+            
+            <dokki-side-panel>
+            </dokki-side-panel>
         
-        <dokki-side-panel>
-        </dokki-side-panel>
-    
-        <dokki-topics>
+            <dokki-topics>
 
-            <dokki-topic title="Introduction">
-                <dokki-lorem>
-                </dokki-lorem>
-                
-                <dokki-lorem>
-                </dokki-lorem>
-            </dokki-topic>
+                <dokki-topic title="Introduction">
+                    <dokki-lorem>
+                    </dokki-lorem>
+                    
+                    <dokki-lorem>
+                    </dokki-lorem>
+                </dokki-topic>
 
-            <dokki-topic title="Tips">
-                <dokki-lorem>
-                </dokki-lorem>
+                <dokki-topic title="Tips">
+                    <dokki-lorem>
+                    </dokki-lorem>
 
-                <dokki-lorem>
-                </dokki-lorem>
+                    <dokki-lorem>
+                    </dokki-lorem>
 
-                <dokki-tip>
-                    Phasellus viverra ipsum id turpis pretium suscipit. Suspendisse potenti. Nullam a bibendum dui.
-                    Integer lacinia posuere massa, id aliquet leo finibus in. Proin fringilla, risus sit amet maximus
-                    facilisis, risus lorem egestas augue, id mattis mauris lectus nec dui.
-                </dokki-tip>
+                    <dokki-tip>
+                        Phasellus viverra ipsum id turpis pretium suscipit. Suspendisse potenti. Nullam a bibendum dui.
+                        Integer lacinia posuere massa, id aliquet leo finibus in. Proin fringilla, risus sit amet maximus
+                        facilisis, risus lorem egestas augue, id mattis mauris lectus nec dui.
+                    </dokki-tip>
 
-                <dokki-lorem>
-                </dokki-lorem>
+                    <dokki-lorem>
+                    </dokki-lorem>
 
-                <dokki-lorem>
-                </dokki-lorem>
-            </dokki-topic>
+                    <dokki-lorem>
+                    </dokki-lorem>
+                </dokki-topic>
 
-            <dokki-topic title="Warnings">
-                <dokki-lorem>
-                </dokki-lorem>
-                
-                <dokki-lorem>
-                </dokki-lorem>
+                <dokki-topic title="Warnings">
+                    <dokki-lorem>
+                    </dokki-lorem>
+                    
+                    <dokki-lorem>
+                    </dokki-lorem>
 
-                <dokki-warning>
-                    Praesent blandit augue orci, vitae fringilla dui semper vel. Aliquam molestie porta quam, nec
-                    faucibus ex efficitur ut. Pellentesque sem nunc, feugiat sed enim ut, vestibulum sollicitudin nulla.
-                    Proin placerat arcu non varius tristique.
-                </dokki-warning>
+                    <dokki-warning>
+                        Praesent blandit augue orci, vitae fringilla dui semper vel. Aliquam molestie porta quam, nec
+                        faucibus ex efficitur ut. Pellentesque sem nunc, feugiat sed enim ut, vestibulum sollicitudin nulla.
+                        Proin placerat arcu non varius tristique.
+                    </dokki-warning>
 
-                <dokki-lorem>
-                </dokki-lorem>
+                    <dokki-lorem>
+                    </dokki-lorem>
 
-                <dokki-lorem>
-                </dokki-lorem>
-            </dokki-topic>
+                    <dokki-lorem>
+                    </dokki-lorem>
+                </dokki-topic>
 
-            <dokki-topic title="Embedded">
-                <dokki-lorem>
-                </dokki-lorem>
+                <dokki-topic title="Embedded">
+                    <dokki-lorem>
+                    </dokki-lorem>
 
-                <dokki-image src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ab/William_Merritt_Chase_-_Seaside_Flowers%2C_1890s.jpg/634px-William_Merritt_Chase_-_Seaside_Flowers%2C_1890s.jpg">
-                    <template #caption>
-                        "Seaside Flowers" (William Merritt Chase, 1890s)
-                    </template>
-                </dokki-image>
+                    <dokki-image src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ab/William_Merritt_Chase_-_Seaside_Flowers%2C_1890s.jpg/634px-William_Merritt_Chase_-_Seaside_Flowers%2C_1890s.jpg">
+                        <template #caption>
+                            "Seaside Flowers" (William Merritt Chase, 1890s)
+                        </template>
+                    </dokki-image>
 
-                <dokki-lorem>
-                </dokki-lorem>
+                    <dokki-lorem>
+                    </dokki-lorem>
 
-                <dokki-code title="C">
-                    <template #code>
-                        <pre>
-                            int main(void)
-                            {
-                                const char *str = "Hello there.";
-                                printf("%s\n", str);
-                                return 0;
-                            }
-                        </pre>
-                    </template>
+                    <dokki-code title="C">
+                        <template #code>
+                            <pre>
+                                int main(void)
+                                {
+                                    const char *str = "Hello there.";
+                                    printf("%s\n", str);
+                                    return 0;
+                                }
+                            </pre>
+                        </template>
 
-                    <dokki-output>
-                        <samp>Hello there.</samp>
+                        <dokki-output>
+                            <samp>Hello there.</samp>
+                        </dokki-output>
+                    </dokki-code>
+                    
+                    <dokki-lorem>
+                    </dokki-lorem>
+
+                    <dokki-code title="HTML"
+                                code="
+                                <i class='fas fa-fw fa-hammer'></i>
+                                <i class='fas fa-fw fa-screwdriver'></i>
+                                <i class='fas fa-fw fa-wrench'></i>
+                                ">
+
+                        <dokki-output>
+                            <i class="fas fa-fw fa-hammer"></i>
+                            <i class="fas fa-fw fa-screwdriver"></i>
+                            <i class="fas fa-fw fa-wrench"></i>
+                        </dokki-output>
+
+                    </dokki-code>
+
+                    <dokki-lorem>
+                    </dokki-lorem>
+
+                    <dokki-output unpadded title="Run">
+                        <iframe src="https://www.tarpeeksihyvaesoft.com/experimental/retro-ngon/samples/tomb-raider-home/"
+                                loading="lazy"
+                                style="width: 100%;
+                                       height: 500px;
+                                       border: none;">
+                        </iframe>
                     </dokki-output>
-                </dokki-code>
-                
-                <dokki-lorem>
-                </dokki-lorem>
 
-                <dokki-code title="HTML"
-                            code="
-                            <i class='fas fa-fw fa-hammer'></i>
-                            <i class='fas fa-fw fa-screwdriver'></i>
-                            <i class='fas fa-fw fa-wrench'></i>
-                            ">
+                    <dokki-lorem>
+                    </dokki-lorem>
 
-                    <dokki-output>
-                        <i class="fas fa-fw fa-hammer"></i>
-                        <i class="fas fa-fw fa-screwdriver"></i>
-                        <i class="fas fa-fw fa-wrench"></i>
-                    </dokki-output>
+                    <dokki-console command="lsb_release -a">
+                        <template #output>
+                            <pre>
+                                No LSB modules are available.
+                                Distributor ID: Ubuntu
+                                Description:    Ubuntu 20.04.2 LTS
+                                Release:        20.04
+                                Codename:       focal
+                            </pre>
+                        </template>
+                    </dokki-console>
 
-                </dokki-code>
+                    <dokki-lorem>
+                    </dokki-lorem>
 
-                <dokki-lorem>
-                </dokki-lorem>
+                    <dokki-video platform="youtube" src="ZgWGmggi5Xo">
+                        <template #caption>
+                            Sriracha Mayoo & Curly Fries
+                        </template>
+                    </dokki-video>
+                    
+                    <dokki-lorem>
+                    </dokki-lorem>
 
-                <dokki-output unpadded title="Run">
-                    <iframe src="https://www.tarpeeksihyvaesoft.com/experimental/retro-ngon/samples/tomb-raider-home/"
-                            loading="lazy"
-                            style="width: 100%;
-                                   height: 500px;
-                                   border: none;">
-                    </iframe>
-                </dokki-output>
+                    <dokki-table>
+                        <template #caption>
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit
+                        </template>
 
-                <dokki-lorem>
-                </dokki-lorem>
+                        <template #table>
+                            <table>
+                                <tr>
+                                    <th>One</th>
+                                    <th>Two</th>
+                                    <th>Three</th>
+                                </tr>
+                                <tr>
+                                    <td>1st</td>
+                                    <td>2nd</td>
+                                    <td>3rd</td>
+                                </tr>
+                                <tr>
+                                    <td>1nd</td>
+                                    <td>2rd</td>
+                                    <td>3st</td>
+                                </tr>
+                            </table>
+                        </template>
+                    </dokki-table>
 
-                <dokki-console command="lsb_release -a">
-                    <template #output>
-                        <pre>
-                            No LSB modules are available.
-                            Distributor ID: Ubuntu
-                            Description:    Ubuntu 20.04.2 LTS
-                            Release:        20.04
-                            Codename:       focal
-                        </pre>
-                    </template>
-                </dokki-console>
+                    <dokki-lorem>
+                    </dokki-lorem>
+                </dokki-topic>
 
-                <dokki-lorem>
-                </dokki-lorem>
+                <dokki-topic title="Credits">
+                    <p>
+                        Dokki is being developed by <a href="https://www.tarpeeksihyvaesoft.com">Tarpeeksi Hyvae Soft</a>
+                        and can be found on <a href="https://github.com/leikareipa/dokki">GitHub</a>.
+                    </p>
 
-                <dokki-video platform="youtube" src="ZgWGmggi5Xo">
-                    <template #caption>
-                        Sriracha Mayoo & Curly Fries
-                    </template>
-                </dokki-video>
-                
-                <dokki-lorem>
-                </dokki-lorem>
+                    <dokki-lorem>
+                    </dokki-lorem>
 
-                <dokki-table>
-                    <template #caption>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit
-                    </template>
+                    <dokki-lorem>
+                    </dokki-lorem>
 
-                    <template #table>
-                        <table>
-                            <tr>
-                                <th>One</th>
-                                <th>Two</th>
-                                <th>Three</th>
-                            </tr>
-                            <tr>
-                                <td>1st</td>
-                                <td>2nd</td>
-                                <td>3rd</td>
-                            </tr>
-                            <tr>
-                                <td>1nd</td>
-                                <td>2rd</td>
-                                <td>3st</td>
-                            </tr>
-                        </table>
-                    </template>
-                </dokki-table>
+                    <dokki-lorem>
+                    </dokki-lorem>
+                </dokki-topic>
 
-                <dokki-lorem>
-                </dokki-lorem>
-            </dokki-topic>
+            </dokki-topics>
 
-            <dokki-topic title="Credits">
-                <p>
-                    Dokki is being developed by <a href="https://www.tarpeeksihyvaesoft.com">Tarpeeksi Hyvae Soft</a>
-                    and can be found on <a href="https://github.com/leikareipa/dokki">GitHub</a>.
-                </p>
-
-                <dokki-lorem>
-                </dokki-lorem>
-
-                <dokki-lorem>
-                </dokki-lorem>
-
-                <dokki-lorem>
-                </dokki-lorem>
-            </dokki-topic>
-
-        </dokki-topics>
+        </template>
 
     </body>
 </html>

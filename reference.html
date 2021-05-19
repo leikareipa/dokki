@@ -3,16 +3,15 @@
     <head>
         <meta name="viewport" content="width=device-width">
         <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-        <script src="https://cdn.jsdelivr.net/npm/vue@3.0.11/dist/vue.global.prod.js"></script>
-        <script src="https://unpkg.com/vuex@4.0.0/dist/vuex.global.prod.js"></script>
-        <script src="./distributable/dokki.js"></script>
         <link rel="stylesheet"
               type="text/css"
               href="./distributable/dokki.css">
         <link rel="stylesheet"
               href="https://use.fontawesome.com/releases/v5.12.0/css/all.css"
               crossorigin="anonymous">
-
+        <script defer src="https://cdn.jsdelivr.net/npm/vue@3.0.11/dist/vue.global.prod.js"></script>
+        <script defer src="https://unpkg.com/vuex@4.0.0/dist/vuex.global.prod.js"></script>
+        <script defer src="./distributable/dokki.js"></script>
         <style>
             .dokki-topic p > i,
             .dokki-topic p > em
@@ -35,396 +34,416 @@
         </style>
     </head>
     <body>
-        <dokki-header title="dokki API reference"
-                      software="dokki beta.1">
-        </dokki-header>
+        <div while-dokki-initializing>
+            Preparing the document...
+        </div>
+
+        <template id="dokki-document">
+
+            <dokki-header title="dokki API reference"
+                        software="dokki beta.1">
+            </dokki-header>
+            
+            <dokki-side-panel>
+            </dokki-side-panel>
         
-        <dokki-side-panel>
-        </dokki-side-panel>
-    
-        <dokki-topics>
+            <dokki-topics>
 
-            <dokki-topic title="Introduction">
-                <p>TODO</p>
-            </dokki-topic>
+                <dokki-topic title="Introduction">
+                    <p>TODO</p>
+                </dokki-topic>
 
-            <dokki-topic title="dokki-tip">
-                <h2>Description</h2>
+                <dokki-topic title="dokki-tip">
+                    <h2>Description</h2>
 
-                <p>
-                    The <i>dokki-tip</i> element displays its child contents inside a tip box.
-                </p>
+                    <p>
+                        The <i>dokki-tip</i> element displays its child contents inside a tip box.
+                    </p>
 
-                <h2>Attributes</h2>
+                    <h2>Attributes</h2>
 
-                <p>
-                    None.
-                </p>
+                    <p>
+                        None.
+                    </p>
 
-                <h2>Examples</h2>
+                    <h2>Examples</h2>
 
-                <dokki-code title="HTML"
-                            code="
+                    <dokki-code title="HTML"
+                                code="
+                                <dokki-tip>
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                                </dokki-tip>
+                                ">
+
+                        <dokki-output>
+                            <dokki-lorem>
+                            </dokki-lorem>
+
                             <dokki-tip>
                                 Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                             </dokki-tip>
-                            ">
 
-                    <dokki-output>
-                        <dokki-lorem>
-                        </dokki-lorem>
+                            <dokki-lorem>
+                            </dokki-lorem>
+                        </dokki-output>
 
-                        <dokki-tip>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                        </dokki-tip>
+                    </dokki-code>
 
-                        <dokki-lorem>
-                        </dokki-lorem>
-                    </dokki-output>
+                    <dokki-code title="HTML"
+                                code="
+                                <dokki-tip>
+                                    <p style='filter: blur(4px);'>
+                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                                    </p>
+                                </dokki-tip>
+                                ">
 
-                </dokki-code>
+                        <dokki-output>
+                            <dokki-lorem>
+                            </dokki-lorem>
 
-                <dokki-code title="HTML"
-                            code="
                             <dokki-tip>
                                 <p style='filter: blur(4px);'>
                                     Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                                 </p>
                             </dokki-tip>
-                            ">
 
-                    <dokki-output>
-                        <dokki-lorem>
-                        </dokki-lorem>
+                            <dokki-lorem>
+                            </dokki-lorem>
+                        </dokki-output>
 
-                        <dokki-tip>
-                            <p style='filter: blur(4px);'>
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                            </p>
-                        </dokki-tip>
+                    </dokki-code>
+                </dokki-topic>
 
-                        <dokki-lorem>
-                        </dokki-lorem>
-                    </dokki-output>
+                <dokki-topic title="dokki-warning">
+                    <h2>Description</h2>
 
-                </dokki-code>
-            </dokki-topic>
+                    <p>
+                        The <i>dokki-warning</i> element displays its child contents inside a warning box.
+                    </p>
 
-            <dokki-topic title="dokki-warning">
-                <h2>Description</h2>
+                    <h2>Attributes</h2>
 
-                <p>
-                    The <i>dokki-warning</i> element displays its child contents inside a warning box.
-                </p>
+                    <p>
+                        None.
+                    </p>
 
-                <h2>Attributes</h2>
+                    <h2>Examples</h2>
+                    
+                    <dokki-code title="HTML"
+                                code="
+                                <dokki-warning>
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                                </dokki-warning>
+                                ">
 
-                <p>
-                    None.
-                </p>
+                        <dokki-output>
+                            <dokki-lorem>
+                            </dokki-lorem>
 
-                <h2>Examples</h2>
-                
-                <dokki-code title="HTML"
-                            code="
                             <dokki-warning>
                                 Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                             </dokki-warning>
-                            ">
 
-                    <dokki-output>
-                        <dokki-lorem>
-                        </dokki-lorem>
+                            <dokki-lorem>
+                            </dokki-lorem>
+                        </dokki-output>
 
-                        <dokki-warning>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                        </dokki-warning>
+                    </dokki-code>
 
-                        <dokki-lorem>
-                        </dokki-lorem>
-                    </dokki-output>
+                    <dokki-code title="HTML"
+                                code="
+                                <dokki-warning>
+                                    <p style='filter: blur(4px);'>
+                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                                    </p>
+                                </dokki-warning>
+                                ">
 
-                </dokki-code>
+                        <dokki-output>
+                            <dokki-lorem>
+                            </dokki-lorem>
 
-                <dokki-code title="HTML"
-                            code="
                             <dokki-warning>
                                 <p style='filter: blur(4px);'>
                                     Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                                 </p>
                             </dokki-warning>
-                            ">
 
-                    <dokki-output>
-                        <dokki-lorem>
-                        </dokki-lorem>
+                            <dokki-lorem>
+                            </dokki-lorem>
+                        </dokki-output>
 
-                        <dokki-warning>
-                            <p style='filter: blur(4px);'>
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                            </p>
-                        </dokki-warning>
+                    </dokki-code>
+                </dokki-topic>
 
-                        <dokki-lorem>
-                        </dokki-lorem>
-                    </dokki-output>
+                <dokki-topic title="dokki-image">
+                    <h2>Description</h2>
 
-                </dokki-code>
-            </dokki-topic>
+                    <p>
+                        The <i>dokki-image</i> element displays an image with an optional caption.
+                    </p>
 
-            <dokki-topic title="dokki-image">
-                <h2>Description</h2>
+                    <p>
+                        By default, the image will be hidden until the user clicks the header of the
+                        <i>dokki-image</i> element. Hidden images will begin loading only when revealed.
+                    </p>
 
-                <p>
-                    The <i>dokki-image</i> element displays an image with an optional caption.
-                </p>
+                    <p>
+                        Any content within <i>dokki-image</i> <i>/dokki-image</i> will be displayed as the image
+                        caption.
+                    </p>
 
-                <p>
-                    By default, the image will be hidden until the user clicks the header of the
-                    <i>dokki-image</i> element. Hidden images will begin loading only when revealed.
-                </p>
+                    <h2>Attributes</h2>
 
-                <p>
-                    Any content within <i>dokki-image</i> <i>/dokki-image</i> will be displayed as the image
-                    caption.
-                </p>
+                    <h3>src</h3> (required)
 
-                <h2>Attributes</h2>
+                    <p>
+                        The source of the image. Corresponds to the <b>src</b> attribute of the standard
+                        <i>img</i> element. 
+                    </p>
 
-                <h3>src</h3> (required)
+                    <h3>expanded</h3>
 
-                <p>
-                    The source of the image. Corresponds to the <b>src</b> attribute of the standard
-                    <i>img</i> element. 
-                </p>
+                    <p>
+                        If present, the image will be visible by default, rather than requiring the user
+                        to reveal it manually.
+                    </p>
 
-                <h3>expanded</h3>
+                    <h2>Examples</h2>
+                    
+                    <dokki-code title="HTML"
+                                code="
+                                <dokki-image src='https://upload.wikimedia.org/wikipedia/commons/thumb/7/7f/Eublepharis_macularius_2009_G6.jpg/1280px-Eublepharis_macularius_2009_G6.jpg'>
+                                </dokki-image>
+                                ">
 
-                <p>
-                    If present, the image will be visible by default, rather than requiring the user
-                    to reveal it manually.
-                </p>
-
-                <h2>Examples</h2>
-                
-                <dokki-code title="HTML"
-                            code="
+                        <dokki-output>
+                            <dokki-lorem>
+                            </dokki-lorem>
+                            
                             <dokki-image src='https://upload.wikimedia.org/wikipedia/commons/thumb/7/7f/Eublepharis_macularius_2009_G6.jpg/1280px-Eublepharis_macularius_2009_G6.jpg'>
                             </dokki-image>
-                            ">
 
-                    <dokki-output>
-                        <dokki-lorem>
-                        </dokki-lorem>
-                        
-                        <dokki-image src='https://upload.wikimedia.org/wikipedia/commons/thumb/7/7f/Eublepharis_macularius_2009_G6.jpg/1280px-Eublepharis_macularius_2009_G6.jpg'>
-                        </dokki-image>
+                            <dokki-lorem>
+                            </dokki-lorem>
+                        </dokki-output>
 
-                        <dokki-lorem>
-                        </dokki-lorem>
-                    </dokki-output>
+                    </dokki-code>
 
-                </dokki-code>
+                    <dokki-code title="HTML"
+                                code="
+                                <dokki-image expanded src='https://upload.wikimedia.org/wikipedia/commons/thumb/7/7f/Eublepharis_macularius_2009_G6.jpg/1280px-Eublepharis_macularius_2009_G6.jpg'>
+                                </dokki-image>
+                                ">
 
-                <dokki-code title="HTML"
-                            code="
+                        <dokki-output>
+                            <dokki-lorem>
+                            </dokki-lorem>
+                            
                             <dokki-image expanded src='https://upload.wikimedia.org/wikipedia/commons/thumb/7/7f/Eublepharis_macularius_2009_G6.jpg/1280px-Eublepharis_macularius_2009_G6.jpg'>
                             </dokki-image>
-                            ">
 
-                    <dokki-output>
-                        <dokki-lorem>
-                        </dokki-lorem>
-                        
-                        <dokki-image expanded src='https://upload.wikimedia.org/wikipedia/commons/thumb/7/7f/Eublepharis_macularius_2009_G6.jpg/1280px-Eublepharis_macularius_2009_G6.jpg'>
-                        </dokki-image>
+                            <dokki-lorem>
+                            </dokki-lorem>
+                        </dokki-output>
 
-                        <dokki-lorem>
-                        </dokki-lorem>
-                    </dokki-output>
+                    </dokki-code>
 
-                </dokki-code>
+                    <dokki-code title="HTML"
+                                code="
+                                <dokki-image src='https://upload.wikimedia.org/wikipedia/commons/thumb/7/7f/Eublepharis_macularius_2009_G6.jpg/1280px-Eublepharis_macularius_2009_G6.jpg'>
+                                    <template #caption>
+                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit
+                                    </template>
+                                </dokki-image>
+                                ">
 
-                <dokki-code title="HTML"
-                            code="
+                        <dokki-output>
+                            <dokki-lorem>
+                            </dokki-lorem>
+                            
                             <dokki-image src='https://upload.wikimedia.org/wikipedia/commons/thumb/7/7f/Eublepharis_macularius_2009_G6.jpg/1280px-Eublepharis_macularius_2009_G6.jpg'>
                                 <template #caption>
                                     Lorem ipsum dolor sit amet, consectetur adipiscing elit
                                 </template>
                             </dokki-image>
-                            ">
 
-                    <dokki-output>
-                        <dokki-lorem>
-                        </dokki-lorem>
-                        
-                        <dokki-image src='https://upload.wikimedia.org/wikipedia/commons/thumb/7/7f/Eublepharis_macularius_2009_G6.jpg/1280px-Eublepharis_macularius_2009_G6.jpg'>
-                            <template #caption>
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit
-                            </template>
-                        </dokki-image>
+                            <dokki-lorem>
+                            </dokki-lorem>
+                        </dokki-output>
 
-                        <dokki-lorem>
-                        </dokki-lorem>
-                    </dokki-output>
+                    </dokki-code>
+                </dokki-topic>
 
-                </dokki-code>
-            </dokki-topic>
+                <dokki-topic title="dokki-video">
+                    <h2>Description</h2>
 
-            <dokki-topic title="dokki-video">
-                <h2>Description</h2>
+                    <p>
+                        The <i>dokki-video</i> element displays a video with an optional caption.
+                    </p>
 
-                <p>
-                    The <i>dokki-video</i> element displays a video with an optional caption.
-                </p>
+                    <p>
+                        By default, the video will be hidden until the user clicks the header of the
+                        <i>dokki-video</i> element. Hidden videos will begin loading only when revealed.
+                    </p>
 
-                <p>
-                    By default, the video will be hidden until the user clicks the header of the
-                    <i>dokki-video</i> element. Hidden videos will begin loading only when revealed.
-                </p>
+                    <p>
+                        Any content within <i>dokki-video</i> <i>/dokki-video</i> will be displayed as the video
+                        caption.
+                    </p>
 
-                <p>
-                    Any content within <i>dokki-video</i> <i>/dokki-video</i> will be displayed as the video
-                    caption.
-                </p>
+                    <h2>Attributes</h2>
 
-                <h2>Attributes</h2>
+                    <h3>platform</h3> (required)
 
-                <h3>platform</h3> (required)
+                    <p>
+                        Identifies the platform on which the video is hosted. Currently, only <em>"youtube"</em>
+                        is supported.
+                    </p>
 
-                <p>
-                    Identifies the platform on which the video is hosted. Currently, only <em>"youtube"</em>
-                    is supported.
-                </p>
+                    <h3>src</h3> (required)
 
-                <h3>src</h3> (required)
+                    <p>
+                        Identifies the video on the given platform.
+                    </p>
 
-                <p>
-                    Identifies the video on the given platform.
-                </p>
+                    <h2>Examples</h2>
+                    
+                    <dokki-code title="HTML"
+                                code="
+                                <dokki-video platform='youtube' src='ZgWGmggi5Xo'>
+                                </dokki-video>
+                                ">
 
-                <h2>Examples</h2>
-                
-                <dokki-code title="HTML"
-                            code="
+                        <dokki-output>
+                            <dokki-lorem>
+                            </dokki-lorem>
+                            
                             <dokki-video platform='youtube' src='ZgWGmggi5Xo'>
                             </dokki-video>
-                            ">
 
-                    <dokki-output>
-                        <dokki-lorem>
-                        </dokki-lorem>
-                        
-                        <dokki-video platform='youtube' src='ZgWGmggi5Xo'>
-                        </dokki-video>
+                            <dokki-lorem>
+                            </dokki-lorem>
+                        </dokki-output>
 
-                        <dokki-lorem>
-                        </dokki-lorem>
-                    </dokki-output>
+                    </dokki-code>
 
-                </dokki-code>
+                    <dokki-code title="HTML"
+                                code="
+                                <dokki-video platform='youtube' src='ZgWGmggi5Xo'>
+                                    <template #caption>
+                                        Sriracha Mayoo + Curly Fries
+                                    </template>
+                                </dokki-video>
+                                ">
 
-                <dokki-code title="HTML"
-                            code="
+                        <dokki-output>
+                            <dokki-lorem>
+                            </dokki-lorem>
+                            
                             <dokki-video platform='youtube' src='ZgWGmggi5Xo'>
                                 <template #caption>
                                     Sriracha Mayoo + Curly Fries
                                 </template>
                             </dokki-video>
-                            ">
 
-                    <dokki-output>
-                        <dokki-lorem>
-                        </dokki-lorem>
-                        
-                        <dokki-video platform='youtube' src='ZgWGmggi5Xo'>
-                            <template #caption>
-                                Sriracha Mayoo + Curly Fries
-                            </template>
-                        </dokki-video>
+                            <dokki-lorem>
+                            </dokki-lorem>
+                        </dokki-output>
 
-                        <dokki-lorem>
-                        </dokki-lorem>
-                    </dokki-output>
+                    </dokki-code>
+                </dokki-topic>
 
-                </dokki-code>
-            </dokki-topic>
+                <dokki-topic title="dokki-console">
+                    <h2>Description</h2>
 
-            <dokki-topic title="dokki-console">
-                <h2>Description</h2>
+                    <p>
+                        The <i>dokki-console</i> element displays a console command with optional console
+                        output.
+                    </p>
 
-                <p>
-                    The <i>dokki-console</i> element displays a console command with optional console
-                    output.
-                </p>
+                    <h2>Attributes</h2>
 
-                <h2>Attributes</h2>
+                    <h3>command</h3> (required)
 
-                <h3>command</h3> (required)
+                    <p>
+                        The console command.
+                    </p>
 
-                <p>
-                    The console command.
-                </p>
+                    <h3>output</h3>
 
-                <h3>output</h3>
+                    <p>
+                        The command's expected output (optional) can be given either inside a
+                        <i>template #output</i> element or via this attribute (see examples, below).
+                    </p>
 
-                <p>
-                    The command's expected output (optional) can be given either inside a
-                    <i>template #output</i> element or via this attribute (see examples, below).
-                </p>
+                    <p>
+                        Note: Inside this attribute, double quotes (") must be replaced with two
+                        backticks (``). They'll be converted back into double quotes for display.
+                    </p>
 
-                <p>
-                    Note: Inside this attribute, double quotes (") must be replaced with two
-                    backticks (``). They'll be converted back into double quotes for display.
-                </p>
+                    <h2>Examples</h2>
 
-                <h2>Examples</h2>
+                    <dokki-code title="HTML"
+                                code="
+                                <dokki-console command='./lorem_ipsum -a'>
+                                </dokki-console>
+                                ">
 
-                <dokki-code title="HTML"
-                            code="
-                            <dokki-console command='./lorem_ipsum -a'>
+                        <dokki-output>
+                            <dokki-lorem>
+                            </dokki-lorem>
+                            
+                            <dokki-console command="./lorem_ipsum -a">
                             </dokki-console>
-                            ">
 
-                    <dokki-output>
-                        <dokki-lorem>
-                        </dokki-lorem>
-                        
-                        <dokki-console command="./lorem_ipsum -a">
-                        </dokki-console>
+                            <dokki-lorem>
+                            </dokki-lorem>
+                        </dokki-output>
 
-                        <dokki-lorem>
-                        </dokki-lorem>
-                    </dokki-output>
+                    </dokki-code>
 
-                </dokki-code>
+                    <dokki-code title="HTML"
+                                code="
+                                <dokki-console platform='windows' command='lorem_ipsum.exe -a'>
+                                </dokki-console>
+                                ">
 
-                <dokki-code title="HTML"
-                            code="
-                            <dokki-console platform='windows' command='lorem_ipsum.exe -a'>
+                        <dokki-output>
+                            <dokki-lorem>
+                            </dokki-lorem>
+                            
+                            <dokki-console platform="windows" command="lorem_ipsum.exe -a">
                             </dokki-console>
-                            ">
 
-                    <dokki-output>
-                        <dokki-lorem>
-                        </dokki-lorem>
-                        
-                        <dokki-console platform="windows" command="lorem_ipsum.exe -a">
-                        </dokki-console>
+                            <dokki-lorem>
+                            </dokki-lorem>
+                        </dokki-output>
 
-                        <dokki-lorem>
-                        </dokki-lorem>
-                    </dokki-output>
+                    </dokki-code>
 
-                </dokki-code>
+                    <p>
+                        The command's expected console output can be entered inside a
+                        <i>template #output</i> element:
+                    </p>
+                    
+                    <dokki-code title="HTML"
+                                code="
+                                <dokki-console command='./lorem_ipsum -a'>
+                                    <template #output>
+                                        <pre>
+                                            Lorem ipsum dolor sit amet,
+                                            consectetur adipiscing elit.
+                                        </pre>
+                                    </template>
+                                </dokki-console>
+                                ">
 
-                <p>
-                    The command's expected console output can be entered inside a
-                    <i>template #output</i> element:
-                </p>
-                
-                <dokki-code title="HTML"
-                            code="
+                        <dokki-output>
+                            <dokki-lorem>
+                            </dokki-lorem>
+                            
                             <dokki-console command='./lorem_ipsum -a'>
                                 <template #output>
                                     <pre>
@@ -433,461 +452,478 @@
                                     </pre>
                                 </template>
                             </dokki-console>
-                            ">
 
-                    <dokki-output>
-                        <dokki-lorem>
-                        </dokki-lorem>
-                        
-                        <dokki-console command='./lorem_ipsum -a'>
-                            <template #output>
-                                <pre>
-                                    Lorem ipsum dolor sit amet,
-                                    consectetur adipiscing elit.
-                                </pre>
-                            </template>
-                        </dokki-console>
+                            <dokki-lorem>
+                            </dokki-lorem>
+                        </dokki-output>
 
-                        <dokki-lorem>
-                        </dokki-lorem>
-                    </dokki-output>
+                    </dokki-code>
 
-                </dokki-code>
+                    <p>
+                        The nested <i>pre</i> element inside <i>template #output</i> isn't required,
+                        but whitespace won't be preserved without it:
+                    </p>
 
-                <p>
-                    The nested <i>pre</i> element inside <i>template #output</i> isn't required,
-                    but whitespace won't be preserved without it:
-                </p>
+                    <dokki-code title="HTML"
+                                code="
+                                <dokki-console command='./lorem_ipsum -a'>
+                                    <template #output>
+                                        Lorem ipsum dolor sit amet,
+                                        consectetur adipiscing elit.
+                                    </template>
+                                </dokki-console>
+                                ">
 
-                <dokki-code title="HTML"
-                            code="
+                        <dokki-output>
+                            <dokki-lorem>
+                            </dokki-lorem>
+                            
                             <dokki-console command='./lorem_ipsum -a'>
                                 <template #output>
                                     Lorem ipsum dolor sit amet,
                                     consectetur adipiscing elit.
                                 </template>
                             </dokki-console>
-                            ">
 
-                    <dokki-output>
-                        <dokki-lorem>
-                        </dokki-lorem>
-                        
-                        <dokki-console command='./lorem_ipsum -a'>
-                            <template #output>
-                                Lorem ipsum dolor sit amet,
-                                consectetur adipiscing elit.
-                            </template>
-                        </dokki-console>
+                            <dokki-lorem>
+                            </dokki-lorem>
+                        </dokki-output>
 
-                        <dokki-lorem>
-                        </dokki-lorem>
-                    </dokki-output>
+                    </dokki-code>
 
-                </dokki-code>
+                    <p>
+                        Embedding the console output inside a <i>template #output</i> element may not always be
+                        technically possible or desired. You can use the <b>output</b> attribute as an alternative:
+                    </p>
 
-                <p>
-                    Embedding the console output inside a <i>template #output</i> element may not always be
-                    technically possible or desired. You can use the <b>output</b> attribute as an alternative:
-                </p>
+                    <dokki-code title="HTML"
+                                code="
+                                <dokki-console command='./lorem_ipsum -a'
+                                            output='
+                                                Lorem ipsum dolor sit amet,
+                                                consectetur adipiscing elit.
+                                            '>
+                                </dokki-console>
+                                ">
 
-                <dokki-code title="HTML"
-                            code="
+                        <dokki-output>
+                            <dokki-lorem>
+                            </dokki-lorem>
+                            
                             <dokki-console command='./lorem_ipsum -a'
-                                           output='
-                                               Lorem ipsum dolor sit amet,
-                                               consectetur adipiscing elit.
-                                           '>
+                                        output='
+                                        Lorem ipsum dolor sit amet,
+                                        consectetur adipiscing elit.
+                                        '>
                             </dokki-console>
-                            ">
 
-                    <dokki-output>
-                        <dokki-lorem>
-                        </dokki-lorem>
-                        
-                        <dokki-console command='./lorem_ipsum -a'
-                                       output='
-                                       Lorem ipsum dolor sit amet,
-                                       consectetur adipiscing elit.
-                                       '>
-                        </dokki-console>
+                            <dokki-lorem>
+                            </dokki-lorem>
+                        </dokki-output>
 
-                        <dokki-lorem>
-                        </dokki-lorem>
-                    </dokki-output>
+                    </dokki-code>
+                    
+                </dokki-topic>
 
-                </dokki-code>
-                
-            </dokki-topic>
+                <dokki-topic title="dokki-output">
+                    <h2>Description</h2>
 
-            <dokki-topic title="dokki-output">
-                <h2>Description</h2>
+                    <p>
+                        The <i>dokki-output</i> element provides a target for embedding content.
+                    </p>
 
-                <p>
-                    The <i>dokki-output</i> element provides a target for embedding content.
-                </p>
+                    <p>
+                        By default, the content will be hidden until the user clicks the header of the
+                        <i>dokki-output</i> element.
+                    </p>
 
-                <p>
-                    By default, the content will be hidden until the user clicks the header of the
-                    <i>dokki-output</i> element.
-                </p>
+                    <p>
+                        Any content within <i>dokki-output</i> <i>/dokki-output</i> will be displayed inside
+                        the expanded <i>dokki-output</i> element.
+                    </p>
 
-                <p>
-                    Any content within <i>dokki-output</i> <i>/dokki-output</i> will be displayed inside
-                    the expanded <i>dokki-output</i> element.
-                </p>
+                    <h2>Attributes</h2>
 
-                <h2>Attributes</h2>
+                    <h3>title</h3>
 
-                <h3>title</h3>
+                    <p>
+                        The title to be shown in the header of the <i>dokki-output</i> element.
+                    </p>
 
-                <p>
-                    The title to be shown in the header of the <i>dokki-output</i> element.
-                </p>
+                    <h3>unpadded</h3>
 
-                <h3>unpadded</h3>
+                    <p>
+                        If present, the content container of the <i>dokki-output</i> element will have zero
+                        padding. This is useful e.g. for embedding an <i>iframe</i>.
+                    </p>
 
-                <p>
-                    If present, the content container of the <i>dokki-output</i> element will have zero
-                    padding. This is useful e.g. for embedding an <i>iframe</i>.
-                </p>
+                    <h2>Examples</h2>
+                    
+                    <dokki-code title="HTML"
+                                code="
+                                <dokki-output>
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit
+                                </dokki-output>
+                                ">
 
-                <h2>Examples</h2>
-                
-                <dokki-code title="HTML"
-                            code="
+                        <dokki-output>
+                            <dokki-lorem>
+                            </dokki-lorem>
+
                             <dokki-output>
                                 Lorem ipsum dolor sit amet, consectetur adipiscing elit
                             </dokki-output>
-                            ">
 
-                    <dokki-output>
-                        <dokki-lorem>
-                        </dokki-lorem>
+                            <dokki-lorem>
+                            </dokki-lorem>
+                        </dokki-output>
+
+                    </dokki-code>
+
+                    <dokki-code title="HTML"
+                                code="
+                                <dokki-output title='Run'>
+                                    Ran
+                                </dokki-output>
+                                ">
 
                         <dokki-output>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit
-                        </dokki-output>
-
-                        <dokki-lorem>
-                        </dokki-lorem>
-                    </dokki-output>
-
-                </dokki-code>
-
-                <dokki-code title="HTML"
-                            code="
-                            <dokki-output title='Run'>
+                            <dokki-lorem>
+                            </dokki-lorem>
+                            
+                            <dokki-output title="Run">
                                 Ran
                             </dokki-output>
-                            ">
 
-                    <dokki-output>
-                        <dokki-lorem>
-                        </dokki-lorem>
-                        
-                        <dokki-output title="Run">
-                            Ran
+                            <dokki-lorem>
+                            </dokki-lorem>
                         </dokki-output>
 
-                        <dokki-lorem>
-                        </dokki-lorem>
-                    </dokki-output>
+                    </dokki-code>
 
-                </dokki-code>
+                    <dokki-code title="HTML"
+                                code="
+                                <dokki-output unpadded title='Featured Pictures in the Public Domain'>
+                                    
+                                    <iframe src='https://commons.wikimedia.org/wiki/Featured_Pictures_in_the_Public_Domain'
+                                            loading='lazy'
+                                            style='width: 100%;
+                                                height: 500px;
+                                                border: none;'>
+                                    </iframe>
 
-                <dokki-code title="HTML"
-                            code="
+                                </dokki-output>
+                                ">
+
+                        <dokki-output>
+                            <dokki-lorem>
+                            </dokki-lorem>
+                            
                             <dokki-output unpadded title='Featured Pictures in the Public Domain'>
-                                
                                 <iframe src='https://commons.wikimedia.org/wiki/Featured_Pictures_in_the_Public_Domain'
                                         loading='lazy'
                                         style='width: 100%;
-                                               height: 500px;
-                                               border: none;'>
+                                            height: 500px;
+                                            border: none;'>
                                 </iframe>
-
                             </dokki-output>
-                            ">
 
-                    <dokki-output>
-                        <dokki-lorem>
-                        </dokki-lorem>
-                        
-                        <dokki-output unpadded title='Featured Pictures in the Public Domain'>
-                            <iframe src='https://commons.wikimedia.org/wiki/Featured_Pictures_in_the_Public_Domain'
-                                    loading='lazy'
-                                    style='width: 100%;
-                                           height: 500px;
-                                           border: none;'>
-                            </iframe>
+                            <dokki-lorem>
+                            </dokki-lorem>
                         </dokki-output>
 
-                        <dokki-lorem>
-                        </dokki-lorem>
-                    </dokki-output>
+                    </dokki-code>
 
-                </dokki-code>
+                </dokki-topic>
 
-            </dokki-topic>
+                <dokki-topic title="dokki-spoiler">
+                    <h2>Description</h2>
 
-            <dokki-topic title="dokki-spoiler">
-                <h2>Description</h2>
+                    <p>
+                        The <i>dokki-spoiler</i> element is a semantic alias of <i>dokki-output</i>.
+                    </p>
 
-                <p>
-                    The <i>dokki-spoiler</i> element is a semantic alias of <i>dokki-output</i>.
-                </p>
+                    <h2>Attributes</h2>
 
-                <h2>Attributes</h2>
+                    <h3>title</h3>
 
-                <h3>title</h3>
+                    <p>
+                        The title to be shown in the header of the <i>dokki-spoiler</i> element.
+                    </p>
 
-                <p>
-                    The title to be shown in the header of the <i>dokki-spoiler</i> element.
-                </p>
+                    <h2>Examples</h2>
+                    
+                    <dokki-code title="HTML"
+                                code="
+                                <dokki-spoiler>
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                                </dokki-spoiler>
+                                ">
 
-                <h2>Examples</h2>
-                
-                <dokki-code title="HTML"
-                            code="
+                        <dokki-output>
+                            <dokki-lorem>
+                            </dokki-lorem>
+                            
                             <dokki-spoiler>
                                 Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                             </dokki-spoiler>
-                            ">
 
-                    <dokki-output>
-                        <dokki-lorem>
-                        </dokki-lorem>
-                        
-                        <dokki-spoiler>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                        </dokki-spoiler>
+                            <dokki-lorem>
+                            </dokki-lorem>
+                        </dokki-output>
 
-                        <dokki-lorem>
-                        </dokki-lorem>
-                    </dokki-output>
+                    </dokki-code>
+                </dokki-topic>
 
-                </dokki-code>
-            </dokki-topic>
+                <dokki-topic title="dokki-code">
+                    <h2>Description</h2>
 
-            <dokki-topic title="dokki-code">
-                <h2>Description</h2>
+                    <p>
+                        The <i>dokki-code</i> element displays a line-numbered source code listing.
+                    </p>
 
-                <p>
-                    The <i>dokki-code</i> element displays a line-numbered source code listing.
-                </p>
+                    <h2>Attributes</h2>
 
-                <h2>Attributes</h2>
+                    <h3>title</h3>
 
-                <h3>title</h3>
+                    <p>
+                        The title to be shown in the header of the <i>dokki-output</i> element.
+                    </p>
 
-                <p>
-                    The title to be shown in the header of the <i>dokki-output</i> element.
-                </p>
+                    <h3>code</h3>
 
-                <h3>code</h3>
+                    <p>
+                        The source code can be given either inside a <i>template #code</i> element or
+                        via this attribute (see examples, below).
+                    </p>
 
-                <p>
-                    The source code can be given either inside a <i>template #code</i> element or
-                    via this attribute (see examples, below).
-                </p>
+                    <p>
+                        Note: Inside this attribute, double quotes (") must be replaced with two
+                        backticks (``). They'll be converted back into double quotes for display.
+                    </p>
 
-                <p>
-                    Note: Inside this attribute, double quotes (") must be replaced with two
-                    backticks (``). They'll be converted back into double quotes for display.
-                </p>
+                    <h2>Examples</h2>
 
-                <h2>Examples</h2>
+                    <p>
+                        The source code can be entered inside a <i>template #code</i> element:
+                    </p>
 
-                <p>
-                    The source code can be entered inside a <i>template #code</i> element:
-                </p>
+                    <dokki-code title="HTML"
+                                code="
+                                <dokki-code title='C'>
+                                    <template #code>
+                                        <pre>
+                                            int main(void)
+                                            {
+                                                printf(``Hello there.\n``);
+                                                return 0;
+                                            }
+                                        </pre>
+                                    </template>
+                                </dokki-code>
+                                ">
 
-                <dokki-code title="HTML"
-                            code="
+                        <dokki-output>
+                            <dokki-lorem>
+                            </dokki-lorem>
+                            
                             <dokki-code title='C'>
                                 <template #code>
                                     <pre>
                                         int main(void)
                                         {
-                                            printf(``Hello there.\n``);
+                                            printf("Hello there.\n");
                                             return 0;
                                         }
                                     </pre>
                                 </template>
                             </dokki-code>
-                            ">
 
-                    <dokki-output>
-                        <dokki-lorem>
-                        </dokki-lorem>
-                        
-                        <dokki-code title='C'>
-                            <template #code>
-                                <pre>
+                            <dokki-lorem>
+                            </dokki-lorem>
+                        </dokki-output>
+
+                    </dokki-code>
+
+                    <p>
+                        The nested <i>pre</i> element inside <i>template #code</i> isn't required, but
+                        whitespace won't be preserved without it:
+                    </p>
+
+                    <dokki-code title="HTML"
+                                code="
+                                <dokki-code title='C'>
+                                    <template #code>
+                                        int main(void)
+                                        {
+                                            printf(``Hello there.\n``);
+                                            return 0;
+                                        }
+                                    </template>
+                                </dokki-code>
+                                ">
+
+                        <dokki-output>
+                            <dokki-lorem>
+                            </dokki-lorem>
+                            
+                            <dokki-code title='C'>
+                                <template #code>
                                     int main(void)
                                     {
                                         printf("Hello there.\n");
                                         return 0;
                                     }
-                                </pre>
-                            </template>
-                        </dokki-code>
-
-                        <dokki-lorem>
-                        </dokki-lorem>
-                    </dokki-output>
-
-                </dokki-code>
-
-                <p>
-                    The nested <i>pre</i> element inside <i>template #code</i> isn't required, but
-                    whitespace won't be preserved without it:
-                </p>
-
-                <dokki-code title="HTML"
-                            code="
-                            <dokki-code title='C'>
-                                <template #code>
-                                    int main(void)
-                                    {
-                                        printf(``Hello there.\n``);
-                                        return 0;
-                                    }
                                 </template>
                             </dokki-code>
-                            ">
 
-                    <dokki-output>
-                        <dokki-lorem>
-                        </dokki-lorem>
-                        
-                        <dokki-code title='C'>
-                            <template #code>
-                                int main(void)
-                                {
-                                    printf("Hello there.\n");
-                                    return 0;
-                                }
-                            </template>
-                        </dokki-code>
+                            <dokki-lorem>
+                            </dokki-lorem>
+                        </dokki-output>
 
-                        <dokki-lorem>
-                        </dokki-lorem>
-                    </dokki-output>
+                    </dokki-code>
 
-                </dokki-code>
+                    <p>
+                        Embedding a <i>dokki-output</i> element lets you document the code's
+                        expected output:
+                    </p>
 
-                <p>
-                    Embedding a <i>dokki-output</i> element lets you document the code's
-                    expected output:
-                </p>
+                    <dokki-code title="HTML"
+                                code="
+                                <dokki-code title='C'>
+                                    <template #code>
+                                        printf(``Hello there %s.\n``, ``you``);
+                                    </template>
+        
+                                    <dokki-output>
+                                        <samp>Hello there you.</samp>
+                                    </dokki-output>
+                                </dokki-code>
+                                ">
 
-                <dokki-code title="HTML"
-                            code="
+                        <dokki-output>
+                            <dokki-lorem>
+                            </dokki-lorem>
+                            
                             <dokki-code title='C'>
                                 <template #code>
-                                    printf(``Hello there %s.\n``, ``you``);
+                                    printf("Hello there %s.\n", "you");
                                 </template>
-    
+
                                 <dokki-output>
                                     <samp>Hello there you.</samp>
                                 </dokki-output>
                             </dokki-code>
-                            ">
 
-                    <dokki-output>
-                        <dokki-lorem>
-                        </dokki-lorem>
-                        
-                        <dokki-code title='C'>
-                            <template #code>
-                                printf("Hello there %s.\n", "you");
-                            </template>
+                            <dokki-lorem>
+                            </dokki-lorem>
+                        </dokki-output>
 
-                            <dokki-output>
-                                <samp>Hello there you.</samp>
-                            </dokki-output>
-                        </dokki-code>
+                    </dokki-code>
 
-                        <dokki-lorem>
-                        </dokki-lorem>
-                    </dokki-output>
+                    <p>
+                        Embedding the source code inside a <i>template #code</i> element may not always be
+                        technically possible or desired, e.g. if the code is HTML. You can use the <b>code</b>
+                        attribute as an alternative:
+                    </p>
 
-                </dokki-code>
+                    <dokki-code title="HTML"
+                                code="
+                                <dokki-code title=``HTML``
+                                            code=``
+                                                <i class='fas fa-fw fa-hammer'></i>
+                                                <i class='fas fa-fw fa-screwdriver'></i>
+                                                <i class='fas fa-fw fa-wrench'></i>
+                                            ``>
 
-                <p>
-                    Embedding the source code inside a <i>template #code</i> element may not always be
-                    technically possible or desired, e.g. if the code is HTML. You can use the <b>code</b>
-                    attribute as an alternative:
-                </p>
+                                    <dokki-output>
+                                        <i class='fas fa-fw fa-hammer'></i>
+                                        <i class='fas fa-fw fa-screwdriver'></i>
+                                        <i class='fas fa-fw fa-wrench'></i>
+                                    </dokki-output>
 
-                <dokki-code title="HTML"
-                            code="
-                            <dokki-code title=``HTML``
-                                        code=``
+                                </dokki-code>
+                                ">
+
+                        <dokki-output>
+                            <dokki-lorem>
+                            </dokki-lorem>
+                            
+                            <dokki-code title="HTML"
+                                        code="
                                             <i class='fas fa-fw fa-hammer'></i>
                                             <i class='fas fa-fw fa-screwdriver'></i>
                                             <i class='fas fa-fw fa-wrench'></i>
-                                        ``>
+                                        ">
 
                                 <dokki-output>
                                     <i class='fas fa-fw fa-hammer'></i>
                                     <i class='fas fa-fw fa-screwdriver'></i>
                                     <i class='fas fa-fw fa-wrench'></i>
                                 </dokki-output>
-
+                                
                             </dokki-code>
-                            ">
 
-                    <dokki-output>
-                        <dokki-lorem>
-                        </dokki-lorem>
-                        
-                        <dokki-code title="HTML"
-                                    code="
-                                        <i class='fas fa-fw fa-hammer'></i>
-                                        <i class='fas fa-fw fa-screwdriver'></i>
-                                        <i class='fas fa-fw fa-wrench'></i>
-                                    ">
+                            <dokki-lorem>
+                            </dokki-lorem>
+                        </dokki-output>
 
-                            <dokki-output>
-                                <i class='fas fa-fw fa-hammer'></i>
-                                <i class='fas fa-fw fa-screwdriver'></i>
-                                <i class='fas fa-fw fa-wrench'></i>
-                            </dokki-output>
-                            
-                        </dokki-code>
+                    </dokki-code>
+                </dokki-topic>
 
-                        <dokki-lorem>
-                        </dokki-lorem>
-                    </dokki-output>
+                <dokki-topic title="dokki-table">
+                    <h2>Description</h2>
 
-                </dokki-code>
-            </dokki-topic>
+                    <p>
+                        The <i>dokki-table</i> element displays a table with an optional caption.
+                    </p>
 
-            <dokki-topic title="dokki-table">
-                <h2>Description</h2>
+                    <p>
+                        The table's contents will be hidden until the user clicks the header of the
+                        <i>dokki-table</i> element.
+                    </p>
 
-                <p>
-                    The <i>dokki-table</i> element displays a table with an optional caption.
-                </p>
+                    <h2>Attributes</h2>
 
-                <p>
-                    The table's contents will be hidden until the user clicks the header of the
-                    <i>dokki-table</i> element.
-                </p>
+                    <p>
+                        None.
+                    </p>
 
-                <h2>Attributes</h2>
+                    <h2>Examples</h2>
 
-                <p>
-                    None.
-                </p>
+                    <dokki-code title="HTML"
+                                code="
+                                <dokki-table>
+                                    <template #caption>
+                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit 
+                                    </template>
+                
+                                    <template #table>
+                                        <table>
+                                            <tr>
+                                                <th>One</th>
+                                                <th>Two</th>
+                                                <th>Three</th>
+                                            </tr>
+                                            <tr>
+                                                <td>1st</td>
+                                                <td>2nd</td>
+                                                <td>3rd</td>
+                                            </tr>
+                                            <tr>
+                                                <td>1nd</td>
+                                                <td>2rd</td>
+                                                <td>3st</td>
+                                            </tr>
+                                        </table>
+                                    </template>
+                                </dokki-table>
+                                ">
 
-                <h2>Examples</h2>
+                        <dokki-output>
+                            <dokki-lorem>
+                            </dokki-lorem>
 
-                <dokki-code title="HTML"
-                            code="
                             <dokki-table>
                                 <template #caption>
                                     Lorem ipsum dolor sit amet, consectetur adipiscing elit 
@@ -913,62 +949,33 @@
                                     </table>
                                 </template>
                             </dokki-table>
-                            ">
 
-                    <dokki-output>
-                        <dokki-lorem>
-                        </dokki-lorem>
+                            <dokki-lorem>
+                            </dokki-lorem>
+                        </dokki-output>
 
-                        <dokki-table>
-                            <template #caption>
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit 
-                            </template>
-        
-                            <template #table>
-                                <table>
-                                    <tr>
-                                        <th>One</th>
-                                        <th>Two</th>
-                                        <th>Three</th>
-                                    </tr>
-                                    <tr>
-                                        <td>1st</td>
-                                        <td>2nd</td>
-                                        <td>3rd</td>
-                                    </tr>
-                                    <tr>
-                                        <td>1nd</td>
-                                        <td>2rd</td>
-                                        <td>3st</td>
-                                    </tr>
-                                </table>
-                            </template>
-                        </dokki-table>
+                    </dokki-code>
+                </dokki-topic>
 
-                        <dokki-lorem>
-                        </dokki-lorem>
-                    </dokki-output>
+                <dokki-topic title="dokki-side-panel">
+                    <p>TODO</p>
+                </dokki-topic>
 
-                </dokki-code>
-            </dokki-topic>
+                <dokki-topic title="dokki-header">
+                    <p>TODO</p>
+                </dokki-topic>
 
-            <dokki-topic title="dokki-side-panel">
-                <p>TODO</p>
-            </dokki-topic>
+                <dokki-topic title="dokki-topics">
+                    <p>TODO</p>
+                </dokki-topic>
 
-            <dokki-topic title="dokki-header">
-                <p>TODO</p>
-            </dokki-topic>
+                <dokki-topic title="dokki-topic">
+                    <p>TODO</p>
+                </dokki-topic>
 
-            <dokki-topic title="dokki-topics">
-                <p>TODO</p>
-            </dokki-topic>
+            </dokki-topics>
 
-            <dokki-topic title="dokki-topic">
-                <p>TODO</p>
-            </dokki-topic>
-
-        </dokki-topics>
+        </template>
 
     </body>
 </html>

@@ -46,6 +46,7 @@ function create_app()
         },
         template: `
             <header class="dokki-header">
+
                 <i :class="icon" style="margin-right: 10px;"/>
 
                 {{title}}
@@ -56,6 +57,7 @@ function create_app()
                     {{software}}
 
                 </div>
+
             </header>
         `,
     });
@@ -204,8 +206,13 @@ function create_app()
 
                 </header>
 
+                <hr v-if=isExpanded>
+
                 <img v-if=isExpanded
+                     class="dokki-checker-background"
                      :src="src">
+
+                <hr v-if=hasFooter>
 
                 <footer v-if=hasFooter>
                     <slot name="caption"/>
@@ -310,10 +317,15 @@ function create_app()
 
                 </header>
 
+                <hr>
+
                 <iframe v-if=isExpanded
+                        class="dokki-checker-background"
                         :src=videoUrl
                         allow="fullscreen; autoplay;">
                 </iframe>
+
+                <hr>
 
                 <footer v-if=hasFooter>
                     <slot name="caption"/>
@@ -419,6 +431,12 @@ function create_app()
                 isExpanded: false,
             }
         },
+        computed: {
+            isUnpadded()
+            {
+                return (this.$props.unpadded !== undefined);
+            }
+        },
         template: `
             <p class="dokki-embedded dokki-output">
 
@@ -435,6 +453,8 @@ function create_app()
                     </aside>
 
                 </header>
+
+                <hr v-if="isUnpadded && isExpanded">
 
                 <footer v-if=isExpanded
                         :class="{unpadded: (unpadded !== undefined)}">
@@ -474,6 +494,8 @@ function create_app()
                     </aside>
 
                 </header>
+
+                <hr>
 
                 <div v-if=isExpanded class="table-container">
                     <slot name="table"/>
@@ -721,8 +743,24 @@ function create_app()
         `,
     });
 
-    app.use(store);
-    app.mount("body");
+    // Prepare the DOM for mounting the app.
+    {
+        const documentBodyTemplate = document.querySelector("#dokki-document");
+        const whileInitializingElement = document.querySelector(".dokki-while-initializing");
+
+        if (!(documentBodyTemplate instanceof HTMLTemplateElement)) {
+            throw new Error("No document body found.");
+        }
+
+        document.body.appendChild(documentBodyTemplate.content)
+        documentBodyTemplate.remove();
+
+        if (whileInitializingElement) {
+            whileInitializingElement.remove();
+        }
+    }
+
+    app.use(store).mount("body");
 
     // Takes in a guide topic title string (e.g. "System requirements") and returns
     // a reduced version of the string such that it can be used e.g. as a DOM element
