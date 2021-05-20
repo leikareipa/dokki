@@ -18,7 +18,7 @@
             {
                 font-style: normal;
                 background-color: #f6f6f6;
-                padding: 2px 5px;
+                padding: 1px 5px;
                 border-radius: 7px;
             }
 
@@ -1017,8 +1017,82 @@
                     </dokki-code>
                 </dokki-topic>
 
+                <dokki-topic title="dokki-lorem">
+                    <h2>Description</h2>
+
+                    <p>
+                        The <i>dokki-lorem</i> element provides a generator of placeholder text.
+                    </p>
+
+                    <p>
+                        Each instance of this element produces one paragraph of lorem ipsum. There
+                        are about five unique paragraphs available; the sixth instance will repeat
+                        the first paragraph and so on.
+                    </p>
+
+                    <h2>Attributes</h2>
+
+                    <p>
+                        None.
+                    </p>
+
+                    <h2>Examples</h2>
+
+                    <dokki-code title="HTML"
+                                code="
+                                <dokki-lorem>
+                                </dokki-lorem>
+                                <hr>
+                                <dokki-lorem>
+                                </dokki-lorem>
+                                <hr>
+                                <dokki-lorem>
+                                </dokki-lorem>
+                                ">
+
+                        <dokki-output>
+                            <dokki-lorem>
+                            </dokki-lorem>
+                            <hr>
+                            <dokki-lorem>
+                            </dokki-lorem>
+                            <hr>
+                            <dokki-lorem>
+                            </dokki-lorem>
+                        </dokki-output>
+
+                    </dokki-code>
+                </dokki-topic>
+
                 <dokki-topic title="dokki-side-panel">
-                    <p>TODO</p>
+                    <h2>Description</h2>
+
+                    <p>
+                        The <i>dokki-side-panel</i> element automatically produces a nav-bar of the
+                        document's topics. It should be placed as a direct child of the
+                        <i>template id="dokki-document"</i> element.
+                    </p>
+
+                    <p>
+                        This element might not be available to the user on all screen sizes.
+                    </p>
+
+                    <h2>Attributes</h2>
+
+                    <p>
+                        None.
+                    </p>
+
+                    <h2>Examples</h2>
+
+                    <dokki-code title="HTML"
+                                code="
+                                <template id='dokki-document'>
+                                    <dokki-side-panel>
+                                    </dokki-side-panel>
+                                </template>
+                                ">
+                    </dokki-code>
                 </dokki-topic>
 
                 <dokki-topic title="dokki-header">
@@ -1031,6 +1105,86 @@
 
                 <dokki-topic title="dokki-topic">
                     <p>TODO</p>
+                </dokki-topic>
+
+                <dokki-topic title="#dokki-document">
+                    <h2>Description</h2>
+
+                    <p>
+                        The <i>template id="dokki-document"</i> element is the main container of a
+                        dokki document; any other dokki element in the document &ndash; except for
+                        <a href="#dokki-while-initializing">[dokki-while-initializing]</a>&ndash;
+                        must be placed inside it.
+                    </p>
+
+                    <h2>Attributes</h2>
+
+                    <p>
+                        None.
+                    </p>
+
+                    <h2>Examples</h2>
+
+                    <dokki-code title="HTML"
+                                code="
+                                <body>
+                                    <template id='dokki-document'>
+                                        <dokki-topics>
+                                            <dokki-topic title='Hello there'>
+                                                <dokki-lorem>
+                                                </dokki-lorem>
+                                            </dokki-topic>
+                                        </dokki-topics>
+                                    </template>
+                                </body>
+                                ">
+                    </dokki-code>
+                </dokki-topic>
+
+                <dokki-topic title="[dokki-while-initializing]">
+                    <h2>Description</h2>
+
+                    <p>
+                        The <i>div dokki-while-initializing</i> element is an optional loading indicator
+                        to be shown while the document's DOM is being prepared for first display.
+                    </p>
+
+                    <p>
+                        Any content inside <i>div dokki-while-initializing</i> <i>/div</i> will be displayed
+                        while the document loads.
+                    </p>
+
+                    <p>
+                        Unlike all other dokki elements, this element must be placed outside of the
+                        <a href="#dokki-document">#dokki-document</a> container.
+                    </p>
+
+                    <h2>Attributes</h2>
+
+                    <p>
+                        None.
+                    </p>
+
+                    <h2>Examples</h2>
+
+                    <dokki-code title="HTML"
+                                code="
+                                <body>
+                                    <div while-dokki-initializing>
+                                        Preparing the document...
+                                    </div>
+                            
+                                    <template id='dokki-document'>
+                                        <dokki-topics>
+                                            <dokki-topic title='Hello there'>
+                                                <dokki-lorem>
+                                                </dokki-lorem>
+                                            </dokki-topic>
+                                        </dokki-topics>
+                                    </template>
+                                </body>
+                                ">
+                    </dokki-code>
                 </dokki-topic>
 
             </dokki-topics>
