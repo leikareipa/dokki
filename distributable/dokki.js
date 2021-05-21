@@ -239,7 +239,7 @@ function create_app()
 
                 <hr v-if=hasFooter>
 
-                <footer v-if=hasFooter>
+                <footer v-if=hasFooter class="italic">
                     <slot name="caption"/>
                 </footer>
             </p>
@@ -352,7 +352,7 @@ function create_app()
 
                 <hr v-if=hasFooter>
 
-                <footer v-if=hasFooter>
+                <footer v-if=hasFooter class="italic">
                     <slot name="caption"/>
                 </footer>
 
@@ -514,8 +514,8 @@ function create_app()
                 </div>
 
                 <hr v-if="hasFooter">
-                
-                <footer v-if=hasFooter>
+
+                <footer v-if=hasFooter class="italic">
                     <slot name="caption">
                 </footer>
 
