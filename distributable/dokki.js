@@ -115,33 +115,15 @@ function create_app()
     });
 
     app.component("dokki-side-panel", {
-        data() {
-            return {
-                isScrollable: false,
-            }
-        },
         computed: {
             topics()
             {
                 return this.$store.state.topics;
             },
         },
-        mounted()
-        {
-            window.addEventListener("resize", update_scrollable_status.bind(this)); 
-            this.$nextTick(update_scrollable_status);
-
-            function update_scrollable_status()
-            {
-                const margin = parseInt(window.getComputedStyle(document.body).getPropertyValue("--content-margin") || 20);
-                const height = (this.$refs.container.clientHeight + (margin * 2));
-                this.isScrollable = (height >= this.$refs.panel.clientHeight);
-            };
-        },
         template: `
             <nav ref="panel"
-                 class="dokki-side-panel"
-                 :class="{scrollable: isScrollable}">
+                 class="dokki-side-panel">
 
                 <div ref="container"
                      class="container">

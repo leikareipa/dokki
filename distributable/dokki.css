@@ -93,6 +93,7 @@ body
 
 .dokki-side-panel
 {
+    border-right: 1px solid lightgray;
     box-sizing: border-box;
     position: fixed;
     z-index: 0;
@@ -105,11 +106,6 @@ body
     overflow-y: auto;
     height: calc(100% - var(--header-height));
     padding-bottom: var(--content-margin);
-}
-
-.dokki-side-panel.scrollable
-{
-    border-right: 1px solid lightgray;
 }
 
 .dokki-side-panel ul
