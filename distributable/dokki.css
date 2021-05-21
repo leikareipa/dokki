@@ -71,7 +71,6 @@ body
     text-align: left;
     font-weight: normal;
     font-size: 160%;
-    color: black;
     white-space: normal;
     height: var(--header-height);
     position: fixed;
@@ -151,7 +150,6 @@ body
     width: var(--topics-width);
     padding: 0;
     background-color: transparent;
-    color: black;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -226,7 +224,6 @@ body
 {
     font-size: 100%;
     font-weight: normal;
-    color: black;
     padding: 0;
     margin: 0;
 }
@@ -455,12 +452,12 @@ body
 
 .dokki-embedded.dokki-console
 {
-    color: white;
     border-color: black;
 }
 
 .dokki-embedded.dokki-console > header
 {
+    color: white;
     background-color: black;
     display: flex;
     align-items: center;
@@ -478,7 +475,6 @@ body
 
 .dokki-embedded.dokki-console > footer
 {
-    color: black;
     padding-left: 10px;
 }
 
