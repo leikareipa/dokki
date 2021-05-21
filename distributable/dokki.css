@@ -166,11 +166,6 @@ body
     width: 100%;
 }
 
-.dokki-topic ul
-{
-    padding-inline-start: 20px;
-}
-
 .dokki-topic p
 {
     line-height: 1.5;

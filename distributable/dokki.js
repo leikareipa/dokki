@@ -15,6 +15,8 @@ function create_app()
         state: {
             topics: [],
             loremCount: 0,
+            productName: "",
+            productVersion: "",
         },
         mutations: {
             add_topic(state, topicTitle)
@@ -29,6 +31,14 @@ function create_app()
             {
                 state.loremCount++;
             },
+            set_product_name(state, name = "")
+            {
+                state.productName = name;
+            },
+            set_product_version(state, version = "")
+            {
+                state.productVersion = version;
+            }
         }
     });
 
@@ -38,11 +48,14 @@ function create_app()
         props: {
             icon: {default: "fas fa-book"},
             title: {default: "Untitled"},
-            software: {default: undefined},
+            productName: {default: undefined},
+            productVersion: {default: undefined},
         },
         beforeCreate()
         {
             document.title = this.title;
+            this.$store.commit("set_product_name", this.productName);
+            this.$store.commit("set_product_version", this.productVersion);
         },
         template: `
             <header class="dokki-header">
@@ -51,10 +64,16 @@ function create_app()
 
                 {{title}}
 
-                <div v-if="software !== undefined"
+                <div v-if="productName !== undefined"
                      class="software-tag">
 
-                    {{software}}
+                    {{productName}}
+
+                    <span v-if="productVersion !== undefined">
+
+                        {{productVersion}}
+
+                    </span>
 
                 </div>
 
