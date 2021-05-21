@@ -379,6 +379,7 @@ body
 .dokki-embedded.dokki-table > .table-container
 {
     overflow: auto;
+    border-top: 1px solid lightgray;
 }
 
 .dokki-embedded.dokki-table > .table-container table
@@ -387,6 +388,7 @@ body
     border-spacing: 0;
     border-bottom: none;
     padding: 0;
+    border-collapse: collapse;
 }
 
 .dokki-embedded.dokki-table > .table-container table td,
@@ -394,8 +396,23 @@ body
 {
     padding: 8px;
     border: none;
-    border-bottom: 1px solid lightgray;
     white-space: nowrap;
+}
+
+.dokki-embedded.dokki-table > .table-container table tr
+{
+    border-top: 1px solid lightgray;
+    border-bottom: 1px solid lightgray;
+}
+
+.dokki-embedded.dokki-table > .table-container table tr:first-child
+{
+    border-top: none;
+}
+
+.dokki-embedded.dokki-table > .table-container table tr:last-child
+{
+    border-bottom: none;
 }
 
 .dokki-embedded.dokki-table > .table-container table th

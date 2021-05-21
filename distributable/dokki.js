@@ -509,12 +509,12 @@ function create_app()
 
                 </header>
 
-                <hr>
-
                 <div v-if=isExpanded class="table-container">
                     <slot name="table"/>
                 </div>
 
+                <hr v-if="hasFooter">
+                
                 <footer v-if=hasFooter>
                     <slot name="caption">
                 </footer>
