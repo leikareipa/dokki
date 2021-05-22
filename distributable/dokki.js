@@ -44,6 +44,21 @@ function create_app()
 
     const app = Vue.createApp({});
 
+    app.component("product-name", {
+        computed: {
+            productName()
+            {
+                return this.$store.state.productName;
+            }
+        },
+        template: `
+            <span class="dokki-product-name">
+                {{productName}}
+            </span>
+            <slot/>
+        `,
+    });
+
     app.component("dokki-header", {
         props: {
             icon: {default: "fas fa-book"},
@@ -204,10 +219,10 @@ function create_app()
 
                 <hr v-if=isExpanded>
 
-                <footer v-if=isExpanded>
+                <footer v-if=isExpanded
+                        :style="{height: height}">
 
                     <iframe class="dokki-iframe"
-                            :style="{height: height}"
                             :src=src>
                     </iframe>
                     

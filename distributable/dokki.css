@@ -6,7 +6,7 @@
     --content-margin: 20px;
     --header-bottom-margin: 23px;
     --topics-top-margin: calc(35px - var(--header-bottom-margin));
-    --embedded-element-border-radius: 10px;
+    --embedded-element-border-radius: 8px;
 
     /* Margins on the left and right of the page outside of which no content
      * is allowed.*/
@@ -333,12 +333,6 @@ body
     margin-bottom: 0;
 }
 
-.dokki-embedded > footer > iframe,
-.dokki-embedded > footer > canvas
-{
-    margin-bottom: calc(var(--embedded-element-border-radius) / 2 * -1) !important;
-}
-
 .dokki-embedded > header > .revealer
 {
     margin-left: 10px;
@@ -373,6 +367,8 @@ body
 {
     max-width: 100%;
     min-width: 100%;
+    min-height: 100%;
+    max-height: 100%;
     border: none;
 }
 
