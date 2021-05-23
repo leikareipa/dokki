@@ -191,19 +191,25 @@ body
     margin-bottom: 0;
 }
 
-.dokki-topic .permalink
+.dokki-topic > .title
+{
+    overflow-x: auto;
+    display: flex;
+}
+
+.dokki-topic > .title > .permalink
 {
     display: none;
     padding-left: 5px;
     color: lightgray;
 }
 
-.dokki-topic .permalink:hover
+.dokki-topic > .title > .permalink:hover
 {
     color: gray;
 }
 
-.dokki-topic:hover .permalink
+.dokki-topic:hover > .title > .permalink
 {
     display: inline-block;
 }
@@ -221,8 +227,8 @@ body
 
 .dokki-topic h1
 {
-    display: inline-block; /* To allow permalink icons next to the h2 heading.*/
     font-size: 160%;
+    white-space: nowrap;
 }
 
 .dokki-topic h2
