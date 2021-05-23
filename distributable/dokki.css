@@ -7,6 +7,7 @@
     --header-bottom-margin: 23px;
     --topics-top-margin: calc(35px - var(--header-bottom-margin));
     --embedded-element-border-radius: 8px;
+    --link-color: #2264e8;
 
     /* Margins on the left and right of the page outside of which no content
      * is allowed.*/
@@ -22,6 +23,7 @@ a
 a:hover
 {
     text-decoration: underline;
+    color: var(--link-color);
 }
 
 body
@@ -171,9 +173,10 @@ body
     line-height: 1.5;
 }
 
-.dokki-topic p a
+.dokki-topic p a,
+.dokki-topic p a:visited
 {
-    color: #00ade6;
+    color: var(--link-color);
 }
 
 .dokki-topic:last-of-type
@@ -343,8 +346,7 @@ body
 .dokki-embedded > header > .revealer
 {
     margin-left: 10px;
-    color: #00ade6;
-    font-weight: normal;
+    color: var(--link-color);
     display: inline-block;
     margin-left: auto;
     font-variant: small-caps;
