@@ -414,8 +414,8 @@
                     <h2>Description</h2>
 
                     <p>
-                        The <i>dokki-console</i> element displays a console command with optional console
-                        output.
+                        The <i>dokki-console</i> element displays a console command with optional
+                        sample console output.
                     </p>
 
                     <h2>Attributes</h2>
@@ -461,7 +461,8 @@
 
                     <dokki-code title="HTML"
                                 code="
-                                <dokki-console platform='windows' command='lorem_ipsum.exe -a'>
+                                <dokki-console command='lorem_ipsum.exe -a'
+                                               platform='windows'>
                                 </dokki-console>
                                 ">
 
@@ -515,8 +516,8 @@
                     </dokki-code>
 
                     <p>
-                        The nested <i>pre</i> element inside <i>template #output</i> isn't required,
-                        but whitespace won't be preserved without it:
+                        Notice that the above sample nests the output inside a <i>pre</i> element.
+                        This isn't required, but whitespace won't be preserved without it:
                     </p>
 
                     <dokki-code title="HTML"
@@ -547,17 +548,17 @@
                     </dokki-code>
 
                     <p>
-                        Embedding the console output inside a <i>template #output</i> element may not always be
-                        technically possible or desired. You can use the <b>output</b> attribute as an alternative:
+                        Optionally, the console output can be given as a string via the
+                        <b>output</b> attribute:
                     </p>
 
                     <dokki-code title="HTML"
                                 code="
                                 <dokki-console command='./lorem_ipsum -a'
-                                            output='
-                                                Lorem ipsum dolor sit amet,
-                                                consectetur adipiscing elit.
-                                            '>
+                                               output='
+                                               Lorem ipsum dolor sit amet,
+                                               consectetur adipiscing elit.
+                                               '>
                                 </dokki-console>
                                 ">
 
@@ -688,7 +689,8 @@
                     <h2>Description</h2>
 
                     <p>
-                        The <i>dokki-spoiler</i> element is a semantic alias of <i>dokki-output</i>.
+                        The <i>dokki-spoiler</i> element is a semantic alias of
+                        <i><a href="#dokki-output">dokki-output</a></i>.
                     </p>
 
                     <h2>Attributes</h2>
@@ -794,8 +796,8 @@
                     </dokki-code>
 
                     <p>
-                        The nested <i>pre</i> element inside <i>template #code</i> isn't required, but
-                        whitespace won't be preserved without it:
+                        Notice that the above sample nests the code inside a <i>pre</i> element.
+                        This isn't required, but whitespace won't be preserved without it:
                     </p>
 
                     <dokki-code title="HTML"
@@ -882,9 +884,7 @@
                     </dokki-code>
 
                     <p>
-                        Embedding the source code inside a <i>template #code</i> element may not always be
-                        technically possible or desired, e.g. if the code is HTML. You can use the <b>code</b>
-                        attribute as an alternative:
+                        Optionally, the code can be given as a string via the <b>output</b> attribute:
                     </p>
 
                     <dokki-code title="HTML"
@@ -1107,13 +1107,17 @@
                     <p>TODO</p>
                 </dokki-topic>
 
+                <dokki-topic title="product-name">
+                    <p>TODO</p>
+                </dokki-topic>
+
                 <dokki-topic title="#dokki-document">
                     <h2>Description</h2>
 
                     <p>
                         The <i>template id="dokki-document"</i> element is the main container of a
                         dokki document; any other dokki element in the document &ndash; except for
-                        <a href="#dokki-while-initializing">[dokki-while-initializing]</a>&ndash;
+                        <a href="#while-dokki-initializing">[while-dokki-initializing]</a>&ndash;
                         must be placed inside it.
                     </p>
 
@@ -1141,16 +1145,16 @@
                     </dokki-code>
                 </dokki-topic>
 
-                <dokki-topic title="[dokki-while-initializing]">
+                <dokki-topic title="[while-dokki-initializing]">
                     <h2>Description</h2>
 
                     <p>
-                        The <i>div dokki-while-initializing</i> element is an optional loading indicator
+                        The <i>div while-dokki-initializing</i> element is an optional loading indicator
                         to be shown while the document's DOM is being prepared for first display.
                     </p>
 
                     <p>
-                        Any content inside <i>div dokki-while-initializing</i> <i>/div</i> will be displayed
+                        Any content inside <i>div while-dokki-initializing</i> <i>/div</i> will be displayed
                         while the document loads.
                     </p>
 
