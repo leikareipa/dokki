@@ -188,13 +188,11 @@
                     <h2>Attributes</h2>
 
                     <h3>src</h3> (required)
-
                     <p>
                         Corresponds to the <b>src</b> attribute of the standard <i>img</i> element. 
                     </p>
 
                     <h3>expanded</h3>
-
                     <p>
                         If present, the image will be visible by default rather than requiring the user
                         to reveal it manually.
@@ -369,11 +367,18 @@
                         The CSS height of the <i>dokki-iframe</i> element.
                     </p>
 
+                    <h3>autofocus</h3>
+                    <p>
+                        If present, the inline frame will be given automatic focus once its contents
+                        have loaded.
+                    </p>
+
                     <h2>Examples</h2>
                     
                     <dokki-code title="HTML"
                                 code="
-                                <dokki-iframe src='https://www.wikipedia.org' height='400px'>
+                                <dokki-iframe src='https://www.wikipedia.org'
+                                              height='400px'>
                                 </dokki-iframe>
                                 ">
 
@@ -392,7 +397,9 @@
 
                     <dokki-code title="HTML"
                                 code="
-                                <dokki-iframe src='https://www.wikipedia.org' title=``Wikipedia's front page``>
+                                <dokki-iframe src='https://www.wikipedia.org'
+                                              title=``Wikipedia's front page``
+                                              autofocus>
                                 </dokki-iframe>
                                 ">
 
@@ -400,7 +407,9 @@
                             <dokki-lorem>
                             </dokki-lorem>
 
-                            <dokki-iframe src='https://www.wikipedia.org' title="Wikipedia's front page">
+                            <dokki-iframe src='https://www.wikipedia.org'
+                                          title="Wikipedia's front page"
+                                          autofocus>
                             </dokki-iframe>
 
                             <dokki-lorem>
