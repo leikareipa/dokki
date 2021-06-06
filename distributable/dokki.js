@@ -11,6 +11,21 @@ window.addEventListener("DOMContentLoaded", create_app);
 
 function create_app()
 {
+    // For embedded components whose contents can be expanded/shrunk by the user.
+    // This mixin adds the 'expanded' prop, which when appended to the component,
+    // will hava the component's contents start in an expanded state.
+    const expandedPropMixin = {
+        props: {
+            expanded: {default: undefined},
+        },
+        data()
+        {
+            return {
+                isExpanded: ((this.expanded === undefined)? false : true),
+            }
+        },
+    };
+
     const store = new Vuex.Store({
         state: {
             topics: [],
@@ -259,11 +274,7 @@ function create_app()
             title: {default: "Inline frame"},
             autofocus: {default: undefined},
         },
-        data() {
-            return {
-                isExpanded: false,
-            }
-        },
+        mixins: [expandedPropMixin],
         watch: {
             isExpanded()
             {
@@ -314,13 +325,8 @@ function create_app()
     app.component("dokki-image", {
         props: {
             src: {},
-            expanded: {default: undefined},
         },
-        data() {
-            return {
-                isExpanded: ((this.$props.expanded === undefined)? false : true),
-            }
-        },
+        mixins: [expandedPropMixin],
         computed: {
             hasFooter()
             {
@@ -409,13 +415,9 @@ function create_app()
     app.component("dokki-video", {
         props: {
             src: {},
-            platform: {default: "youtube"}
+            platform: {default: "youtube"},
         },
-        data() {
-            return {
-                isExpanded: false,
-            }
-        },
+        mixins: [expandedPropMixin],
         computed: {
             hasFooter()
             {
@@ -562,11 +564,7 @@ function create_app()
         props: {
             title: {default: "Output"},
         },
-        data() {
-            return {
-                isExpanded: false,
-            }
-        },
+        mixins: [expandedPropMixin],
         template: `
             <p class="dokki-embedded dokki-output">
 
@@ -595,11 +593,7 @@ function create_app()
     });
 
     app.component("dokki-table", {
-        data() {
-            return {
-                isExpanded: false,
-            }
-        },
+        mixins: [expandedPropMixin],
         computed: {
             hasFooter()
             {

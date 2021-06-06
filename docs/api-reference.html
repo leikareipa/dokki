@@ -6,8 +6,8 @@
         <link rel="stylesheet"
               href="https://use.fontawesome.com/releases/v5.12.0/css/all.css"
               crossorigin="anonymous">
-        <script defer src="https://cdn.jsdelivr.net/npm/vue@3.0.11/dist/vue.global.prod.js"></script>
-        <script defer src="https://unpkg.com/vuex@4.0.0/dist/vuex.global.prod.js"></script>
+        <script defer src="https://cdn.jsdelivr.net/npm/vue@3.0.11/dist/vue.global.js"></script>
+        <script defer src="https://unpkg.com/vuex@4.0.0/dist/vuex.global.js"></script>
         
         <script defer src="../distributable/dokki.js"></script>
         <link rel="stylesheet" type="text/css" href="../distributable/dokki.css">
@@ -279,16 +279,20 @@
                     <h2>Attributes</h2>
 
                     <h3>platform</h3> (required)
-
                     <p>
                         Identifies the platform on which the video is hosted. Currently, only <em>"youtube"</em>
                         is supported.
                     </p>
 
                     <h3>src</h3> (required)
-
                     <p>
                         Identifies the video on the given platform.
+                    </p>
+
+                    <h3>expanded</h3>
+                    <p>
+                        If present, the video will be visible by default rather than requiring
+                        the user to reveal it manually.
                     </p>
 
                     <h2>Examples</h2>
@@ -373,6 +377,12 @@
                         have loaded.
                     </p>
 
+                    <h3>expanded</h3>
+                    <p>
+                        If present, the inline frame will be visible by default rather than requiring
+                        the user to reveal it manually.
+                    </p>
+
                     <h2>Examples</h2>
                     
                     <dokki-code title="HTML"
@@ -444,7 +454,7 @@
 
                     <p>
                         Note: Inside this attribute, double quotes (") must be replaced with two
-                        backticks (``). They'll be converted back into double quotes for display.
+                        backticks (``). They'll be converted automatically back into double quotes for display.
                     </p>
 
                     <h2>Examples</h2>
@@ -758,7 +768,7 @@
 
                     <p>
                         Note: Inside this attribute, double quotes (") must be replaced with two
-                        backticks (``). They'll be converted back into double quotes for display.
+                        backticks (``). They'll be converted automatically back into double quotes for display.
                     </p>
 
                     <h2>Examples</h2>
@@ -954,8 +964,10 @@
 
                     <h2>Attributes</h2>
 
+                    <h3>expanded</h3>
                     <p>
-                        None.
+                        If present, the table will be visible by default rather than requiring
+                        the user to reveal it manually.
                     </p>
 
                     <h2>Examples</h2>
