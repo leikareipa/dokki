@@ -6,11 +6,27 @@
         <link rel="stylesheet"
               href="https://use.fontawesome.com/releases/v5.12.0/css/all.css"
               crossorigin="anonymous">
-        <script defer src="https://cdn.jsdelivr.net/npm/vue@3.0.11/dist/vue.global.prod.js"></script>
-        <script defer src="https://unpkg.com/vuex@4.0.0/dist/vuex.global.prod.js"></script>
+        <script defer src="https://cdn.jsdelivr.net/npm/vue@3.0.11/dist/vue.global.js"></script>
+        <script defer src="https://unpkg.com/vuex@4.0.0/dist/vuex.global.js"></script>
         
         <script defer src="../distributable/dokki.js"></script>
         <link rel="stylesheet" type="text/css" href="../distributable/dokki.css">
+        <style>
+            .dokki-topic em
+            {
+                white-space: nowrap;
+            }
+
+            .dokki-topic em::before
+            {
+                content: "<";
+            }
+
+            .dokki-topic em::after
+            {
+                content: ">";
+            }
+        </style>
     </head>
     <body>
         <div while-dokki-initializing>
@@ -21,7 +37,7 @@
 
             <dokki-header icon="fas fa-atlas"
                           title="Sample dokki manual"
-                          product-name="SampleApp"
+                          product-name="SampleProduct"
                           product-version="1.6">
             </dokki-header>
             
@@ -30,18 +46,60 @@
         
             <dokki-topics>
 
-                <dokki-topic title="Introduction">
+                <dokki-topic title="Topic">
+                    The <em>dokki-topic</em> element generates a <em>h1</em> heading and
+                    appends its title to the navbar.
                     <dokki-lorem>
                     </dokki-lorem>
-                    
+
+                    <dokki-subtopic title="Subtopic">
+                        The <em>dokki-subtopic</em> element generates a <em>h2</em> heading
+                        and appends its title to the navbar as a child of the parent
+                        <em>dokki-topic</em> element.
+                        <dokki-lorem>
+                        </dokki-lorem>
+                    </dokki-subtopic>
+
+                    <dokki-subtopic title="Another subtopic">
+                        Lorem ipsum.
+                        <dokki-lorem>
+                        </dokki-lorem>
+                    </dokki-subtopic>
+
+                    <dokki-item title="Item">
+                        The <em>dokki-item</em> element generates an inline <em>h3</em> heading.
+                        Its title will not be appended to the navbar.
+                        <dokki-lorem>
+                        </dokki-lorem>
+                    </dokki-item>
+
+                    <h1>Plain &lt;h1&gt;</h1>
+                    Lorem ipsum.
+                    <dokki-lorem>
+                    </dokki-lorem>
+
+                    <h2>Plain &lt;h2&gt;</h2>
+                    Lorem ipsum.
+                    <dokki-lorem>
+                    </dokki-lorem>
+
+                    <h3>Plain &lt;h3&gt;</h3>
+                    Lorem ipsum.
+                    <dokki-lorem>
+                    </dokki-lorem>
+                </dokki-topic>
+
+                <dokki-topic title="Long topic title. Phasellus viverra ipsum id turpis pretium suscipit.
+                                    Suspendisse potenti. Nullam a bibendum dui. Pellentesque sem nunc,
+                                    feugiat sed enim ut, vestibulum sollicitudin nulla.">
+                    <dokki-lorem>
+                    </dokki-lorem>
+
                     <dokki-lorem>
                     </dokki-lorem>
                 </dokki-topic>
 
                 <dokki-topic title="Interjections">
-                    <dokki-lorem>
-                    </dokki-lorem>
-
                     <dokki-lorem>
                     </dokki-lorem>
 
@@ -64,7 +122,7 @@
                     </dokki-lorem>
                 </dokki-topic>
 
-                <dokki-topic title="Embeddings">
+                <dokki-topic title="Embeddables">
                     <dokki-lorem>
                     </dokki-lorem>
 
@@ -77,7 +135,7 @@
                     <dokki-lorem>
                     </dokki-lorem>
 
-                    <dokki-code title="C">
+                    <dokki-code>
                         <template #code>
                             <pre>
                                 int main(void)
@@ -116,14 +174,13 @@
                     </dokki-lorem>
 
                     <dokki-iframe src='https://www.wikipedia.org'
-                                  title="Wikipedia's front page"
                                   height="400px">
                     </dokki-iframe>
 
                     <dokki-lorem>
                     </dokki-lorem>
 
-                    <dokki-console command="lsb_release -a">
+                    <dokki-console command="./console_command">
                         <template #output>
                             <pre>
                                 No LSB modules are available.
@@ -182,9 +239,6 @@
                         Dokki is being developed by <a href="https://www.tarpeeksihyvaesoft.com">Tarpeeksi Hyvae Soft</a>
                         and can be found on <a href="https://github.com/leikareipa/dokki">GitHub</a>.
                     </p>
-
-                    <dokki-lorem>
-                    </dokki-lorem>
 
                     <dokki-lorem>
                     </dokki-lorem>

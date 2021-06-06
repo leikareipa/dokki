@@ -1,12 +1,16 @@
 :root
 {
-    --header-height: 65px;
-    --side-panel-width: 280px;
-    --topics-width: 810px;
+    --header-height: 59px;
+    --side-panel-width: 290px;
+    --topics-width: 47%;
     --content-margin: 20px;
     --header-bottom-margin: 23px;
+    --topic-bottom-margin: 25px;
     --topics-container-top-margin: calc(35px - var(--header-bottom-margin));
+    --topics-container-vertical-margin: calc(5px + var(--content-margin));
     --embedded-element-border-radius: 8px;
+    --navibar-item-padding: 9px 10px;
+    --document-bottom-margin: calc(2 * var(--topic-bottom-margin));
     --link-color: #2264e8;
 
     /* Margins on the left and right of the page outside of which no content
@@ -30,7 +34,7 @@ body
     font-family: sans-serif;
     text-align: center;
     align-content: center;
-    background-color: white;
+    background-color: #f6f6f6;
     color: black;
     padding: 0;
     margin: 0;
@@ -48,9 +52,15 @@ body
 
 .dokki-tag
 {
-    margin-top: var(--content-margin);
-    font-size: 80%;
+    margin-top: var(--document-bottom-margin);
+    font-size: 90%;
     color: gray;
+    width: 100%;
+    box-sizing: border-box;
+    border-top: 1px solid lightgray;
+    text-align: center;
+    background-image: linear-gradient( #f2f2f2, white);
+    padding: 10px;
 }
 
 .dokki-header,
@@ -66,14 +76,14 @@ body
     white-space: nowrap;
     top: 0;
     left: 0;
-    z-index: 1;
+    z-index: 2;
     box-sizing: border-box;
-    background-color: whitesmoke;
+    background-color: #f6f6f6;
     padding-left: var(--page-vertical-margin);
     padding-right: var(--page-vertical-margin);
     text-align: left;
     font-weight: normal;
-    font-size: 160%;
+    font-size: 150%;
     height: var(--header-height);
     position: fixed;
     width: 100%;
@@ -86,28 +96,36 @@ body
     color: gray;
 }
 
-.dokki-header .software-tag
+.dokki0-product-tag
 {
-    margin-left: auto;
-    font-size: 60%;
-    font-weight: normal;
+    align-items: center;
+    margin: 0;
+    padding: var(--navibar-item-padding);
+    background-color: #f6f6f6;
+    text-align: left;
+    border-bottom: 1px solid lightgray;
+    position: sticky;
+    top: 0;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
 }
 
 .dokki-side-panel
 {
-    border-right: 1px solid lightgray;
     box-sizing: border-box;
     position: fixed;
     z-index: 0;
     top: var(--header-height);
     left: var(--page-vertical-margin);
-    background-color: transparent;
+    background-color: #fdfdfd;
     width: var(--side-panel-width);
     text-align: left;
-    padding-top: var(--header-bottom-margin);
     overflow-y: auto;
     height: calc(100% - var(--header-height));
-    padding-bottom: var(--content-margin);
+    padding-bottom: calc(2 * var(--content-margin));
+    border-left: 1px solid lightgray;
+    border-right: 1px solid lightgray;
 }
 
 .dokki-side-panel ul
@@ -119,43 +137,57 @@ body
 
 .dokki-side-panel li
 {
-    counter-increment: line;
-    padding-bottom: 4px;
-    padding-top: 4px;
+    padding: 0;
 }
 
-.dokki-side-panel li a
+.dokki0-vertical-navi .dokki0-navi-link-icon
 {
-    padding-bottom: 4px;
-    padding-top: 4px;
+    color: lightgray;
 }
 
-.dokki-side-panel li::before
+.dokki0-vertical-navi .dokki0-navi-link:hover .dokki0-navi-link-icon
 {
-    content: counter(line) ". ";
+    color: var(--link-color);
 }
 
-.dokki-side-panel li:first-of-type
+.dokki0-vertical-navi .dokki0-navi-link
 {
-    padding-top: 0;
+    display: block;
+    padding: var(--navibar-item-padding);
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.dokki0-vertical-navi .dokki0-navi-link.subtopic
+{
+    padding-left: 30px;
+}
+
+.dokki0-vertical-navi .dokki0-navi-link:hover
+{
+    background-color: #f6f6f6;
+    text-decoration: none;
 }
 
 .dokki-topics
 {
-    margin: var(--content-margin);
-    margin-top: calc(var(--header-height) + var(--header-bottom-margin) - 1px);
-    margin-left: 5px;
+    padding: var(--content-margin);
+    padding-top: calc(var(--header-height) + var(--header-bottom-margin) - 1px);
+    padding-left: var(--topics-container-vertical-margin);
+    padding-right: var(--topics-container-vertical-margin);
+    padding-bottom: var(--document-bottom-margin);
     width: var(--topics-width);
-    padding: 0;
-    background-color: transparent;
+    background-color: white;
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: left;
     position: relative;
-    left: calc(50% - var(--topics-width) / 2);
+    left: calc(var(--page-vertical-margin) + var(--side-panel-width));
     top: 0;
-    z-index: 0;
+    z-index: 1;
+    border-right: 1px solid lightgray;
 }
 
 .dokki-topic
@@ -164,7 +196,7 @@ body
     padding: 0;
     margin: 0;
     padding-top: 15px;
-    margin-bottom: 25px;
+    margin-bottom: var(--topic-bottom-margin);
     width: 100%;
 }
 
@@ -179,7 +211,8 @@ body
     color: var(--link-color);
 }
 
-.dokki-topic:last-of-type
+.dokki-topic:last-of-type,
+.dokki-topic > *:last-child
 {
     margin-bottom: 0;
 }
@@ -189,50 +222,23 @@ body
     margin-top: 10px;
 }
 
-.dokki-topic > *:last-of-type
-{
-    margin-bottom: 0;
-}
-
-.dokki-topic > .title
-{
-    overflow-x: auto;
-    display: flex;
-    align-items: center;
-}
-
-.dokki-topic > .title > .permalink
-{
-    display: none;
-    padding-left: 6px;
-    color: lightgray;
-}
-
-.dokki-topic > .title > .permalink:hover
-{
-    color: gray;
-}
-
-.dokki-topic:hover > .title > .permalink
-{
-    display: inline-block;
-}
-
 .dokki-topic h1,
 .dokki-topic h2,
 .dokki-topic h3,
+.dokki-topic h4,
 .dokki-side-panel h2
 {
     font-size: 100%;
     font-weight: normal;
     padding: 0;
     margin: 0;
+    margin-bottom: 16px;
 }
 
 .dokki-topic h1
 {
-    font-size: 160%;
-    white-space: nowrap;
+    font-size: 150%;
+    font-weight: bold;
 }
 
 .dokki-topic h2
@@ -240,26 +246,29 @@ body
     font-size: 125%;
 }
 
-.dokki-topic h2:not(:first-child)
-{
-    margin-top: var(--content-margin);
-    margin-bottom: 16px;
-}
-
 .dokki-topic h3
 {
-    display: inline-block;
+    font-size: 100%;
+    display: inline;
     font-weight: bold;
 }
 
-.dokki-topic-anchor
+.dokki-topic h4
+{
+    font-size: 100%;
+    display: inline;
+    font-weight: normal;
+    font-style: italic;
+}
+
+.dokki-anchor
 {
     visibility: hidden;
     position: relative;
     top: calc(var(--header-height) * -1 - var(--content-margin) + var(--topics-container-top-margin) + 1px);
 }
 
-.dokki-topic-anchor:first-child
+.dokki-anchor:first-child
 {
     margin-top: calc(var(--content-margin) - var(--header-bottom-margin) - var(--topics-container-top-margin));
 }
@@ -555,7 +564,7 @@ body
 
 .dokki-embedded.dokki-code
 {
-    border-color: #ffe318;
+    border-color: #ffe83e;
     background-color: #fffce2;
 }
 
@@ -570,7 +579,7 @@ body
 .dokki-embedded.dokki-code > header
 {
     color: black;
-    background-color: #ffe318;
+    background-color: #ffe83e;
 }
 
 .dokki-embedded.dokki-code > footer
@@ -613,47 +622,36 @@ body
     content: " Image";
 }
 
-@media only screen and (max-width: 1500px)
+@media only screen and (max-width: 1600px)
 {
     :root
     {
-        --topics-width: 710px;
-    }
-}
-
-@media only screen and (max-width: 1350px)
-{
-    :root
-    {
-        --side-panel-width: 240px;
-        --topics-width: 610px;
-    }
-}
-
-@media only screen and (max-width: 1200px)
-{
-    :root
-    {
-        --page-vertical-margin: 30px;
+        --page-vertical-margin: 60px;
     }
 
     .dokki-topics
     {
-        left: calc(var(--page-vertical-margin) + var(--side-panel-width) + var(--content-margin));
-        width: calc(90% - var(--side-panel-width) - var(--page-vertical-margin));
-        margin-left: 0;
+        width: calc(80% - var(--side-panel-width) - var(--page-vertical-margin) - var(--content-margin) * 2);
     }
 }
 
-@media only screen and (max-width: 1050px)
+@media only screen and (max-width: 1300px)
 {
     :root
     {
-        --page-vertical-margin: 25px;
+        --side-panel-width: 260px;
+        --page-vertical-margin: 0px;
+        --topics-container-vertical-margin: var(--content-margin);
+    }
+
+    .dokki-side-panel
+    {
+        border-left: none;
     }
 
     .dokki-topics
     {
+        border-right: none;
         width: calc(100% - var(--side-panel-width) - var(--page-vertical-margin) - var(--content-margin) * 2);
     }
 }
@@ -662,8 +660,7 @@ body
 {
     :root
     {
-        --page-vertical-margin: 20px;
-        --side-panel-width: 220px;
+        --side-panel-width: 240px;
     }
 }
 
@@ -671,7 +668,6 @@ body
 {
     :root
     {
-        --page-vertical-margin: 10px;
         --side-panel-width: 0;
     }
 
@@ -694,8 +690,6 @@ body
     .dokki-topics
     {
         left: var(--page-vertical-margin);
-        margin-left: 0;
-        padding-left: 0;
     }
 }
 
@@ -705,10 +699,5 @@ body
     {
         --header-height: 80px;
         --header-bottom-margin: 25px;
-    }
-
-    .dokki-header .software-tag
-    {
-        display: none;
     }
 }
