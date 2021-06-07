@@ -224,8 +224,7 @@ function create_app()
                      :title=productName
                      class="dokki0-product-tag">
 
-                    <i class="fas fa-fw fa-caret-down"
-                       style="color: gray;"/>
+                    <i class="fas fa-fw fa-caret-down"/>
                     {{productName}}
 
                 </div>
