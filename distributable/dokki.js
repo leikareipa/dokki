@@ -366,11 +366,11 @@ function create_app()
 
     app.component("dokki-tip", {
         template: `
-            <p class="dokki-embedded dokki-tip">
+            <p class="dokki-embedded dokki-tip casts-shadow">
 
                 <header>
                     <div class="title">
-                        <i class="fas fa-info-circle"/>
+                        <i class="fas fa-asterisk"/>
                     </div>
                 </header>
 
@@ -384,7 +384,7 @@ function create_app()
 
     app.component("dokki-warning", {
         template: `
-            <p class="dokki-embedded dokki-warning">
+            <p class="dokki-embedded dokki-warning casts-shadow">
 
                 <header>
                     <span class="title">
@@ -541,6 +541,8 @@ function create_app()
                     </span>
 
                 </header>
+
+                <hr>
 
                 <footer v-if=hasFooter>
                     <DOKKI0-text-block-with-line-numbers :text="outputFromSlot || output">
@@ -785,6 +787,8 @@ function create_app()
                     </span>
 
                 </header>
+
+                <hr>
 
                 <footer>
                     <DOKKI0-text-block-with-line-numbers :text="codeFromSlot || code">

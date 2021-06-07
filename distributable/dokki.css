@@ -31,16 +31,16 @@
     --dokki-embedded-footer-bg-color: var(--document-bg-color);
 
     /* Dark theme.
-    --page-link-color: #00ff7e;
-    --page-primary-bg-color: #252525;
-    --page-secondary-bg-color: #2f2f2f;
-    --page-inert-bg-color: #353535;
-    --page-primary-fg-color: #f8f8f8;
-    --page-secondary-fg-color: gray;
+    --page-link-color: #ffe210;
+    --page-primary-bg-color: #202020;
+    --page-secondary-bg-color: #282828;
+    --page-inert-bg-color: #363636;
+    --page-primary-fg-color: #e6e6e6;
+    --page-secondary-fg-color: #999999;
     --page-inert-fg-color: gray;
-    --page-primary-line-color: dimgray;
+    --page-primary-line-color: #4c4c4c;
     --page-secondary-line-color: black;
-    --dokki-embedded-header-bg-color: #565656;
+    --dokki-embedded-header-bg-color: var(--page-primary-line-color);
     --dokki-embedded-footer-bg-color: var(--document-bg-color);*/
 }
 
@@ -312,7 +312,7 @@ body
 
 .dokki-text-block-with-line-numbers .line-number
 {
-    color: gray;
+    color: var(--page-secondary-fg-color);
     user-select: none;
 }
 
@@ -324,6 +324,11 @@ body
                       linear-gradient(-45deg, transparent 75%, rgba(0, 0, 0, 0.025) 75%);
     background-size: 40px 40px;
     background-position: 0 0, 0 20px, 20px -20px, -20px 0px;
+}
+
+.dokki-embedded.casts-shadow
+{
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
 }
 
 .dokki-embedded
@@ -341,16 +346,16 @@ body
     padding: 6px;
     padding-left: 14px;
     padding-right: 14px;
+    background-color: var(--dokki-embedded-header-bg-color);
+    display: flex;
+    align-items: center;
+    box-sizing: border-box;
 }
 
 .dokki-embedded > header.clickable
 {
-    display: flex;
-    align-items: center;
-    box-sizing: border-box;
     cursor: pointer;
     user-select: none;
-    background-color: var(--dokki-embedded-header-bg-color);
 }
 
 .dokki-embedded > header > .title > .fas,
@@ -489,7 +494,6 @@ body
 {
     display: flex;
     flex-direction: column;
-    border: 1px solid var(--page-primary-line-color);
 }
 
 .dokki-embedded.dokki-video.youtube > iframe
@@ -505,15 +509,8 @@ body
     content: " Video";
 }
 
-.dokki-embedded.dokki-console
-{
-    border-color: black;
-}
-
 .dokki-embedded.dokki-console > header
 {
-    color: white;
-    background-color: black;
     display: flex;
     align-items: center;
 }
@@ -533,33 +530,9 @@ body
     padding-left: 10px;
 }
 
-.dokki-embedded.dokki-tip
-{
-    border-color: deepskyblue;
-    background-color: #f2f8ff;
-}
-
-.dokki-embedded.dokki-tip > header
-{
-    color: white;
-    background-color: deepskyblue;
-}
-
 .dokki-embedded.dokki-tip > header .title::after
 {
     content: " Tip";
-}
-
-.dokki-embedded.dokki-warning
-{
-    border-color: #ff7838;
-    background-color: #fff2ec;
-}
-
-.dokki-embedded.dokki-warning > header
-{
-    color: white;
-    background-color: #ff7838;
 }
 
 .dokki-embedded.dokki-warning > header .title::after
@@ -589,24 +562,12 @@ body
     margin-bottom: 0;
 }
 
-.dokki-embedded.dokki-code
-{
-    border-color: #ffe83e;
-    background-color: #fffce2;
-}
-
 .dokki-embedded.dokki-code.has-output
 {
     margin-bottom: 0;
     border-bottom-left-radius: 0;
     border-bottom-right-radius: 0;
     border-bottom: none;
-}
-
-.dokki-embedded.dokki-code > header
-{
-    color: black;
-    background-color: #ffe83e;
 }
 
 .dokki-embedded.dokki-code > footer
@@ -626,7 +587,7 @@ body
 
 .dokki-embedded.dokki-code > footer table .line-number
 {
-    color: gray;
+    color: var(--page-secondary-fg-color);
     user-select: none;
 }
 
