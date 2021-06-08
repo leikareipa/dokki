@@ -65,10 +65,10 @@ body[data-dokki-theme="light"]
 body[data-dokki-theme="dark"]
 {
     --page-link-color: #ffe210;
-    --page-primary-bg-color: #202020;
+    --page-primary-bg-color: #1f1f1f;
     --page-secondary-bg-color: #282828;
     --page-inert-bg-color: #323232;
-    --page-primary-fg-color: #e6e6e6;
+    --page-primary-fg-color: #e9e9e9;
     --page-secondary-fg-color: #999999;
     --page-inert-fg-color: gray;
     --page-primary-line-color: #4c4c4c;
@@ -780,7 +780,7 @@ body[data-dokki-theme="integration-test"]
 {
     :root
     {
-        --topic-horizontal-padding: 7px;
+        --topic-horizontal-padding: 15px;
     }
 
     .dokki-theme-selector
