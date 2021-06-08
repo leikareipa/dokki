@@ -155,19 +155,17 @@
                     <dokki-lorem>
                     </dokki-lorem>
 
-                    <dokki-code title="HTML"
-                                code="
-                                <i class='fas fa-fw fa-hammer'></i>
-                                <i class='fas fa-fw fa-screwdriver'></i>
-                                <i class='fas fa-fw fa-wrench'></i>
-                                ">
-
-                        <dokki-output>
-                            <i class="fas fa-fw fa-hammer"></i>
-                            <i class="fas fa-fw fa-screwdriver"></i>
-                            <i class="fas fa-fw fa-wrench"></i>
-                        </dokki-output>
-
+                    <dokki-code headerless>
+                        <template #code>
+                            <pre>
+                                int main(void)
+                                {
+                                    const char *str = "Hello there.";
+                                    printf("%s\n", str);
+                                    return 0;
+                                }
+                            </pre>
+                        </template>
                     </dokki-code>
 
                     <dokki-lorem>
