@@ -243,6 +243,14 @@ function create_app()
         `,
     });
 
+    app.component("dokki-area", {
+        template: `
+            <p class="dokki-area">
+                <slot/>
+            </p>
+        `,
+    });
+
     app.component("dokki-side-panel", {
         computed: {
             topics()
