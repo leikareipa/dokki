@@ -24,16 +24,10 @@
     --navibar-item-padding: 8px 10px;
 }
 
-a,
 a.dokki0-unstyled
 {
     text-decoration: none !important;
     color: inherit !important;
-}
-
-a:hover
-{
-    text-decoration: underline;
 }
 
 body
@@ -301,7 +295,14 @@ body[data-dokki-theme="integration-test"]
 .dokki-topic p a,
 .dokki-topic p a:visited
 {
+    text-decoration: none;
     color: var(--page-link-color);
+}
+
+.dokki-topic p a:hover,
+.dokki-topic p a:visited:hover
+{
+    text-decoration: underline;
 }
 
 .dokki-topic:last-of-type,
@@ -395,7 +396,7 @@ body[data-dokki-theme="integration-test"]
 
 .dokki-text-block-with-line-numbers tr:hover .line-number
 {
-    color: var(--page-primary-fg-color);
+    color: var(--page-link-color);
 }
 
 .dokki-text-block-with-line-numbers tr.highlighted .line-number

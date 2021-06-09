@@ -320,7 +320,7 @@ function create_app()
                     <li v-for="topic in topics">
 
                         <a :href="topic.url"
-                           class="dokki0-navi-link topic">
+                           class="dokki0-navi-link dokki0-unstyled topic">
 
                             <i class="dokki0-navi-link-icon fas fa-sm fa-fw fa-hashtag"/>
                             {{topic.title}}
@@ -329,7 +329,7 @@ function create_app()
 
                         <a v-for="subtopic in topic.subtopics"
                            :href="subtopic.url"
-                           class="dokki0-navi-link subtopic">
+                           class="dokki0-navi-link dokki0-unstyled subtopic">
 
                             <i class="dokki0-navi-link-icon fas fa-sm fa-fw fa-hashtag"/>
                             {{subtopic.title}}
@@ -709,7 +709,7 @@ function create_app()
         {
             return {
                 blockIdx: 0,
-                highlightLineNum: -1,
+                highlightLineNum: -1, // -1 means no line is highlighted.
             }
         },
         created()
@@ -722,7 +722,6 @@ function create_app()
 
             function update_line_highlight()
             {
-                // -1 means no line is highlighted.
                 this.highlightLineNum = -1;
 
                 if (window.location.hash.startsWith("#-listing:"))
