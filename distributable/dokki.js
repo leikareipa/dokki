@@ -158,9 +158,9 @@ function create_app()
         template: `
             <header class="dokki-header">
 
-                <div class="dokki0-header-container">
+                <div class="dokkiCSS-header-container">
 
-                    <span class="dokki0-header-title"
+                    <span class="dokkiCSS-header-title"
                           :title=title>
 
                         <i :class="icon"/>
@@ -205,7 +205,7 @@ function create_app()
             this.idx = this.$store.state.topics.length;
         },
         template: `
-            <span class="dokki-anchor topic"
+            <span class="dokkiCSS-anchor dokkiCSS-anchor-topic"
                   :id=simplifiedTitle>
             </span>
 
@@ -246,7 +246,7 @@ function create_app()
             this.$store.commit("add_subtopic", this.selfMeta);
         },
         template: `
-            <span class="dokki-anchor subtopic"
+            <span class="dokkiCSS-anchor dokkiCSS-anchor-subtopic"
                   :id=this.selfMeta.simplifiedTitle>
             </span>
 
@@ -300,14 +300,14 @@ function create_app()
 
                 <div v-if="productName !== undefined"
                      :title=productName
-                     class="dokki0-product-tag">
+                     class="dokkiCSS-product-tag">
 
                     <i class="fas fa-fw fa-caret-down"/>
                     {{productName}}
 
                 </div>
                 <div v-else
-                     class="dokki0-product-tag">
+                     class="dokkiCSS-product-tag">
 
                     <i class="fas fa-fw fa-caret-down"
                        style="color: gray;"/>
@@ -315,23 +315,23 @@ function create_app()
 
                 </div>
 
-                <ul class="dokki0-vertical-navi">
+                <ul class="dokkiCSS-vertical-navi">
 
                     <li v-for="topic in topics">
 
                         <a :href="topic.url"
-                           class="dokki0-navi-link dokki0-unstyled topic">
+                           class="dokkiCSS-navi-link dokkiCSS-navi-link-topic">
 
-                            <i class="dokki0-navi-link-icon fas fa-sm fa-fw fa-hashtag"/>
+                            <i class="dokkiCSS-navi-link-icon fas fa-sm fa-fw fa-hashtag"/>
                             {{topic.title}}
 
                         </a>
 
                         <a v-for="subtopic in topic.subtopics"
                            :href="subtopic.url"
-                           class="dokki0-navi-link dokki0-unstyled subtopic">
+                           class="dokkiCSS-navi-link dokkiCSS-navi-link-subtopic">
 
-                            <i class="dokki0-navi-link-icon fas fa-sm fa-fw fa-hashtag"/>
+                            <i class="dokkiCSS-navi-link-icon fas fa-sm fa-fw fa-hashtag"/>
                             {{subtopic.title}}
                             
                         </a>
@@ -367,17 +367,16 @@ function create_app()
             }
         },
         template: `
-            <p class="dokki-embedded dokki-iframe">
+            <p class="dokkiCSS-embedded dokki-iframe dokkiCSS-expandable">
 
-                <header class="clickable"
-                        @click="isExpanded = !isExpanded">
+                <header @click="isExpanded = !isExpanded">
 
-                    <span class="title">
+                    <span class="dokkiCSS-title">
                         <i class="fas fa-expand"/>
                         {{title}}
                     </span>
 
-                    <aside class="revealer">
+                    <aside class="dokkiCSS-expander">
                         {{isExpanded? "Close frame" : "Expand frame"}}
                     </aside>
 
@@ -411,17 +410,16 @@ function create_app()
             }
         },
         template: `
-            <p class="dokki-embedded dokki-image"
+            <p class="dokkiCSS-embedded dokki-image dokkiCSS-expandable"
                :class="{expanded: isExpanded}">
 
-                <header class="clickable"
-                        @click="isExpanded = !isExpanded">
+                <header @click="isExpanded = !isExpanded">
 
-                    <span class="title">
+                    <span class="dokkiCSS-title">
                         <i class="fas fa-image" title="Image"/>
                     </span>
 
-                    <aside class="revealer">
+                    <aside class="dokkiCSS-expander">
                         {{isExpanded? "Hide" : "Show"}}
                     </aside>
 
@@ -430,12 +428,12 @@ function create_app()
                 <hr v-if=isExpanded>
 
                 <img v-if=isExpanded
-                     class="dokki-checker-background"
+                     class="dokkiCSS-checker-background"
                      :src="src">
 
                 <hr v-if=hasFooter>
 
-                <footer v-if=hasFooter class="italic">
+                <footer v-if=hasFooter class="dokkiCSS-italic">
                     <slot name="caption"/>
                 </footer>
             </p>
@@ -444,11 +442,11 @@ function create_app()
 
     app.component("dokki-tip", {
         template: `
-            <p class="dokki-embedded dokki-tip casts-shadow">
+            <p class="dokkiCSS-embedded dokki-tip casts-shadow">
 
                 <header>
-                    <div class="title">
-                        <i class="fas fa-asterisk"/>
+                    <div class="dokkiCSS-title">
+                        <i class="fas fa-carrot"/>
                     </div>
                 </header>
 
@@ -462,10 +460,10 @@ function create_app()
 
     app.component("dokki-warning", {
         template: `
-            <p class="dokki-embedded dokki-warning casts-shadow">
+            <p class="dokkiCSS-embedded dokki-warning casts-shadow">
 
                 <header>
-                    <span class="title">
+                    <span class="dokkiCSS-title">
                         <i class="fas fa-exclamation-triangle"/>
                     </span>
                 </header>
@@ -507,17 +505,16 @@ function create_app()
             }
         },
         template: `
-            <p class="dokki-embedded dokki-video"
+            <p class="dokkiCSS-embedded dokki-video dokkiCSS-expandable"
                :class=platform>
 
-               <header class="clickable"
-                       @click="isExpanded = !isExpanded">
+               <header @click="isExpanded = !isExpanded">
 
-                    <span class="title">
+                    <span class="dokkiCSS-title">
                         <i :class="headerIcon" title="Video"/>
                     </span>
 
-                    <aside class="revealer">
+                    <aside class="dokkiCSS-expander">
                         {{isExpanded? "Hide" : "Show"}}
                     </aside>
 
@@ -526,14 +523,14 @@ function create_app()
                 <hr v-if=isExpanded>
 
                 <iframe v-if=isExpanded
-                        class="dokki-checker-background"
+                        class="dokkiCSS-checker-background"
                         :src=videoUrl
                         allow="fullscreen; autoplay;">
                 </iframe>
 
                 <hr v-if=hasFooter>
 
-                <footer v-if=hasFooter class="italic">
+                <footer v-if=hasFooter class="dokkiCSS-italic">
                     <slot name="caption"/>
                 </footer>
 
@@ -585,26 +582,26 @@ function create_app()
             },
         },
         template: `
-            <p class="dokki-embedded dokki-console"
+            <p class="dokkiCSS-embedded dokki-console"
                v-if="hasFooter || !isHeaderless">
 
                 <header v-if="!isHeaderless">
 
-                    <span class="title">
+                    <span class="dokkiCSS-title">
                         <i :class="headerIcon" title="Terminal command"/>
                     </span>
 
-                    <span class="command">
+                    <code>
                         {{command}}
-                    </span>
+                    </code>
 
                 </header>
 
                 <hr v-if="!isHeaderless">
 
                 <footer v-if=hasFooter>
-                    <DOKKI0-text-block-with-line-numbers :text="outputFromSlot || output">
-                    </DOKKI0-text-block-with-line-numbers>
+                    <dokki0-text-block-with-line-numbers :text="outputFromSlot || output">
+                    </dokki0-text-block-with-line-numbers>
                 </footer>
             </p>
         `,
@@ -616,17 +613,16 @@ function create_app()
         },
         mixins: [expandedPropMixin],
         template: `
-            <p class="dokki-embedded dokki-output">
+            <p class="dokkiCSS-embedded dokki-output dokkiCSS-expandable">
 
-                <header class="clickable"
-                        @click="isExpanded = !isExpanded">
+                <header @click="isExpanded = !isExpanded">
 
-                    <span class="title">
+                    <span class="dokkiCSS-title">
                         <i class="fas fa-chevron-right"/>
                         {{title}}
                     </span>
 
-                    <aside class="revealer">
+                    <aside class="dokkiCSS-expander">
                         {{isExpanded? "Hide" : "Show"}}
                     </aside>
 
@@ -651,16 +647,15 @@ function create_app()
             }
         },
         template: `
-            <p class="dokki-embedded dokki-table">
+            <p class="dokkiCSS-embedded dokki-table dokkiCSS-expandable">
 
-                <header class="clickable"
-                        @click="isExpanded = !isExpanded">
+                <header @click="isExpanded = !isExpanded">
 
-                    <span class="title">
+                    <span class="dokkiCSS-title">
                         <i class="fas fa-border-all" title="Table"/>
                     </span>
 
-                    <aside class="revealer">
+                    <aside class="dokkiCSS-expander">
                         {{isExpanded? "Hide" : "Show"}}
                     </aside>
 
@@ -672,7 +667,7 @@ function create_app()
 
                 <hr v-if="hasFooter">
 
-                <footer v-if=hasFooter class="italic">
+                <footer v-if=hasFooter class="dokkiCSS-italic">
                     <slot name="caption"/>
                 </footer>
 
@@ -687,11 +682,11 @@ function create_app()
     //
     // Sample usage:
     //
-    //   <DOKKI0-text-block-with-line-numbers text="
+    //   <dokki0-text-block-with-line-numbers text="
     //                                        This is the first line.
     //                                        This is another line.
     //                                        ">
-    //   </DOKKI0-text-block-with-line-numbers>
+    //   </dokki0-text-block-with-line-numbers>
     //
     // Sample output:
     //
@@ -701,7 +696,7 @@ function create_app()
     // NOTE for the 'text' prop:
     //   - Two backticks (``) must be used in place of double quotes (").
     //
-    app.component("DOKKI0-text-block-with-line-numbers", {
+    app.component("dokki0-text-block-with-line-numbers", {
         props: {
             text: {},
         },
@@ -815,16 +810,17 @@ function create_app()
             },
         },
         template: `
-            <table class="dokki-text-block-with-line-numbers">
+            <table class="dokki0-text-block-with-line-numbers">
 
                 <tr v-for="(line, lineNum) in formattedText"
-                    :class="{highlighted: highlightLineNum == lineNum}">
+                    class="dokkiCSS-text-block-line"
+                    :class="{'dokkiCSS-highlighted': highlightLineNum == lineNum}">
 
-                    <span class="dokki-anchor listing-line"
+                    <span class="dokkiCSS-anchor dokkiCSS-anchor-text-block-line"
                           :ref="line_ref(lineNum)">
                     </span>
 
-                    <td class="line-number"
+                    <td class="dokkiCSS-text-block-line-number"
                         @click="highlight_line(lineNum)">
 
                         <span v-if="lineNum !== highlightLineNum">
@@ -835,7 +831,7 @@ function create_app()
 
                     </td>
                     
-                    <td class="line">
+                    <td class="dokkiCSS-text-block-line-content">
                         {{line}}
                     </td>
                     
@@ -878,12 +874,12 @@ function create_app()
             },
         },
         template: `
-            <p class="dokki-embedded dokki-code"
+            <p class="dokkiCSS-embedded dokki-code"
                :class="{'has-output': hasOutput}">
 
                 <header v-if="!isHeaderless">
 
-                    <span class="title">
+                    <span class="dokkiCSS-title">
                         <i class="fas fa-code" title="Code"/>
                         {{title}}
                     </span>
@@ -893,8 +889,8 @@ function create_app()
                 <hr v-if="!isHeaderless">
 
                 <footer>
-                    <DOKKI0-text-block-with-line-numbers :text="codeFromSlot || code">
-                    </DOKKI0-text-block-with-line-numbers>
+                    <dokki0-text-block-with-line-numbers :text="codeFromSlot || code">
+                    </dokki0-text-block-with-line-numbers>
                 </footer>
 
             </p>
