@@ -1,1 +1,2 @@
 distributable/** -linguist-detectable
+tests/** -linguist-detectable
