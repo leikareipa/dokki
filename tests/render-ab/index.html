@@ -82,6 +82,14 @@
                 color: white;
             }
 
+            #mismatches-container.error
+            {
+                font-weight: bold;
+                border-color: crimson;
+                background-color: crimson;
+                color: white;
+            }
+
             #mismatches-container.failure > a,
             #mismatches-container.failure > a:visited
             {
@@ -285,8 +293,8 @@
             of the dokki distributable; for example, an earlier reference point (A)
             and an in-dev distro (B). The test then compares the resulting images
             pixel-for-pixel to find and report any mismatches &ndash; which might
-            indicate code regressions or the like. The test should complete in about
-            a minute.
+            indicate code regressions or the like. The test may take a few minutes
+            to complete.
 
         </header>
 
@@ -320,6 +328,48 @@
             const renderer = document.querySelector("#renderer");
             console.assert((renderer instanceof HTMLElement), "Missing the renderer element");
 
+            window.document.addEventListener("dokkiEV-renderer-error", (event)=>
+            {
+                resultsContainer = document.querySelector("#mismatches-container");
+                resultsContainer.innerHTML = "The test has terminated unexpectedly";
+                resultsContainer.classList.add("error");
+
+                let error = event.detail;
+                let errorMessage = error;
+
+                if (typeof error == "string")
+                {
+                    errorMessage = error;
+                }
+                else if (typeof error == "object")
+                {
+                    if (typeof error.error == "object")
+                    {
+                        error = error.error;
+                    }
+
+                    if (typeof error.message == "string")
+                    {
+                        errorMessage = error.message;
+                    }
+                    else if (typeof error.reason == "string")
+                    {
+                        errorMessage = error.reason;
+                    }
+                    else if ((typeof error.reason == "object") &&
+                             (typeof error.reason.message == "string"))
+                    {
+                        errorMessage = error.reason.message;
+                    }
+                }
+                else
+                {
+                    errorMessage = error;
+                }
+
+                console.log("Renderer error:", errorMessage);
+            });
+
             window.document.addEventListener("dokkiEV-renderer-ready", ()=>
             {
                 let waitForSelfReady = setInterval(()=>
@@ -335,8 +385,8 @@
             window.document.addEventListener("dokkiEV-rendering-finished", (event)=>
             {
                 process_render_results({
-                    images: event.detail.result.images,
-                    names: event.detail.result.names,
+                    images: event.detail.componentImages,
+                    names: event.detail.componentNames,
                     dstContainer: renderer.dstContainer
                 });
 
@@ -414,7 +464,23 @@
                 waitingSpinner.innerHTML = "<i class='fas fa-fw fa-spin fa-spinner'></i> Rendering...";
                 target.resultsContainer.appendChild(waitingSpinner);
 
-                renderer.src = `./renderer.html?theme=light&dokki-path=${target.dokkiPath}`;
+                window.document.addEventListener("dokkiEV-renderer-error", (event)=>
+                {
+                    waitingSpinner.remove();
+                });
+
+                const progressPercentage = document.createElement("span");
+                progressPercentage.classList.add("waiting-spinner-progress");
+                progressPercentage.innerHTML = "";
+                waitingSpinner.appendChild(progressPercentage);
+
+                window.document.addEventListener("dokkiEV-renderer-progress", (event)=>
+                {
+                    const percDone = event.detail.percDone;
+                    progressPercentage.innerHTML = ` ${percDone}%`;
+                });
+
+                renderer.src = `./renderer.html?test-template=full&theme=light&dokki-path=${target.dokkiPath}`;
                 renderer.dstContainer = target.resultsContainer;
             }
 
@@ -487,15 +553,21 @@
             function report_mismatches(mismatches)
             {
                 const resultsContainer = document.querySelector("#mismatches-container");
+
                 console.assert((resultsContainer instanceof HTMLElement),
                                "Missing the results container");
 
+                // We don't want to erase any existing error message.
+                if (resultsContainer.classList.contains("error"))
+                {
+                    return;
+                }
+
+                resultsContainer.classList.add(mismatches.length? "failure" : "success");
                 resultsContainer.innerHTML = mismatches.length
                                              ? `Mismatches:`
                                              : `Mismatches: none <i class="fas fa-check"></i>`;
 
-                resultsContainer.classList.add(mismatches.length? "failure" : "success");
-                
                 for (let i = 0; i < mismatches.length; i++)
                 {
                     const mismatchLink = document.createElement("a");

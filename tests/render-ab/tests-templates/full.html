@@ -1,0 +1,598 @@
+<template id="dokki-render-ab-test-template">
+
+    <dokki-header title="dokki render test"
+                  product-name="product: dokki render test"
+                  product-version="version: 1.1">
+    </dokki-header>
+
+    <product-name>
+    </product-name>
+
+    <dokki-tip>
+        Lorem ipsum
+    </dokki-tip>
+
+    <dokki-tip>
+        <p>Lorem ipsum</p>
+        <p>Ipsum lorem</p>
+        <p>Lorem ipsum</p>
+    </dokki-tip>
+
+    <dokki-warning>
+        Lorem ipsum
+    </dokki-warning>
+
+    <dokki-warning>
+        <p>Lorem ipsum</p>
+        <p>Ipsum lorem</p>
+        <p>Lorem ipsum</p>
+    </dokki-warning>
+
+    <dokki-image>
+    </dokki-image>
+
+    <dokki-image src="//upload.wikimedia.org/wikipedia/commons/thumb/a/ab/William_Merritt_Chase_-_Seaside_Flowers%2C_1890s.jpg/64px-William_Merritt_Chase_-_Seaside_Flowers%2C_1890s.jpg">
+    </dokki-image>
+
+    <dokki-image src="//upload.wikimedia.org/wikipedia/commons/thumb/a/ab/William_Merritt_Chase_-_Seaside_Flowers%2C_1890s.jpg/64px-William_Merritt_Chase_-_Seaside_Flowers%2C_1890s.jpg">
+        <template #caption>
+            Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum
+            Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum
+            Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum
+            Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum
+            Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum
+            Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum
+        </template>
+    </dokki-image>
+
+    <dokki-image expanded src="//upload.wikimedia.org/wikipedia/commons/thumb/7/7f/Mature_flower_diagram.svg/128px-Mature_flower_diagram.svg.png">
+    </dokki-image>
+
+    <dokki-image expanded src="//upload.wikimedia.org/wikipedia/commons/thumb/a/ab/William_Merritt_Chase_-_Seaside_Flowers%2C_1890s.jpg/64px-William_Merritt_Chase_-_Seaside_Flowers%2C_1890s.jpg">
+        <template #caption>
+            Lorem ipsum
+        </template>
+    </dokki-image>
+
+    <dokki-video>
+    </dokki-video>
+
+    <dokki-video platform="youtube" src="ZgWGmggi5Xo">
+        <template #caption>
+            Lorem ipsum
+        </template>
+    </dokki-video>
+
+    <dokki-video platform="youtube" src="ZgWGmggi5Xo">
+        <template #caption>
+            Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum
+            Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum
+            Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum
+            Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum
+            Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum
+            Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum
+        </template>
+    </dokki-video>
+
+    <dokki-iframe>
+    </dokki-iframe>
+
+    <dokki-iframe title="Lorem ipsum">
+    </dokki-iframe>
+
+    <dokki-iframe title="Lorem ipsum" expanded height="100px">
+    </dokki-iframe>
+
+    <dokki-iframe title="Lorem ipsum" expanded height="200px">
+    </dokki-iframe>
+
+    <dokki-console>
+    </dokki-console>
+
+    <dokki-console platform="unix">
+    </dokki-console>
+
+    <dokki-console platform="windows">
+    </dokki-console>
+
+    <dokki-console command="Lorem ipsum">
+    </dokki-console>
+
+    <dokki-console command="Lorem ipsum">
+        <template #output>
+            <pre>
+                Line 1
+                Line  2
+
+
+                Line     5
+
+                Line       7
+            </pre>
+        </template>
+    </dokki-console>
+
+    <dokki-console command="Lorem ipsum">
+        <template #output>
+            <pre>
+                Line 1
+                Line  2
+
+
+                Line     5
+
+                Line       7
+                Line 8................................................................................................!
+            </pre>
+        </template>
+    </dokki-console>
+
+    <dokki-console headerless command="Lorem ipsum">
+        <template #output>
+            <pre>
+                Line 1
+                Line  2
+
+
+                Line     5
+
+                Line       7
+            </pre>
+        </template>
+    </dokki-console>
+
+    <dokki-output>
+    </dokki-output>
+
+    <dokki-output title="Lorem ipsum">
+    </dokki-output>
+
+    <dokki-output expanded>
+    </dokki-output>
+
+    <dokki-output expanded>
+        Lorem ipsum
+    </dokki-output>
+
+    <dokki-output>
+        <p>Lorem ipsum</p>
+        <p>Ipsum lorem</p>
+        <p>Lorem ipsum</p>
+    </dokki-output>
+
+    <dokki-output expanded>
+        <p>Lorem ipsum</p>
+        <p>Ipsum lorem</p>
+        <p>Lorem ipsum</p>
+    </dokki-output>
+
+    <dokki-output expanded>
+        Lorem ipsum
+        <dokki-output expanded>
+            Lorem ipsum
+            <dokki-output expanded>
+                Lorem ipsum
+            </dokki-output>
+        </dokki-output>
+    </dokki-output>
+
+    <dokki-output expanded>
+        <p>Lorem ipsum</p>
+        <dokki-output expanded>
+            <p>Lorem ipsum</p>
+            <dokki-output expanded>
+                <p>Lorem ipsum</p>
+            </dokki-output>
+        </dokki-output>
+    </dokki-output>
+
+    <dokki-spoiler>
+    </dokki-spoiler>
+
+    <dokki-spoiler title="Lorem ipsum">
+    </dokki-spoiler>
+
+    <dokki-spoiler expanded>
+    </dokki-spoiler>
+
+    <dokki-spoiler expanded>
+        Lorem ipsum
+    </dokki-spoiler>
+
+    <dokki-spoiler>
+        <p>Lorem ipsum</p>
+        <p>Ipsum lorem</p>
+        <p>Lorem ipsum</p>
+    </dokki-spoiler>
+
+    <dokki-spoiler expanded>
+        <p>Lorem ipsum</p>
+        <p>Ipsum lorem</p>
+        <p>Lorem ipsum</p>
+    </dokki-spoiler>
+
+    <dokki-code>
+        <template #code>
+            <pre>
+                Line 1
+                Line  2
+
+
+                Line     5
+
+                Line       7
+            </pre>
+        </template>
+    </dokki-code>
+
+    <dokki-code>
+        <template #code>
+            <pre>
+                Line 1
+                Line  2
+
+
+                Line     5
+
+                Line       7
+                Line 8................................................................................................!
+            </pre>
+        </template>
+    </dokki-code>
+
+    <dokki-code code="
+                Line 1
+                Line  2
+
+
+                Line     5
+
+                Line       7
+                ">
+    </dokki-code>
+
+    <dokki-code headerless>
+        <template #code>
+            <pre>
+                Line 1
+                Line  2
+
+
+                Line     5
+
+                Line       7
+            </pre>
+        </template>
+    </dokki-code>
+
+    <dokki-code headerless>
+        <template #code>
+            <pre>
+                Line 1
+                Line  2
+
+
+                Line     5
+
+                Line       7
+                Line 8................................................................................................!
+            </pre>
+        </template>
+    </dokki-code>
+
+    <dokki-code title="HTML"
+                        code="
+                        <i class='fas fa-fw fa-hammer'></i>
+                        <i class='fas fa-fw fa-screwdriver'></i>
+                        <i class='fas fa-fw fa-wrench'></i>
+                        ">
+
+        <dokki-output expanded>
+            <i class="fas fa-fw fa-hammer"></i>
+            <i class="fas fa-fw fa-screwdriver"></i>
+            <i class="fas fa-fw fa-wrench"></i>
+        </dokki-output>
+
+    </dokki-code>
+
+    <dokki-code>
+        <template #code>
+            <pre>
+                Lorem
+                ipsum
+
+                Lipsum
+            </pre>
+        </template>
+
+        <dokki-output>
+            Lorem ipsum Lipsum
+        </dokki-output>
+    </dokki-code>
+
+    <dokki-code>
+        <template #code>
+            <pre>
+                Lorem
+                ipsum
+
+                Lipsum
+            </pre>
+        </template>
+
+        <dokki-output title="Lorem ipsum">
+            Lorem ipsum Lipsum
+        </dokki-output>
+    </dokki-code>
+
+    <dokki-code>
+        <template #code>
+            <pre>
+                Lorem
+                ipsum
+
+                Lipsum
+            </pre>
+        </template>
+
+        <dokki-output expanded>
+            Lorem ipsum Lipsum
+        </dokki-output>
+    </dokki-code>
+
+    <dokki-code>
+        <template #code>
+            <pre>
+                Lorem
+                ipsum
+
+                Lipsum
+            </pre>
+        </template>
+
+        <dokki-output expanded title="Lorem ipsum">
+            Lorem ipsum Lipsum
+        </dokki-output>
+    </dokki-code>
+
+    <dokki-table>
+        <template #table>
+            <table>
+                <tr>
+                    <th>Lorem</th>
+                    <th>Ipsum</th>
+                </tr>
+                <tr>
+                    <td>Ipsum</td>
+                    <td>Lorem</td>
+                </tr>
+            </table>
+        </template>
+    </dokki-table>
+
+    <dokki-table expanded>
+        <template #table>
+            <table>
+                <tr>
+                    <th>1</th>
+                </tr>
+                <tr>
+                    <td>Lorem</td>
+                </tr>
+            </table>
+        </template>
+    </dokki-table>
+
+    <dokki-table expanded>
+        <template #table>
+            <table>
+                <tr>
+                    <th>1</th>
+                    <th>2</th>
+                </tr>
+                <tr>
+                    <td>Lorem</td>
+                    <td>Ipsum</td>
+                </tr>
+            </table>
+        </template>
+    </dokki-table>
+
+    <dokki-table expanded>
+        <template #caption>
+            Lorem ipsum
+        </template>
+
+        <template #table>
+            <table>
+                <tr>
+                    <th>1</th>
+                    <th>2</th>
+                    <th>3</th>
+                </tr>
+                <tr>
+                    <td>Lorem</td>
+                    <td>Ipsum</td>
+                    <td>Lipsum</td>
+                </tr>
+            </table>
+        </template>
+    </dokki-table>
+
+    <dokki-table expanded>
+        <template #table>
+            <table>
+                <tr>
+                    <th>Lorem</th>
+                    <th>Ipsum</th>
+                </tr>
+                <tr>
+                    <td>Ipsum</td>
+                    <td>Lorem</td>
+                </tr>
+            </table>
+        </template>
+    </dokki-table>
+
+    <dokki-table expanded>
+        <template #caption>
+            Lorem ipsum
+        </template>
+
+        <template #table>
+            <table>
+                <tr>
+                    <th>Lorem</th>
+                    <th>Ipsum</th>
+                </tr>
+                <tr>
+                    <td>Ipsum</td>
+                    <td>Lorem</td>
+                </tr>
+            </table>
+        </template>
+    </dokki-table>
+
+    <dokki-table expanded>
+        <template #caption>
+            Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum
+            Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum
+            Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum
+            Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum
+            Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum
+            Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum
+        </template>
+
+        <template #table>
+            <table>
+                <tr>
+                    <th>Lorem</th>
+                    <th>Ipsum</th>
+                </tr>
+                <tr>
+                    <td>Ipsum</td>
+                    <td>Lorem</td>
+                </tr>
+            </table>
+        </template>
+    </dokki-table>
+
+    <dokki-table expanded>
+        <template #caption>
+            Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum
+            Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum
+            Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum
+            Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum
+            Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum
+            Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum
+        </template>
+
+        <template #table>
+            <table>
+                <tr>
+                    <th>Lorem</th>
+                    <th>Ipsum</th>
+                    <th>Lorem</th>
+                    <th>Ipsum</th>
+                    <th>Lorem</th>
+                    <th>Ipsum</th>
+                    <th>Lorem</th>
+                    <th>Ipsum</th>
+                    <th>Lorem</th>
+                    <th>Ipsum</th>
+                    <th>Lorem</th>
+                    <th>Ipsum</th>
+                    <th>Lorem</th>
+                    <th>Ipsum</th>
+                    <th>Lorem</th>
+                    <th>Ipsum</th>
+                    <th>Lorem</th>
+                    <th>Ipsum</th>
+                    <th>Lorem</th>
+                    <th>Ipsum</th>
+                </tr>
+                <tr>
+                    <td>Ipsum</td>
+                    <td>Lorem</td>
+                    <td>Ipsum</td>
+                    <td>Lorem</td>
+                    <td>Ipsum</td>
+                    <td>Lorem</td>
+                    <td>Ipsum</td>
+                    <td>Lorem</td>
+                    <td>Ipsum</td>
+                    <td>Lorem</td>
+                    <td>Ipsum</td>
+                    <td>Lorem</td>
+                    <td>Ipsum</td>
+                    <td>Lorem</td>
+                    <td>Ipsum</td>
+                    <td>Lorem</td>
+                    <td>Ipsum</td>
+                    <td>Lorem</td>
+                    <td>Ipsum</td>
+                    <td>Lorem</td>
+                </tr>
+            </table>
+        </template>
+    </dokki-table>
+
+    <dokki-topic title="Lorem ipsum">
+        Ipsum lorem
+        <p>Ipsum lorem</p>
+
+        <dokki-subtopic title="Lorem ipsum">
+            Ipsum lorem
+            <p>Ipsum lorem</p>
+        </dokki-subtopic>
+
+        <dokki-item title="Lorem ipsum">
+            Ipsum lorem
+            <p>Ipsum lorem</p>
+        </dokki-item>
+    </dokki-topic>
+
+    <dokki-lorem>
+    </dokki-lorem>
+
+    <dokki-lorem>
+    </dokki-lorem>
+
+    <dokki-area>
+    </dokki-area>
+
+    <dokki-area>
+        Lorem ipsum
+    </dokki-area>
+
+    <dokki-area>
+        <p>Lorem ipsum</p>
+        <p>Ipsum lorem</p>
+        <p>Lorem ipsum</p>
+    </dokki-area>
+
+    <dokki-topic title="Lorem">
+        <dokki-lorem>
+        </dokki-lorem>
+
+        <dokki-tip>
+            Lorem ipsum
+        </dokki-tip>
+
+        <dokki-lorem>
+        </dokki-lorem>
+
+        <dokki-lorem>
+        </dokki-lorem>
+
+        <dokki-output>
+        </dokki-output>
+
+        <dokki-iframe>
+        </dokki-iframe>
+
+        <dokki-lorem>
+        </dokki-lorem>
+    </dokki-topic>
+    
+</template>

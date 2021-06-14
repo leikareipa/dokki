@@ -8,7 +8,104 @@
         <script src="https://cdn.jsdelivr.net/npm/vue@3.1.1/dist/vue.global.js"></script>
         <script src="https://unpkg.com/vuex@4.0.0/dist/vuex.global.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/dom-to-image@2.6.0/dist/dom-to-image.min.js"></script>
-        
+
+        <script>
+            function send_message_to_parent(eventId = "", data = {})
+            {
+                const message = new CustomEvent(eventId, {detail: data})
+                window.parent.document.dispatchEvent(message);
+
+                return;
+            }
+
+            function terminate_rendering(error)
+            {
+                send_message_to_parent("dokkiEV-renderer-error", {error});
+                window.stop();
+            }
+
+            window.onerror = function(message, source, lineno, colno, error)
+            {
+                terminate_rendering(message);
+            };
+
+            window.onunhandledrejection = function(error)
+            {
+                terminate_rendering(error);
+            };
+        </script>
+
+        <script>
+            const taskCompletionStatus = {
+                testsTemplateAvailable: false,
+                testComponentsMounted: false,
+                pageLoaded: false,
+                dokkiStarted: false,
+            };
+
+            (async()=>
+            {
+                await wait_for_all_tasks_to_complete();
+
+                /// Temporary hack - wait a bit more to give all resources (e.g. images) time
+                /// to load in and settle. But there really needs to be a better, more reliable,
+                /// less hacky way.
+                setTimeout(()=>
+                {
+                    send_message_to_parent("dokkiEV-renderer-ready");
+                }, 5000);
+            })();
+
+            function wait_for_all_tasks_to_complete()
+            {
+                const startTimeSec = (Date.now() / 1000);
+                const maxWaitTimeSec = 10;
+
+                return new Promise((resolve, reject)=>
+                {
+                    const waitForComplete = setInterval(()=>
+                    {
+                        if (are_all_tasks_completed())
+                        {
+                            resolve();
+                            clearInterval(waitForComplete);
+                            return;
+                        }
+
+                        const numSecsWaited = ((Date.now() / 1000) - startTimeSec);
+
+                        if (numSecsWaited > maxWaitTimeSec)
+                        {
+                            reject("Initialization took too long");
+                            clearInterval(waitForComplete);
+                            return;
+                        }
+                    }, 100);
+                });
+            }
+
+            function are_all_tasks_completed()
+            {
+                return Object.getOwnPropertyNames(taskCompletionStatus).every(name=>taskCompletionStatus[name]);
+            }
+        </script>
+
+        <script>
+            window.addEventListener("load", (event)=>
+            {
+                taskCompletionStatus.pageLoaded = true;
+
+                dokki.start({container: testContainer});
+                taskCompletionStatus.dokkiStarted = true;
+            });
+
+            window.document.addEventListener("dokkiEV-start-rendering", async(event)=>
+            {
+                const results = await render_component_images();
+                send_message_to_parent("dokkiEV-rendering-finished", results);
+            });
+        </script>
+            
         <style>
             :root
             {
@@ -60,430 +157,43 @@
              class="dokkiCSS-document-container">
         </div>
 
-        <template id="tests-template">
-            <dokki-header title="dokki render test"
-                          product-name="product: dokki render test"
-                          product-version="version: 1.1">
-            </dokki-header>
-
-            <product-name>
-            </product-name>
-
-            <dokki-tip>
-                Lorem ipsum
-            </dokki-tip>
-
-            <dokki-tip>
-                <p>Lorem ipsum</p>
-                <p>Ipsum lorem</p>
-                <p>Lorem ipsum</p>
-            </dokki-tip>
-
-            <dokki-warning>
-                Lorem ipsum
-            </dokki-warning>
-
-            <dokki-warning>
-                <p>Lorem ipsum</p>
-                <p>Ipsum lorem</p>
-                <p>Lorem ipsum</p>
-            </dokki-warning>
-
-            <dokki-image>
-            </dokki-image>
-
-            <dokki-image src="//upload.wikimedia.org/wikipedia/commons/thumb/a/ab/William_Merritt_Chase_-_Seaside_Flowers%2C_1890s.jpg/64px-William_Merritt_Chase_-_Seaside_Flowers%2C_1890s.jpg">
-            </dokki-image>
-
-            <dokki-image src="//upload.wikimedia.org/wikipedia/commons/thumb/a/ab/William_Merritt_Chase_-_Seaside_Flowers%2C_1890s.jpg/64px-William_Merritt_Chase_-_Seaside_Flowers%2C_1890s.jpg">
-                <template #caption>
-                    Lorem ipsum
-                </template>
-            </dokki-image>
-
-            <dokki-image expanded src="//upload.wikimedia.org/wikipedia/commons/thumb/7/7f/Mature_flower_diagram.svg/128px-Mature_flower_diagram.svg.png">
-            </dokki-image>
-
-            <dokki-image expanded src="//upload.wikimedia.org/wikipedia/commons/thumb/a/ab/William_Merritt_Chase_-_Seaside_Flowers%2C_1890s.jpg/64px-William_Merritt_Chase_-_Seaside_Flowers%2C_1890s.jpg">
-                <template #caption>
-                    Lorem ipsum
-                </template>
-            </dokki-image>
-
-            <dokki-video>
-            </dokki-video>
-
-            <dokki-video platform="youtube" src="ZgWGmggi5Xo">
-                <template #caption>
-                    Lorem ipsum
-                </template>
-            </dokki-video>
-
-            <dokki-iframe>
-            </dokki-iframe>
-
-            <dokki-iframe title="Lorem ipsum">
-            </dokki-iframe>
-
-            <dokki-iframe title="Lorem ipsum" expanded height="100px">
-            </dokki-iframe>
-
-            <dokki-iframe title="Lorem ipsum" expanded height="200px">
-            </dokki-iframe>
-
-            <dokki-console>
-            </dokki-console>
-
-            <dokki-console platform="unix">
-            </dokki-console>
-
-            <dokki-console platform="windows">
-            </dokki-console>
-
-            <dokki-console command="Lorem ipsum">
-            </dokki-console>
-
-            <dokki-console command="Lorem ipsum">
-                <template #output>
-                    <pre>
-                        Line 1
-                        Line  2
-
-
-                        Line     5
-
-                        Line       7
-                    </pre>
-                </template>
-            </dokki-console>
-
-            <dokki-console headerless command="Lorem ipsum">
-                <template #output>
-                    <pre>
-                        Line 1
-                        Line  2
-
-
-                        Line     5
-
-                        Line       7
-                    </pre>
-                </template>
-            </dokki-console>
-
-            <dokki-output>
-            </dokki-output>
-
-            <dokki-output title="Lorem ipsum">
-            </dokki-output>
-
-            <dokki-output expanded>
-            </dokki-output>
-
-            <dokki-output expanded>
-                Lorem ipsum
-            </dokki-output>
-
-            <dokki-output>
-                <p>Lorem ipsum</p>
-                <p>Ipsum lorem</p>
-                <p>Lorem ipsum</p>
-            </dokki-output>
-
-            <dokki-output expanded>
-                <p>Lorem ipsum</p>
-                <p>Ipsum lorem</p>
-                <p>Lorem ipsum</p>
-            </dokki-output>
-
-            <dokki-output expanded>
-                Lorem ipsum
-                <dokki-output expanded>
-                    Lorem ipsum
-                    <dokki-output expanded>
-                        Lorem ipsum
-                    </dokki-output>
-                </dokki-output>
-            </dokki-output>
-
-            <dokki-output expanded>
-                <p>Lorem ipsum</p>
-                <dokki-output expanded>
-                    <p>Lorem ipsum</p>
-                    <dokki-output expanded>
-                        <p>Lorem ipsum</p>
-                    </dokki-output>
-                </dokki-output>
-            </dokki-output>
-
-            <dokki-spoiler>
-            </dokki-spoiler>
-
-            <dokki-spoiler title="Lorem ipsum">
-            </dokki-spoiler>
-
-            <dokki-spoiler expanded>
-            </dokki-spoiler>
-
-            <dokki-spoiler expanded>
-                Lorem ipsum
-            </dokki-spoiler>
-
-            <dokki-spoiler>
-                <p>Lorem ipsum</p>
-                <p>Ipsum lorem</p>
-                <p>Lorem ipsum</p>
-            </dokki-spoiler>
-
-            <dokki-spoiler expanded>
-                <p>Lorem ipsum</p>
-                <p>Ipsum lorem</p>
-                <p>Lorem ipsum</p>
-            </dokki-spoiler>
-
-            <dokki-code>
-                <template #code>
-                    <pre>
-                        Line 1
-                        Line  2
-
-
-                        Line     5
-
-                        Line       7
-                    </pre>
-                </template>
-            </dokki-code>
-
-            <dokki-code code="
-                        Line 1
-                        Line  2
-
-
-                        Line     5
-
-                        Line       7
-                        ">
-            </dokki-code>
-
-            <dokki-code headerless>
-                <template #code>
-                    <pre>
-                        Line 1
-                        Line  2
-
-
-                        Line     5
-
-                        Line       7
-                    </pre>
-                </template>
-            </dokki-code>
-
-            <dokki-code title="HTML"
-                                code="
-                                <i class='fas fa-fw fa-hammer'></i>
-                                <i class='fas fa-fw fa-screwdriver'></i>
-                                <i class='fas fa-fw fa-wrench'></i>
-                                ">
-
-                <dokki-output expanded>
-                    <i class="fas fa-fw fa-hammer"></i>
-                    <i class="fas fa-fw fa-screwdriver"></i>
-                    <i class="fas fa-fw fa-wrench"></i>
-                </dokki-output>
-
-            </dokki-code>
-
-            <dokki-code>
-                <template #code>
-                    <pre>
-                        Lorem
-                        ipsum
-
-                        Lipsum
-                    </pre>
-                </template>
-
-                <dokki-output>
-                    Lorem ipsum Lipsum
-                </dokki-output>
-            </dokki-code>
-
-            <dokki-code>
-                <template #code>
-                    <pre>
-                        Lorem
-                        ipsum
-
-                        Lipsum
-                    </pre>
-                </template>
-
-                <dokki-output title="Lorem ipsum">
-                    Lorem ipsum Lipsum
-                </dokki-output>
-            </dokki-code>
-
-            <dokki-code>
-                <template #code>
-                    <pre>
-                        Lorem
-                        ipsum
-
-                        Lipsum
-                    </pre>
-                </template>
-
-                <dokki-output expanded>
-                    Lorem ipsum Lipsum
-                </dokki-output>
-            </dokki-code>
-
-            <dokki-code>
-                <template #code>
-                    <pre>
-                        Lorem
-                        ipsum
-
-                        Lipsum
-                    </pre>
-                </template>
-
-                <dokki-output expanded title="Lorem ipsum">
-                    Lorem ipsum Lipsum
-                </dokki-output>
-            </dokki-code>
-
-            <dokki-table>
-                <template #table>
-                    <table>
-                        <tr>
-                            <th>Lorem</th>
-                            <th>Ipsum</th>
-                        </tr>
-                        <tr>
-                            <td>Ipsum</td>
-                            <td>Lorem</td>
-                        </tr>
-                    </table>
-                </template>
-            </dokki-table>
-
-            <dokki-table>
-                <template #caption>
-                    Lorem ipsum
-                </template>
-
-                <template #table>
-                    <table>
-                        <tr>
-                            <th>Lorem</th>
-                            <th>Ipsum</th>
-                        </tr>
-                        <tr>
-                            <td>Ipsum</td>
-                            <td>Lorem</td>
-                        </tr>
-                    </table>
-                </template>
-            </dokki-table>
-
-            <dokki-table expanded>
-                <template #table>
-                    <table>
-                        <tr>
-                            <th>Lorem</th>
-                            <th>Ipsum</th>
-                        </tr>
-                        <tr>
-                            <td>Ipsum</td>
-                            <td>Lorem</td>
-                        </tr>
-                    </table>
-                </template>
-            </dokki-table>
-
-            <dokki-table expanded>
-                <template #caption>
-                    Lorem ipsum
-                </template>
-
-                <template #table>
-                    <table>
-                        <tr>
-                            <th>Lorem</th>
-                            <th>Ipsum</th>
-                        </tr>
-                        <tr>
-                            <td>Ipsum</td>
-                            <td>Lorem</td>
-                        </tr>
-                    </table>
-                </template>
-            </dokki-table>
-
-            <dokki-topic title="Lorem ipsum">
-                Ipsum lorem
-                <p>Ipsum lorem</p>
-
-                <dokki-subtopic title="Lorem ipsum">
-                    Ipsum lorem
-                    <p>Ipsum lorem</p>
-                </dokki-subtopic>
-
-                <dokki-item title="Lorem ipsum">
-                    Ipsum lorem
-                    <p>Ipsum lorem</p>
-                </dokki-item>
-            </dokki-topic>
-
-            <dokki-lorem>
-            </dokki-lorem>
-
-            <dokki-lorem>
-            </dokki-lorem>
-
-            <dokki-area>
-            </dokki-area>
-
-            <dokki-area>
-                Lorem ipsum
-            </dokki-area>
-
-            <dokki-area>
-                <p>Lorem ipsum</p>
-                <p>Ipsum lorem</p>
-                <p>Lorem ipsum</p>
-            </dokki-area>
-
-            <dokki-topic title="Lorem">
-                <dokki-lorem>
-                </dokki-lorem>
-
-                <dokki-tip>
-                    Lorem ipsum
-                </dokki-tip>
-
-                <dokki-lorem>
-                </dokki-lorem>
-
-                <dokki-lorem>
-                </dokki-lorem>
-
-                <dokki-output>
-                </dokki-output>
-
-                <dokki-iframe>
-                </dokki-iframe>
-
-                <dokki-lorem>
-                </dokki-lorem>
-            </dokki-topic>
-        </template>
+        <script>
+            // A template containing the dokki components we want to render.
+            const testsTemplate = (async()=>
+            {
+                const targetTest = (new URLSearchParams(window.location.search).get("test-template") || "full");
+
+                try
+                {
+                    const page = await fetch(`./tests-templates/${targetTest}.html`);
+                    const html = await page.text();
+                    const document = new DOMParser().parseFromString(html, "text/html");
+                    const template = document.getElementById("dokki-render-ab-test-template");
+
+                    if (!(template instanceof HTMLTemplateElement))
+                    {
+                        throw new Error("Invalid test template");
+                    }
+
+                    mount_tests_template(template);
+                    taskCompletionStatus.testsTemplateAvailable = true;
+
+                    return template;
+                }
+                catch (error)
+                {
+                    throw error;
+                }
+            })();
+        </script>
 
         <script>
-            const dokkiContainer = document.querySelector("#test-container");
+            const testContainer = document.querySelector("#test-container");
+
+            if (!(testContainer instanceof HTMLElement))
+            {
+                throw new Error("Invalid dokki container");
+            }
         </script>
 
         <script>
@@ -504,76 +214,49 @@
 
         <script>
             const dokkiTheme = (new URLSearchParams(window.location.search).get("theme") || "light");
-            dokkiContainer.dataset.dokkiTheme = dokkiTheme;
-        </script>
-        
-        <script>
-            window.addEventListener("load", (event)=>
-            {
-                dokki.start({
-                    container: dokkiContainer
-                });
-
-                /// Temporary hack - wait for Vue to initialize and all assets (e.g. images)
-                /// that were in Vue templates to load in as well. But there really needs to
-                /// be a better, more reliable, less hacky way.
-                setTimeout(()=>
-                {
-                    send_message_to_parent("dokkiEV-renderer-ready");
-                }, 5000);
-            });
-
-            window.document.addEventListener("dokkiEV-start-rendering", async(event)=>
-            {
-                const result = await render_test_images();
-                send_message_to_parent("dokkiEV-rendering-finished", {result});
-            });
-
-            function send_message_to_parent(eventId = "", data = {})
-            {
-                const message = new CustomEvent(eventId, {detail: data})
-                window.parent.document.dispatchEvent(message);
-
-                return;
-            }
+            testContainer.dataset.dokkiTheme = dokkiTheme;
         </script>
 
         <script>
-            const template = document.querySelector("#tests-template");
-            const components = Array.from(template.content.children);
-            const componentNames = components.map(c=>c.nodeName.toLowerCase());
+            let componentsToTest = [];
+            let componentNames = [];
 
-            mount_test_template();
-
-            function mount_test_template()
+            function mount_tests_template(template)
             {
-                const dstContainer = document.querySelector("#test-container");
+                componentsToTest = Array.from(template.content.children);
+                componentNames = componentsToTest.map(c=>c.nodeName.toLowerCase());
 
-                // Mount all components into the test container. Note: We put each component
-                // into its own padded container to make sure the image we'll produce of the
-                // component won't exclude drop shadows.
-                for (const component of components)
+                // Note: We put each component into its own padded container to make sure
+                // the image we'll produce of the component won't exclude drop shadows.
                 {
-                    const componentClone = component.cloneNode(true);
-                    const componentContainer = document.createElement("div");
+                    for (const component of componentsToTest)
+                    {
+                        const componentClone = component.cloneNode(true);
+                        const componentContainer = document.createElement("div");
 
-                    componentContainer.classList.add("component-container");
-                    componentContainer.appendChild(componentClone);
-                    dstContainer.appendChild(componentContainer);
+                        componentContainer.classList.add("component-container");
+                        componentContainer.appendChild(componentClone);
+                        testContainer.appendChild(componentContainer);
+                    }
+
+                    taskCompletionStatus.testComponentsMounted = true;
                 }
-
-                template.remove();
             }
-
-            async function render_test_images()
+            
+            async function render_component_images()
             {
-                const srcContainer = document.querySelector("#test-container");
-                const mountedComponents = Array.from(srcContainer.children).filter(c=>c.className=="component-container");
+                const mountedComponents = Array.from(testContainer.children).filter(c=>c.className=="component-container");
+                const componentImages = [];
+
+                for (const component of mountedComponents)
+                {
+                    componentImages.push(await domtoimage.toPng(component));
+
+                    const percDone = Math.round((100 * (componentImages.length / mountedComponents.length)));
+                    send_message_to_parent("dokkiEV-renderer-progress", {percDone});
+                }
                 
-                return {
-                    images: await Promise.all(mountedComponents.map(c=>domtoimage.toPng(c))),
-                    names: componentNames
-                };
+                return {componentImages, componentNames};
             }
         </script>
     </body>
