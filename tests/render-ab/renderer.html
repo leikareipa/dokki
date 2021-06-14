@@ -4,10 +4,23 @@
         <meta name="viewport" content="width=device-width">
         <meta http-equiv="content-type" content="text/html; charset=UTF-8">
 
-        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css" crossorigin="anonymous">
         <script src="https://cdn.jsdelivr.net/npm/vue@3.1.1/dist/vue.global.js"></script>
         <script src="https://unpkg.com/vuex@4.0.0/dist/vuex.global.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/dom-to-image@2.6.0/dist/dom-to-image.min.js"></script>
+
+        <script>
+            const useFontAwesome = (new URLSearchParams(window.location.search).get("includeFontAwesome") || "true");
+
+            if (useFontAwesome == "true")
+            {
+                const faLink = document.createElement("link");
+                faLink.rel = "stylesheet";
+                faLink.href = "https://use.fontawesome.com/releases/v5.12.0/css/all.css";
+                faLink.crossOrigin = "anonymous";
+
+                document.head.appendChild(faLink);
+            }
+        </script>
 
         <script>
             function send_message_to_parent(eventId = "", data = {})
@@ -80,7 +93,7 @@
             function wait_for_all_tasks_to_complete()
             {
                 const startTimeSec = (Date.now() / 1000);
-                const maxWaitTimeSec = 10;
+                const maxWaitTimeSec = 20;
 
                 return new Promise((resolve, reject)=>
                 {
@@ -183,7 +196,7 @@
             // A template containing the dokki components we want to render.
             const testsTemplate = (async()=>
             {
-                const targetTest = (new URLSearchParams(window.location.search).get("test-template") || "full");
+                const targetTest = (new URLSearchParams(window.location.search).get("testTemplate") || "full");
 
                 try
                 {
@@ -210,7 +223,7 @@
         </script>
 
         <script>
-            const dokkiPath = (new URLSearchParams(window.location.search).get("dokki-path") || "./");
+            const dokkiPath = (new URLSearchParams(window.location.search).get("dokkiPath") || "./");
 
             const dokkiCode = document.createElement("script");
             dokkiCode.src = `${dokkiPath}/dokki.dev.js`;

@@ -479,8 +479,8 @@
                     const percDone = event.detail.percDone;
                     progressPercentage.innerHTML = ` ${percDone}%`;
                 });
-
-                renderer.src = `./renderer.html?test-template=full&theme=light&dokki-path=${target.dokkiPath}`;
+                
+                renderer.src = `./renderer.html?includeFontAwesome=true&testTemplate=full&theme=light&dokkiPath=${target.dokkiPath}`;
                 renderer.dstContainer = target.resultsContainer;
             }
 
