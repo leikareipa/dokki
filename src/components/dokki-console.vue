@@ -21,7 +21,7 @@
 
         </header>
 
-        <hr v-if="!isHeaderless">
+        <hr v-if="!isHeaderless && hasFooter">
 
         <footer v-if="hasFooter">
             <dokki0-text-block-with-line-numbers :text="outputFromSlot || output">
