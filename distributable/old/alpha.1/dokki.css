@@ -566,6 +566,7 @@ body[data-dokki-theme="integration-test"]
     padding: 8px;
     border: none;
     white-space: nowrap;
+    text-align: left;
 }
 
 .dokkiCSS-embedded.dokki-table > .table-container table tr
