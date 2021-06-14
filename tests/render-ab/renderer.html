@@ -56,6 +56,27 @@
                 }, 5000);
             })();
 
+            function wait_for_task_completion(taskName)
+            {
+                if (!taskCompletionStatus.hasOwnProperty(taskName))
+                {
+                    throw new Error("Unknown task");
+                }
+
+                return new Promise((resolve, reject)=>
+                {
+                    const waitForComplete = setInterval(()=>
+                    {
+                        if (taskCompletionStatus[taskName])
+                        {
+                            resolve();
+                            clearInterval(waitForComplete);
+                            return;
+                        }
+                    }, 100);
+                });
+            }
+
             function wait_for_all_tasks_to_complete()
             {
                 const startTimeSec = (Date.now() / 1000);
@@ -91,10 +112,15 @@
         </script>
 
         <script>
-            window.addEventListener("load", (event)=>
+            window.addEventListener("load", async(event)=>
             {
                 taskCompletionStatus.pageLoaded = true;
 
+                // Not waiting for the test components (= Vue components) to be mounted
+                // before starting the dokki Vue app can cause some in-component templates
+                // to not be processed properly before they're rendered into images with
+                // dom-to-image.
+                await wait_for_task_completion("testComponentsMounted");
                 dokki.start({container: testContainer});
                 taskCompletionStatus.dokkiStarted = true;
             });
@@ -153,10 +179,6 @@
         </style>
     </head>
     <body>
-        <div id="test-container"
-             class="dokkiCSS-document-container">
-        </div>
-
         <script>
             // A template containing the dokki components we want to render.
             const testsTemplate = (async()=>
@@ -188,15 +210,6 @@
         </script>
 
         <script>
-            const testContainer = document.querySelector("#test-container");
-
-            if (!(testContainer instanceof HTMLElement))
-            {
-                throw new Error("Invalid dokki container");
-            }
-        </script>
-
-        <script>
             const dokkiPath = (new URLSearchParams(window.location.search).get("dokki-path") || "./");
 
             const dokkiCode = document.createElement("script");
@@ -213,34 +226,45 @@
         </script>
 
         <script>
-            const dokkiTheme = (new URLSearchParams(window.location.search).get("theme") || "light");
-            testContainer.dataset.dokkiTheme = dokkiTheme;
-        </script>
-
-        <script>
+            let testContainer = undefined;
             let componentsToTest = [];
             let componentNames = [];
 
             function mount_tests_template(template)
             {
+                const dokkiTheme = (new URLSearchParams(window.location.search).get("theme") || "light");
+                
+                testContainer = document.createElement("div")
+                testContainer.id = "test-container";
+                testContainer.classList.add("dokkiCSS-document-container");
+                testContainer.dataset.dokkiTheme = dokkiTheme;
+
                 componentsToTest = Array.from(template.content.children);
                 componentNames = componentsToTest.map(c=>c.nodeName.toLowerCase());
 
                 // Note: We put each component into its own padded container to make sure
                 // the image we'll produce of the component won't exclude drop shadows.
+                for (const component of componentsToTest)
                 {
-                    for (const component of componentsToTest)
-                    {
-                        const componentClone = component.cloneNode(true);
-                        const componentContainer = document.createElement("div");
+                    const componentClone = component.cloneNode(true);
+                    const componentContainer = document.createElement("div");
 
-                        componentContainer.classList.add("component-container");
-                        componentContainer.appendChild(componentClone);
-                        testContainer.appendChild(componentContainer);
-                    }
-
-                    taskCompletionStatus.testComponentsMounted = true;
+                    componentContainer.classList.add("component-container");
+                    componentContainer.appendChild(componentClone);
+                    testContainer.appendChild(componentContainer);
                 }
+
+                const mo = new MutationObserver(()=>
+                {
+                    if (document.body.contains(testContainer))
+                    {
+                        taskCompletionStatus.testComponentsMounted = true;
+                        mo.disconnect();
+                    }
+                });
+
+                mo.observe(document.body, {childList: true});
+                document.body.appendChild(testContainer);
             }
             
             async function render_component_images()
@@ -250,6 +274,8 @@
 
                 for (const component of mountedComponents)
                 {
+                    console.log("Rendering", componentNames[componentImages.length]);
+
                     componentImages.push(await domtoimage.toPng(component));
 
                     const percDone = Math.round((100 * (componentImages.length / mountedComponents.length)));
