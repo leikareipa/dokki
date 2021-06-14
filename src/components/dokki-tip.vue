@@ -6,7 +6,7 @@
  */
 
 <template>
-    <p class="dokkiCSS-embedded dokki-tip casts-shadow">
+    <p class="dokkiCSS-embedded dokki-tip">
 
         <header>
             <div class="dokkiCSS-title">

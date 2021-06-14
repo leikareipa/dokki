@@ -40,7 +40,7 @@ import {expandedPropMixin} from "../component-mixins.js";
 
 export default {
     props: {
-        src: {},
+        src: {default: "//about:blank"},
     },
     mixins: [expandedPropMixin],
     computed: {

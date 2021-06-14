@@ -30,25 +30,28 @@ import dokkiWarning from "./components/dokki-warning.vue";
 import dokki0TextBlockWithLineNumbers from "./components/dokki0-text-block-with-line-numbers.vue";
 import productName from "./components/product-name.vue";
 
-window.addEventListener("DOMContentLoaded", ()=>
+export function start(args = {})
 {
-    // Prepare the DOM for mounting the app.
+    args = {
+        container: document.body,
+        template: document.querySelector("#dokki-document"),
+        ...args,
+    };
+
+    console.assert(args.container instanceof HTMLElement,
+                   "Invalid document container");
+
+    if (args.template instanceof HTMLTemplateElement)
     {
-        const documentBodyTemplate = document.querySelector("#dokki-document");
-        const whileInitializingElement = document.querySelector(".dokki-while-initializing");
-
-        if (!(documentBodyTemplate instanceof HTMLTemplateElement)) {
-            throw new Error("No document body found.");
-        }
-
-        document.body.appendChild(documentBodyTemplate.content)
-        documentBodyTemplate.remove();
-
-        if (whileInitializingElement) {
-            whileInitializingElement.remove();
-        }
+        args.container.appendChild(args.template.content)
+        args.template.remove();
     }
-    
+    else
+    {
+        console.assert((args.template === null),
+                       "Invalid document template");
+    }
+
     Vue.createApp({})
     .component("dokki-area", dokkiArea)
     .component("dokki-code", dokkiCode)
@@ -72,5 +75,7 @@ window.addEventListener("DOMContentLoaded", ()=>
     .component("dokki0-text-block-with-line-numbers", dokki0TextBlockWithLineNumbers)
     .component("product-name", productName)
     .use(store)
-    .mount("body");
-});
+    .mount(args.container);
+
+    return;
+}

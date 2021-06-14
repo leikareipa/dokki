@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width">
+        <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css" crossorigin="anonymous">
+        <style>
+            :root
+            {
+                --content-max-width: 880px;
+            }
+
+            body
+            {
+                font-family: sans-serif;
+                padding: 0;
+                margin: 0;
+                text-align: center;
+            }
+
+            header
+            {
+                display: inline-block;
+                justify-content: center;
+                max-width: var(--content-max-width);
+                text-align: center;
+            }
+
+            iframe
+            {
+                position: absolute;
+                top: 0;
+                left: 0;
+                display: inline;
+                border: none;
+                margin: 0;
+                padding: 0;
+                width: 0;
+                height: 0;
+            }
+
+            .section
+            {
+                margin-bottom: 45px;
+            }
+
+            .waiting-spinner
+            {
+                width: 100%;
+                text-align: center;
+                padding: 10px;
+                box-sizing: border-box;
+            }
+
+            #results-space
+            {
+                display: flex;
+                justify-content: center;
+            }
+
+            #mismatches-container
+            {
+                max-width: var(--content-max-width);
+                text-align: center;
+                border: 1px solid lightgray;
+                border-radius: 100px;
+                padding: 15px;
+                line-break: anywhere;
+            }
+
+            #mismatches-container.success
+            {
+                border-color: mediumseagreen;
+                background-color: mediumseagreen;
+                color: white;
+            }
+
+            #mismatches-container.failure
+            {
+                border-color: crimson;
+                background-color: crimson;
+                color: white;
+            }
+
+            #mismatches-container.failure > a,
+            #mismatches-container.failure > a:visited
+            {
+                color: white;
+                font-weight: bold;
+                white-space: nowrap;
+            }
+
+            #mismatches-container > *
+            {
+                margin: 4px;
+            }
+
+            #test-space
+            {
+                display: flex;
+                width: 100%;
+                justify-content: center;
+            }
+
+            #main-test-container
+            {
+                width: 880px;
+                max-width: 100%;
+                display: flex;
+                align-items: flex-start;
+                border-top: 1px dotted lightgray;
+            }
+
+            #results-container-b,
+            #results-container-a
+            {
+                box-sizing: content-box;
+            }
+
+            #results-container-a
+            {
+                border-left: 1px dotted lightgray;
+                border-right: 1px dotted lightgray;
+            }
+
+            #results-container-a > header::before
+            {
+                content: "A";
+            }
+
+            #results-container-a .component-tag
+            {
+                transform: translateX(calc(-100% - 1px));
+                border-right: none;
+            }
+
+            #results-container-b
+            {
+                border-right: 1px dotted lightgray;
+            }
+
+            #results-container-b > header::before
+            {
+                content: "B";
+            }
+
+            #results-container-b .component-tag
+            {
+                right: 0;
+                transform: translateX(calc(100% + 1px));
+                border-left: none;
+            }
+            
+            .results-container
+            {
+                width: 50%;
+                height: auto;
+                border-bottom: 1px dotted lightgray;
+            }
+
+            .results-container > :only-child
+            {
+                border-bottom: none;
+            }
+
+            .results-container > .component-container:last-child
+            {
+                border-bottom: none;
+            }
+
+            .results-container > header
+            {
+                color: gray;
+                padding: 12px;
+                top: 0;
+                z-index: 9999999;
+                text-align: left;
+                width: 100%;
+                box-sizing: border-box;
+                margin: 0;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                border-bottom: 1px dotted lightgray;
+            }
+
+            .results-container > header::before
+            {
+                font-size: 150%;
+                margin-right: 10px;
+            }
+
+            .results-container:hover > header
+            {
+                color: inherit;
+            }
+
+            .results-container > hr
+            {
+                margin: 0;
+                border: none;
+                border-bottom: 1px dotted lightgray;
+            }
+            
+            .component-container
+            {
+                display: flex;
+                position: relative;
+                border-bottom: 1px dotted lightgray;
+            }
+
+            .component-tag
+            {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                position: absolute;
+                top: -1px;
+                padding: 0 5px;
+                height: 100%;
+                border: 1px dotted lightgray;
+                width: 170px;
+                color: gray;
+            }
+
+            .component-container:hover > .component-tag
+            {
+                color: inherit;
+            }
+
+            .error-marker
+            {
+                position: absolute;
+                background-color: crimson;
+                color: white;
+                width: 40px;
+                height: 40px;
+                line-height: 40px;
+                top: 0;
+                right: 0;
+                text-align: center;
+                z-index: 99999;
+                font-size: 80%;
+            }
+
+            .error-marker > a
+            {
+                color: white;
+                text-decoration: none;
+            }
+
+            .deemphasized-background
+            {
+                background: repeating-linear-gradient(
+                    -45deg,
+                    #fcfcfc,
+                    #fcfcfc 4px,
+                    transparent 4px,
+                    transparent 8px
+                );
+            }
+
+            @media only screen and (max-width: 1270px)
+            {
+                .component-tag
+                {
+                    display: none;
+                }
+
+                .component-container
+                {
+                    overflow: auto;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <iframe id="renderer"></iframe>
+
+        <header class="section">
+            
+            <h1>dokki &ndash; automated A/B render test</h1>
+
+            This test renders various dokki components using two different versions
+            of the dokki distributable; for example, an earlier reference point (A)
+            and an in-dev distro (B). The test then compares the resulting images
+            pixel-for-pixel to find and report any mismatches &ndash; which might
+            indicate code regressions or the like. The test should complete in about
+            a minute.
+
+        </header>
+
+        <div id="results-space" class="section">
+
+            <div id="mismatches-container">
+                Mismatches: <i class="fas fa-spin fa-spinner"></i>
+            </div>
+
+        </div>
+
+        <div id="test-space" class="section">
+
+            <div id="main-test-container">
+
+                <div id="results-container-a" class="results-container">
+                    <header class="deemphasized-background">
+                    </header>
+                </div>
+                
+                <div id="results-container-b" class="results-container">
+                    <header class="deemphasized-background">
+                    </header>
+                </div>
+
+            </div>
+
+        </div>
+
+        <script>
+            const renderer = document.querySelector("#renderer");
+            console.assert((renderer instanceof HTMLElement), "Missing the renderer element");
+
+            window.document.addEventListener("dokkiEV-renderer-ready", ()=>
+            {
+                let waitForSelfReady = setInterval(()=>
+                {
+                    if (document.readyState == "complete")
+                    {
+                        send_message_to_renderer("dokkiEV-start-rendering");
+                        clearInterval(waitForSelfReady);
+                    }
+                }, 10);
+            });
+
+            window.document.addEventListener("dokkiEV-rendering-finished", (event)=>
+            {
+                process_render_results({
+                    images: event.detail.result.images,
+                    names: event.detail.result.names,
+                    dstContainer: renderer.dstContainer
+                });
+
+                render_next_target();
+            });
+
+            function send_message_to_renderer(eventId = "", data = {})
+            {
+                const message = new CustomEvent(eventId, {detail: data})
+                document.querySelector('#renderer').contentDocument.dispatchEvent(message);
+
+                return;
+            }
+        </script>
+
+        <script>
+            function process_render_results(results)
+            {
+                const images = results.images;
+                const names = results.names;
+                const dstContainer = results.dstContainer;
+                
+                console.assert((images.length == names.length),
+                               "Malformed arguments");
+
+                dstContainer.querySelector(".waiting-spinner").remove();
+                
+                const resultColumn = resultColumns[resultColumns.length] = [];
+                console.assert((images.length == names.length), "Malformed return data");
+
+                for (let i = 0; i < images.length; i++)
+                {
+                    const img = new Image();
+                    img.src = images[i];
+
+                    const componentContainer = document.createElement("div");
+                    componentContainer.classList.add("component-container");
+                    componentContainer.appendChild(img);
+
+                    resultColumn.push({
+                        imageDataUrl: images[i],
+                        container: componentContainer
+                    });
+
+                    const componentTag = document.createElement("div");
+                    componentTag.textContent = `<${names[i]}>`;
+                    componentTag.title = `<${names[i]}>`;
+                    componentTag.classList.add("component-tag", "deemphasized-background");
+                    componentContainer.appendChild(componentTag);
+
+                    dstContainer.appendChild(componentContainer);
+                }
+            }
+
+            function render_next_target()
+            {
+                if (!renderTargets.length)
+                {
+                    /// TODO: Less hacky way than setTimeout() to ensure that the latest
+                    /// test results have been entered (by process_render_results()) into
+                    /// the DOM.
+                    setTimeout(()=>
+                    {
+                        adjust_containers();
+                        report_mismatches(find_mismatches());
+                    }, 1000);
+
+                    return;
+                }
+
+                const target = renderTargets.shift();
+
+                const waitingSpinner = document.createElement("div");
+                waitingSpinner.classList.add("waiting-spinner");
+                waitingSpinner.innerHTML = "<i class='fas fa-fw fa-spin fa-spinner'></i> Rendering...";
+                target.resultsContainer.appendChild(waitingSpinner);
+
+                renderer.src = `./renderer.html?theme=light&dokki-path=${target.dokkiPath}`;
+                renderer.dstContainer = target.resultsContainer;
+            }
+
+            function adjust_containers()
+            {
+                console.assert((resultColumns.length == 2),
+                               "Expected 2 image columns");
+
+                console.assert((resultColumns[0].length == resultColumns[1].length),
+                               "Mismatched image column lengths");
+
+                const numComponents = resultColumns[0].length;
+
+                // 
+                for (let i = 0; i < numComponents; i++)
+                {
+                    const c1 = resultColumns[0][i].container;
+                    const c2 = resultColumns[1][i].container;
+                    const h1 = c1.offsetHeight;
+                    const h2 = c2.offsetHeight;
+
+                    const taller = Math.max(h1, h2);
+                    c1.style.paddingBottom = `${Math.abs(h1 - taller)}px`;
+                    c2.style.paddingBottom = `${Math.abs(h2 - taller)}px`;
+                }
+
+                return;
+            }
+
+            function find_mismatches()
+            {
+                console.assert((resultColumns.length == 2),
+                               "Expected 2 image columns");
+
+                console.assert((resultColumns[0].length == resultColumns[1].length),
+                               "Mismatched image column lengths");
+
+                const mismatches = [];
+                const numComponents = resultColumns[0].length;
+
+                for (let i = 0; i < numComponents; i++)
+                {
+                    if (resultColumns[0][i].imageDataUrl != resultColumns[1][i].imageDataUrl)
+                    {
+                        const errorId = `mismatch-${mismatches.length+1}`;
+
+                        const errMarker = document.createElement("div");
+                        errMarker.id = errorId;
+                        errMarker.classList.add("error-marker");
+
+                        const errLink = document.createElement("a");
+                        errLink.href = `#${errorId}`;
+                        errMarker.appendChild(errLink);
+
+                        const errContents = document.createElement("div");
+                        errContents.textContent = `#${mismatches.length+1}`;
+                        errLink.appendChild(errContents);
+
+                        resultColumns[1][i].container.appendChild(errMarker);
+
+                        mismatches.push({
+                            href: errLink.href,
+                        });
+                    }
+                }
+
+                return mismatches;
+            }
+
+            function report_mismatches(mismatches)
+            {
+                const resultsContainer = document.querySelector("#mismatches-container");
+                console.assert((resultsContainer instanceof HTMLElement),
+                               "Missing the results container");
+
+                resultsContainer.innerHTML = mismatches.length
+                                             ? `Mismatches:`
+                                             : `Mismatches: none <i class="fas fa-check"></i>`;
+
+                resultsContainer.classList.add(mismatches.length? "failure" : "success");
+                
+                for (let i = 0; i < mismatches.length; i++)
+                {
+                    const mismatchLink = document.createElement("a");
+                    mismatchLink.textContent = `#${i+1}`;
+                    mismatchLink.href = mismatches[i].href;
+
+                    resultsContainer.appendChild(mismatchLink);
+                }
+            }
+        </script>
+
+        <script>
+            const resultColumns = [];
+
+            const renderTargets = [
+                {
+                    dokkiPath: "../../distributable/old/alpha.1/",
+                    resultsContainer: document.querySelector("#results-container-a"),
+                },
+                {
+                    dokkiPath: "../../distributable/",
+                    resultsContainer: document.querySelector("#results-container-b"),
+                },
+            ];
+
+            for (const target of renderTargets)
+            {
+                target.resultsContainer.querySelector("header").textContent = target.dokkiPath;
+            }
+
+            render_next_target();
+        </script>
+    </body>
+</html>

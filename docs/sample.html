@@ -3,14 +3,13 @@
     <head>
         <meta name="viewport" content="width=device-width">
         <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-        <link rel="stylesheet"
-              href="https://use.fontawesome.com/releases/v5.12.0/css/all.css"
-              crossorigin="anonymous">
+        
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css" crossorigin="anonymous">
+        <link rel="stylesheet" href="../distributable/dokki.css">
         <script defer src="https://cdn.jsdelivr.net/npm/vue@3.1.1/dist/vue.global.js"></script>
         <script defer src="https://unpkg.com/vuex@4.0.0/dist/vuex.global.js"></script>
-        
         <script defer src="../distributable/dokki.js"></script>
-        <link rel="stylesheet" type="text/css" href="../distributable/dokki.css">
+
         <style>
             .dokki-topic em
             {
@@ -30,6 +29,8 @@
     </head>
     <body>
         <div while-dokki-initializing>
+            <i class="fas fa-comment-dots"
+               style="margin-right: 6px"></i>
             Preparing the document...
         </div>
 
@@ -181,6 +182,9 @@
                     <dokki-area>
                         <dokki-lorem>
                         </dokki-lorem>
+                        <p>
+                            &mdash; Lorem ipsum
+                        </p>
                     </dokki-area>
 
                     <dokki-lorem>

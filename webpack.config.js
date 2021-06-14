@@ -18,9 +18,17 @@ module.exports = {
             },
         ],
     },
+    entry: {
+        "dokki.dev": './src/dokki-dev.js',
+        "dokki": './src/dokki-prod.js',
+    },
     output: {
+        library: {
+            name: "dokki",
+            type: "umd",
+        },
         path: path.resolve(__dirname, "distributable"),
-        filename: "dokki.js",
+        filename: "[name].js",
     },
     plugins: [
         new VueLoaderPlugin()
