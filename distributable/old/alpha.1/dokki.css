@@ -628,8 +628,14 @@ body[data-dokki-theme="integration-test"]
     align-items: center;
 }
 
+.dokkiCSS-embedded.dokki-console > header > code
+{
+    font-size: 110%;
+}
+
 .dokkiCSS-embedded.dokki-console > footer
 {
+    font-size: 110%;
     padding: 14px;
 }
 
