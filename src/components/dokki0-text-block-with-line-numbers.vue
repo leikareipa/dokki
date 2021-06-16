@@ -13,17 +13,19 @@
             :class="{'dokkiCSS-highlighted': highlightLineNum == lineNum}">
 
             <span class="dokkiCSS-anchor dokkiCSS-anchor-text-block-line"
-                    :ref="line_ref(lineNum)">
+                  :ref="line_ref(lineNum)">
             </span>
 
             <td class="dokkiCSS-text-block-line-number"
                 @click="highlight_line(lineNum)">
 
                 <span v-if="lineNum !== highlightLineNum">
-                    {{lineNum+1}}&nbsp;
+                    {{lineNum+1}}
                 </span>
 
-                <span v-else>&rarr;</span>
+                <span v-else>
+                    &rarr;
+                </span>
 
             </td>
             
@@ -100,11 +102,13 @@ export default {
             let lines = this.text.split("\n");
 
             // Remove empty lines off the front.
-            while (lines.length && !lines[0].trim().length) {
+            while (lines.length && !lines[0].trim().length)
+            {
                 lines.shift();
             }
 
-            if (!lines.length) {
+            if (!lines.length)
+            {
                 return [];
             }
 
@@ -117,7 +121,8 @@ export default {
             }
 
             // Remove empty lines off the back.
-            while (lines.length && !lines[lines.length-1].trim().length) {
+            while (lines.length && !lines[lines.length-1].trim().length)
+            {
                 lines.pop();
             }
 
