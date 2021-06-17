@@ -789,7 +789,7 @@ body,
 {
     :root
     {
-        --dokkiCSS-topic-horizontal-padding: 15px;
+        --dokkiCSS-topic-horizontal-padding: 10px;
     }
 
     .dokki-theme-selector
