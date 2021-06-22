@@ -193,8 +193,7 @@
     </head>
     <body>
         <script>
-            // A template containing the dokki components we want to render.
-            const testsTemplate = (async()=>
+            (async()=>
             {
                 const targetTest = (new URLSearchParams(window.location.search).get("testTemplate") || "full");
 
@@ -212,36 +211,12 @@
 
                     mount_tests_template(template);
                     taskCompletionStatus.testsTemplateAvailable = true;
-
-                    return template;
                 }
                 catch (error)
                 {
                     throw error;
                 }
             })();
-        </script>
-
-        <script>
-            const dokkiPath = (new URLSearchParams(window.location.search).get("dokkiPath") || "./");
-
-            const dokkiCode = document.createElement("script");
-            dokkiCode.src = `${dokkiPath}/dokki.dev.js`;
-            dokkiCode.async = false;
-            dokkiCode.defer = true;
-
-            const dokkiCSS = document.createElement("link");
-            dokkiCSS.rel = "stylesheet";
-            dokkiCSS.href = `${dokkiPath}/dokki.css`;
-            
-            document.head.appendChild(dokkiCSS);
-            document.head.appendChild(dokkiCode);
-        </script>
-
-        <script>
-            let testContainer = undefined;
-            let componentsToTest = [];
-            let componentNames = [];
 
             function mount_tests_template(template)
             {
@@ -279,7 +254,29 @@
                 mo.observe(document.body, {childList: true});
                 document.body.appendChild(testContainer);
             }
+        </script>
+
+        <script>
+            const dokkiPath = (new URLSearchParams(window.location.search).get("dokkiPath") || "./");
+
+            const dokkiCode = document.createElement("script");
+            dokkiCode.src = `${dokkiPath}/dokki.dev.js`;
+            dokkiCode.async = false;
+            dokkiCode.defer = true;
+
+            const dokkiCSS = document.createElement("link");
+            dokkiCSS.rel = "stylesheet";
+            dokkiCSS.href = `${dokkiPath}/dokki.css`;
             
+            document.head.appendChild(dokkiCSS);
+            document.head.appendChild(dokkiCode);
+        </script>
+
+        <script>
+            let testContainer = undefined;
+            let componentsToTest = [];
+            let componentNames = [];
+
             async function render_component_images()
             {
                 const mountedComponents = Array.from(testContainer.children).filter(c=>c.className=="component-container");

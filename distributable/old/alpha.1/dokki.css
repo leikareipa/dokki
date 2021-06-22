@@ -71,12 +71,6 @@ body,
     --dokkiCSS-embedded-footer-bg-color: var(--document-bg-color);
 }
 
-body[data-dokki-theme="integration-test"]
-{
-    --dokkiCSS-page-secondary-bg-color:var(--dokkiCSS-page-primary-bg-color);
-    --dokkiCSS-page-inert-bg-color:var(--dokkiCSS-page-primary-bg-color);
-}
-
 .dokkiCSS-italic
 {
     font-style: italic;
@@ -293,6 +287,7 @@ body[data-dokki-theme="integration-test"]
     z-index: 1;
     border-right: 1px solid var(--dokkiCSS-page-secondary-line-color);
     box-sizing: border-box;
+    min-height: 100vh;
 }
 
 .dokki-topic
@@ -427,9 +422,11 @@ body[data-dokki-theme="integration-test"]
 {
     color: var(--dokkiCSS-page-inert-fg-color);
     user-select: none;
-    width: 0; /* Shrink to minimum required width.*/
+    width: 1ch; /* Shrink to minimum width required by the widest line number <td>.*/
     padding: 0;
     cursor: pointer;
+    white-space: normal;
+    padding-right: 1.5ch;
 }
 
 .dokkiCSS-checker-background
@@ -693,11 +690,24 @@ body[data-dokki-theme="integration-test"]
     flex-direction: column;
 }
 
-.dokkiCSS-embedded.dokki-image > img
+.dokkiCSS-embedded.dokki-image > .dokkiCSS-container
 {
     min-height: 20px;
-    min-width: 100%;
+    display: flex;
+    overflow: auto;
+}
+
+.dokkiCSS-embedded.dokki-image > .dokkiCSS-container > img
+{
     max-width: 100%;
+    width: auto;
+    height: auto;
+}
+
+.dokkiCSS-embedded.dokki-image > .dokkiCSS-container > img.dokkiCSS-upscale-to-fit
+{
+    width: 100%;
+    height: 100%;
 }
 
 .dokkiCSS-embedded.dokki-image > header > .dokkiCSS-title::after
@@ -792,7 +802,7 @@ body[data-dokki-theme="integration-test"]
 {
     :root
     {
-        --dokkiCSS-topic-horizontal-padding: 15px;
+        --dokkiCSS-topic-horizontal-padding: 10px;
     }
 
     .dokki-theme-selector

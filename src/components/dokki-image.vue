@@ -23,9 +23,13 @@
 
         <hr v-if="isExpanded">
 
-        <img v-if="isExpanded"
-             class="dokkiCSS-checker-background"
-             :src="src">
+        <div v-if="isExpanded"
+             class="dokkiCSS-container dokkiCSS-checker-background">
+
+            <img :src="src"
+                 :class="{'dokkiCSS-upscale-to-fit': hasUpscaleToFit}">
+
+        </div>
 
         <hr v-if="hasFooter">
 
@@ -41,12 +45,17 @@ import {expandedPropMixin} from "../component-mixins.js";
 export default {
     props: {
         src: {default: "//about:blank"},
+        upscaleToFit: {default: undefined},
     },
     mixins: [expandedPropMixin],
     computed: {
         hasFooter()
         {
             return !!this.$slots.caption;
+        },
+        hasUpscaleToFit()
+        {
+            return (this.$props.upscaleToFit !== undefined);
         }
     },
 }
