@@ -805,7 +805,7 @@ body,
         --dokkiCSS-topic-horizontal-padding: 10px;
     }
 
-    .dokki-theme-selector
+    body:not([sandbox-for-dokki-ab-render-test]) .dokki-theme-selector
     {
         display: none;
     }
