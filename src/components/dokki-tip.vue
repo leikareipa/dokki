@@ -10,7 +10,7 @@
 
         <header>
             <div class="dokkiCSS-title">
-                <i class="fas fa-seedling"/>
+                <i class="fas fa-comment"/>
             </div>
         </header>
 

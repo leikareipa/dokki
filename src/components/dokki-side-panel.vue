@@ -6,21 +6,18 @@
  */
 
 <template>
-        <nav class="dokki-side-panel">
+    <nav class="dokki-side-panel">
 
         <div v-if="productName !== undefined"
              :title="productName"
              class="dokkiCSS-product-tag">
 
-            <i class="fas fa-fw fa-caret-down"/>
             {{productName}}
 
         </div>
         <div v-else class="dokkiCSS-product-tag">
 
-            <i class="fas fa-fw fa-caret-down"
-               style="color: gray;"/>
-            Contents
+            Topics
 
         </div>
 
@@ -69,12 +66,19 @@ export default {
                             ? this.$store.state.productVersion
                             : "";
 
-            if (!name.length || !version.length)
-            {
-                return undefined;
+            if (name.length && !version.length) {
+                return name;
             }
 
-            return `${name} ${version}`;
+            if (!name.length && version.length) {
+                return version;
+            }
+
+            if (name.length && version.length) {
+                return `${name} ${version}`;
+            }
+
+            return undefined;
         }
     },
 }

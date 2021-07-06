@@ -9,7 +9,7 @@
     <span class="dokki-theme-selector"
           @click="currentThemeIdx = (currentThemeIdx + 1) % themes.length">
 
-        <i :class="'fa-lg fa-fw ' + themes[currentThemeIdx].icon"/>
+        <i :class="'fa-fw ' + themes[currentThemeIdx].icon"/>
 
     </span>
 </template>
