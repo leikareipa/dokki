@@ -17,7 +17,7 @@
         </div>
         <div v-else class="dokkiCSS-product-tag">
 
-            Topics
+            Contents
 
         </div>
 
