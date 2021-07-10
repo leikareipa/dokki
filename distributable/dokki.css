@@ -152,7 +152,8 @@ body,
     position: relative;
     height: 100%;
     width: 100%;
-    margin: 0px 16px;
+    padding: 0px 16px;
+    box-sizing: border-box;
 }
 
 .dokkiCSS-header-container > * + *
@@ -749,8 +750,7 @@ body,
 
     .dokkiCSS-header-container
     {
-        margin-left: 10px;
-        margin-right: 10px;
+        padding: 0 10px;
     }
 
     .dokki-theme-selector
@@ -803,10 +803,5 @@ body,
     :root
     {
         --dokkiCSS-topic-horizontal-padding: 10px;
-    }
-
-    body:not([sandbox-for-dokki-ab-render-test]) .dokki-theme-selector
-    {
-        display: none;
     }
 }
