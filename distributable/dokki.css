@@ -168,11 +168,6 @@ body,
     text-overflow: ellipsis;
 }
 
-.dokkiCSS-header-title > i
-{
-    margin-right: 4px;
-}
-
 .dokkiCSS-product-tag
 {
     align-items: center;
@@ -803,5 +798,15 @@ body,
     :root
     {
         --dokkiCSS-topic-horizontal-padding: 10px;
+    }
+
+    .dokkiCSS-header-icon
+    {
+        display: none;
+    }
+
+    .dokkiCSS-header-title
+    {
+        margin-left: 0;
     }
 }

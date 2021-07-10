@@ -10,10 +10,12 @@
 
         <div class="dokkiCSS-header-container">
 
-            <span class="dokkiCSS-header-title"
-                    :title="title">
+            <i class="dokkiCSS-header-icon"
+               :class="icon"/>
 
-                <i :class="icon"/>
+            <span class="dokkiCSS-header-title"
+                  :title="title">
+
                 {{title}}
 
             </span>
