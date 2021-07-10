@@ -412,7 +412,6 @@ samp,
 .dokkiCSS-text-block-line.dokkiCSS-highlighted
 {
     background-color: var(--dokkiCSS-page-inert-bg-color);
-    font-weight: bold;
 }
 
 .dokkiCSS-text-block-line.dokkiCSS-highlighted > .dokkiCSS-text-block-line-number
