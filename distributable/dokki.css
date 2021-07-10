@@ -14,17 +14,19 @@
     --dokkiCSS-document-horizontal-left-end: calc(var(--dokkiCSS-document-horizontal-left-start) + var(--dokkiCSS-document-width));
 
     --dokkiCSS-topic-bottom-margin: 25px;
-    --dokkiCSS-topic-horizontal-padding: 25px;
+    --dokkiCSS-topic-horizontal-padding: 30px;
 
     --dokkiCSS-topics-container-vertical-top-start: calc(35px - var(--dokkiCSS-header-bottom-margin));
     --dokkiCSS-topics-container-bottom-margin: calc(2 * var(--dokkiCSS-topic-bottom-margin));
 
-    --dokkiCSS-topic-anchor-top-margin: 15px;
+    --dokkiCSS-topic-anchor-top-margin: 16px;
     --dokkiCSS-subtopic-anchor-top-margin: 30px;
     --dokkiCSS-text-block-line-anchor-top-margin: 20vh;
 
     --dokkiCSS-embedded-border-radius: 4px;
     --dokkiCSS-navibar-item-padding: 8px 10px;
+
+    --dokkiCSS-bold-text-weight: 500;
 }
 
 a.dokkiCSS-unstyled
@@ -290,6 +292,8 @@ samp,
     box-sizing: border-box;
     min-height: 100vh;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-left: 1px solid var(--dokkiCSS-page-primary-line-color);
+    border-right: 1px solid var(--dokkiCSS-page-primary-line-color);
 }
 
 .dokki-topics.casts-shadow
@@ -352,20 +356,20 @@ samp,
 
 .dokki-topic h1
 {
-    font-size: 150%;
-    font-weight: bold;
+    font-size: 160%;
+    font-weight: var(--dokkiCSS-bold-text-weight);
 }
 
 .dokki-topic h2
 {
-    font-size: 125%;
+    font-size: 130%;
 }
 
 .dokki-topic h3
 {
     font-size: 100%;
     display: inline;
-    font-weight: bold;
+    font-weight: var(--dokkiCSS-bold-text-weight);
 }
 
 .dokki-topic h4
@@ -764,7 +768,7 @@ samp,
     }
 }
 
-@media only screen and (max-width: 900px)
+@media only screen and (max-width: 1100px)
 {
     :root
     {
