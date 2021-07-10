@@ -30,7 +30,7 @@
 <script>
 export default {
     props: {
-        icon: {default: "fas fa-book"},
+        icon: {default: "fas fa-atlas"},
         title: {default: "Untitled"},
         productName: {default: undefined},
         productVersion: {default: undefined},

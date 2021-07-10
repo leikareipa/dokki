@@ -12,7 +12,9 @@
 
     <section class="dokki-topic">
     
-        <h1>{{this.title}}</h1>
+        <h1 class="dokkiCSS-topic-title">
+            {{this.title}}
+        </h1>
 
         <slot/>
 

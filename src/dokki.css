@@ -360,6 +360,12 @@ samp,
     font-weight: var(--dokkiCSS-bold-text-weight);
 }
 
+.dokki-topic h1.dokkiCSS-topic-title
+{
+    border-bottom: 1px solid var(--dokkiCSS-page-primary-line-color);
+    padding-bottom: 8px;
+}
+
 .dokki-topic h2
 {
     font-size: 130%;
