@@ -434,6 +434,7 @@ samp,
     cursor: pointer;
     white-space: normal;
     padding-right: 1.5ch;
+    text-align: right;
 }
 
 .dokkiCSS-checker-background
