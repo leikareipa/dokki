@@ -28,7 +28,7 @@
                 <a :href="topic.url"
                    class="dokkiCSS-navi-link dokkiCSS-navi-link-topic">
 
-                    <i class="dokkiCSS-navi-link-icon fas fa-sm fa-fw fa-hashtag"/>
+                    <i class="dokkiCSS-navi-link-icon fas fa-sm fa-hashtag"/>
                     {{topic.title}}
 
                 </a>
@@ -37,7 +37,7 @@
                    :href="subtopic.url"
                    class="dokkiCSS-navi-link dokkiCSS-navi-link-subtopic">
 
-                    <i class="dokkiCSS-navi-link-icon fas fa-sm fa-fw fa-hashtag"/>
+                    <i class="dokkiCSS-navi-link-icon fas fa-sm fa-hashtag"/>
                     {{subtopic.title}}
                     
                 </a>
