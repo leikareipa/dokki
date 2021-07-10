@@ -15,11 +15,6 @@
             {{productName}}
 
         </div>
-        <div v-else class="dokkiCSS-product-tag">
-
-            Contents
-
-        </div>
 
         <ul class="dokkiCSS-vertical-navi">
 
