@@ -52,7 +52,7 @@ export function start(args = {})
                        "Invalid document template");
     }
 
-    Vue.createApp({})
+    const app = Vue.createApp({})
     .component("dokki-area", dokkiArea)
     .component("dokki-code", dokkiCode)
     .component("dokki-console", dokkiConsole)
@@ -74,8 +74,30 @@ export function start(args = {})
     .component("dokki-warning", dokkiWarning)
     .component("dokki0-text-block-with-line-numbers", dokki0TextBlockWithLineNumbers)
     .component("product-name", productName)
-    .use(store)
-    .mount(args.container);
+    .use(store);
+
+    // Register any user-provided custom components.
+    if (Array.isArray(parent.window.dokkiUserComponents))
+    {
+        for (const component of parent.window.dokkiUserComponents)
+        {
+            if ((typeof component !== "object") ||
+                !component.hasOwnProperty("$tag"))
+            {
+                continue;
+            }
+
+            const tagName = component.$tag;
+
+            // Don't feed the tag name into Vue, just in case Vue uses a property
+            // of this name for something else.
+            delete component.$tag;
+
+            app.component(tagName, component);
+        }
+    }
+    
+    app.mount(args.container);
 
     return;
 }
