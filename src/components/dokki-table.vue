@@ -11,7 +11,7 @@
         <header @click="isExpanded = !isExpanded">
 
             <span class="dokkiCSS-title">
-                <i class="fas fa-border-all" title="Table"/>
+                <i class="fas fa-table" title="Table"/>
             </span>
 
             <aside class="dokkiCSS-expander">

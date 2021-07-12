@@ -11,7 +11,7 @@
         <header @click="isExpanded = !isExpanded">
 
             <span class="dokkiCSS-title">
-                <i class="fas fa-expand"/>
+                <i class="fas fa-external-link-alt"/>
                 {{title}}
             </span>
 

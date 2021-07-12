@@ -433,7 +433,7 @@ body,
     background-position: 0 0, 0 20px, 20px -20px, -20px 0px;
 }
 
-.dokkiCSS-embedded.casts-shadow
+.dokkiCSS-embedded.dokkiCSS-casts-shadow
 {
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
 }

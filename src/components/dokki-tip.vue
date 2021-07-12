@@ -9,9 +9,7 @@
     <p class="dokkiCSS-embedded dokki-tip">
 
         <header>
-            <div class="dokkiCSS-title">
-                <i class="fas fa-comment"/>
-            </div>
+            Tip!
         </header>
 
         <footer>

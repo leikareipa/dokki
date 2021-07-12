@@ -6,7 +6,7 @@
  */
 
 <template>
-    <main class="dokki-topics casts-shadow">
+    <main class="dokki-topics">
         <slot/>
     </main>
 </template>
