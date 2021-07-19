@@ -30,7 +30,9 @@
             </td>
             
             <td class="dokkiCSS-text-block-line-content">
-                {{line}}
+                <code :class="(syntax !== undefined)? `language-${syntax}` : 'unspecified-syntax'">
+                    {{line}}
+                </code>
             </td>
             
         </tr>
@@ -42,6 +44,7 @@
 export default {
     props: {
         text: {},
+        syntax: {default: undefined},
     },
     data()
     {
@@ -90,6 +93,16 @@ export default {
                     window.scrollTo(0, elem.offsetTop);
                 }
             }
+
+            if (this.is_syntax_highlighting_enabled())
+            {
+                const codeElements = this.$el.querySelectorAll(".dokkiCSS-text-block-line-content > code");
+
+                for (const element of codeElements)
+                {
+                    hljs.highlightElement(element);
+                }
+            }
         });
     },
     computed: {
@@ -130,6 +143,18 @@ export default {
         }
     },
     methods: {
+        // Returns true if the highlight.js syntax-highlighting library is
+        // available for use; false otherwise.
+        is_highlight_js_available()
+        {
+            return ((typeof hljs == "object") &&
+                    (typeof hljs.highlightElement == "function"));
+        },
+        is_syntax_highlighting_enabled()
+        {
+            return ((this.$props.syntax !== undefined) &&
+                    this.is_highlight_js_available());
+        },
         reset_line_highlight()
         {
             this.highlightLineNum = -1;

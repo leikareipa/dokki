@@ -28,6 +28,7 @@ import dokkiTopics from "./components/dokki-topics.vue";
 import dokkiVideo from "./components/dokki-video.vue";
 import dokkiWarning from "./components/dokki-warning.vue";
 import dokki0TextBlockWithLineNumbers from "./components/dokki0-text-block-with-line-numbers.vue";
+import dokki0AnimatedExpander from "./components/dokki0-animated-expander.vue";
 import productName from "./components/product-name.vue";
 
 export function start(args = {})
@@ -73,6 +74,7 @@ export function start(args = {})
     .component("dokki-video", dokkiVideo)
     .component("dokki-warning", dokkiWarning)
     .component("dokki0-text-block-with-line-numbers", dokki0TextBlockWithLineNumbers)
+    .component("dokki0-animated-expander", dokki0AnimatedExpander)
     .component("product-name", productName)
     .use(store);
 

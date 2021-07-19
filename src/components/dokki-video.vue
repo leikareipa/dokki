@@ -9,7 +9,7 @@
     <p class="dokkiCSS-embedded dokki-video dokkiCSS-expandable"
        :class="platform">
 
-        <header @click="isExpanded = !isExpanded">
+        <header @click="this.$refs['video-expander'].toggle_expansion()">
 
             <span class="dokkiCSS-title">
                 <i :class="headerIcon" title="Video"/>
@@ -21,13 +21,17 @@
 
         </header>
 
-        <hr v-if="isExpanded">
+        <hr v-if="isTransitioning || isExpanded">
 
-        <iframe v-if="isExpanded"
-                class="dokkiCSS-checker-background"
-                :src="videoUrl"
-                allow="fullscreen; autoplay;">
-        </iframe>
+        <dokki0-animated-expander ref="video-expander"
+                                  class="dokkiCSS-checker-background"
+                                  @expanded="isExpanded = true, isTransitioning = false"
+                                  @minimized="isExpanded = false, isTransitioning = false"
+                                  @transitioning="isTransitioning = true">
+            <iframe :src="videoUrl"
+                    allow="fullscreen; autoplay;">
+            </iframe>
+        </dokki0-animated-expander>
 
         <hr v-if="hasFooter">
 
@@ -39,14 +43,26 @@
 </template>
 
 <script>
-import {expandedPropMixin} from "../component-mixins.js";
-
 export default {
+    data()
+    {
+        return {
+            isExpanded: false,
+            isTransitioning: false,
+        }
+    },
     props: {
         src: {},
         platform: {default: "youtube"},
+        expanded: {default: undefined},
     },
-    mixins: [expandedPropMixin],
+    mounted()
+    {
+        if (this.$props.expanded !== undefined)
+        {
+            this.$refs['video-expander'].toggle_expansion();
+        }
+    },
     computed: {
         hasFooter()
         {

@@ -9,7 +9,7 @@
     <p class="dokkiCSS-embedded dokki-image dokkiCSS-expandable"
        :class="{expanded: isExpanded}">
 
-        <header @click="isExpanded = !isExpanded">
+        <header @click="this.$refs['image-expander'].toggle_expansion()">
 
             <span class="dokkiCSS-title">
                 <i class="fas fa-image" title="Image"/>
@@ -21,15 +21,20 @@
 
         </header>
 
-        <hr v-if="isExpanded">
+        <hr v-if="isTransitioning || isExpanded">
 
-        <div v-if="isExpanded"
-             class="dokkiCSS-container dokkiCSS-checker-background">
+        <dokki0-animated-expander ref="image-expander"
+                                  class="dokkiCSS-checker-background"
+                                  @expanded="isExpanded = true, isTransitioning = false"
+                                  @minimized="isExpanded = false, isTransitioning = false"
+                                  @transitioning="isTransitioning = true">
+            
+            <div class="dokkiCSS-container">
+                <img :src="src"
+                     :class="{'dokkiCSS-upscale-to-fit': hasUpscaleToFit}">
+            </div>
 
-            <img :src="src"
-                 :class="{'dokkiCSS-upscale-to-fit': hasUpscaleToFit}">
-
-        </div>
+        </dokki0-animated-expander>
 
         <hr v-if="hasFooter">
 
@@ -40,14 +45,26 @@
 </template>
 
 <script>
-import {expandedPropMixin} from "../component-mixins.js";
-
 export default {
     props: {
         src: {default: "//about:blank"},
         upscaleToFit: {default: undefined},
+        expanded: {default: undefined},
     },
-    mixins: [expandedPropMixin],
+    data()
+    {
+        return {
+            isExpanded: false,
+            isTransitioning: false,
+        }
+    },
+    mounted()
+    {
+        if (this.$props.expanded !== undefined)
+        {
+            this.$refs['image-expander'].toggle_expansion();
+        }
+    },
     computed: {
         hasFooter()
         {

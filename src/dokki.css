@@ -6,7 +6,7 @@
     --dokkiCSS-header-height: 40px;
     --dokkiCSS-header-bottom-margin: 23px;
 
-    --dokkiCSS-side-panel-width: 300px;
+    --dokkiCSS-side-panel-width: 280px;
     --dokkiCSS-topics-container-width: 49%;
     --dokkiCSS-document-width: calc(var(--dokkiCSS-side-panel-width) + var(--dokkiCSS-topics-container-width));
 
@@ -24,7 +24,7 @@
     --dokkiCSS-text-block-line-anchor-top-margin: 20vh;
 
     --dokkiCSS-embedded-border-radius: 4px;
-    --dokkiCSS-navibar-item-padding: 5px 10px 5px 15px;
+    --dokkiCSS-navibar-item-padding: 6px 10px;
 
     --dokkiCSS-bold-text-weight: 500;
 }
@@ -51,8 +51,8 @@ body,
 {
     --dokkiCSS-page-link-color: #2264e8;
     --dokkiCSS-page-primary-bg-color: white;
-    --dokkiCSS-page-secondary-bg-color: #fdfdfd;
-    --dokkiCSS-page-inert-bg-color: #fdfdfd;
+    --dokkiCSS-page-secondary-bg-color: #f9f9f9;
+    --dokkiCSS-page-inert-bg-color: white;
     --dokkiCSS-page-primary-fg-color: #303030;
     --dokkiCSS-page-secondary-fg-color: #505050;
     --dokkiCSS-page-inert-fg-color: #c0c0c0;
@@ -79,7 +79,7 @@ body,
 
 code,
 samp,
-.dokkiCSS-embedded.dokki-console > footer,
+.dokkiCSS-embedded.dokki-console footer,
 .dokkiCSS-text-block-line-content,
 .dokkiCSS-text-block-line-number
 {
@@ -168,13 +168,13 @@ samp,
     position: relative;
     height: 100%;
     width: 100%;
-    padding: 0px 15px;
+    padding: 0px 10px;
     box-sizing: border-box;
 }
 
 .dokkiCSS-header-container > * + *
 {
-    margin-left: 10px;
+    margin-left: 5px;
 }
 
 .dokkiCSS-header-title
@@ -182,11 +182,13 @@ samp,
     flex: 1;
     overflow: hidden;
     text-overflow: ellipsis;
+    font-weight: 500;
 }
 
 .dokkiCSS-product-tag
 {
-    display: none;
+    height: var(--dokkiCSS-header-height);
+    line-height: var(--dokkiCSS-header-height);
     align-items: center;
     margin: 0;
     padding: var(--dokkiCSS-navibar-item-padding);
@@ -199,6 +201,9 @@ samp,
     text-overflow: ellipsis;
     overflow: hidden;
     color: var(--dokkiCSS-page-primary-fg-color);
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
 }
 
 .dokkiCSS-product-tag > i
@@ -222,7 +227,7 @@ samp,
     z-index: 0;
     top: var(--dokkiCSS-header-height);
     left: 0;
-    background-color: var(--dokkiCSS-page-inert-bg-color);
+    background-color: var(--dokkiCSS-page-secondary-bg-color);
     width: var(--dokkiCSS-side-panel-width);
     text-align: left;
     overflow-y: auto;
@@ -231,7 +236,7 @@ samp,
     border-right: 1px solid var(--dokkiCSS-page-secondary-line-color);
 }
 
-.dokki-side-panel ul
+ul.dokkiCSS-vertical-navi
 {
     list-style-type: none;
     padding: 0;
@@ -257,22 +262,21 @@ samp,
 {
     display: block;
     padding: var(--dokkiCSS-navibar-item-padding);
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    overflow: hidden;
+    white-space: normal;
     text-decoration: none;
-    color: var(--dokkiCSS-page-primary-fg-color);
+    color: var(--dokkiCSS-page-secondary-fg-color);
 }
 
 .dokkiCSS-vertical-navi .dokkiCSS-navi-link-subtopic
 {
-    padding-left: 30px;
+    padding-left: 25px;
     color: var(--dokkiCSS-page-secondary-fg-color);
     font-style: italic;
 }
 
 .dokkiCSS-vertical-navi .dokkiCSS-navi-link:hover
 {
+    color: var(--dokkiCSS-page-primary-fg-color);
     background-color: rgba(0, 0, 0, 0.04);
     text-decoration: none;
 }
@@ -310,7 +314,7 @@ samp,
     width: 100%;
     border: 1px solid var(--dokkiCSS-page-primary-line-color);
     border-radius: 4px;
-    box-shadow: 0 0 29px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 18px rgba(0, 0, 0, 0.07);
 }
 
 .dokki-topic p
@@ -318,8 +322,8 @@ samp,
     line-height: 1.4;
 }
 
-.dokki-topic p a,
-.dokki-topic p a:visited
+.dokki-topic a,
+.dokki-topic a:visited
 {
     text-decoration: none;
     color: var(--dokkiCSS-page-link-color);
@@ -425,7 +429,7 @@ samp,
 
 .dokkiCSS-text-block-line.dokkiCSS-highlighted
 {
-    background-color: var(--dokkiCSS-page-inert-bg-color);
+    background-color: var(--dokkiCSS-page-secondary-bg-color);
 }
 
 .dokkiCSS-text-block-line.dokkiCSS-highlighted > .dokkiCSS-text-block-line-number
@@ -458,6 +462,12 @@ samp,
                       linear-gradient(-45deg, transparent 75%, rgba(0, 0, 0, 0.025) 75%);
     background-size: 40px 40px;
     background-position: 0 0, 0 20px, 20px -20px, -20px 0px;
+}
+
+.dokki0-animated-expander
+{
+    transition: height 0.1s ease;
+    overflow: hidden;
 }
 
 .dokkiCSS-embedded.dokkiCSS-casts-shadow
@@ -501,19 +511,20 @@ samp,
     margin-right: 2px;
 }
 
-.dokkiCSS-embedded > footer
+.dokkiCSS-embedded footer
 {
+    overflow: auto;
     padding: 16px;
     background-color: var(--dokkiCSS-embedded-footer-bg-color); 
 }
 
-.dokkiCSS-embedded > footer > *:first-child,
+.dokkiCSS-embedded footer > *:first-child,
 .dokki-area > *:first-child
 {
     margin-top: 0;
 }
 
-.dokkiCSS-embedded > footer > *:last-child,
+.dokkiCSS-embedded footer > *:last-child,
 .dokki-area > *:last-child
 {
     margin-bottom: 0;
@@ -545,12 +556,13 @@ samp,
     display: none;
 }
 
-.dokkiCSS-embedded.dokki-iframe > footer
+.dokkiCSS-embedded.dokki-iframe footer
 {
     padding: 0;
+    overflow: hidden;
 }
 
-.dokkiCSS-embedded.dokki-iframe > footer > iframe
+.dokkiCSS-embedded.dokki-iframe footer > iframe
 {
     max-width: 100%;
     min-width: 100%;
@@ -564,13 +576,13 @@ samp,
     content: " Table";
 }
 
-.dokkiCSS-embedded.dokki-table > .table-container
+.dokkiCSS-embedded.dokki-table .dokkiCSS-container
 {
     overflow: auto;
     border-top: 1px solid var(--dokkiCSS-page-primary-line-color);
 }
 
-.dokkiCSS-embedded.dokki-table > .table-container table
+.dokkiCSS-embedded.dokki-table table
 {
     width: 100%;
     border-spacing: 0;
@@ -579,8 +591,8 @@ samp,
     border-collapse: collapse;
 }
 
-.dokkiCSS-embedded.dokki-table > .table-container table td,
-.dokkiCSS-embedded.dokki-table > .table-container table th
+.dokkiCSS-embedded.dokki-table table td,
+.dokkiCSS-embedded.dokki-table table th
 {
     padding: 8px;
     border: none;
@@ -588,36 +600,36 @@ samp,
     text-align: left;
 }
 
-.dokkiCSS-embedded.dokki-table > .table-container table tr
+.dokkiCSS-embedded.dokki-table table tr
 {
     border-top: 1px solid var(--dokkiCSS-page-primary-line-color);
     border-bottom: 1px solid var(--dokkiCSS-page-primary-line-color);
 }
 
-.dokkiCSS-embedded.dokki-table > .table-container table tr:first-child
+.dokkiCSS-embedded.dokki-table table tr:first-child
 {
     border-top: none;
 }
 
-.dokkiCSS-embedded.dokki-table > .table-container table tr:last-child
+.dokkiCSS-embedded.dokki-table table tr:last-child
 {
     border-bottom: none;
 }
 
-.dokkiCSS-embedded.dokki-table > .table-container table th
+.dokkiCSS-embedded.dokki-table table th
 {
     background-color: var(--dokkiCSS-embedded-header-bg-color);
     font-weight: normal;
 }
 
-.dokkiCSS-embedded.dokki-table > .table-container table td:not(:last-child),
-.dokkiCSS-embedded.dokki-table > .table-container table th:not(:last-child)
+.dokkiCSS-embedded.dokki-table table td:not(:last-child),
+.dokkiCSS-embedded.dokki-table table th:not(:last-child)
 {
     border-right: 1px solid var(--dokkiCSS-page-primary-line-color);
 }
 
-.dokkiCSS-embedded.dokki-table > .table-container table td:last-child,
-.dokkiCSS-embedded.dokki-table > .table-container table th:last-child
+.dokkiCSS-embedded.dokki-table table td:last-child,
+.dokkiCSS-embedded.dokki-table table th:last-child
 {
     width: 100%;
 }
@@ -628,12 +640,17 @@ samp,
     flex-direction: column;
 }
 
-.dokkiCSS-embedded.dokki-video.youtube > iframe
+.dokkiCSS-embedded.dokki-video.youtube iframe
 {
     min-width: 100%;
     max-width: 100%;
     height: 450px;
     border: none;
+}
+
+.dokkiCSS-embedded.dokki-video.youtube .dokki0-animated-expander
+{
+    max-height: 450px;
 }
 
 .dokkiCSS-embedded.dokki-video > header > .dokkiCSS-title::after
@@ -659,8 +676,8 @@ samp,
     align-items: baseline;
 }
 
-.dokkiCSS-embedded.dokki-tip > footer,
-.dokkiCSS-embedded.dokki-warning > footer
+.dokkiCSS-embedded.dokki-tip footer,
+.dokkiCSS-embedded.dokki-warning footer
 {
     padding-left: 0;
 }
@@ -670,8 +687,8 @@ samp,
 {
     background-color: unset;
     display: inline-block;
-    font-style: italic;
-    padding-right: 1ch;
+    font-weight: 500;
+    padding-right: 2ch;
 }
 
 .dokkiCSS-embedded.dokki-code.has-output + .dokkiCSS-embedded.dokki-output
@@ -689,12 +706,7 @@ samp,
     border-bottom: none;
 }
 
-.dokkiCSS-embedded.dokki-code > footer
-{
-    overflow: auto;
-}
-
-.dokkiCSS-embedded.dokki-code > footer table
+.dokkiCSS-embedded.dokki-code footer table
 {
     white-space: pre;
 }
@@ -705,21 +717,21 @@ samp,
     flex-direction: column;
 }
 
-.dokkiCSS-embedded.dokki-image > .dokkiCSS-container
+.dokkiCSS-embedded.dokki-image .dokkiCSS-container
 {
     min-height: 20px;
     display: flex;
     overflow: auto;
 }
 
-.dokkiCSS-embedded.dokki-image > .dokkiCSS-container > img
+.dokkiCSS-embedded.dokki-image .dokkiCSS-container > img
 {
     max-width: 100%;
     width: auto;
     height: auto;
 }
 
-.dokkiCSS-embedded.dokki-image > .dokkiCSS-container > img.dokkiCSS-upscale-to-fit
+.dokkiCSS-embedded.dokki-image .dokkiCSS-container > img.dokkiCSS-upscale-to-fit
 {
     width: 100%;
     height: 100%;
@@ -792,6 +804,7 @@ samp,
         --dokkiCSS-document-width: 100%;
         --dokkiCSS-topic-bottom-margin: 20px;
         --dokkiCSS-topic-padding: 20px;
+        --dokkiCSS-header-bottom-margin: 15px;
     }
 
     .dokki-side-panel
@@ -802,6 +815,8 @@ samp,
     .dokki-topics
     {
         left: var(--dokkiCSS-document-horizontal-left-start);
+        padding-left: var(--dokkiCSS-header-bottom-margin);
+        padding-right: var(--dokkiCSS-header-bottom-margin);
     }
 
     .dokki-header
@@ -814,8 +829,14 @@ samp,
 {
     :root
     {
-        --dokkiCSS-topic-bottom-margin: 10px;
-        --dokkiCSS-topic-padding: 10px;
+        --dokkiCSS-topic-bottom-margin: 20px;
+        --dokkiCSS-topic-padding: 20px;
+        --dokkiCSS-header-bottom-margin: 5px;
+    }
+
+    .dokki-topics
+    {
+        left: var(--dokkiCSS-document-horizontal-left-start);
     }
 
     .dokkiCSS-header-icon

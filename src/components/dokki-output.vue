@@ -8,7 +8,7 @@
 <template>
     <p class="dokkiCSS-embedded dokki-output dokkiCSS-expandable">
 
-        <header @click="isExpanded = !isExpanded">
+        <header @click="this.$refs.output.toggle_expansion()">
 
             <span class="dokkiCSS-title">
                 <i class="fas fa-chevron-right"/>
@@ -21,11 +21,13 @@
 
         </header>
 
-        <footer v-if="isExpanded">
-
-            <slot/>
-            
-        </footer>
+        <dokki0-animated-expander ref="output"
+                                  @expanded="isExpanded = true"
+                                  @minimized="isExpanded = false">
+            <footer>
+                <slot/>
+            </footer>
+        </dokki0-animated-expander>
 
     </p>
 </template>
@@ -34,6 +36,12 @@
 import {expandedPropMixin} from "../component-mixins.js";
 
 export default {
+    data()
+    {
+        return {
+            isExpanded: false,
+        }
+    },
     props: {
         title: {default: "Output"},
     },

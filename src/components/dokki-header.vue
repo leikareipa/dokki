@@ -10,9 +10,6 @@
 
         <div class="dokkiCSS-header-container">
 
-            <i class="dokkiCSS-header-icon"
-               :class="icon"/>
-
             <span class="dokkiCSS-header-title"
                   :title="title">
 

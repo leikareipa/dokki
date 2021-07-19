@@ -9,7 +9,7 @@
     <p class="dokkiCSS-embedded dokki-warning">
 
         <header>
-            Warning!
+            Warning
         </header>
         
         <footer>

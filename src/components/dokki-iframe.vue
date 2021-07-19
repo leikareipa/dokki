@@ -8,10 +8,10 @@
 <template>
    <p class="dokkiCSS-embedded dokki-iframe dokkiCSS-expandable">
 
-        <header @click="isExpanded = !isExpanded">
+        <header @click="this.$refs['frame-expander'].toggle_expansion()">
 
             <span class="dokkiCSS-title">
-                <i class="fas fa-external-link-alt"/>
+                <i class="fas fa-crop-alt"/>
                 {{title}}
             </span>
 
@@ -21,32 +21,50 @@
 
         </header>
 
-        <hr v-if="isExpanded">
+        <hr v-if="isTransitioning || isExpanded">
 
-        <footer v-if="isExpanded"
-                :style="{height: height}">
+        <dokki0-animated-expander ref="frame-expander"
+                                  @expanded="isExpanded = true, isTransitioning = false"
+                                  @minimized="isExpanded = false, isTransitioning = false"
+                                  @transitioning="isTransitioning = true">
 
-            <iframe class="dokki-iframe"
-                    :src="src"
-                    ref="iframe">
-            </iframe>
-            
-        </footer>
+            <footer :style="{height: height}">
+
+                <iframe class="dokki-iframe"
+                        :src="src"
+                        ref="iframe">
+                </iframe>
+                
+            </footer>
+
+        </dokki0-animated-expander>
 
     </p>
 </template>
 
 <script>
-import {expandedPropMixin} from "../component-mixins.js";
-
 export default {
+    data()
+    {
+        return {
+            isExpanded: false,
+            isTransitioning: false,
+        }
+    },
     props: {
         src: {default: ""},
         height: {default: "500px"},
         title: {default: "Inline frame"},
         autofocus: {default: undefined},
+        expanded: {default: undefined},
     },
-    mixins: [expandedPropMixin],
+    mounted()
+    {
+        if (this.$props.expanded !== undefined)
+        {
+            this.$refs['frame-expander'].toggle_expansion();
+        }
+    },
     watch: {
         isExpanded()
         {

@@ -21,7 +21,7 @@
         <hr v-if="!isHeaderless">
 
         <footer>
-            <dokki0-text-block-with-line-numbers :text="codeFromSlot || code">
+            <dokki0-text-block-with-line-numbers :syntax="syntax" :text="codeFromSlot || code">
             </dokki0-text-block-with-line-numbers>
         </footer>
 
@@ -38,6 +38,7 @@ export default {
     props: {
         title: {default: "Code"},
         code: {default: undefined},
+        syntax: {default: undefined},
     },
     data() {
         return {

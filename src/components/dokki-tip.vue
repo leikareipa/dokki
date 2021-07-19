@@ -9,7 +9,7 @@
     <p class="dokkiCSS-embedded dokki-tip">
 
         <header>
-            Tip!
+            Tip
         </header>
 
         <footer>

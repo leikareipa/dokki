@@ -8,7 +8,7 @@
 <template>
     <p class="dokkiCSS-embedded dokki-table dokkiCSS-expandable">
 
-        <header @click="isExpanded = !isExpanded">
+        <header @click="this.$refs['table-expander'].toggle_expansion()">
 
             <span class="dokkiCSS-title">
                 <i class="fas fa-table" title="Table"/>
@@ -20,9 +20,15 @@
 
         </header>
 
-        <div v-if="isExpanded" class="table-container">
-            <slot name="table"/>
-        </div>
+        <dokki0-animated-expander ref="table-expander"
+                                  @expanded="isExpanded = true"
+                                  @minimized="isExpanded = false">
+                                  
+            <div class="dokkiCSS-container">
+                <slot name="table"/>
+            </div>
+
+        </dokki0-animated-expander>
 
         <hr v-if="hasFooter">
 
@@ -34,10 +40,23 @@
 </template>
 
 <script>
-import {expandedPropMixin} from "../component-mixins.js";
-
 export default {
-    mixins: [expandedPropMixin],
+    props: {
+        expanded: {default: undefined},
+    },
+    data()
+    {
+        return {
+            isExpanded: false,
+        }
+    },
+    mounted()
+    {
+        if (this.$props.expanded !== undefined)
+        {
+            this.$refs['table-expander'].toggle_expansion();
+        }
+    },
     computed: {
         hasFooter()
         {
