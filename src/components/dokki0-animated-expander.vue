@@ -24,47 +24,18 @@ export default {
         return {
             isExpanded: false,
             isTransitioning: false,
-            numContainedImages: 0,
-            numContainedImagesLoaded: 0,
-        }
-    },
-    watch: {
-        isExpanded()
-        {
-            // Since any images in the container may not be fully loaded in when the
-            // container is opened (due to network delay etc.), we want to attach
-            // monitors to the image elements that update the container's height when
-            // the images have finished loading to their full height.
-            this.$nextTick(()=>
-            {
-                if (!this.isExpanded) {
-                    return;
-                }
 
-                const childImgElements = this.$refs.container.getElementsByTagName("img");
-                this.numContainedImages = childImgElements.length;
-                this.numContainedImagesLoaded = 0;
-                for (const img of childImgElements)
-                {
-                    img.addEventListener("load", ()=>
-                    {
-                        window.requestAnimationFrame(()=>
-                        {
-                            window.requestAnimationFrame(()=>
-                            {
-                                this.numContainedImagesLoaded++;
-                                this.resize_to_contents().ontransitionend = this.expansion_transition_finished;
-                            });
-                        });
-                    });
-                }
-            });
+            // Count of images in the container for which no 'height' attribute
+            // has been given. It's assumed that these images will change in
+            // height as they load in.
+            numDynamicImages: 0,
+            numDynamicImagesLoaded: 0,
         }
     },
     methods: {
         expansion_transition_finished()
         {
-            if (this.numContainedImagesLoaded != this.numContainedImages) {
+            if (this.numDynamicImagesLoaded != this.numDynamicImages) {
                 return;
             }
 
@@ -116,6 +87,38 @@ export default {
                     el.ontransitionend = undefined;
                     el.style.height = "0";
 
+                    // Since any images in the container may not be fully loaded in when the
+                    // container is opened (due to network delay etc.), we want to attach
+                    // monitors to the image elements that update the container's height when
+                    // the images have finished loading to their full height.
+                    {
+                        const childImgElements = this.$refs.container.getElementsByTagName("img");
+
+                        this.numDynamicImages = 0;
+                        this.numDynamicImagesLoaded = 0;
+
+                        for (const img of childImgElements)
+                        {
+                            if (img.height !== undefined) {
+                                continue;
+                            }
+
+                            this.numDynamicImages++;
+
+                            img.addEventListener("load", ()=>
+                            {
+                                window.requestAnimationFrame(()=>
+                                {
+                                    window.requestAnimationFrame(()=>
+                                    {
+                                        this.numDynamicImagesLoaded++;
+                                        this.resize_to_contents().ontransitionend = this.expansion_transition_finished;
+                                    });
+                                });
+                            });
+                        }
+                    }
+
                     // Wait for next frame, to allow the element style changes to update.
                     window.requestAnimationFrame(()=>
                     {
@@ -127,7 +130,7 @@ export default {
                             // images have finished loading in (which alters their height)
                             // before declaring the transitioning complete. The images'
                             // event handlers will have been set up to do that automatically.
-                            el.ontransitionend = (this.numContainedImages? undefined : this.expansion_transition_finished);
+                            el.ontransitionend = (this.numDynamicImages? undefined : this.expansion_transition_finished);
                         });
                     });
                 });
