@@ -26,21 +26,21 @@ export default {
     props: ["title"],
     data() {
         return {
-            idx: -1,
+            globalTopicIdx: -1,
         }
     },
     computed: {
         simplifiedTitle()
         {
-            return (this.idx < 1)
+            return (this.globalTopicIdx < 1)
                    ? ""
-                   : this.$store.state.topics[this.idx-1].simplifiedTitle;
+                   : this.$store.state.topics[this.globalTopicIdx-1].simplifiedTitle;
         },
     },
     created()
     {
         this.$store.commit("add_topic", this.title);
-        this.idx = this.$store.state.topics.length;
+        this.globalTopicIdx = this.$store.state.topics.length;
     },
 }
 </script>
