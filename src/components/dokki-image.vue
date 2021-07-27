@@ -23,8 +23,6 @@
 
         </header>
 
-        <hr v-if="isTransitioning || isExpanded">
-
         <dokki0-animated-expander ref="image-expander"
                                   class="dokkiCSS-checker-background"
                                   @expanded="isExpanded = true, isTransitioning = false"

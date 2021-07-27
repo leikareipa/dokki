@@ -21,10 +21,7 @@
 
         </header>
 
-        <hr v-if="isTransitioning || isExpanded">
-
         <dokki0-animated-expander ref="video-expander"
-                                  class="dokkiCSS-checker-background"
                                   @expanded="isExpanded = true, isTransitioning = false"
                                   @minimized="isExpanded = false, isTransitioning = false"
                                   @transitioning="isTransitioning = true">
