@@ -1,4 +1,3 @@
-@import url("https://use.fontawesome.com/releases/v5.12.0/css/all.css");
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700;1,400&family=JetBrains+Mono&display=swap');
 
 :root
@@ -17,6 +16,7 @@
 
     --dokkiCSS-topic-bottom-margin: 25px;
     --dokkiCSS-topic-padding: 34px;
+    --dokkiCSS-topic-header-top-margin: 32px;
 
     --dokkiCSS-topics-container-vertical-top-start: calc(35px - var(--dokkiCSS-header-bottom-margin));
     --dokkiCSS-topics-container-bottom-margin: calc(2 * var(--dokkiCSS-topic-bottom-margin));
@@ -57,7 +57,7 @@ body,
     --dokkiCSS-page-inert-bg-color: white;
     --dokkiCSS-page-primary-fg-color: #303030;
     --dokkiCSS-page-secondary-fg-color: #505050;
-    --dokkiCSS-page-inert-fg-color: #c0c0c0;
+    --dokkiCSS-page-inert-fg-color: #a5a5a5;
     --dokkiCSS-page-primary-line-color: lightgray;
     --dokkiCSS-page-secondary-line-color: lightgray;
     --dokkiCSS-embedded-header-bg-color: #f6f6f6;
@@ -275,7 +275,7 @@ ul.dokkiCSS-vertical-navi
 {
     padding-left: 25px;
     color: var(--dokkiCSS-page-secondary-fg-color);
-    font-style: italic;
+    font-size: 95%;
 }
 
 .dokkiCSS-vertical-navi .dokkiCSS-navi-link:hover
@@ -311,6 +311,7 @@ ul.dokkiCSS-vertical-navi
 {
     background-color: var(--dokkiCSS-page-primary-bg-color);
     padding: var(--dokkiCSS-topic-padding);
+    padding-bottom: var(--dokkiCSS-topic-bottom-margin);
     box-sizing: border-box;
     margin: 0;
     margin-bottom: var(--dokkiCSS-topic-bottom-margin);
@@ -366,19 +367,20 @@ ul.dokkiCSS-vertical-navi
 {
     font-size: 160%;
     font-weight: var(--dokkiCSS-bold-text-weight);
+    margin-top: var(--dokkiCSS-topic-header-top-margin);
 }
 
 .dokki-topic h1.dokkiCSS-topic-title
 {
-    padding-bottom: 6px;
+    margin-top: 0;
+    margin-bottom: var(--dokkiCSS-topic-padding);
+    padding: 0;
 }
 
 .dokki-topic h2
 {
-    margin-top: 32px;
+    margin-top: var(--dokkiCSS-topic-header-top-margin);
     font-size: 135%;
-    border-bottom: 1px solid var(--dokkiCSS-page-primary-line-color);
-    padding-bottom: 6px;
 }
 
 .dokki-topic h3
@@ -394,6 +396,19 @@ ul.dokkiCSS-vertical-navi
     display: inline;
     font-weight: normal;
     font-style: italic;
+}
+
+.dokki-hr
+{
+    margin: var(--dokkiCSS-topic-bottom-margin) 0;
+}
+
+.dokki-topic > .dokki-hr
+{
+    border: none;
+    border-bottom: 1px solid var(--dokkiCSS-page-primary-line-color);
+    width: calc(100% + calc(2 * var(--dokkiCSS-topic-padding)));
+    transform: translateX(calc(-1 * var(--dokkiCSS-topic-padding)));
 }
 
 .dokkiCSS-anchor
@@ -677,22 +692,23 @@ ul.dokkiCSS-vertical-navi
 .dokkiCSS-embedded.dokki-warning
 {
     display: flex;
-    align-items: baseline;
+    align-items: stretch;
 }
 
 .dokkiCSS-embedded.dokki-tip footer,
 .dokkiCSS-embedded.dokki-warning footer
 {
-    padding-left: 0;
+    padding: 16px;
 }
 
 .dokkiCSS-embedded.dokki-tip > header,
 .dokkiCSS-embedded.dokki-warning > header
 {
-    background-color: unset;
-    display: inline-block;
-    font-weight: 500;
-    padding-right: 2ch;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-right: 1px solid var(--dokkiCSS-page-primary-line-color);
+    padding: 16px;
 }
 
 .dokkiCSS-embedded.dokki-code.has-output + .dokkiCSS-embedded.dokki-output

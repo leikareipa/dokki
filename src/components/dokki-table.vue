@@ -54,7 +54,7 @@ export default {
     {
         if (this.$props.expanded !== undefined)
         {
-            this.$refs['table-expander'].toggle_expansion();
+            this.$refs["table-expander"].toggle_expansion({startExpanded: true});
         }
     },
     computed: {

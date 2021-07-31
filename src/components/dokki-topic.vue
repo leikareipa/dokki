@@ -16,6 +16,8 @@
             {{this.title}}
         </h1>
 
+        <dokki-hr/>
+
         <slot/>
 
     </section>

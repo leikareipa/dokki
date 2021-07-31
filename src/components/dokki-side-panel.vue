@@ -23,21 +23,27 @@
 
         <ul class="dokkiCSS-vertical-navi">
 
-            <li v-for="topic in topics">
+            <li v-for="(topic, topicIdx) in topics">
 
                 <a :href="topic.url"
                    class="dokkiCSS-navi-link dokkiCSS-navi-link-topic">
 
-                    <i class="dokkiCSS-navi-link-icon fas fa-sm fa-hashtag"/>
+                    <span class="dokkiCSS-navi-link-icon">
+                        {{topicIdx + 1}}
+                    </span>
+                    
                     {{topic.title}}
 
                 </a>
 
-                <a v-for="subtopic in topic.subtopics"
+                <a v-for="(subtopic, subtopicIdx) in topic.subtopics"
                    :href="subtopic.url"
                    class="dokkiCSS-navi-link dokkiCSS-navi-link-subtopic">
 
-                    <i class="dokkiCSS-navi-link-icon fas fa-sm fa-hashtag"/>
+                    <span class="dokkiCSS-navi-link-icon">
+                        {{topicIdx + 1}}.{{subtopicIdx + 1}}
+                    </span>
+
                     {{subtopic.title}}
                     
                 </a>
