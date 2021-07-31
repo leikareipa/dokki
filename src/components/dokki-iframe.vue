@@ -22,9 +22,8 @@
         </header>
 
         <dokki0-animated-expander ref="frame-expander"
-                                  @expanded="isExpanded = true, isTransitioning = false"
-                                  @minimized="isExpanded = false, isTransitioning = false"
-                                  @transitioning="isTransitioning = true">
+                                  @expanded="isExpanded = true"
+                                  @minimized="isExpanded = false">
 
             <footer :style="{height: height}">
 
@@ -46,7 +45,6 @@ export default {
     {
         return {
             isExpanded: false,
-            isTransitioning: false,
         }
     },
     props: {
@@ -60,7 +58,7 @@ export default {
     {
         if (this.$props.expanded !== undefined)
         {
-            this.$refs['frame-expander'].toggle_expansion();
+            this.$refs["frame-expander"].toggle_expansion({startExpanded: true});
         }
     },
     watch: {

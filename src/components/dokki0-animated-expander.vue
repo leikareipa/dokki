@@ -60,15 +60,29 @@ export default {
 
             return el;
         },
+        resize(height = 0)
+        {
+            const el = this.$refs.container;
+            el.style.height = `${height}px`;
+
+            return el;
+        },
         // Minimize the container if it's currently expanded, and expand it if
         // it's currently minimized.
-        toggle_expansion()
+        toggle_expansion({startExpanded = false} = {})
         {
             /// Temporary kludge. Some of the transitions may break if the container
             /// has dynamic content (e.g. slowly-loading images) and the user triggers
             /// another transition while the old one is still going on. So let's just
             /// prevent triggering a new transition if the old one hasn't yet finished.
             if (this.isTransitioning) {
+                return;
+            }
+
+            if (!this.isExpanded && startExpanded)
+            {
+                this.$emit("expanded");
+                this.isExpanded = true;
                 return;
             }
 

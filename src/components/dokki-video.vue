@@ -22,9 +22,8 @@
         </header>
 
         <dokki0-animated-expander ref="video-expander"
-                                  @expanded="isExpanded = true, isTransitioning = false"
-                                  @minimized="isExpanded = false, isTransitioning = false"
-                                  @transitioning="isTransitioning = true">
+                                  @expanded="isExpanded = true"
+                                  @minimized="isExpanded = false">
             <iframe :src="videoUrl"
                     allow="fullscreen; autoplay;">
             </iframe>
@@ -45,7 +44,6 @@ export default {
     {
         return {
             isExpanded: false,
-            isTransitioning: false,
         }
     },
     props: {
@@ -57,7 +55,7 @@ export default {
     {
         if (this.$props.expanded !== undefined)
         {
-            this.$refs['video-expander'].toggle_expansion();
+            this.$refs["video-expander"].toggle_expansion({startExpanded: true});
         }
     },
     computed: {

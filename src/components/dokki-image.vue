@@ -9,8 +9,7 @@
     <p class="dokkiCSS-embedded dokki-image dokkiCSS-expandable"
        :class="{expanded: isExpanded}">
 
-        <header @click="this.isTransitioning = true,
-                        this.calculate_scaled_size(),
+        <header @click="this.calculate_scaled_size(),
                         this.$refs['image-expander'].toggle_expansion()">
 
             <span class="dokkiCSS-title">
@@ -25,8 +24,9 @@
 
         <dokki0-animated-expander ref="image-expander"
                                   class="dokkiCSS-checker-background"
-                                  @expanded="isExpanded = true, isTransitioning = false"
-                                  @minimized="isExpanded = false, isTransitioning = false">
+                                  :start-expanded="expanded !== undefined"
+                                  @expanded="isExpanded = true"
+                                  @minimized="isExpanded = false">
             
             <div class="dokkiCSS-container">
                 <img :src="src"
@@ -59,7 +59,6 @@ export default {
     {
         return {
             isExpanded: false,
-            isTransitioning: false,
 
             scaledWidth: undefined,
             scaledHeight: undefined,
@@ -69,7 +68,8 @@ export default {
     {
         if (this.$props.expanded !== undefined)
         {
-            this.$refs['image-expander'].toggle_expansion();
+            this.calculate_scaled_size();
+            this.$refs["image-expander"].toggle_expansion({startExpanded: true});
         }
 
         window.addEventListener("resize", this.calculate_scaled_size);
@@ -85,18 +85,10 @@ export default {
         }
     },
     methods: {
-        is_hidden()
-        {
-            return (!this.isExpanded && !this.isTransitioning);
-        },
         // Calculates a resolution representing the size of the image when scaled
         // to fit the container, being equal to CSS's "object-fit: scale-down".
         calculate_scaled_size()
         {
-            if (this.is_hidden()) {
-                return;
-            }
-
             const containerBorderWidth = 1;
             const imageWidth = this.$props.width;
             const imageHeight = this.$props.height;

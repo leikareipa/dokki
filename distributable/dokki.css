@@ -331,8 +331,8 @@ ul.dokkiCSS-vertical-navi
     color: var(--dokkiCSS-page-link-color);
 }
 
-.dokki-topic p a:hover,
-.dokki-topic p a:visited:hover
+.dokki-topic a:hover,
+.dokki-topic a:visited:hover
 {
     text-decoration: underline;
 }
