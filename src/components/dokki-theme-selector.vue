@@ -7,7 +7,9 @@
 
 <template>
     <span class="dokki-theme-selector"
-          @click="currentThemeIdx = (currentThemeIdx + 1) % themes.length">
+          title="Light switch"
+          ref="themeSelector"
+          @click="set_current_theme(themes[(currentThemeIdx + 1) % themes.length].name)">
 
         <i :class="'fa-fw ' + themes[currentThemeIdx].icon"/>
 
@@ -21,29 +23,33 @@ export default {
         return {
             currentThemeIdx: 0,
             themes: [
-                {name: "light", icon: "fas fa-sun"},
-                {name: "dark", icon: "fas fa-moon"},
+                {name: "dark", icon: "far fa-lightbulb"},
+                {name: "light", icon: "fas fa-lightbulb"},
             ],
         }
     },
     created()
     {
         console.assert(this.themes.length, "Encountered an empty theme list.");
-        this.update_theme();
+        this.set_current_theme(window.sessionStorage.getItem("dokki:theme") || "dark");
     },
     methods:
     {
-        update_theme()
+        set_current_theme(themeName = "")
         {
-            document.body.dataset.dokkiTheme = this.themes[this.currentThemeIdx].name;
-        }
-    },
-    watch:
-    {
-        currentThemeIdx()
-        {
-            this.update_theme();
-        }
+            this.currentThemeIdx = Math.max(0, this.themes.findIndex(theme=>theme.name == themeName));
+            const newThemeName = this.themes[this.currentThemeIdx].name;
+            document.body.dataset.dokkiTheme = newThemeName;
+            window.sessionStorage.setItem("dokki:theme", newThemeName);
+
+            if (this.$refs.themeSelector)
+            {
+                this.$refs.themeSelector.animate([
+                    {transform: "rotateY(90deg)"},
+                    {transform: "rotateY(0deg)"}
+                ], {duration: 150});
+            }
+        },
     },
 }
 </script>
