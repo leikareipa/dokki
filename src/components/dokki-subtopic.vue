@@ -7,7 +7,7 @@
 
 <template>
     <span class="dokkiCSS-anchor dokkiCSS-anchor-subtopic"
-          :id=this.selfMeta.simplifiedTitle>
+          :id="anchor_id">
     </span>
 
     <h2>{{this.title}}</h2>
@@ -17,14 +17,11 @@
 
 <script>
 import {simplified_topic_title} from "../misc.js";
+import {topicAnchorIdMixin} from "../component-mixins.js";
 
 export default {
+    mixins: [topicAnchorIdMixin],
     props: ["title"],
-    data() {
-        return {
-            selfMeta: undefined,
-        }
-    },
     created()
     {
         // We assume that this subtopic belongs to the most recently created topic;
@@ -33,16 +30,13 @@ export default {
         const parentTopic = this.$store.state.topics[this.$store.state.topics.length - 1];
         console.assert(parentTopic, "Detected an orphaned subtopic.");
 
-        const combinedTitle = `${parentTopic.title} ${this.title}`;
+        this.anchorableId = simplified_topic_title(`${parentTopic.title} ${this.title}`);
 
-        this.selfMeta = {
+        this.$store.commit("add_topic", {
+            parentTopic,
             title: this.title,
-            parentTopic: parentTopic,
-            simplifiedTitle: simplified_topic_title(combinedTitle),
-            url: `#${simplified_topic_title(combinedTitle)}`,
-        };
-
-        this.$store.commit("add_subtopic", this.selfMeta);
+            anchorId: this.anchor_id,
+        });
     },
 }
 </script>

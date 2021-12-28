@@ -34,3 +34,22 @@ export const headerlessPropMixin = {
         }
     },
 };
+
+// For topics and sub-topics.
+export const topicAnchorIdMixin = {
+    props: {
+        id: {default: undefined},
+    },
+    data() {
+        return {
+            anchorableId: {type: String, default: undefined},
+        }
+    },
+    computed: {
+        anchor_id()
+        {
+            console.assert(typeof this.anchorableId == "string");
+            return (this.id || this.anchorableId);
+        }
+    },
+};

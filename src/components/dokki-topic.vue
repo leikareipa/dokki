@@ -7,7 +7,7 @@
 
 <template>
     <span class="dokkiCSS-anchor dokkiCSS-anchor-topic"
-          :id="simplifiedTitle">
+          :id="anchor_id">
     </span>
 
     <section class="dokki-topic">
@@ -24,11 +24,15 @@
 </template>
 
 <script>
+import {simplified_topic_title} from "../misc.js";
+import {topicAnchorIdMixin} from "../component-mixins.js";
+
 export default {
+    mixins: [topicAnchorIdMixin],
     props: ["title"],
     data() {
         return {
-            globalTopicIdx: -1,
+            globalTopicIdx: {default: -1},
         }
     },
     computed: {
@@ -41,7 +45,13 @@ export default {
     },
     created()
     {
-        this.$store.commit("add_topic", this.title);
+        this.anchorableId = simplified_topic_title(this.title);
+
+        this.$store.commit("add_topic", {
+            title: this.title,
+            anchorId: this.anchor_id,
+        });
+
         this.globalTopicIdx = this.$store.state.topics.length;
     },
 }

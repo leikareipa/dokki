@@ -16,20 +16,26 @@ export default new Vuex.Store({
         numListings: 0,
     },
     mutations: {
-        add_topic(state, topicTitle = "")
+        add_topic(state, topic = {})
         {
-            state.topics.push({
-                title: topicTitle,
-                subtopics: [],
-                simplifiedTitle: simplified_topic_title(topicTitle),
-                url: `#${simplified_topic_title(topicTitle)}`
-            });
-        },
-        add_subtopic(state, subtopic = {})
-        {
-            if (subtopic.parentTopic)
+            console.assert(typeof topic.title == "string");
+            console.assert(typeof topic.anchorId == "string");
+
+            // If this is a sub-topic.
+            if (topic.parentTopic)
             {
-                subtopic.parentTopic.subtopics.push(subtopic);
+                topic.parentTopic.subtopics.push({
+                    ...topic,
+                    url: `#${topic.anchorId}`,
+                });
+            }
+            else
+            {
+                state.topics.push({
+                    ...topic,
+                    subtopics: [],
+                    url: `#${topic.anchorId}`,
+                });
             }
         },
         increment_listings_count(state)
