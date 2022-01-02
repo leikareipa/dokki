@@ -17,7 +17,7 @@
         </div>
         <div v-else class="dokkiCSS-product-tag">
 
-            Topics
+            Contents
 
         </div>
 
@@ -32,7 +32,9 @@
                         {{topicIdx + 1}}
                     </span>
                     
-                    {{topic.title}}
+                    <span class="dokkiCSS-navi-link-label">
+                        {{topic.title}}
+                    </span>
 
                 </a>
 
@@ -40,11 +42,9 @@
                    :href="subtopic.url"
                    class="dokkiCSS-navi-link dokkiCSS-navi-link-subtopic">
 
-                    <span class="dokkiCSS-navi-link-icon">
-                        {{topicIdx + 1}}.{{subtopicIdx + 1}}
+                    <span class="dokkiCSS-navi-link-label">
+                        {{subtopic.title}}
                     </span>
-
-                    {{subtopic.title}}
                     
                 </a>
 

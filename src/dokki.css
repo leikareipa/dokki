@@ -26,7 +26,8 @@
     --dokkiCSS-text-block-line-anchor-top-margin: 20vh;
 
     --dokkiCSS-embedded-border-radius: 4px;
-    --dokkiCSS-navibar-item-padding: 6px 10px;
+    --dokkiCSS-navibar-item-padding-vertical: 6px;
+    --dokkiCSS-navibar-item-padding-horizontal: 10px;
 
     --dokkiCSS-bold-text-weight: 500;
 }
@@ -203,7 +204,7 @@ code .hljs-comment
     line-height: var(--dokkiCSS-header-height);
     align-items: center;
     margin: 0;
-    padding: var(--dokkiCSS-navibar-item-padding);
+    padding: var(--dokkiCSS-navibar-item-padding-vertical) var(--dokkiCSS-navibar-item-padding-horizontal);
     background-color: var(--dokkiCSS-page-inert-bg-color);
     text-align: left;
     border-bottom: 1px solid var(--dokkiCSS-page-secondary-line-color);
@@ -261,28 +262,64 @@ ul.dokkiCSS-vertical-navi
 
 .dokkiCSS-vertical-navi .dokkiCSS-navi-link-icon
 {
-    color: var(--dokkiCSS-page-inert-fg-color);
+    background-color: var(--dokkiCSS-page-secondary-line-color);
+    border-radius: var(--dokkiCSS-embedded-border-radius);
+    padding: 1px 5px;
+    color: var(--dokkiCSS-page-primary-fg-color);
+    display: block;
+    margin-right: 0.5ch;
+    z-index: 1;
 }
 
-.dokkiCSS-vertical-navi .dokkiCSS-navi-link:hover .dokkiCSS-navi-link-icon
+.dokkiCSS-vertical-navi .dokkiCSS-navi-link-label
 {
-    color: var(--dokkiCSS-page-link-color);
+    display: flex;
+    align-items: center;
 }
 
 .dokkiCSS-vertical-navi .dokkiCSS-navi-link
 {
     display: block;
-    padding: var(--dokkiCSS-navibar-item-padding);
+    padding: var(--dokkiCSS-navibar-item-padding-vertical) var(--dokkiCSS-navibar-item-padding-horizontal);
     white-space: normal;
     text-decoration: none;
     color: var(--dokkiCSS-page-secondary-fg-color);
+    display: flex;
+    position: relative;
 }
 
 .dokkiCSS-vertical-navi .dokkiCSS-navi-link-subtopic
 {
-    padding-left: 25px;
+    border-left: 2px solid transparent;
+    margin-left: calc(var(--dokkiCSS-navibar-item-padding-horizontal) + 3px + 0.5ch);
+    padding-left: 1ch;
     color: var(--dokkiCSS-page-secondary-fg-color);
-    font-size: 95%;
+}
+
+.dokkiCSS-vertical-navi .dokkiCSS-navi-link-subtopic:not(:last-child)
+{
+    border-left: 2px solid var(--dokkiCSS-page-secondary-line-color);
+}
+
+.dokkiCSS-vertical-navi .dokkiCSS-navi-link-subtopic::before
+{
+    content: "";
+    position: absolute;
+    left: -2px;
+    top: -13px;
+    border-left: 2px solid var(--dokkiCSS-page-secondary-line-color);
+    height: 25px;
+}
+
+.dokkiCSS-vertical-navi .dokkiCSS-navi-link-subtopic::after
+{
+    content: "";
+    padding: 5px;
+    background-color: var(--dokkiCSS-page-secondary-line-color);
+    border-radius: 100%;
+    position: absolute;
+    left: -6px;
+    top: 11px;
 }
 
 .dokkiCSS-vertical-navi .dokkiCSS-navi-link:hover
