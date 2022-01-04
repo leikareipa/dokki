@@ -198,6 +198,24 @@ code .hljs-comment
     font-weight: 500;
 }
 
+.dokki-side-panel .dokkiCSS-user-element
+{
+    min-height: var(--dokkiCSS-header-height);
+    align-items: center;
+    margin: 0;
+    padding: var(--dokkiCSS-navibar-item-padding-vertical) var(--dokkiCSS-navibar-item-padding-horizontal);
+    background-color: var(--dokkiCSS-page-inert-bg-color);
+    text-align: left;
+    border-bottom: 1px solid var(--dokkiCSS-page-secondary-line-color);
+    position: relative;
+    top: 0;
+    text-overflow: ellipsis;
+    color: var(--dokkiCSS-page-secondary-fg-color);
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+}
+
 .dokkiCSS-product-tag
 {
     height: var(--dokkiCSS-header-height);

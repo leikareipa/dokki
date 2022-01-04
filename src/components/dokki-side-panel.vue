@@ -8,6 +8,8 @@
 <template>
     <nav class="dokki-side-panel">
 
+        <slot/>
+
         <div v-if="productName !== undefined"
              :title="productName"
              class="dokkiCSS-product-tag">

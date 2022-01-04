@@ -5,8 +5,6 @@
  *
  */
 
-import {simplified_topic_title} from "./misc.js";
-
 export default new Vuex.Store({
     state: {
         topics: [],

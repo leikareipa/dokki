@@ -35,14 +35,6 @@ export default {
             globalTopicIdx: {default: -1},
         }
     },
-    computed: {
-        simplifiedTitle()
-        {
-            return (this.globalTopicIdx < 1)
-                   ? ""
-                   : this.$store.state.topics[this.globalTopicIdx-1].simplifiedTitle;
-        },
-    },
     created()
     {
         this.anchorableId = simplified_topic_title(this.title);
