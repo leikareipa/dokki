@@ -49,6 +49,7 @@ body,
     margin: 0;
 }
 
+body,
 [data-dokki-theme="light"]
 {
     --dokkiCSS-page-link-color: #2264e8;
@@ -65,7 +66,6 @@ body,
     --dokkiCSS-embedded-code-comment-fg-color: #3e8220;
 }
 
-body,
 [data-dokki-theme="dark"]
 {
     --dokkiCSS-page-link-color: #ffe210;

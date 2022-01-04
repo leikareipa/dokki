@@ -31,7 +31,7 @@ export default {
     created()
     {
         console.assert(this.themes.length, "Encountered an empty theme list.");
-        this.set_current_theme(window.sessionStorage.getItem("dokki:theme") || "dark");
+        this.set_current_theme(window.sessionStorage.getItem("dokki:theme") || "light");
     },
     methods:
     {
