@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700;1,400&family=JetBrains+Mono&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700;1,400&family=JetBrains+Mono:ital,wght@0,400;0,500;0,700;1,400;1,500;1,700&display=swap');
 
 :root
 {
@@ -57,7 +57,7 @@ body,
     --dokkiCSS-page-secondary-bg-color: #f9f9f9;
     --dokkiCSS-page-inert-bg-color: white;
     --dokkiCSS-page-primary-fg-color: #202020;
-    --dokkiCSS-page-secondary-fg-color: #454545;
+    --dokkiCSS-page-secondary-fg-color: #404040;
     --dokkiCSS-page-inert-fg-color: #a5a5a5;
     --dokkiCSS-page-primary-line-color: lightgray;
     --dokkiCSS-page-secondary-line-color: lightgray;
@@ -409,6 +409,7 @@ ul.dokkiCSS-vertical-navi
 .dokki-topic li
 {
     margin-top: 10px;
+    line-height: 1.4;
 }
 
 .dokki-topic h1,
