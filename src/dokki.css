@@ -226,8 +226,6 @@ code .hljs-comment
     background-color: var(--dokkiCSS-page-inert-bg-color);
     text-align: left;
     border-bottom: 1px solid var(--dokkiCSS-page-secondary-line-color);
-    position: relative;
-    top: 0;
     white-space: nowrap;
     text-overflow: ellipsis;
     overflow: hidden;
@@ -255,7 +253,7 @@ code .hljs-comment
 {
     box-sizing: border-box;
     position: fixed;
-    z-index: 0;
+    z-index: 3;
     top: var(--dokkiCSS-header-height);
     left: 0;
     width: var(--dokkiCSS-side-panel-width);
