@@ -770,6 +770,7 @@ ul.dokkiCSS-vertical-navi
     align-items: center;
     border-right: 1px solid var(--dokkiCSS-page-primary-line-color);
     padding: 16px;
+    font-weight: var(--dokkiCSS-bold-text-weight);
 }
 
 .dokkiCSS-embedded.dokki-code.has-output + .dokkiCSS-embedded.dokki-output
