@@ -31,7 +31,10 @@
             <div class="dokkiCSS-container">
                 <img :src="src"
                      ref="image-element"
-                     :class="{'dokkiCSS-upscale-to-fit': hasUpscaleToFit}"
+                     :class="{
+                         'dokkiCSS-upscale-to-fit': hasUpscaleToFit,
+                         'dokkiCSS-pixelated-scale': hasPixelated,
+                     }"
                      :width="scaledWidth"
                      :height="scaledHeight">
             </div>
@@ -51,6 +54,7 @@ export default {
     props: {
         src: {default: "//about:blank"},
         upscaleToFit: {default: undefined},
+        pixelatedScale: {default: undefined},
         expanded: {default: undefined},
         width: {default: undefined},
         height: {default: undefined},
@@ -59,7 +63,6 @@ export default {
     {
         return {
             isExpanded: false,
-
             scaledWidth: undefined,
             scaledHeight: undefined,
         }
@@ -82,6 +85,10 @@ export default {
         hasUpscaleToFit()
         {
             return (this.$props.upscaleToFit !== undefined);
+        },
+        hasPixelated()
+        {
+            return (this.$props.pixelatedScale !== undefined);
         }
     },
     methods: {

@@ -193,21 +193,14 @@
                         to fit the size of the container.
                     </p>
 
+                    <h3>pixelated-scale</h3>
+                    <p>
+                        If present, images whose <b>width</b> and/or <b>height</b> differs from the image
+                        file's native resolution will be scaled using nearest-neighbor interpolation.
+                    </p>
+
                     <h2>Examples</h2>
                     
-                    <dokki-code headerless
-                                code="
-                                <dokki-image src='https://upload.wikimedia.org/wikipedia/commons/thumb/7/7f/Eublepharis_macularius_2009_G6.jpg/1280px-Eublepharis_macularius_2009_G6.jpg'>
-                                </dokki-image>
-                                ">
-
-                        <dokki-output>
-                            <dokki-image src='https://upload.wikimedia.org/wikipedia/commons/thumb/7/7f/Eublepharis_macularius_2009_G6.jpg/1280px-Eublepharis_macularius_2009_G6.jpg'>
-                            </dokki-image>
-                        </dokki-output>
-
-                    </dokki-code>
-
                     <dokki-code headerless
                                 code="
                                 <dokki-image expanded src='https://upload.wikimedia.org/wikipedia/commons/thumb/7/7f/Eublepharis_macularius_2009_G6.jpg/1280px-Eublepharis_macularius_2009_G6.jpg'>
@@ -239,6 +232,30 @@
                         </dokki-output>
 
                     </dokki-code>
+
+                    <dokki-code headerless
+                                code="
+                                <dokki-image
+                                    expanded
+                                    pixelated-scale
+                                    width='1024'
+                                    height='576'
+                                    src='https://upload.wikimedia.org/wikipedia/commons/thumb/7/7f/Eublepharis_macularius_2009_G6.jpg/80px-Eublepharis_macularius_2009_G6.jpg'
+                                ></dokki-image>
+                                ">
+
+                        <dokki-output>
+                            <dokki-image
+                                expanded
+                                pixelated-scale
+                                width="1024"
+                                height="576"
+                                src='https://upload.wikimedia.org/wikipedia/commons/thumb/7/7f/Eublepharis_macularius_2009_G6.jpg/80px-Eublepharis_macularius_2009_G6.jpg'>
+                            </dokki-image>
+                        </dokki-output>
+
+                    </dokki-code>
+
                 </dokki-topic>
 
                 <dokki-topic title="<dokki-video>">

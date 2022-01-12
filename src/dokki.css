@@ -818,6 +818,11 @@ ul.dokkiCSS-vertical-navi
     height: 100%;
 }
 
+.dokkiCSS-embedded.dokki-image .dokkiCSS-container > img.dokkiCSS-pixelated-scale
+{
+    image-rendering: pixelated;
+}
+
 .dokkiCSS-embedded.dokki-image > header > .dokkiCSS-title::after
 {
     content: " Image";
