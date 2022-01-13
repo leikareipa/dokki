@@ -68,9 +68,7 @@ export default {
             {
                 this.$nextTick(()=>
                 {
-                    this.$refs["iframe"].onload = ()=>{
-                        this.$refs["iframe"].focus();
-                    };
+                    this.$refs["iframe"].focus();
                 });
             }
         }
