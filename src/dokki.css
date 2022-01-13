@@ -522,13 +522,13 @@ ul.dokkiCSS-vertical-navi
 
 .dokkiCSS-text-block-line-number
 {
-    color: var(--dokkiCSS-page-inert-fg-color);
+    color: var(--dokkiCSS-page-secondary-fg-color);
     user-select: none;
     width: 1ch; /* Shrink to minimum width required by the widest line number <td>.*/
     padding: 0;
     cursor: pointer;
     white-space: normal;
-    padding-right: 1.5ch;
+    padding-right: 1.75ch;
     text-align: right;
 }
 
