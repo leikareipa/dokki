@@ -54,6 +54,11 @@ export function start(args = {})
                        "Invalid document template");
     }
 
+    if (!document.documentElement.hasAttribute("lang"))
+    {
+        document.documentElement.setAttribute("lang", "en");
+    }
+
     const app = Vue.createApp({})
     .component("dokki-area", dokkiArea)
     .component("dokki-code", dokkiCode)
