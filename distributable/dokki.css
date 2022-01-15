@@ -359,7 +359,7 @@ ul.dokkiCSS-vertical-navi
     top: var(--dokkiCSS-header-height);
     z-index: 1;
     box-sizing: border-box;
-    min-height: 100vh;
+    min-height: calc(100vh - var(--dokkiCSS-header-height));
 }
 
 .dokki-topics.dokkiCSS-casts-shadow
