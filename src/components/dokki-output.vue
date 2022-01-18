@@ -22,6 +22,7 @@
         </header>
 
         <dokki0-animated-expander ref="output"
+                                  :start-expanded="isExpanded"
                                   @expanded="isExpanded = true"
                                   @minimized="isExpanded = false">
             <footer>
@@ -36,15 +37,9 @@
 import {expandedPropMixin} from "../component-mixins.js";
 
 export default {
-    data()
-    {
-        return {
-            isExpanded: false,
-        }
-    },
+    mixins: [expandedPropMixin],
     props: {
         title: {default: "Output"},
     },
-    mixins: [expandedPropMixin],
 }
 </script>
