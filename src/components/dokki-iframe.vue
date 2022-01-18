@@ -22,6 +22,7 @@
         </header>
 
         <dokki0-animated-expander ref="frame-expander"
+                                  :start-expanded="isExpanded"
                                   @expanded="isExpanded = true"
                                   @minimized="isExpanded = false">
 
@@ -40,26 +41,15 @@
 </template>
 
 <script>
+import {expandedPropMixin} from "../component-mixins.js";
+
 export default {
-    data()
-    {
-        return {
-            isExpanded: false,
-        }
-    },
+    mixins: [expandedPropMixin],
     props: {
         src: {default: ""},
         height: {default: "500px"},
         title: {default: "Inline frame"},
         autofocus: {default: undefined},
-        expanded: {default: undefined},
-    },
-    mounted()
-    {
-        if (this.$props.expanded !== undefined)
-        {
-            this.$refs["frame-expander"].expand({noAnimation: true});
-        }
     },
     watch: {
         isExpanded()

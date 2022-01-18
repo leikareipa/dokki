@@ -22,6 +22,7 @@
         </header>
 
         <dokki0-animated-expander ref="video-expander"
+                                  :start-expanded="isExpanded"
                                   @expanded="isExpanded = true"
                                   @minimized="isExpanded = false">
             <iframe :src="videoUrl"
@@ -39,24 +40,13 @@
 </template>
 
 <script>
+import {expandedPropMixin} from "../component-mixins.js";
+
 export default {
-    data()
-    {
-        return {
-            isExpanded: false,
-        }
-    },
+    mixins: [expandedPropMixin],
     props: {
         src: {},
         platform: {default: "youtube"},
-        expanded: {default: undefined},
-    },
-    mounted()
-    {
-        if (this.$props.expanded !== undefined)
-        {
-            this.$refs["video-expander"].expand({noAnimation: true});
-        }
     },
     computed: {
         hasFooter()

@@ -21,6 +21,7 @@
         </header>
 
         <dokki0-animated-expander ref="table-expander"
+                                  :start-expanded="isExpanded"
                                   @expanded="isExpanded = true"
                                   @minimized="isExpanded = false">
                                   
@@ -40,23 +41,10 @@
 </template>
 
 <script>
+import {expandedPropMixin} from "../component-mixins.js";
+
 export default {
-    props: {
-        expanded: {default: undefined},
-    },
-    data()
-    {
-        return {
-            isExpanded: false,
-        }
-    },
-    mounted()
-    {
-        if (this.$props.expanded !== undefined)
-        {
-            this.$refs["table-expander"].expand({noAnimation: true});
-        }
-    },
+    mixins: [expandedPropMixin],
     computed: {
         hasFooter()
         {

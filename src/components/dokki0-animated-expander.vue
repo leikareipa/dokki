@@ -19,6 +19,9 @@
 
 <script>
 export default {
+    props: {
+        startExpanded: {default: false},
+    },
     data()
     {
         return {
@@ -30,6 +33,13 @@ export default {
             // height as they load in.
             numDynamicImages: 0,
             numDynamicImagesLoaded: 0,
+        }
+    },
+    mounted()
+    {
+        if (this.$props.startExpanded)
+        {
+            this.expand({noAnimation: true});
         }
     },
     methods: {
