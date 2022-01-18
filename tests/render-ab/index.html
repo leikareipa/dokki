@@ -249,6 +249,8 @@
                 text-align: center;
                 z-index: 99999;
                 font-size: 80%;
+                border-radius: 10px;
+                border-top-right-radius: 0;
             }
 
             .error-marker > a
@@ -287,21 +289,22 @@
 
         <header class="section">
             
-            <h1>dokki &ndash; automated A/B render test</h1>
+            <h1>dokki &ndash; automated A/B render tests</h1>
 
-            This test renders various dokki components using two different versions
+            These tests render various dokki components using two different versions
             of the dokki distributable; for example, an earlier reference point (A)
             and an in-dev distro (B). The test then compares the resulting images
             pixel-for-pixel to find and report any mismatches &ndash; which might
-            indicate code regressions or the like. The test may take a few minutes
-            to complete.
-
+            indicate code regressions or the like. Due to technical limitations,
+            the rendered images may not fully match the way a dokki page looks in
+            actuality, but relative differences between the rendered versions
+            are key.
         </header>
 
         <div id="results-space" class="section">
 
             <div id="mismatches-container">
-                Mismatches: <i class="fas fa-spin fa-spinner"></i>
+                Running the tests... <i class="fas fa-spin fa-spinner"></i>
             </div>
 
         </div>
@@ -480,7 +483,14 @@
                     progressPercentage.innerHTML = ` ${percDone}%`;
                 });
                 
-                renderer.src = `./renderer.html?includeFontAwesome=true&testTemplate=full&theme=light&dokkiPath=${target.dokkiPath}`;
+                renderer.src = `
+                    ./renderer.html
+                    ?includeFontAwesome=false
+                    &testTemplate=full
+                    &theme=light
+                    &dokkiPath=${target.dokkiPath}`
+                    .replace(/\s/g, "");
+
                 renderer.dstContainer = target.resultsContainer;
             }
 
@@ -566,7 +576,7 @@
                 resultsContainer.classList.add(mismatches.length? "failure" : "success");
                 resultsContainer.innerHTML = mismatches.length
                                              ? `Mismatches:`
-                                             : `Mismatches: none <i class="fas fa-check"></i>`;
+                                             : `All tests pass <i class="fas fa-check"></i>`;
 
                 for (let i = 0; i < mismatches.length; i++)
                 {
@@ -584,7 +594,7 @@
 
             const renderTargets = [
                 {
-                    dokkiPath: "../../distributable/old/alpha.1/",
+                    dokkiPath: "../../distributable/old/beta.1/",
                     resultsContainer: document.querySelector("#results-container-a"),
                 },
                 {
