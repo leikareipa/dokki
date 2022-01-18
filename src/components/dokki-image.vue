@@ -24,7 +24,6 @@
 
         <dokki0-animated-expander ref="image-expander"
                                   class="dokkiCSS-checker-background"
-                                  :start-expanded="expanded !== undefined"
                                   @expanded="isExpanded = true"
                                   @minimized="isExpanded = false">
             
@@ -50,29 +49,30 @@
 </template>
 
 <script>
+import {expandedPropMixin} from "../component-mixins.js";
+
 export default {
+    mixins: [expandedPropMixin],
     props: {
         src: {default: "//about:blank"},
         upscaleToFit: {default: undefined},
         pixelatedScale: {default: undefined},
-        expanded: {default: undefined},
         width: {default: undefined},
         height: {default: undefined},
     },
     data()
     {
         return {
-            isExpanded: false,
             scaledWidth: undefined,
             scaledHeight: undefined,
         }
     },
     mounted()
     {
-        if (this.$props.expanded !== undefined)
+        if (this.isExpanded)
         {
             this.calculate_scaled_size();
-            this.$refs["image-expander"].toggle_expansion({startExpanded: true});
+            this.$refs["image-expander"].expand({noAnimation: true});
         }
 
         window.addEventListener("resize", this.calculate_scaled_size);
@@ -101,7 +101,8 @@ export default {
             const imageHeight = this.$props.height;
             let containerWidth = this.$el.offsetWidth;
 
-            if (!imageWidth || !imageHeight || !containerWidth) {
+            if (!imageWidth || !imageHeight || !containerWidth)
+            {
                 return;
             }
 
