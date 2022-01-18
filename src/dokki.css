@@ -280,7 +280,7 @@ ul.dokkiCSS-vertical-navi
 {
     background-color: var(--dokkiCSS-page-secondary-line-color);
     border-radius: var(--dokkiCSS-embedded-border-radius);
-    padding: 1px 5px;
+    padding: 1px 4.5px;
     color: var(--dokkiCSS-page-primary-fg-color);
     display: block;
     margin-right: 0.5ch;
