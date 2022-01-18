@@ -55,7 +55,7 @@ export default {
     {
         if (this.$props.expanded !== undefined)
         {
-            this.$refs["video-expander"].toggle_expansion({startExpanded: true});
+            this.$refs["video-expander"].expand({noAnimation: true});
         }
     },
     computed: {

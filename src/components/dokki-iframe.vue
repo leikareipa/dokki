@@ -58,7 +58,7 @@ export default {
     {
         if (this.$props.expanded !== undefined)
         {
-            this.$refs["frame-expander"].toggle_expansion({startExpanded: true});
+            this.$refs["frame-expander"].expand({noAnimation: true});
         }
     },
     watch: {

@@ -67,111 +67,141 @@ export default {
 
             return el;
         },
-        // Minimize the container if it's currently expanded, and expand it if
-        // it's currently minimized.
-        toggle_expansion({startExpanded = false} = {})
+        expand({noAnimation = false} = {})
         {
             /// Temporary kludge. Some of the transitions may break if the container
             /// has dynamic content (e.g. slowly-loading images) and the user triggers
             /// another transition while the old one is still going on. So let's just
             /// prevent triggering a new transition if the old one hasn't yet finished.
-            if (this.isTransitioning) {
+            if (this.isTransitioning)
+            {
                 return;
             }
 
-            if (!this.isExpanded && startExpanded)
+            if (this.isExpanded)
+            {
+                return;
+            }
+
+            this.isExpanded = true;
+
+            if (noAnimation)
             {
                 this.$emit("expanded");
-                this.isExpanded = true;
                 return;
             }
 
-            this.$emit("transitioning");
             this.isTransitioning = true;
+            this.$emit("transitioning");
 
-            if (!this.isExpanded)
+            // Wait for the element's "v-if='isExpanded'" to take effect.
+            this.$nextTick(()=>
             {
-                this.isExpanded = true;
+                const el = this.$refs.container;
+                
+                el.ontransitionend = undefined;
+                el.style.height = "0";
 
-                // Wait for the element's "v-if='isExpanded'" to take effect.
-                this.$nextTick(()=>
+                // Since any images in the container may not be fully loaded in when the
+                // container is opened (due to network delay etc.), we want to attach
+                // monitors to the image elements that update the container's height when
+                // the images have finished loading to their full height.
                 {
-                    const el = this.$refs.container;
-                    
-                    el.ontransitionend = undefined;
-                    el.style.height = "0";
+                    const childImgElements = this.$refs.container.getElementsByTagName("img");
 
-                    // Since any images in the container may not be fully loaded in when the
-                    // container is opened (due to network delay etc.), we want to attach
-                    // monitors to the image elements that update the container's height when
-                    // the images have finished loading to their full height.
+                    this.numDynamicImages = 0;
+                    this.numDynamicImagesLoaded = 0;
+
+                    for (const img of childImgElements)
                     {
-                        const childImgElements = this.$refs.container.getElementsByTagName("img");
+                        if (img.height !== undefined) {
+                            continue;
+                        }
 
-                        this.numDynamicImages = 0;
-                        this.numDynamicImagesLoaded = 0;
+                        this.numDynamicImages++;
 
-                        for (const img of childImgElements)
+                        img.addEventListener("load", ()=>
                         {
-                            if (img.height !== undefined) {
-                                continue;
-                            }
-
-                            this.numDynamicImages++;
-
-                            img.addEventListener("load", ()=>
+                            window.requestAnimationFrame(()=>
                             {
                                 window.requestAnimationFrame(()=>
                                 {
-                                    window.requestAnimationFrame(()=>
-                                    {
-                                        this.numDynamicImagesLoaded++;
-                                        this.resize_to_contents().ontransitionend = this.expansion_transition_finished;
-                                    });
+                                    this.numDynamicImagesLoaded++;
+                                    this.resize_to_contents().ontransitionend = this.expansion_transition_finished;
                                 });
                             });
-                        }
-                    }
-
-                    // Wait for next frame, to allow the element style changes to update.
-                    window.requestAnimationFrame(()=>
-                    {
-                        window.requestAnimationFrame(()=>
-                        {
-                            this.resize_to_contents();
-
-                            // If the container has any images in it, we'll wait until those
-                            // images have finished loading in (which alters their height)
-                            // before declaring the transitioning complete. The images'
-                            // event handlers will have been set up to do that automatically.
-                            el.ontransitionend = (this.numDynamicImages? undefined : this.expansion_transition_finished);
                         });
-                    });
-                });
-            }
-            else
-            {
-                const el = this.$refs.container;
+                    }
+                }
 
-                // We expect that the container's 'height' style property is set to
-                // "unset", so to be able to transition it to 0px (minimized state)
-                // we want to assign the height property a numeric value (in effect,
-                // its current height in pixels).
-                this.resize_to_contents();
-
-                // Wait for the next frame. If we don't wait, there's a bug where the
-                // expander will minimize immediately without animating if told to
-                // minimize just as the expansion animation is finishing. I'm not
-                // sure why waiting fixes it, but hey.
+                // Wait for next frame, to allow the element style changes to update.
                 window.requestAnimationFrame(()=>
                 {
                     window.requestAnimationFrame(()=>
                     {
-                        el.style.height = "0";
-                        el.ontransitionend = this.minimization_transition_finished;
+                        this.resize_to_contents();
+
+                        // If the container has any images in it, we'll wait until those
+                        // images have finished loading in (which alters their height)
+                        // before declaring the transitioning complete. The images'
+                        // event handlers will have been set up to do that automatically.
+                        el.ontransitionend = (this.numDynamicImages? undefined : this.expansion_transition_finished);
                     });
                 });
+            });
+        },
+        minimize({noAnimation = false} = {})
+        {
+            /// Temporary kludge. Some of the transitions may break if the container
+            /// has dynamic content (e.g. slowly-loading images) and the user triggers
+            /// another transition while the old one is still going on. So let's just
+            /// prevent triggering a new transition if the old one hasn't yet finished.
+            if (this.isTransitioning)
+            {
+                return;
             }
+
+            if (!this.isExpanded)
+            {
+                return;
+            }
+
+            if (noAnimation)
+            {
+                this.isExpanded = false;
+                this.$emit("minimized");
+                return;
+            }
+
+            this.isTransitioning = true;
+            this.$emit("transitioning");
+
+            const el = this.$refs.container;
+
+            // We expect that the container's 'height' style property is set to
+            // "unset", so to be able to transition it to 0px (minimized state)
+            // we want to assign the height property a numeric value (in effect,
+            // its current height in pixels).
+            this.resize_to_contents();
+
+            // Wait for the next frame. If we don't wait, there's a bug where the
+            // expander will minimize immediately without animating if told to
+            // minimize just as the expansion animation is finishing. I'm not
+            // sure why waiting fixes it, but hey.
+            window.requestAnimationFrame(()=>
+            {
+                window.requestAnimationFrame(()=>
+                {
+                    el.style.height = "0";
+                    el.ontransitionend = this.minimization_transition_finished;
+                });
+            });
+        },
+        // Minimize the container if it's currently expanded, and expand it if
+        // it's currently minimized.
+        toggle_expansion({noAnimation = false} = {})
+        {
+            (this.isExpanded? this.minimize : this.expand)({noAnimation});
         },
     },
 }
