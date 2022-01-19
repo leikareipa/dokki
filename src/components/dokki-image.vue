@@ -72,7 +72,7 @@ export default {
         if (this.isExpanded)
         {
             this.calculate_scaled_size();
-            this.$refs["image-expander"].expand({noAnimation: true});
+            this.$refs["image-expander"].expand({animate: false});
         }
 
         window.addEventListener("resize", this.calculate_scaled_size);

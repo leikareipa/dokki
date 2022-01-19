@@ -39,7 +39,7 @@ export default {
     {
         if (this.$props.startExpanded)
         {
-            this.expand({noAnimation: true});
+            this.expand({animate: false});
         }
     },
     methods: {
@@ -77,7 +77,7 @@ export default {
 
             return el;
         },
-        expand({noAnimation = false} = {})
+        expand({animate = true} = {})
         {
             /// Temporary kludge. Some of the transitions may break if the container
             /// has dynamic content (e.g. slowly-loading images) and the user triggers
@@ -95,7 +95,7 @@ export default {
 
             this.isExpanded = true;
 
-            if (noAnimation)
+            if (!animate)
             {
                 this.$emit("expanded");
                 return;
@@ -160,7 +160,7 @@ export default {
                 });
             });
         },
-        minimize({noAnimation = false} = {})
+        minimize({animate = true} = {})
         {
             /// Temporary kludge. Some of the transitions may break if the container
             /// has dynamic content (e.g. slowly-loading images) and the user triggers
@@ -176,7 +176,7 @@ export default {
                 return;
             }
 
-            if (noAnimation)
+            if (!animate)
             {
                 this.isExpanded = false;
                 this.$emit("minimized");
@@ -209,9 +209,9 @@ export default {
         },
         // Minimize the container if it's currently expanded, and expand it if
         // it's currently minimized.
-        toggle_expansion({noAnimation = false} = {})
+        toggle_expansion({animate = true} = {})
         {
-            (this.isExpanded? this.minimize : this.expand)({noAnimation});
+            (this.isExpanded? this.minimize : this.expand)({animate});
         },
     },
 }
