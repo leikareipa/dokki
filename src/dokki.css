@@ -907,6 +907,11 @@ ul.dokkiCSS-vertical-navi
         padding-right: var(--dokkiCSS-header-bottom-margin);
     }
 
+    .dokki-topic ul
+    {
+        padding-inline-start: calc(1em + 1.5ch);
+    }
+
     .dokki-header
     {
         position: absolute;
@@ -943,7 +948,7 @@ ul.dokkiCSS-vertical-navi
 
     .dokki-topic ul
     {
-        padding-inline-start: 1em;
+        padding-inline-start: calc(1em + 0.5ch);
     }
 
     .dokkiCSS-embedded.dokki-tip,
