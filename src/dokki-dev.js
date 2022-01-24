@@ -60,6 +60,7 @@ export function start(args = {})
     }
 
     const app = Vue.createApp({})
+    .use(store)
     .component("dokki-area", dokkiArea)
     .component("dokki-code", dokkiCode)
     .component("dokki-console", dokkiConsole)
@@ -82,8 +83,7 @@ export function start(args = {})
     .component("dokki-hr", dokkiHr)
     .component("dokki0-text-block-with-line-numbers", dokki0TextBlockWithLineNumbers)
     .component("dokki0-animated-expander", dokki0AnimatedExpander)
-    .component("product-name", productName)
-    .use(store);
+    .component("product-name", productName);
 
     // Register any user-provided custom components.
     if (Array.isArray(parent.window.dokkiUserComponents))
