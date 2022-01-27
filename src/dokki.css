@@ -436,7 +436,7 @@ ul.dokkiCSS-vertical-navi
 .dokki-topic h1.dokkiCSS-topic-title
 {
     margin-top: 0;
-    margin-bottom: var(--dokkiCSS-topic--vertical-padding);
+    margin-bottom: 0;
     padding: 0;
 }
 
@@ -959,7 +959,6 @@ ul.dokkiCSS-vertical-navi
 
     .dokkiCSS-topic-title
     {
-        font-style: italic;
         hyphens: auto;
     }
 
@@ -967,7 +966,7 @@ ul.dokkiCSS-vertical-navi
     {
         visibility: hidden;
         margin-top: 0;
-        margin-bottom: var(--dokkiCSS-topic-bottom-margin);
+        margin-bottom: 16px;
     }
 
     .dokkiCSS-embedded.dokki-tip,
