@@ -15,8 +15,8 @@
     --dokkiCSS-page-border-radius: 0 0 4px 4px;
 
     --dokkiCSS-topic-bottom-margin: 25px;
+    --dokkiCSS-topic-vertical-padding: 25px;
     --dokkiCSS-topic-horizontal-padding: 34px;
-    --dokkiCSS-topic-vertical-padding: 34px;
     --dokkiCSS-topic-header-top-margin: 32px;
 
     --dokkiCSS-topics-container-vertical-top-start: calc(35px - var(--dokkiCSS-header-bottom-margin));
@@ -924,7 +924,7 @@ ul.dokkiCSS-vertical-navi
     {
         --dokkiCSS-topic-bottom-margin: 25px;
         --dokkiCSS-topic-horizontal-padding: 10px;
-        --dokkiCSS-topic-vertical-padding: 25px;
+        --dokkiCSS-topic-vertical-padding: 16px;
         --dokkiCSS-topic-header-top-margin: 25px;
         --dokkiCSS-header-bottom-margin: 0px;
     }
