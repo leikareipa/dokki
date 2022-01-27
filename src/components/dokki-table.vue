@@ -12,6 +12,9 @@
 
             <span class="dokkiCSS-title">
                 <i class="fas fa-table" title="Table"/>
+                <span>
+                    {{title}}
+                </span>
             </span>
 
             <aside class="dokkiCSS-expander">
@@ -31,12 +34,6 @@
 
         </dokki0-animated-expander>
 
-        <hr v-if="hasFooter">
-
-        <footer v-if="hasFooter" class="dokkiCSS-italic">
-            <slot name="caption"/>
-        </footer>
-
     </p>
 </template>
 
@@ -46,9 +43,18 @@ import {expandedPropMixin} from "../component-mixins.js";
 export default {
     mixins: [expandedPropMixin],
     computed: {
-        hasFooter()
+        title()
         {
-            return !!this.$slots.caption;
+            const caption = (typeof this.$slots.caption == "function")
+                ? this.$slots.caption()
+                : undefined;
+
+            if (Array.isArray(caption) && (typeof caption[0].children == "string")) {
+                return caption[0].children;
+            }
+
+            /// TODO: Don't prefix the thing with a space; use CSS spacing instead.
+            return " Table";
         }
     },
 }

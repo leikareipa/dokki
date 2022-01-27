@@ -649,11 +649,6 @@ ul.dokkiCSS-vertical-navi
     border: none;
 }
 
-.dokkiCSS-embedded.dokki-table > header > .dokkiCSS-title::after
-{
-    content: " Table";
-}
-
 .dokkiCSS-embedded.dokki-table .dokkiCSS-container
 {
     overflow: auto;
@@ -676,6 +671,7 @@ ul.dokkiCSS-vertical-navi
     border: none;
     white-space: nowrap;
     text-align: left;
+    vertical-align: baseline;
 }
 
 .dokkiCSS-embedded.dokki-table table tr
