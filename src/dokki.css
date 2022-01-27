@@ -122,7 +122,6 @@ code .hljs-comment
 .dokki-theme-selector
 {
     margin-left: auto;
-    font-size: initial;
     cursor: pointer;
     color: var(--dokkiCSS-page-secondary-fg-color);
     font-variant: small-caps;
@@ -145,6 +144,7 @@ code .hljs-comment
 [while-dokki-initializing]
 {
     overflow-x: auto;
+    overflow-y: hidden;
     white-space: nowrap;
     border-bottom: 1px solid var(--dokkiCSS-page-secondary-line-color);
     display: flex;
@@ -188,15 +188,17 @@ code .hljs-comment
 
 .dokkiCSS-header-container > * + *
 {
-    margin-left: 5px;
+    margin-left: 10px;
 }
 
 .dokkiCSS-header-title
 {
     flex: 1;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    overflow: auto;
+    overflow-y: hidden;
     font-weight: 500;
+    height: var(--dokkiCSS-header-height);
+    line-height: var(--dokkiCSS-header-height);
 }
 
 .dokki-side-panel .dokkiCSS-user-element
@@ -883,6 +885,7 @@ ul.dokkiCSS-vertical-navi
 {
     :root
     {
+        --dokkiCSS-header-height: 50px;
         --dokkiCSS-side-panel-width: 0;
         --dokkiCSS-document-width: 100%;
         --dokkiCSS-topic-bottom-margin: 20px;
@@ -914,13 +917,14 @@ ul.dokkiCSS-vertical-navi
     }
 }
 
+/* E.g. for phones in vertical mode.*/
 @media only screen and (max-width: 500px)
 {
     :root
     {
-        --dokkiCSS-topic-bottom-margin: 20px;
+        --dokkiCSS-topic-bottom-margin: 25px;
         --dokkiCSS-topic-horizontal-padding: 10px;
-        --dokkiCSS-topic-vertical-padding: 20px;
+        --dokkiCSS-topic-vertical-padding: 25px;
         --dokkiCSS-topic-header-top-margin: 25px;
         --dokkiCSS-header-bottom-margin: 0px;
     }
@@ -942,9 +946,28 @@ ul.dokkiCSS-vertical-navi
         font-size: 150%;
     }
 
+    .dokki-topic h2
+    {
+        font-size: 125%;
+        font-weight: var(--dokkiCSS-bold-text-weight);
+    }
+
     .dokki-topic ul
     {
         padding-inline-start: calc(1em + 0.5ch);
+    }
+
+    .dokkiCSS-topic-title
+    {
+        font-style: italic;
+        hyphens: auto;
+    }
+
+    .dokkiCSS-topic-title + .dokki-hr
+    {
+        visibility: hidden;
+        margin-top: 0;
+        margin-bottom: var(--dokkiCSS-topic-bottom-margin);
     }
 
     .dokkiCSS-embedded.dokki-tip,
