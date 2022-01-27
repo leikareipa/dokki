@@ -15,7 +15,7 @@
     --dokkiCSS-page-border-radius: 0 0 4px 4px;
 
     --dokkiCSS-topic-bottom-margin: 25px;
-    --dokkiCSS-topic-vertical-padding: 25px;
+    --dokkiCSS-topic-vertical-padding: 34px;
     --dokkiCSS-topic-horizontal-padding: 34px;
     --dokkiCSS-topic-header-top-margin: 32px;
 
@@ -373,7 +373,6 @@ ul.dokkiCSS-vertical-navi
 {
     background-color: var(--dokkiCSS-page-primary-bg-color);
     padding: var(--dokkiCSS-topic-vertical-padding) var(--dokkiCSS-topic-horizontal-padding);
-    padding-bottom: var(--dokkiCSS-topic-bottom-margin);
     box-sizing: border-box;
     margin: 0;
     margin-bottom: var(--dokkiCSS-topic-bottom-margin);
@@ -463,7 +462,7 @@ ul.dokkiCSS-vertical-navi
 
 .dokki-hr
 {
-    margin: var(--dokkiCSS-topic-bottom-margin) 0;
+    margin: var(--dokkiCSS-topic-vertical-padding) 0;
 }
 
 .dokki-topic > .dokki-hr
