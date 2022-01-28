@@ -36,6 +36,10 @@ export default new Vuex.Store({
                 });
             }
         },
+        set_layout_mode(state, layoutMode = "horizontal")
+        {
+            document.body.setAttribute("data-dokki-layout", layoutMode);
+        },
         increment_listings_count(state)
         {
             state.numListings++;

@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700;1,400&family=JetBrains+Mono:ital,wght@0,400;0,500;0,700;1,400;1,500;1,700&display=swap');
 
-:root
+body
 {
     --dokkiCSS-header-height: 40px;
     --dokkiCSS-header-bottom-margin: 23px;
@@ -825,7 +825,7 @@ ul.dokkiCSS-vertical-navi
 
 @media only screen and (max-width: 1700px)
 {
-    :root
+    body
     {
         --dokkiCSS-document-horizontal-left-start: 60px;
         --dokkiCSS-topics-container-width: calc(85% - var(--dokkiCSS-document-horizontal-left-start) - var(--dokkiCSS-side-panel-width));
@@ -834,7 +834,7 @@ ul.dokkiCSS-vertical-navi
 
 @media only screen and (max-width: 1400px)
 {
-    :root
+    body
     {
         --dokkiCSS-topics-container-width: calc(100% - var(--dokkiCSS-document-horizontal-left-start)*2 - var(--dokkiCSS-side-panel-width));
     }
@@ -842,7 +842,7 @@ ul.dokkiCSS-vertical-navi
 
 @media only screen and (max-width: 1200px)
 {
-    :root
+    body
     {
         --dokkiCSS-side-panel-width: 260px;
         --dokkiCSS-document-horizontal-left-start: 0px;
@@ -872,121 +872,126 @@ ul.dokkiCSS-vertical-navi
 
 @media only screen and (max-width: 1100px)
 {
-    :root
+    body
     {
         --dokkiCSS-side-panel-width: 240px;
     }
 }
 
-@media only screen and (max-width: 860px)
+
+/*
+ * Base styling for all vertical layouts.
+ *
+ */
+
+body[data-dokki-layout^="vertical"]
 {
-    :root
-    {
-        --dokkiCSS-header-height: 50px;
-        --dokkiCSS-side-panel-width: 0;
-        --dokkiCSS-document-width: 100%;
-        --dokkiCSS-topic-bottom-margin: 20px;
-        --dokkiCSS-topic-horizontal-padding: 20px;
-        --dokkiCSS-topic-vertical-padding: 20px;
-        --dokkiCSS-header-bottom-margin: 15px;
-    }
-
-    .dokki-side-panel
-    {
-        display: none;
-    }
-
-    .dokki-topics
-    {
-        left: var(--dokkiCSS-document-horizontal-left-start);
-        padding-left: var(--dokkiCSS-header-bottom-margin);
-        padding-right: var(--dokkiCSS-header-bottom-margin);
-    }
-
-    .dokki-topic ul
-    {
-        padding-inline-start: calc(1em + 1.5ch);
-    }
-
-    .dokki-header
-    {
-        position: absolute;
-    }
+    --dokkiCSS-header-height: 50px;
+    --dokkiCSS-side-panel-width: 0;
+    --dokkiCSS-document-width: 100%;
+    --dokkiCSS-topic-bottom-margin: 20px;
+    --dokkiCSS-topic-horizontal-padding: 20px;
+    --dokkiCSS-topic-vertical-padding: 20px;
+    --dokkiCSS-header-bottom-margin: 15px;
 }
 
-/* E.g. for phones in vertical mode.*/
-@media only screen and (max-width: 500px)
+body[data-dokki-layout^="vertical"] .dokki-side-panel
 {
-    :root
-    {
-        --dokkiCSS-topic-bottom-margin: 25px;
-        --dokkiCSS-topic-horizontal-padding: 10px;
-        --dokkiCSS-topic-vertical-padding: 16px;
-        --dokkiCSS-topic-header-top-margin: 25px;
-        --dokkiCSS-header-bottom-margin: 0px;
-    }
+    display: none;
+}
 
-    .dokki-topics
-    {
-        left: var(--dokkiCSS-document-horizontal-left-start);
-    }
+body[data-dokki-layout^="vertical"] .dokki-topics
+{
+    left: var(--dokkiCSS-document-horizontal-left-start);
+    padding-left: var(--dokkiCSS-header-bottom-margin);
+    padding-right: var(--dokkiCSS-header-bottom-margin);
+}
 
-    .dokki-topic
-    {
-        border-left: none;
-        border-right: none;
-        border-radius: 0;
-    }
+body[data-dokki-layout^="vertical"] .dokki-topic ul
+{
+    padding-inline-start: calc(1em + 1.5ch);
+}
 
-    .dokki-topic h1
-    {
-        font-size: 150%;
-    }
+body[data-dokki-layout^="vertical"] .dokki-header
+{
+    position: absolute;
+}
 
-    .dokki-topic h2
-    {
-        font-size: 125%;
-        font-weight: var(--dokkiCSS-bold-text-weight);
-    }
 
-    .dokki-topic ul
-    {
-        padding-inline-start: calc(1em + 0.5ch);
-    }
+/*
+ * Vertical layout for narrow screens (e.g. phones in portrait mode).
+ *
+ */
 
-    .dokkiCSS-topic-title
-    {
-        hyphens: auto;
-    }
+body[data-dokki-layout="vertical-narrow"]
+{
+    --dokkiCSS-topic-bottom-margin: 25px;
+    --dokkiCSS-topic-horizontal-padding: 10px;
+    --dokkiCSS-topic-vertical-padding: 16px;
+    --dokkiCSS-topic-header-top-margin: 25px;
+    --dokkiCSS-header-bottom-margin: 0px;
+}
 
-    .dokkiCSS-topic-title + .dokki-hr
-    {
-        visibility: hidden;
-        margin-top: 0;
-        margin-bottom: 16px;
-    }
+body[data-dokki-layout="vertical-narrow"] .dokki-topics
+{
+    left: var(--dokkiCSS-document-horizontal-left-start);
+}
 
-    .dokkiCSS-embedded.dokki-tip,
-    .dokkiCSS-embedded.dokki-warning
-    {
-        flex-direction: column;
-        align-items: stretch;
-    }
+body[data-dokki-layout="vertical-narrow"] .dokki-topic
+{
+    border-left: none;
+    border-right: none;
+    border-radius: 0;
+}
 
-    .dokkiCSS-embedded.dokki-tip > header,
-    .dokkiCSS-embedded.dokki-warning > header
-    {
-        border: none;
-        border-bottom: 1px solid var(--dokkiCSS-page-primary-line-color);
-    }
+body[data-dokki-layout="vertical-narrow"] .dokki-topic h1
+{
+    font-size: 150%;
+}
 
-    .dokkiCSS-header-icon
-    {
-        display: none;
-    }
+body[data-dokki-layout="vertical-narrow"] .dokki-topic h2
+{
+    font-size: 125%;
+    font-weight: var(--dokkiCSS-bold-text-weight);
+}
 
-    .dokkiCSS-header-title
-    {
-        margin-left: 0;
-    }
+body[data-dokki-layout="vertical-narrow"] .dokki-topic ul
+{
+    padding-inline-start: calc(1em + 0.5ch);
+}
+
+body[data-dokki-layout="vertical-narrow"] .dokkiCSS-topic-title
+{
+    hyphens: auto;
+}
+
+body[data-dokki-layout="vertical-narrow"] .dokkiCSS-topic-title + .dokki-hr
+{
+    visibility: hidden;
+    margin-top: 0;
+    margin-bottom: 16px;
+}
+
+body[data-dokki-layout="vertical-narrow"] .dokkiCSS-embedded.dokki-tip,
+body[data-dokki-layout="vertical-narrow"] .dokkiCSS-embedded.dokki-warning
+{
+    flex-direction: column;
+    align-items: stretch;
+}
+
+body[data-dokki-layout="vertical-narrow"] .dokkiCSS-embedded.dokki-tip > header,
+body[data-dokki-layout="vertical-narrow"] .dokkiCSS-embedded.dokki-warning > header
+{
+    border: none;
+    border-bottom: 1px solid var(--dokkiCSS-page-primary-line-color);
+}
+
+body[data-dokki-layout="vertical-narrow"] .dokkiCSS-header-icon
+{
+    display: none;
+}
+
+body[data-dokki-layout="vertical-narrow"] .dokkiCSS-header-title
+{
+    margin-left: 0;
 }

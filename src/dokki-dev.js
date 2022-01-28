@@ -59,6 +59,42 @@ export function start(args = {})
         document.documentElement.setAttribute("lang", "en");
     }
 
+    // Apply URL parameters.
+    {
+        const urlParams = new URLSearchParams(window.location.search);
+
+        // ?layout
+        {
+            const layoutModes = ["horizontal", "vertical", "vertical-narrow"];
+            const defaultLayoutMode = layoutModes[0];
+            const mode = (modeName)=>layoutModes.find(mode=>mode==modeName);
+
+            if (urlParams.has("layout"))
+            {
+                const targetMode = (mode(urlParams.get("layout")) || defaultLayoutMode);
+                store.commit("set_layout_mode", targetMode);
+            }
+            else
+            {
+                window.addEventListener("resize", (
+                    function set_mode()
+                    {
+                        const screenWidth = document.documentElement.clientWidth;
+                        const targetMode = 
+                            (screenWidth < 500)?
+                                mode("vertical-narrow")
+                            : (screenWidth < 860)?
+                                mode("vertical")
+                            : mode("horizontal");
+
+                        store.commit("set_layout_mode", (targetMode || defaultLayoutMode));
+                        return set_mode;
+                    })()
+                );
+            }
+        }
+    }
+
     const app = Vue.createApp({})
     .use(store)
     .component("dokki-area", dokkiArea)
