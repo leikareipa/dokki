@@ -44,6 +44,43 @@
                 margin-bottom: 45px;
             }
 
+            .section > :last-child
+            {
+                margin-bottom: 0;
+            }
+
+            .section table
+            {
+                border: 1px solid lightgray;
+                border-radius: 5px;
+                border-spacing: 0;
+            }
+
+            .section table td,
+            .section table th
+            {
+                text-align: left;
+                padding: 10px;
+            }
+
+            .section table tr:not(:last-child) td,
+            .section table tr:not(:last-child) th
+            {
+                border-bottom: 1px solid lightgray;
+            }
+
+            .section table td:first-child
+            {
+                font-weight: bold;
+                text-align: right;
+            }
+
+            .section table th
+            {
+                font-style: italic;
+                font-weight: normal;
+            }
+
             .waiting-spinner
             {
                 width: 100%;
@@ -52,7 +89,8 @@
                 box-sizing: border-box;
             }
 
-            #results-space
+            #results-space,
+            #settings-space
             {
                 display: flex;
                 justify-content: center;
@@ -291,15 +329,21 @@
             
             <h1>dokki &ndash; automated A/B render tests</h1>
 
-            These tests render various dokki components using two different versions
-            of the dokki distributable; for example, an earlier reference point (A)
-            and an in-dev distro (B). The test then compares the resulting images
-            pixel-for-pixel to find and report any mismatches &ndash; which might
-            indicate code regressions or the like. Due to technical limitations,
-            the rendered images may not fully match the way a dokki page looks in
-            actuality, but relative differences between the rendered versions
-            are key.
+            <p>
+                These tests render various dokki components using two different versions
+                of the dokki distributable; for example, an earlier reference point (A)
+                and an in-dev distro (B). The test then compares the resulting images
+                pixel-for-pixel to find and report any mismatches &ndash; which might
+                indicate code regressions or the like. Due to technical limitations,
+                the rendered images may not fully match the way a dokki page looks in
+                actuality, but relative differences between the rendered versions
+                are key.
+            </p>
+
         </header>
+
+        <div id="settings-space" class="section">
+        </div>
 
         <div id="results-space" class="section">
 
@@ -393,7 +437,7 @@
                     dstContainer: renderer.dstContainer
                 });
 
-                render_next_target();
+                run_next_test();
             });
 
             function send_message_to_renderer(eventId = "", data = {})
@@ -444,7 +488,7 @@
                 }
             }
 
-            function render_next_target()
+            function render_next_target(settings = {})
             {
                 if (!renderTargets.length)
                 {
@@ -485,9 +529,10 @@
                 
                 renderer.src = `
                     ./renderer.html
-                    ?includeFontAwesome=false
-                    &testTemplate=full
-                    &theme=light
+                    ?includeFontAwesome=${settings.fontAwesome}
+                    &testTemplate=${settings.template}
+                    &theme=${settings.theme}
+                    &layout=${settings.layout}
                     &dokkiPath=${target.dokkiPath}`
                     .replace(/\s/g, "");
 
@@ -592,6 +637,23 @@
         <script>
             const resultColumns = [];
 
+            const settings = {
+                template: "full",
+                layout: (new URLSearchParams(window.location.search).get("layout") || "horizontal"),
+                theme: (new URLSearchParams(window.location.search).get("theme") || "light"),
+                fontAwesome: false,
+            };
+
+            document.getElementById("settings-space", ).innerHTML = `
+                <table>
+                    ${Object.keys(settings).map(key=>`
+                        <tr>
+                            <td>${key}</td>
+                            <td>${settings[key]}</td>
+                        </tr>`).join(" ")}
+                </table>
+            `;
+
             const renderTargets = [
                 {
                     dokkiPath: "../../distributable/old/beta.1/",
@@ -608,7 +670,12 @@
                 target.resultsContainer.querySelector("header").textContent = target.dokkiPath;
             }
 
-            render_next_target();
+            run_next_test();
+
+            function run_next_test()
+            {
+                render_next_target(settings);
+            }
         </script>
     </body>
 </html>
