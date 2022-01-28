@@ -567,9 +567,7 @@ ul.dokkiCSS-vertical-navi
 .dokkiCSS-embedded > header
 {
     font-weight: normal;
-    padding: 8px;
-    padding-left: 14px;
-    padding-right: 14px;
+    padding: 16px;
     background-color: var(--dokkiCSS-embedded-header-bg-color);
     display: flex;
     align-items: center;
@@ -978,7 +976,6 @@ ul.dokkiCSS-vertical-navi
     .dokkiCSS-embedded.dokki-tip > header,
     .dokkiCSS-embedded.dokki-warning > header
     {
-        padding: 10px;
         border: none;
         border-bottom: 1px solid var(--dokkiCSS-page-primary-line-color);
     }
