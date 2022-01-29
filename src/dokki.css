@@ -27,6 +27,7 @@ body
     --dokkiCSS-text-block-line-anchor-top-margin: 20vh;
 
     --dokkiCSS-embedded-border-radius: 4px;
+    --dokkiCSS-embedded-padding: 14px;
     --dokkiCSS-navibar-item-padding-vertical: 6px;
     --dokkiCSS-navibar-item-padding-horizontal: 10px;
 
@@ -247,7 +248,7 @@ code .hljs-comment
 {
     width: 100%;
     box-sizing: border-box;
-    padding: 16px;
+    padding: calc(2 * var(--dokkiCSS-embedded-padding));
     background-color: var(--dokkiCSS-embedded-header-bg-color);
     border-left: 5px solid var(--dokkiCSS-page-inert-fg-color);
 }
@@ -567,7 +568,7 @@ ul.dokkiCSS-vertical-navi
 .dokkiCSS-embedded > header
 {
     font-weight: normal;
-    padding: 16px;
+    padding: var(--dokkiCSS-embedded-padding);
     background-color: var(--dokkiCSS-embedded-header-bg-color);
     display: flex;
     align-items: center;
@@ -591,7 +592,7 @@ ul.dokkiCSS-vertical-navi
 .dokkiCSS-embedded footer
 {
     overflow: auto;
-    padding: 16px;
+    padding: var(--dokkiCSS-embedded-padding);
     background-color: var(--dokkiCSS-embedded-footer-bg-color); 
 }
 
@@ -754,7 +755,7 @@ ul.dokkiCSS-vertical-navi
 .dokkiCSS-embedded.dokki-tip footer,
 .dokkiCSS-embedded.dokki-warning footer
 {
-    padding: 16px;
+    padding: var(--dokkiCSS-embedded-padding);
 }
 
 .dokkiCSS-embedded.dokki-tip > header,
@@ -764,7 +765,7 @@ ul.dokkiCSS-vertical-navi
     flex-direction: column;
     align-items: center;
     border-right: 1px solid var(--dokkiCSS-page-primary-line-color);
-    padding: 16px;
+    padding: var(--dokkiCSS-embedded-padding);
     font-weight: var(--dokkiCSS-bold-text-weight);
 }
 
@@ -886,6 +887,7 @@ ul.dokkiCSS-vertical-navi
 
 body[data-dokki-layout^="vertical"]
 {
+    --dokkiCSS-embedded-padding: 10px;
     --dokkiCSS-header-height: 50px;
     --dokkiCSS-side-panel-width: 0;
     --dokkiCSS-document-width: 100%;
