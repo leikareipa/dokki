@@ -118,6 +118,7 @@
                 border-color: crimson;
                 background-color: crimson;
                 color: white;
+                border-radius: 5px;
             }
 
             #mismatches-container.error
@@ -342,15 +343,15 @@
 
         </header>
 
-        <div id="settings-space" class="section">
-        </div>
-
         <div id="results-space" class="section">
 
             <div id="mismatches-container">
                 Running the tests... <i class="fas fa-spin fa-spinner"></i>
             </div>
 
+        </div>
+
+        <div id="settings-space" class="section">
         </div>
 
         <div id="test-space" class="section">
@@ -437,7 +438,7 @@
                     dstContainer: renderer.dstContainer
                 });
 
-                run_next_test();
+                render_next_target();
             });
 
             function send_message_to_renderer(eventId = "", data = {})
@@ -488,7 +489,7 @@
                 }
             }
 
-            function render_next_target(settings = {})
+            function render_next_target()
             {
                 if (!renderTargets.length)
                 {
@@ -637,10 +638,13 @@
         <script>
             const resultColumns = [];
 
+            const urlSearchParams = new URLSearchParams(window.location.search);
             const settings = {
+                A: (urlSearchParams.get("a") || "../../distributable/old/beta.2/"),
+                B: (urlSearchParams.get("b") || "../../distributable/"),
                 template: "full",
-                layout: (new URLSearchParams(window.location.search).get("layout") || "horizontal"),
-                theme: (new URLSearchParams(window.location.search).get("theme") || "light"),
+                layout: (urlSearchParams.get("layout") || "horizontal"),
+                theme: (urlSearchParams.get("theme") || "light"),
                 fontAwesome: false,
             };
 
@@ -656,26 +660,16 @@
 
             const renderTargets = [
                 {
-                    dokkiPath: "../../distributable/old/beta.2/",
+                    dokkiPath: settings.A,
                     resultsContainer: document.querySelector("#results-container-a"),
                 },
                 {
-                    dokkiPath: "../../distributable/",
+                    dokkiPath: settings.B,
                     resultsContainer: document.querySelector("#results-container-b"),
                 },
             ];
 
-            for (const target of renderTargets)
-            {
-                target.resultsContainer.querySelector("header").textContent = target.dokkiPath;
-            }
-
-            run_next_test();
-
-            function run_next_test()
-            {
-                render_next_target(settings);
-            }
+            render_next_target();
         </script>
     </body>
 </html>
