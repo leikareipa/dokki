@@ -1,4 +1,78 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700;1,400&family=JetBrains+Mono:ital,wght@0,400;0,500;0,700;1,400;1,500;1,700&display=swap');
+/* Roboto */
+@font-face
+{
+    font-family: "Roboto";
+    src: url("./fonts/Roboto/woff2/Roboto-Regular.woff2") format("woff2"),
+         url("./fonts/Roboto/woff/Roboto-Regular.woff") format("woff");
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face
+{
+    font-family: "Roboto";
+    src: url("./fonts/Roboto/woff2/Roboto-Italic.woff2") format("woff2"),
+         url("./fonts/Roboto/woff/Roboto-Italic.woff") format("woff");
+    font-weight: 400;
+    font-style: italic;
+    font-display: swap;
+}
+@font-face
+{
+    font-family: "Roboto";
+    src: url("./fonts/Roboto/woff2/Roboto-Medium.woff2") format("woff2"),
+         url("./fonts/Roboto/woff/Roboto-Medium.woff") format("woff");
+    font-weight: 500 700;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face
+{
+    font-family: "Roboto";
+    src: url("./fonts/Roboto/woff2/Roboto-MediumItalic.woff2") format("woff2"),
+         url("./fonts/Roboto/woff/Roboto-MediumItalic.woff") format("woff");
+    font-weight: 500 700;
+    font-style: italic;
+    font-display: swap;
+}
+
+/* JetBrains Mono */
+@font-face
+{
+    font-family: "JetBrains Mono";
+    src: url("./fonts/JetBrainsMono/woff2/JetBrainsMono-Regular.woff2") format("woff2"),
+         url("./fonts/JetBrainsMono/woff/JetBrainsMono-Regular.woff") format("woff");
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face
+{
+    font-family: "JetBrains Mono";
+    src: url("./fonts/JetBrainsMono/woff2/JetBrainsMono-Italic.woff2") format("woff2"),
+         url("./fonts/JetBrainsMono/woff/JetBrainsMono-Italic.woff") format("woff");
+    font-weight: 400;
+    font-style: italic;
+    font-display: swap;
+}
+@font-face
+{
+    font-family: "JetBrains Mono";
+    src: url("./fonts/JetBrainsMono/woff2/JetBrainsMono-Bold.woff2") format("woff2"),
+         url("./fonts/JetBrainsMono/woff/JetBrainsMono-Bold.woff") format("woff");
+    font-weight: 500 700;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face
+{
+    font-family: "JetBrains Mono";
+    src: url("./fonts/JetBrainsMono/woff2/JetBrainsMono-BoldItalic.woff2") format("woff2"),
+         url("./fonts/JetBrainsMono/woff/JetBrainsMono-BoldItalic.woff") format("woff");
+    font-weight: 500 700;
+    font-style: italic;
+    font-display: swap;
+}
 
 body
 {
@@ -619,8 +693,8 @@ ul.dokkiCSS-vertical-navi
     display: inline-block;
     margin-left: auto;
     font-weight: var(--dokkiCSS-bold-text-weight);
-    font-variant: small-caps;
-    text-transform: lowercase;
+    font-size: 80%;
+    text-transform: uppercase;
     white-space: nowrap;
 }
 
