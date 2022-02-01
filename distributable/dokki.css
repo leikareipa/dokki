@@ -110,6 +110,7 @@ body
     --dokkiCSS-monospace-font-family: "JetBrains Mono", monospace;
     --dokkiCSS-monospace-font-size: 14.1px;
     --dokkiCSS-bold-text-weight: 500;
+    --dokkiCSS-content-line-height: 1.4;
 }
 
 a.dokkiCSS-unstyled
@@ -462,7 +463,7 @@ ul.dokkiCSS-vertical-navi
 
 .dokki-topic p
 {
-    line-height: 1.4;
+    line-height: var(--dokkiCSS-content-line-height);
 }
 
 .dokki-topic a,
@@ -606,7 +607,6 @@ ul.dokkiCSS-vertical-navi
     user-select: none;
     width: 1ch; /* Shrink to minimum width required by the widest line number <td>.*/
     padding: 0;
-    cursor: pointer;
     white-space: normal;
     padding-right: 1.75ch;
     text-align: right;
@@ -645,6 +645,7 @@ ul.dokkiCSS-vertical-navi
 
 .dokkiCSS-embedded > header
 {
+    line-height: initial;
     font-weight: normal;
     padding: var(--dokkiCSS-embedded-padding);
     background-color: var(--dokkiCSS-embedded-header-bg-color);
@@ -669,6 +670,7 @@ ul.dokkiCSS-vertical-navi
 
 .dokkiCSS-embedded footer
 {
+    line-height: initial;
     overflow: auto;
     padding: var(--dokkiCSS-embedded-padding);
     background-color: var(--dokkiCSS-embedded-footer-bg-color); 
@@ -693,7 +695,7 @@ ul.dokkiCSS-vertical-navi
     display: inline-block;
     margin-left: auto;
     font-weight: var(--dokkiCSS-bold-text-weight);
-    font-size: 80%;
+    font-size: 70%;
     text-transform: uppercase;
     white-space: nowrap;
 }
@@ -834,6 +836,7 @@ ul.dokkiCSS-vertical-navi
 .dokkiCSS-embedded.dokki-warning footer
 {
     padding: var(--dokkiCSS-embedded-padding);
+    line-height: var(--dokkiCSS-content-line-height);
 }
 
 .dokkiCSS-embedded.dokki-tip > header,
@@ -847,14 +850,14 @@ ul.dokkiCSS-vertical-navi
     font-weight: var(--dokkiCSS-bold-text-weight);
 }
 
-.dokkiCSS-embedded.dokki-code.has-output + .dokkiCSS-embedded.dokki-output
+.dokkiCSS-embedded.dokki-code.dokkiCSS-has-output + .dokkiCSS-embedded.dokki-output
 {
     margin-top: 0;
     border-top-left-radius: 0;
     border-top-right-radius: 0;
 }
 
-.dokkiCSS-embedded.dokki-code.has-output
+.dokkiCSS-embedded.dokki-code.dokkiCSS-has-output
 {
     margin-bottom: 0;
     border-bottom-left-radius: 0;
@@ -865,6 +868,19 @@ ul.dokkiCSS-vertical-navi
 .dokkiCSS-embedded.dokki-code footer table
 {
     white-space: pre;
+}
+
+.dokkiCSS-embedded.dokki-code .dokkiCSS-container
+{
+    overflow: auto;
+    border-top: 1px solid var(--dokkiCSS-page-primary-line-color);
+    background-color: var(--dokkiCSS-page-primary-bg-color);
+    padding: var(--dokkiCSS-embedded-padding);
+}
+
+.dokkiCSS-embedded.dokki-code.dokkiCSS-headerless .dokkiCSS-container
+{
+    border-top: none;
 }
 
 .dokkiCSS-embedded.dokki-image

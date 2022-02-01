@@ -651,11 +651,6 @@
 
                     <h2>Attributes</h2>
 
-                    <h3>title</h3>
-                    <p>
-                        The title to be shown in the header of the <i>dokki-code</i> element.
-                    </p>
-
                     <h3>code</h3>
                     <p>
                         The source code can be given either inside a <i>template #code</i> element or
@@ -667,9 +662,28 @@
                         backticks (``). They'll be converted automatically back into double quotes for display.
                     </p>
 
+                    <h3>expanded</h3>
+                    <p>
+                        If present, the code listing will be visible by default rather than requiring
+                        the user to reveal it manually.
+                    </p>
+                    
+                    <p>
+                        Note: Setting the <em>headerless</em> attribute will also set <em>expanded</em>. 
+                    </p>
+
                     <h3>headerless</h3>
                     <p>
                         If present, causes the <i>dokki-code</i> element's header to not be displayed.
+                    </p>
+
+                    <p>
+                        Note: Setting the <em>headerless</em> attribute will also set <em>expanded</em>. 
+                    </p>
+
+                    <h3>title</h3>
+                    <p>
+                        The title to be shown in the header of the <i>dokki-code</i> element.
                     </p>
 
                     <h2>Examples</h2>

@@ -6,24 +6,37 @@
  */
 
 <template>
-    <p class="dokkiCSS-embedded dokki-code"
-       :class="{'has-output': hasOutput}">
+    <p class="dokkiCSS-embedded dokki-code dokkiCSS-expandable"
+       :class="{
+           'dokkiCSS-has-output': hasOutput,
+           'dokkiCSS-headerless': isHeaderless,
+        }">
 
-        <header v-if="!isHeaderless">
+        <header v-if="!isHeaderless"
+                @click="this.$refs['code-expander'].toggle_expansion()">
 
             <span class="dokkiCSS-title">
                 <i class="fas fa-code" title="Code"/>
                 {{title}}
             </span>
 
+            <aside class="dokkiCSS-expander">
+                {{isExpanded? "Hide code" : "Show code"}}
+            </aside>
+
         </header>
 
-        <hr v-if="!isHeaderless">
+        <dokki0-animated-expander ref="code-expander"
+                                  :start-expanded="isExpanded"
+                                  @expanded="isExpanded = true"
+                                  @minimized="isExpanded = false">
 
-        <footer>
-            <dokki0-text-block-with-line-numbers :syntax="syntax" :text="codeFromSlot || code">
-            </dokki0-text-block-with-line-numbers>
-        </footer>
+            <div class="dokkiCSS-container">
+                <dokki0-text-block-with-line-numbers :syntax="syntax" :text="codeFromSlot || code">
+                </dokki0-text-block-with-line-numbers>
+            </div>
+
+        </dokki0-animated-expander>
 
     </p>
 
@@ -32,9 +45,13 @@
 
 <script>
 import {headerlessPropMixin} from "../component-mixins.js";
+import {expandedPropMixin} from "../component-mixins.js";
 
 export default {
-    mixins: [headerlessPropMixin],
+    mixins: [
+        headerlessPropMixin,
+        expandedPropMixin,
+    ],
     props: {
         title: {default: "Code"},
         code: {default: undefined},
@@ -47,17 +64,18 @@ export default {
     },
     mounted()
     {
-        if (!this.$slots.code ||
-            (typeof this.$slots.code !== "function"))
+        if (this.isHeaderless)
         {
-            return;
+            this.$refs["code-expander"].expand({animate: false});
         }
-
-        const codeElement = this.$slots.code()[0];
-
-        if (codeElement)
+        
+        if ((typeof this.$slots.code == "function"))
         {
-            this.codeFromSlot = codeElement.children;
+            const codeElement = this.$slots.code()[0];
+            if (codeElement)
+            {
+                this.codeFromSlot = codeElement.children;
+            }
         }
     },
     computed: {

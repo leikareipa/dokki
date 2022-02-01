@@ -9,24 +9,13 @@
     <table class="dokki0-text-block-with-line-numbers">
 
         <tr v-for="(line, lineNum) in formattedText"
-            class="dokkiCSS-text-block-line"
-            :class="{'dokkiCSS-highlighted': highlightLineNum == lineNum}">
+            class="dokkiCSS-text-block-line">
 
-            <span class="dokkiCSS-anchor dokkiCSS-anchor-text-block-line"
-                  :ref="line_ref(lineNum)">
+            <span class="dokkiCSS-anchor dokkiCSS-anchor-text-block-line">
             </span>
 
-            <td class="dokkiCSS-text-block-line-number"
-                @click="highlight_line(lineNum)">
-
-                <span v-if="lineNum !== highlightLineNum">
-                    {{lineNum+1}}
-                </span>
-
-                <span v-else>
-                    &rarr;
-                </span>
-
+            <td class="dokkiCSS-text-block-line-number">
+                {{lineNum+1}}
             </td>
             
             <td class="dokkiCSS-text-block-line-content">
@@ -46,54 +35,10 @@ export default {
         text: {},
         syntax: {default: undefined},
     },
-    data()
-    {
-        return {
-            blockIdx: 0,
-            highlightLineNum: -1, // -1 means no line is highlighted.
-        }
-    },
-    created()
-    {
-        this.$store.commit("increment_listings_count");
-        this.blockIdx = this.$store.state.numListings;
-
-        update_line_highlight.call(this);
-        window.addEventListener("hashchange", update_line_highlight.bind(this));
-
-        function update_line_highlight()
-        {
-            this.highlightLineNum = -1;
-
-            if (window.location.hash.startsWith("#-listing:"))
-            {
-                /// TODO: Add syntax validation.
-                
-                const hash = window.location.hash.substring(2).split(",");
-                const [listingIdx, lineNum] = [hash[0].split(":")[1], hash[1].split(":")[1]];
-
-                if (listingIdx == this.blockIdx)
-                {
-                    this.highlightLineNum = (lineNum - 1);
-                }
-            }
-        }
-    },
     mounted()
     {
         this.$nextTick(()=>
         {
-            if (window.location.hash.startsWith("#-listing:"))
-            {
-                const lineNaviName = window.location.hash.substring(1);
-                const elem = this.$refs[lineNaviName];
-
-                if (elem)
-                {
-                    window.scrollTo(0, elem.offsetTop);
-                }
-            }
-
             if (this.is_syntax_highlighting_enabled())
             {
                 const codeElements = this.$el.querySelectorAll(".dokkiCSS-text-block-line-content > code");
@@ -154,30 +99,6 @@ export default {
         {
             return ((this.$props.syntax !== undefined) &&
                     this.is_highlight_js_available());
-        },
-        reset_line_highlight()
-        {
-            this.highlightLineNum = -1;
-            history.replaceState(null, null, " ");
-        },
-        highlight_line(lineNum)
-        {
-            if (lineNum == this.highlightLineNum)
-            {
-                this.reset_line_highlight();
-            }
-            else
-            {
-                window.location.hash = this.line_ref(lineNum);
-            }
-        },
-        test(odx)
-        {
-            console.log(odx);
-        },
-        line_ref(lineNum)
-        {
-            return `-listing:${this.blockIdx},ln:${lineNum+1}`;
         },
     },
 }

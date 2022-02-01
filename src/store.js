@@ -11,7 +11,6 @@ export default new Vuex.Store({
         loremCount: 0,
         productName: undefined,
         productVersion: undefined,
-        numListings: 0,
     },
     mutations: {
         add_topic(state, topic = {})
@@ -39,10 +38,6 @@ export default new Vuex.Store({
         set_layout_mode(state, layoutMode = "horizontal")
         {
             document.body.setAttribute("data-dokki-layout", layoutMode);
-        },
-        increment_listings_count(state)
-        {
-            state.numListings++;
         },
         increment_lorem_count(state)
         {

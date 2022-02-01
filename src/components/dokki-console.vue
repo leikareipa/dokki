@@ -7,6 +7,7 @@
 
 <template>
     <p class="dokkiCSS-embedded dokki-console"
+       :class="{'dokkiCSS-headerless': isHeaderless}"
        v-if="hasFooter || !isHeaderless">
 
         <header v-if="!isHeaderless">

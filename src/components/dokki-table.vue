@@ -18,7 +18,7 @@
             </span>
 
             <aside class="dokkiCSS-expander">
-                {{isExpanded? "Hide" : "Show"}}
+                {{isExpanded? "Hide table" : "Expand table"}}
             </aside>
 
         </header>
