@@ -645,7 +645,7 @@ ul.dokkiCSS-vertical-navi
 
 .dokkiCSS-embedded > header
 {
-    line-height: initial;
+    line-height: normal;
     font-weight: normal;
     padding: var(--dokkiCSS-embedded-padding);
     background-color: var(--dokkiCSS-embedded-header-bg-color);
@@ -670,7 +670,7 @@ ul.dokkiCSS-vertical-navi
 
 .dokkiCSS-embedded footer
 {
-    line-height: initial;
+    line-height: normal;
     overflow: auto;
     padding: var(--dokkiCSS-embedded-padding);
     background-color: var(--dokkiCSS-embedded-footer-bg-color); 
@@ -842,6 +842,7 @@ ul.dokkiCSS-vertical-navi
 .dokkiCSS-embedded.dokki-tip > header,
 .dokkiCSS-embedded.dokki-warning > header
 {
+    line-height: var(--dokkiCSS-content-line-height);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -1080,6 +1081,7 @@ body[data-dokki-layout="vertical-narrow"] .dokkiCSS-embedded.dokki-warning > hea
 {
     border: none;
     border-bottom: 1px solid var(--dokkiCSS-page-primary-line-color);
+    line-height: normal;
 }
 
 body[data-dokki-layout="vertical-narrow"] .dokkiCSS-header-icon
