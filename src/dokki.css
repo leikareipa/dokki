@@ -430,7 +430,7 @@ ul.dokkiCSS-vertical-navi
 
 .dokki-topics
 {
-    padding-bottom: 16px;
+    padding-bottom: calc(100vh - var(--dokkiCSS-header-height));
     width: var(--dokkiCSS-topics-container-width);
     background-color: transparent;
     display: flex;
@@ -1002,6 +1002,7 @@ body[data-dokki-layout^="vertical"] .dokki-topics
     left: var(--dokkiCSS-document-horizontal-left-start);
     padding-left: var(--dokkiCSS-header-bottom-margin);
     padding-right: var(--dokkiCSS-header-bottom-margin);
+    padding-bottom: 16px;
 }
 
 body[data-dokki-layout^="vertical"] .dokki-topic ul
