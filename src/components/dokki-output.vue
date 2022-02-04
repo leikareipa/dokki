@@ -6,7 +6,8 @@
  */
 
 <template>
-    <p class="dokkiCSS-embedded dokki-output dokkiCSS-expandable">
+    <p class="dokkiCSS-embedded dokki-output dokkiCSS-expandable"
+       :class="{'dokkiCSS-unpadded': isUnpadded}">
 
         <header @click="this.$refs.output.toggle_expansion()">
 
@@ -40,6 +41,12 @@ export default {
     mixins: [expandedPropMixin],
     props: {
         title: {default: "Output"},
+        unpadded: {default: undefined},
     },
+    data() {
+        return {
+            isUnpadded: ((this.$props.unpadded === undefined)? false : true),
+        }
+    }
 }
 </script>

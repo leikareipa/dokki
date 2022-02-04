@@ -851,6 +851,11 @@ ul.dokkiCSS-vertical-navi
     font-weight: var(--dokkiCSS-bold-text-weight);
 }
 
+.dokkiCSS-embedded.dokki-output.dokkiCSS-unpadded footer
+{
+    padding: 0;
+}
+
 .dokkiCSS-embedded.dokki-code.dokkiCSS-has-output + .dokkiCSS-embedded.dokki-output
 {
     margin-top: 0;
@@ -982,7 +987,6 @@ ul.dokkiCSS-vertical-navi
 
 body[data-dokki-layout^="vertical"]
 {
-    --dokkiCSS-embedded-padding: 10px;
     --dokkiCSS-header-height: 50px;
     --dokkiCSS-side-panel-width: 0;
     --dokkiCSS-document-width: 100%;
