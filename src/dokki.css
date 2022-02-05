@@ -501,7 +501,7 @@ ul.dokkiCSS-vertical-navi
     font-weight: normal;
     padding: 0;
     margin: 0;
-    margin-bottom: 16px;
+    margin-bottom: var(--dokkiCSS-topic-bottom-margin);
     color: var(--dokkiCSS-page-primary-fg-color);
 }
 
@@ -561,7 +561,7 @@ ul.dokkiCSS-vertical-navi
 
 .dokkiCSS-anchor:first-child
 {
-    padding-top: 16px;
+    padding-top: var(--dokkiCSS-topic-bottom-margin);
 }
 
 .dokkiCSS-anchor-topic
@@ -1027,9 +1027,9 @@ body[data-dokki-layout^="vertical"] .dokki-header
 
 body[data-dokki-layout="vertical-narrow"]
 {
-    --dokkiCSS-topic-bottom-margin: 25px;
-    --dokkiCSS-topic-horizontal-padding: 10px;
-    --dokkiCSS-topic-vertical-padding: 16px;
+    --dokkiCSS-topic-bottom-margin: 12px;
+    --dokkiCSS-topic-horizontal-padding: 25px;
+    --dokkiCSS-topic-vertical-padding: 12px;
     --dokkiCSS-topic-header-top-margin: 25px;
     --dokkiCSS-header-bottom-margin: 0px;
 }
@@ -1041,20 +1041,20 @@ body[data-dokki-layout="vertical-narrow"] .dokki-topics
 
 body[data-dokki-layout="vertical-narrow"] .dokki-topic
 {
-    border-left: none;
-    border-right: none;
+    border: none;
     border-radius: 0;
 }
 
 body[data-dokki-layout="vertical-narrow"] .dokki-topic h1
 {
-    font-size: 150%;
+    font-size: 155%;
+    font-weight: normal;
 }
 
 body[data-dokki-layout="vertical-narrow"] .dokki-topic h2
 {
-    font-size: 125%;
-    font-weight: var(--dokkiCSS-bold-text-weight);
+    font-size: 130%;
+    font-weight: normal;
 }
 
 body[data-dokki-layout="vertical-narrow"] .dokki-topic ul
@@ -1071,7 +1071,7 @@ body[data-dokki-layout="vertical-narrow"] .dokkiCSS-topic-title + .dokki-hr
 {
     visibility: hidden;
     margin-top: 0;
-    margin-bottom: 16px;
+    margin-bottom: var(--dokkiCSS-topic-bottom-margin);
 }
 
 body[data-dokki-layout="vertical-narrow"] .dokkiCSS-embedded.dokki-tip,
@@ -1097,4 +1097,9 @@ body[data-dokki-layout="vertical-narrow"] .dokkiCSS-header-icon
 body[data-dokki-layout="vertical-narrow"] .dokkiCSS-header-title
 {
     margin-left: 0;
+}
+
+body[data-dokki-layout="vertical-narrow"] .dokkiCSS-header-container
+{
+    padding: 0px 16px;
 }
