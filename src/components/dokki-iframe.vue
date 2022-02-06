@@ -30,6 +30,7 @@
 
                 <iframe class="dokki-iframe"
                         :src="src"
+                        :srcdoc="srcdoc"
                         ref="iframe">
                 </iframe>
                 
@@ -46,22 +47,25 @@ import {expandedPropMixin} from "../component-mixins.js";
 export default {
     mixins: [expandedPropMixin],
     props: {
-        src: {default: ""},
+        src: {default: undefined},
+        srcdoc: {default: undefined},
         height: {default: "500px"},
         title: {default: "Inline frame"},
         autofocus: {default: undefined},
     },
+    computed: {
+        hasAutofocus() {
+            return (this.$props.autofocus !== undefined);
+        },
+    },
     watch: {
         isExpanded()
         {
-            if (this.isExpanded && (this.$props.autofocus !== undefined))
+            if (this.isExpanded && this.hasAutofocus)
             {
-                this.$nextTick(()=>
-                {
-                    this.$refs["iframe"].focus();
-                });
+                this.$nextTick(()=>this.$refs["iframe"].focus());
             }
-        }
+        },
     },
 }
 </script>
