@@ -714,6 +714,12 @@ ul.dokkiCSS-vertical-navi
     display: none;
 }
 
+.dokkiCSS-embedded.dokki-output.dokkiCSS-unpadded .dokkiCSS-embedded.dokki-iframe
+{
+    border: none;
+    border-radius: 0;
+}
+
 .dokkiCSS-embedded.dokki-iframe footer
 {
     padding: 0;
