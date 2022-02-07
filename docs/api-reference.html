@@ -626,21 +626,23 @@
                                                 }
                                                 span {
                                                     display: inline-block;
+                                                    white-space: break-spaces;
                                                 }
                                             </style>
                                             <body>
                                                 <script>
-                                                    const string = 'Hello from JavaScript';
-                                                    const offsets = new Array(string.length).fill().map((e, idx)=>Math.cos(idx));
-                                                    const delta = 0.3;
-                                                    (function fn(loopCount = 0) {
-                                                        document.body.innerHTML = '';
-                                                        string.split('').forEach((ch, idx)=>{
-                                                            const offset = Math.cos(offsets[idx] + (delta * loopCount));
-                                                            document.body.innerHTML += 
-                                                                `<span style='transform:translateY(${offset}px);'>${ch}</span>`;
+                                                    document.body.innerHTML =
+                                                        'Hello from JavaScript'
+                                                        .split('')
+                                                        .reduce((str, ch)=>(str+`<span>${ch}</span>`), '');
+                                                    const chSpans = Array.from(document.body.querySelectorAll('span'));
+                                                    const chOffsets = chSpans.map((ch, idx)=>Math.cos(idx));
+                                                    (function jump(delta = 0) {
+                                                        chSpans.forEach((span, idx)=>{
+                                                            const offset = Math.cos(chOffsets[idx] + delta);
+                                                            span.style.transform = `translateY(${offset}px)`;
                                                         });
-                                                        window.requestAnimationFrame(()=>fn(++loopCount));
+                                                        window.requestAnimationFrame(()=>jump(delta + 0.25));
                                                     })();
                                                 </script>
                                             </body>
@@ -659,25 +661,26 @@
                                             body {
                                                 background-color: green;
                                                 color: yellow;
-                                                white-space: break-spaces;
                                             }
                                             span {
                                                 display: inline-block;
+                                                white-space: break-spaces;
                                             }
                                         </style>
                                         <body>
                                             <script>
-                                                const string = 'Hello from JavaScript';
-                                                const offsets = new Array(string.length).fill().map((e, idx)=>Math.cos(idx));
-                                                const delta = 0.3;
-                                                (function fn(loopCount = 0) {
-                                                    document.body.innerHTML = '';
-                                                    string.split('').forEach((ch, idx)=>{
-                                                        const offset = Math.cos(offsets[idx] + (delta * loopCount));
-                                                        document.body.innerHTML += 
-                                                            `<span style='transform:translateY(${offset}px);'>${ch}</span>`;
+                                                document.body.innerHTML =
+                                                    'Hello from JavaScript'
+                                                    .split('')
+                                                    .reduce((str, ch)=>(str+`<span>${ch}</span>`), '');
+                                                const chSpans = Array.from(document.body.querySelectorAll('span'));
+                                                const chOffsets = chSpans.map((ch, idx)=>Math.cos(idx));
+                                                (function jump(delta = 0) {
+                                                    chSpans.forEach((span, idx)=>{
+                                                        const offset = Math.cos(chOffsets[idx] + delta);
+                                                        span.style.transform = `translateY(${offset}px)`;
                                                     });
-                                                    window.requestAnimationFrame(()=>fn(++loopCount));
+                                                    window.requestAnimationFrame(()=>jump(delta + 0.25));
                                                 })();
                                             </script>
                                         </body>
