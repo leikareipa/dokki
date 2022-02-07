@@ -325,21 +325,6 @@
 
                     <h2>Attributes</h2>
 
-                    <h3>src</h3> (required)
-                    <p>
-                        Corresponds to the <b>src</b> attribute of the standard <i>iframe</i> element.
-                    </p>
-
-                    <h3>title</h3>
-                    <p>
-                        The title to be shown in the header of the <i>dokki-iframe</i> element.
-                    </p>
-
-                    <h3>height</h3>
-                    <p>
-                        The CSS height of the <i>dokki-iframe</i> element.
-                    </p>
-
                     <h3>autofocus</h3>
                     <p>
                         If present, the inline frame will be given automatic focus once its contents
@@ -350,6 +335,39 @@
                     <p>
                         If present, the inline frame will be visible by default rather than requiring
                         the user to reveal it manually.
+                    </p>
+
+                    <p>
+                        Note: Setting the <em>headerless</em> attribute will also set <em>expanded</em>. 
+                    </p>
+
+                    <h3>headerless</h3>
+                    <p>
+                        If present, causes the <i>dokki-iframe</i> element's header to not be displayed.
+                    </p>
+
+                    <p>
+                        Note: Setting the <em>headerless</em> attribute will also set <em>expanded</em>. 
+                    </p>
+
+                    <h3>height</h3>
+                    <p>
+                        The CSS height of the <i>dokki-iframe</i> element.
+                    </p>
+
+                    <h3>src</h3> (required)
+                    <p>
+                        Corresponds to the <b>src</b> attribute of the standard <i>iframe</i> element.
+                    </p>
+
+                    <h3>srcdoc</h3>
+                    <p>
+                        Corresponds to the <b>srcdoc</b> attribute of the standard <i>iframe</i> element.
+                    </p>
+
+                    <h3>title</h3>
+                    <p>
+                        The title to be shown in the header of the <i>dokki-iframe</i> element.
                     </p>
 
                     <h2>Examples</h2>
@@ -538,18 +556,26 @@
 
                     <h2>Attributes</h2>
 
-                    <h3>title</h3>
-                    <p>
-                        The title to be shown in the header of the <i>dokki-output</i> element.
-                    </p>
-
                     <h3>expanded</h3>
                     <p>
                         If present, the <i>dokki-output</i> element's contents will be visible by default rather
                         than requiring the user to reveal it manually.
                     </p>
 
+                    <h3>title</h3>
+                    <p>
+                        The title to be shown in the header of the <i>dokki-output</i> element.
+                    </p>
+
+                    <h3>unpadded</h3>
+                    <p>
+                        If present, the <i>dokki-output</i> element's contents will be displayed without their
+                        container having padding, so that the edges of the content touch the edges of the
+                        <i>dokki-output</i> element. This may be preferred e.g. for embedding inline frames.
+                    </p>
+
                     <h2>Examples</h2>
+
                     <dokki-code headerless
                                 code="
                                 <dokki-output>
@@ -575,6 +601,88 @@
                         <dokki-output>
                             <dokki-output title="Run">
                                 Ran
+                            </dokki-output>
+                        </dokki-output>
+
+                    </dokki-code>
+                    
+                    <p>
+                        Embedding a <i>dokki-iframe</i> element inside a <i>dokki-output</i> element
+                        on which the <em>unpadded</em> attribute has been set causes the iframe to be
+                        rendered without a border:
+                    </p>
+
+                    <dokki-code headerless
+                                code="
+                                <dokki-output unpadded title='Run JavaScript'>
+                                    <dokki-iframe
+                                        headerless
+                                        height='2.5em'
+                                        srcdoc='
+                                            <style>
+                                                body {
+                                                    background-color: green;
+                                                    color: yellow;
+                                                }
+                                                span {
+                                                    display: inline-block;
+                                                }
+                                            </style>
+                                            <body>
+                                                <script>
+                                                    const string = 'Hello from JavaScript';
+                                                    const offsets = new Array(string.length).fill().map((e, idx)=>Math.cos(idx));
+                                                    const delta = 0.3;
+                                                    (function fn(loopCount = 0) {
+                                                        document.body.innerHTML = '';
+                                                        string.split('').forEach((ch, idx)=>{
+                                                            const offset = Math.cos(offsets[idx] + (delta * loopCount));
+                                                            document.body.innerHTML += 
+                                                                `<span style='transform:translateY(${offset}px);'>${ch}</span>`;
+                                                        });
+                                                        window.requestAnimationFrame(()=>fn(++loopCount));
+                                                    })();
+                                                </script>
+                                            </body>
+                                        '
+                                    ></dokki-iframe>
+                                </dokki-output>
+                                ">
+
+                        <dokki-output>
+                            <dokki-output unpadded title="Run JavaScript">
+                                <dokki-iframe
+                                    headerless
+                                    height="2.5em"
+                                    srcdoc="
+                                        <style>
+                                            body {
+                                                background-color: green;
+                                                color: yellow;
+                                                white-space: break-spaces;
+                                            }
+                                            span {
+                                                display: inline-block;
+                                            }
+                                        </style>
+                                        <body>
+                                            <script>
+                                                const string = 'Hello from JavaScript';
+                                                const offsets = new Array(string.length).fill().map((e, idx)=>Math.cos(idx));
+                                                const delta = 0.3;
+                                                (function fn(loopCount = 0) {
+                                                    document.body.innerHTML = '';
+                                                    string.split('').forEach((ch, idx)=>{
+                                                        const offset = Math.cos(offsets[idx] + (delta * loopCount));
+                                                        document.body.innerHTML += 
+                                                            `<span style='transform:translateY(${offset}px);'>${ch}</span>`;
+                                                    });
+                                                    window.requestAnimationFrame(()=>fn(++loopCount));
+                                                })();
+                                            </script>
+                                        </body>
+                                    "
+                                ></dokki-iframe>
                             </dokki-output>
                         </dokki-output>
 
