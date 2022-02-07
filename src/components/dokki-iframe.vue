@@ -6,9 +6,13 @@
  */
 
 <template>
-   <p class="dokkiCSS-embedded dokki-iframe dokkiCSS-expandable">
+    <p class="dokkiCSS-embedded dokki-iframe dokkiCSS-expandable"
+       :class="{
+           'dokkiCSS-headerless': isHeaderless,
+       }">
 
-        <header @click="this.$refs['frame-expander'].toggle_expansion()">
+        <header v-if="!isHeaderless"
+                @click="this.$refs['frame-expander'].toggle_expansion()">
 
             <span class="dokkiCSS-title">
                 <i class="fas fa-crop-alt"/>
@@ -42,10 +46,14 @@
 </template>
 
 <script>
+import {headerlessPropMixin} from "../component-mixins.js";
 import {expandedPropMixin} from "../component-mixins.js";
 
 export default {
-    mixins: [expandedPropMixin],
+    mixins: [
+        headerlessPropMixin,
+        expandedPropMixin,
+    ],
     props: {
         src: {default: undefined},
         srcdoc: {default: undefined},
@@ -54,9 +62,17 @@ export default {
         autofocus: {default: undefined},
     },
     computed: {
-        hasAutofocus() {
+        hasAutofocus()
+        {
             return (this.$props.autofocus !== undefined);
         },
+    },
+    mounted()
+    {
+        if (this.isHeaderless)
+        {
+            this.$refs["frame-expander"].expand({animate: false});
+        }
     },
     watch: {
         isExpanded()
