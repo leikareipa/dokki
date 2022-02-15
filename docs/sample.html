@@ -155,7 +155,7 @@
                             </pre>
                         </template>
 
-                        <dokki-output>
+                        <dokki-output title="The code's output">
                             <samp>Hello there.</samp>
                         </dokki-output>
                     </dokki-code>
@@ -175,6 +175,25 @@
                             </pre>
                         </template>
                     </dokki-code>
+
+                    <dokki-lorem>
+                    </dokki-lorem>
+
+                    <dokki-directory :structure="{
+                        'src': {
+                            'kelpo_interface': {
+                                'interface.c': {
+                                    '/content': 'code',
+                                    '/href': 'https://github.com/leikareipa/kelpo/blob/master/src/kelpo_interface/interface.c',
+                                },
+                                'interface.h': {
+                                    '/content': 'code',
+                                    '/href': 'https://github.com/leikareipa/kelpo/blob/master/src/kelpo_interface/interface.h',
+                                },
+                            },
+                        }
+                    }">
+                    </dokki-directory>
 
                     <dokki-lorem>
                     </dokki-lorem>

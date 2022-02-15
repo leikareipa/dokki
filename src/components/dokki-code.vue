@@ -10,7 +10,7 @@
        :class="{
            'dokkiCSS-has-output': hasOutput,
            'dokkiCSS-headerless': isHeaderless,
-        }">
+       }">
 
         <header v-if="!isHeaderless"
                 @click="this.$refs['code-expander'].toggle_expansion()">

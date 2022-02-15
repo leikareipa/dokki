@@ -862,6 +862,63 @@ ul.dokkiCSS-vertical-navi
     padding: 0;
 }
 
+.dokkiCSS-embedded.dokki-directory .dokkiCSS-container
+{
+    overflow: auto;
+    border-top: 1px solid var(--dokkiCSS-page-primary-line-color);
+    background-color: var(--dokkiCSS-page-primary-bg-color);
+    padding: var(--dokkiCSS-embedded-padding);
+}
+
+.dokkiCSS-embedded.dokki-directory .directory-entry
+{
+    line-height: initial;
+    min-height: 26px;
+    display: flex;
+}
+
+.dokkiCSS-embedded.dokki-directory .directory-entry .icon,
+.dokkiCSS-embedded.dokki-directory .directory-entry .label
+{
+    display: flex;
+    align-items: center;
+}
+
+.dokkiCSS-embedded.dokki-directory .dokkiCSS-container
+{
+    padding-top: calc(var(--dokkiCSS-embedded-padding) - 4px);
+    padding-bottom: calc(var(--dokkiCSS-embedded-padding) - 4px);
+}
+
+.dokkiCSS-embedded.dokki-directory.dokkiCSS-headerless .dokkiCSS-container
+{
+    border-top: none;
+}
+
+.dokkiCSS-embedded.dokki-directory .directory-entry .spacer-container
+{
+    display: flex;
+}
+
+.dokkiCSS-embedded.dokki-directory .directory-entry .spacer
+{
+    padding-left: 1.25em;
+    display: flex;
+}
+
+.dokkiCSS-embedded.dokki-directory .directory-entry:last-child .spacer
+{
+    transform: translateY(-0.5ch);
+}
+
+.dokkiCSS-embedded.dokki-directory .directory-entry .spacer::before
+{
+    border-left: 1px solid var(--dokkiCSS-page-primary-line-color);
+    content: "";
+    position: relative;
+    left: -1.5ch;
+}
+
 .dokkiCSS-embedded.dokki-code.dokkiCSS-has-output + .dokkiCSS-embedded.dokki-output
 {
     margin-top: 0;
