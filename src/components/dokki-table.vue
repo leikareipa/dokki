@@ -6,9 +6,13 @@
  */
 
 <template>
-    <p class="dokkiCSS-embedded dokki-table dokkiCSS-expandable">
+    <p class="dokkiCSS-embedded dokki-table dokkiCSS-expandable"
+       :class="{
+           'dokkiCSS-headerless': isHeaderless,
+       }">
 
-        <header @click="this.$refs['table-expander'].toggle_expansion()">
+        <header v-if="!isHeaderless"
+                @click="this.$refs['table-expander'].toggle_expansion()">
 
             <span class="dokkiCSS-title">
                 <i class="fas fa-table" title="Table"/>
@@ -39,9 +43,20 @@
 
 <script>
 import {expandedPropMixin} from "../component-mixins.js";
+import {headerlessPropMixin} from "../component-mixins.js";
 
 export default {
-    mixins: [expandedPropMixin],
+    mixins: [
+        expandedPropMixin,
+        headerlessPropMixin,
+    ],
+    mounted()
+    {
+        if (this.isHeaderless)
+        {
+            this.$refs["table-expander"].expand({animate: false});
+        }
+    },
     computed: {
         title()
         {

@@ -741,6 +741,11 @@ ul.dokkiCSS-vertical-navi
     border-top: 1px solid var(--dokkiCSS-page-primary-line-color);
 }
 
+.dokkiCSS-embedded.dokki-table.dokkiCSS-headerless .dokkiCSS-container
+{
+    border-top: none;
+}
+
 .dokkiCSS-embedded.dokki-table table
 {
     width: 100%;
