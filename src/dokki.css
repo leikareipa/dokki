@@ -1096,7 +1096,7 @@ body[data-dokki-layout^="vertical"] .dokki-header
 body[data-dokki-layout="vertical-narrow"]
 {
     --dokkiCSS-topic-bottom-margin: 12px;
-    --dokkiCSS-topic-horizontal-padding: 25px;
+    --dokkiCSS-topic-horizontal-padding: 16px;
     --dokkiCSS-topic-vertical-padding: 12px;
     --dokkiCSS-topic-header-top-margin: 25px;
     --dokkiCSS-header-bottom-margin: 0px;
@@ -1169,5 +1169,5 @@ body[data-dokki-layout="vertical-narrow"] .dokkiCSS-header-title
 
 body[data-dokki-layout="vertical-narrow"] .dokkiCSS-header-container
 {
-    padding: 0px 16px;
+    padding: 0px var(--dokkiCSS-topic-horizontal-padding);
 }
