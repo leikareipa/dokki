@@ -507,7 +507,7 @@ ul.dokkiCSS-vertical-navi
 
 .dokki-topic h1
 {
-    font-size: 160%;
+    font-size: 170%;
     font-weight: var(--dokkiCSS-bold-text-weight);
     margin-top: var(--dokkiCSS-topic-header-top-margin);
 }
@@ -811,8 +811,8 @@ ul.dokkiCSS-vertical-navi
     max-width: 100%;
     height: 450px;
     border: none;
-    backdrop-filter: blur(4px);
-    -webkit-backdrop-filter: blur(4px);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
 }
 
 .dokkiCSS-embedded.dokki-video.youtube .dokki0-animated-expander
@@ -922,6 +922,20 @@ ul.dokkiCSS-vertical-navi
     content: "";
     position: relative;
     left: -1.5ch;
+}
+
+.dokkiCSS-embedded.dokki-code.dokkiCSS-headerless,
+.dokkiCSS-embedded.dokki-directory.dokkiCSS-headerless
+{
+    border: none !important;
+    border-radius: 0 !important;
+}
+
+.dokkiCSS-embedded.dokki-code.dokkiCSS-headerless .dokkiCSS-container,
+.dokkiCSS-embedded.dokki-directory.dokkiCSS-headerless .dokkiCSS-container
+{
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
 }
 
 .dokkiCSS-embedded.dokki-code.dokkiCSS-has-output + .dokkiCSS-embedded.dokki-output
