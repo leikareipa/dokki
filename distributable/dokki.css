@@ -485,6 +485,11 @@ ul.dokkiCSS-vertical-navi
     margin-bottom: 0;
 }
 
+.dokki-topic ul
+{
+    padding-inline-start: calc(1em + var(--dokkiCSS-embedded-padding));
+}
+
 .dokki-topic li
 {
     margin-top: 10px;
@@ -1108,11 +1113,6 @@ body[data-dokki-layout^="vertical"] .dokki-topics
     padding-bottom: 16px;
 }
 
-body[data-dokki-layout^="vertical"] .dokki-topic ul
-{
-    padding-inline-start: calc(1em + 1.5ch);
-}
-
 body[data-dokki-layout^="vertical"] .dokki-header
 {
     position: absolute;
@@ -1154,11 +1154,6 @@ body[data-dokki-layout="vertical-narrow"] .dokki-topic h2
 {
     font-size: 130%;
     font-weight: normal;
-}
-
-body[data-dokki-layout="vertical-narrow"] .dokki-topic ul
-{
-    padding-inline-start: calc(1em + 0.5ch);
 }
 
 body[data-dokki-layout="vertical-narrow"] .dokkiCSS-topic-title
