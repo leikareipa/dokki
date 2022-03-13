@@ -316,6 +316,9 @@ code .hljs-comment
     box-sizing: border-box;
     display: flex;
     align-items: center;
+    position: sticky;
+    z-index: 9999;
+    top: 0;
 }
 
 .dokkiCSS-product-tag > i
