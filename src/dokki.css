@@ -243,7 +243,6 @@ code .hljs-comment
     position: fixed;
     width: 100%;
     background-color: var(--dokkiCSS-page-inert-bg-color);
-    color: var(--dokkiCSS-page-primary-fg-color);
     opacity: 0.92;
 }
 
