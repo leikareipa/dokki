@@ -325,6 +325,68 @@ code .hljs-comment
     color: var(--dokkiCSS-page-secondary-fg-color);
 }
 
+.dokki-tag
+{
+    display: inline-block;
+    white-space: pre;
+    cursor: pointer;
+}
+
+.dokki-tag-filter
+{
+    display: flex;
+    align-items: center;
+    padding: 16px;
+    width: 100%;
+    margin: var(--dokkiCSS-topic-bottom-margin) 0;
+    justify-content: left;
+    font-weight: 500;
+    flex-wrap: wrap;
+    border-left: 7px solid #2264e8;
+    box-sizing: border-box;
+    background-color: #1d59d115;
+    border-radius: var(--dokkiCSS-embedded-border-radius);
+}
+
+.dokki-tag-filter .dokkiCSS-label
+{
+    margin-right: 8px;
+}
+
+.dokki-tag-filter .dokkiCSS-button
+{
+    cursor: pointer;
+    background: linear-gradient(#256eff, #1d59d1);
+    color: whitesmoke;
+    padding: 4px 6px;
+    border-radius: 4px;
+    border: 1px solid #2264e8;
+    display: inline-flex;
+    align-items: center;
+    text-transform: uppercase;
+    font-size: 90%;
+    margin: 4px 0px;
+}
+
+.dokki-tag-filter .dokkiCSS-button:not(:last-of-type) {
+    margin-right: 8px;
+}
+
+.dokki-tag-filter .dokkiCSS-button::after
+{
+    font-family: "Font Awesome 5 Free";
+    font-weight: bold;
+    content: "\f55a";
+    margin-left: 6px;
+    font-size: 95%;
+    opacity: 0.8;
+}
+
+.dokki-tag-filter .dokkiCSS-button:hover::after
+{
+    opacity: 1;
+}
+
 .dokki-area
 {
     width: 100%;
@@ -1198,4 +1260,16 @@ body[data-dokki-layout="vertical-narrow"] .dokkiCSS-header-title
 body[data-dokki-layout="vertical-narrow"] .dokkiCSS-header-container
 {
     padding: 0px var(--dokkiCSS-topic-horizontal-padding);
+}
+
+body[data-dokki-layout="vertical-narrow"] .dokki-tag-filter
+{
+    border-radius: 0;
+    display: block;
+}
+
+body[data-dokki-layout="vertical-narrow"] .dokki-tag-filter .dokkiCSS-label
+{
+    margin-right: 0;
+    margin-bottom: 6px;
 }
