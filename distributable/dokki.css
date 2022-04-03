@@ -993,29 +993,18 @@ ul.dokkiCSS-vertical-navi
     left: -1.5ch;
 }
 
-.dokkiCSS-embedded.dokki-code.dokkiCSS-headerless,
+.dokkiCSS-embedded.dokki-code:not(.dokkiCSS-has-output).dokkiCSS-headerless,
 .dokkiCSS-embedded.dokki-directory.dokkiCSS-headerless
 {
     border: none !important;
     border-radius: 0 !important;
 }
 
-.dokkiCSS-embedded.dokki-code.dokkiCSS-headerless .dokkiCSS-container,
+.dokkiCSS-embedded.dokki-code:not(.dokkiCSS-has-output).dokkiCSS-headerless .dokkiCSS-container,
 .dokkiCSS-embedded.dokki-directory.dokkiCSS-headerless .dokkiCSS-container
 {
     padding-top: 0 !important;
     padding-bottom: 0 !important;
-}
-
-.dokkiCSS-embedded.dokki-code.dokkiCSS-headerless.dokkiCSS-has-output + .dokkiCSS-embedded.dokki-output
-{
-    margin-top: 12px !important;
-    border-top: none !important;
-}
-
-.dokkiCSS-embedded.dokki-code.dokkiCSS-headerless.dokkiCSS-has-output + .dokkiCSS-embedded.dokki-output header
-{
-    box-shadow: inset 0 14px 10px -10px rgba(0, 0, 0, 0.25);
 }
 
 .dokkiCSS-embedded.dokki-code.dokkiCSS-has-output + .dokkiCSS-embedded.dokki-output
