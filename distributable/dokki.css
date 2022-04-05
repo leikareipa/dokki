@@ -331,6 +331,23 @@ code .hljs-comment
     white-space: pre;
     cursor: pointer;
 }
+.dokki-tag-cloud:not(.inline)
+{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.dokki-tag-cloud .dokkiCSS-item
+{
+    cursor: pointer;
+}
+
+.dokki-tag-cloud:not(.inline) .dokkiCSS-item
+{
+    margin: 0 0.8rem;
+    margin-left: 0;
+    line-height: 2rem
+}
 
 .dokki-tag-filter
 {

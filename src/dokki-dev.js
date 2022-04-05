@@ -23,6 +23,7 @@ import dokkiSpoiler from "./components/dokki-spoiler.vue";
 import dokkiSubtopic from "./components/dokki-subtopic.vue";
 import dokkiTable from "./components/dokki-table.vue";
 import dokkiTag from "./components/dokki-tag.vue";
+import dokkiTagCloud from "./components/dokki-tag-cloud.vue";
 import dokkiTagFilter from "./components/dokki-tag-filter.vue";
 import dokkiThemeSelector from "./components/dokki-theme-selector.vue";
 import dokkiTip from "./components/dokki-tip.vue";
@@ -115,6 +116,7 @@ export function start(args = {})
     .component("dokki-subtopic", dokkiSubtopic)
     .component("dokki-table", dokkiTable)
     .component("dokki-tag", dokkiTag)
+    .component("dokki-tag-cloud", dokkiTagCloud)
     .component("dokki-tag-filter", dokkiTagFilter)
     .component("dokki-theme-selector", dokkiThemeSelector)
     .component("dokki-tip", dokkiTip)
