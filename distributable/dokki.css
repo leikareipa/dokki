@@ -972,7 +972,7 @@ ul.dokkiCSS-vertical-navi
 .dokkiCSS-embedded.dokki-directory .directory-entry .label
 {
     display: flex;
-    align-items: center;
+    align-items: baseline;
 }
 
 .dokkiCSS-embedded.dokki-directory .dokkiCSS-container
