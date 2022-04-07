@@ -1,4 +1,5 @@
-const {VueLoaderPlugin} = require('vue-loader');
+const {VueLoaderPlugin} = require("vue-loader");
+const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 const path = require("path");
 
 module.exports = {
@@ -18,9 +19,15 @@ module.exports = {
             },
         ],
     },
+    optimization: {
+        minimizer: [
+            "...",
+            new CssMinimizerPlugin(),
+        ],
+    },
     entry: {
-        "dokki.dev": './src/dokki-dev.js',
-        "dokki": './src/dokki-prod.js',
+        "dokki.dev": "./src/dokki-dev.js",
+        "dokki": "./src/dokki-prod.js",
     },
     output: {
         library: {
@@ -31,9 +38,9 @@ module.exports = {
         filename: "[name].js",
     },
     plugins: [
-        new VueLoaderPlugin()
+        new VueLoaderPlugin(),
     ],
     externals: {
-        vue: 'Vue',
+        vue: "Vue",
     }
 };
