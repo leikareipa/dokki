@@ -14,10 +14,18 @@
 <script>
 export default {
     methods: {
-        on_tag_clicked() {
-            const tagName = String(this.$el?.textContent || "Undefined");
-            window.dispatchEvent(new CustomEvent("dokki-tag-clicked", {detail: tagName}));
+        tag_string() {
+            return String(this.$el?.textContent || "Undefined");
         },
-    }
+        on_tag_clicked() {
+            window.dispatchEvent(new CustomEvent("dokki-tag-clicked", {detail: this.tag_string()}));
+        },
+    },
+    mounted() {
+        this.$store.commit("add_tag", this.tag_string());
+    },
+    unmounted() {
+        this.$store.commit("remove_tag", this.tag_string());
+    },
 }
 </script>

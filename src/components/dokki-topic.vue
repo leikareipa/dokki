@@ -46,5 +46,6 @@ export default {
 
         this.globalTopicIdx = this.$store.state.topics.length;
     },
+    /// TODO: Remove the topic from the store on deletion.
 }
 </script>

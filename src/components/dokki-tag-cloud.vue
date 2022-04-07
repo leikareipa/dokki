@@ -6,21 +6,21 @@
  */
 
 <template>
-<span v-if="isMounted && isInline" class="dokki-tag-cloud inline">
-    <span v-for="tag of tagsInDocument">
-        <a class="dokkiCSS-item" @click="on_tag_click(tag)">
-            {{tag.name}}
+<span v-if="isInline" class="dokki-tag-cloud inline">
+    <span v-for="(tagName, idx) of tagNames">
+        <a class="dokkiCSS-item" @click="on_tag_click(tagName)">
+            {{tagName}}
         </a><!--
-        -->{{(tag == tagsInDocument.at(-1))? "" : ", "}}
+        -->{{(idx == (tagNames.length - 1))? "" : ", "}}
     </span>
 </span>
-<p v-else-if="isMounted && !isInline" class="dokki-tag-cloud">
-    <a v-for="tag of tagsInDocument"
+<p v-else class="dokki-tag-cloud">
+    <a v-for="tagName of tagNames"
        class="dokkiCSS-item"
-       :style="{fontSize: tag_font_size_px(tag)}"
-       @click="on_tag_click(tag)"
+       :style="{fontSize: tag_css_font_size(tagName)}"
+       @click="on_tag_click(tagName)"
     >
-        {{tag.name}}
+        {{tagName}}
     </a>
 </p>
 </template>
@@ -34,45 +34,41 @@ export default {
     },
     data() {
         return {
-            isMounted: false,
             isInline: ((this.$props.inline === undefined)? false : true),
         }
     },
-    mounted() {
-        this.isMounted = true;
-    },
     methods: {
-        on_tag_click(tag) {
+        on_tag_click(tagName) {
             window.dispatchEvent(
                 new CustomEvent("dokki-tag-clicked", {
-                    detail: tag.name,
+                    detail: tagName,
                 })
             );
         },
-        tag_font_size_px(tag) {
+        tag_css_font_size(tagName) {
+            if (!this.tags.hasOwnProperty(tagName)) {
+                console.warn("Unknown tag", tagName);
+                return "100%";
+            }
+
+            const tagCount = this.tags[tagName];
             const [minCount, maxCount] = this.minMaxTagCount;
-            const ratio = ((tag.count - minCount) / Math.max(1, (maxCount - minCount)));
+            const ratio = ((tagCount - minCount) / Math.max(1, (maxCount - minCount)));
             const fontSize = Math.ceil(this.minimumFontSize + (this.maximumFontSize - this.minimumFontSize) * ratio);
             return `${Math.max(this.minimumFontSize, Math.min(this.maximumFontSize, fontSize))}%`;
         },
     },
     computed: {
-        tagsInDocument() {
-            const tagEls = Array.from(document.querySelectorAll(".dokki-topic .dokki-tag"));
-            const tagTexts = tagEls.map(el=>el.textContent.toLowerCase());
-            const uniqueTags = Array.from(new Set(tagTexts)).sort();
-            return uniqueTags.map(tag=>({
-                name: tag,
-                count: tagTexts.filter(t=>t==tag).length,
-            }));
+        tags() {
+            return this.$store.state.tags;
+        },
+        tagNames() {
+            return Object.keys(this.$store.state.tags).sort();
         },
         minMaxTagCount() {
-            if (!this.tagsInDocument.length) {
-                return [0, 0];
-            }
             return [
-                this.tagsInDocument.reduce((minCount, tag)=>(tag.count < minCount? tag.count : minCount), Infinity),
-                this.tagsInDocument.reduce((maxCount, tag)=>(tag.count > maxCount? tag.count : maxCount), -Infinity)
+                Object.values(this.tags).reduce((minCount, count)=>(count < minCount? count : minCount), Infinity),
+                Object.values(this.tags).reduce((maxCount, count)=>(count > maxCount? count : maxCount), -Infinity)
             ];
         },
     },
