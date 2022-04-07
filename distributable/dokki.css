@@ -953,6 +953,11 @@ ul.dokkiCSS-vertical-navi
     padding: 0;
 }
 
+.dokkiCSS-embedded.dokki-directory.dokkiCSS-headerless
+{
+    transform: translateY(-0.25em);
+}
+
 .dokkiCSS-embedded.dokki-directory .dokkiCSS-container
 {
     overflow: auto;
@@ -972,7 +977,7 @@ ul.dokkiCSS-vertical-navi
 .dokkiCSS-embedded.dokki-directory .directory-entry .label
 {
     display: flex;
-    align-items: baseline;
+    align-items: center;
 }
 
 .dokkiCSS-embedded.dokki-directory .dokkiCSS-container
