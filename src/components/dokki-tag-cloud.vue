@@ -17,7 +17,10 @@
 <p v-else class="dokki-tag-cloud">
     <a v-for="tagName of tagNames"
        class="dokkiCSS-item"
-       :style="{fontSize: tag_css_font_size(tagName)}"
+       :style="{
+           fontSize: tag_css_font_size_percent(tagName),
+           lineHeight: `${this.maxSize / 100}rem`
+       }"
        @click="on_tag_click(tagName)"
     >
         {{tagName}}
@@ -29,6 +32,10 @@
 export default {
     props: {
         inline: {default: undefined},
+
+        // The CSS font size of the least common (minimum) and most common (maximum) tag, given
+        // as a number representing percentages (e.g. "font-size: XXX%"). The rest of the tags'
+        // font sizes will be along this range.
         minSize: {type: Number, default: 95},
         maxSize: {type: Number, default: 220},
     },
@@ -49,7 +56,7 @@ export default {
                 })
             );
         },
-        tag_css_font_size(tagName) {
+        tag_css_font_size_percent(tagName) {
             if (!this.tags.hasOwnProperty(tagName)) {
                 console.warn("Unknown tag", tagName);
                 return "100%";
