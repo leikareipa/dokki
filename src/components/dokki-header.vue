@@ -21,6 +21,9 @@
 
         </div>
 
+        <dokki0-page-load-progress-bar>
+        </dokki0-page-load-progress-bar>
+
     </header>
 </template>
 

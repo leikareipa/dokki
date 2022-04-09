@@ -189,11 +189,6 @@ code .hljs-comment
     font-style: normal;
 }
 
-.dokki0-hidden
-{
-    display: none !important;
-}
-
 [data-v-app] > [while-dokki-initializing]
 {
     display: none;
@@ -230,7 +225,6 @@ code .hljs-comment
     display: flex;
     flex-direction: row;
     align-items: center;
-    overflow-x: auto;
     white-space: nowrap;
     top: 0;
     left: 0;
@@ -663,6 +657,30 @@ ul.dokkiCSS-vertical-navi
 .dokkiCSS-anchor-text-block-line
 {
     top: calc(-1*var(--dokkiCSS-header-height) - var(--dokkiCSS-text-block-line-anchor-top-margin) + var(--dokkiCSS-topics-container-vertical-top-start) + 1px);
+}
+
+.dokkiCSS-hidden
+{
+    opacity: 0;
+    pointer-events: none;
+}
+
+.dokki0-page-load-progress-bar
+{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--dokkiCSS-page-link-color);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.5s ease-out, width 0.1s linear;
+}
+
+.dokki0-page-load-progress-bar.progressing
+{
+    opacity: 1;
 }
 
 .dokki0-text-block-with-line-numbers
@@ -1208,7 +1226,7 @@ body[data-dokki-layout="vertical-narrow"]
     --dokkiCSS-header-bottom-margin: 0px;
 }
 
-body[data-dokki-layout="vertical-narrow"] .dokkiCSS-embedded.dokkiCSS-headerless > .dokki0-animated-expander > .dokkiCSS-container
+body[data-dokki-layout="vertical-narrow"] .dokkiCSS-embedded.dokkiCSS-headerless:not(.dokkiCSS-has-output) > .dokki0-animated-expander > .dokkiCSS-container
 {
     padding: 0;
 }

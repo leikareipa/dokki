@@ -32,8 +32,10 @@ import dokkiTopics from "./components/dokki-topics.vue";
 import dokkiVideo from "./components/dokki-video.vue";
 import dokkiHr from "./components/dokki-hr.vue";
 import dokkiWarning from "./components/dokki-warning.vue";
-import dokki0TextBlockWithLineNumbers from "./components/dokki0-text-block-with-line-numbers.vue";
 import dokki0AnimatedExpander from "./components/dokki0-animated-expander.vue";
+import dokki0PageLoadProgressBar from "./components/dokki0-page-load-progress-bar.vue";
+import dokki0TextBlockWithLineNumbers from "./components/dokki0-text-block-with-line-numbers.vue";
+import dokki0Topic from "./components/dokki0-topic.vue";
 import productName from "./components/product-name.vue";
 
 export function start(args = {})
@@ -125,8 +127,10 @@ export function start(args = {})
     .component("dokki-video", dokkiVideo)
     .component("dokki-warning", dokkiWarning)
     .component("dokki-hr", dokkiHr)
-    .component("dokki0-text-block-with-line-numbers", dokki0TextBlockWithLineNumbers)
     .component("dokki0-animated-expander", dokki0AnimatedExpander)
+    .component("dokki0-page-load-progress-bar", dokki0PageLoadProgressBar)
+    .component("dokki0-text-block-with-line-numbers", dokki0TextBlockWithLineNumbers)
+    .component("dokki0-topic", dokki0Topic)
     .component("product-name", productName);
 
     // Register any user-provided custom components.
@@ -149,7 +153,17 @@ export function start(args = {})
             app.component(tagName, component);
         }
     }
-    
+
+    // Individual <dokki-topic> elements are inserted into their container (<dokki-topics>)
+    // in a delayed way, such that on page load there are no topics mounted yet, and over
+    // time they'll be mounted one by one. That means URL hash navigation won't work right
+    // away on page load - the elements won't be available in the DOM yet. Instead, we'll
+    // manually force the hash handler to update page navigation once all topic elements
+    // have been mounted.
+    window.addEventListener("dokki-topics-ready", ()=>{
+        window.dispatchEvent(new Event("hashchange"));
+    });
+
     app.mount(args.container);
 
     return;

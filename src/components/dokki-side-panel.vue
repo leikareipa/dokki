@@ -10,16 +10,10 @@
 
         <slot/>
 
-        <div v-if="productName !== undefined"
-             :title="productName"
-             class="dokkiCSS-product-tag">
+        <div class="dokkiCSS-product-tag">
 
-            {{productName}}
-
-        </div>
-        <div v-else class="dokkiCSS-product-tag">
-
-            Contents
+            <span v-if="productName !== undefined">{{productName}}</span>
+            <span v-else>Contents</span>
 
         </div>
 
