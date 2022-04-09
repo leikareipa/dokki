@@ -6,6 +6,7 @@
  */
 
 <template>
+    <dokki0-hash-router/>
     <main class="dokki-topics" :class="{'dokkiCSS-hidden': !areTopicsReady}">
         <slot/>
     </main>

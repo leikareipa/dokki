@@ -36,6 +36,10 @@ export default new Vuex.Store({
         productName: undefined,
 
         productVersion: undefined,
+
+        // If the window.location.hash string starts with this string, the following characters
+        // in the hash string are tags.
+        tagHashMarker: "#/",
     },
     mutations: {
         queue_topic_reveal(state, revealCallback)

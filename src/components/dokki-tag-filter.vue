@@ -19,10 +19,6 @@
 </template>
 
 <script>
-// If the window.location.hash string starts with this string, the following characters
-// in the hash string are tags.
-const tagMarker = "#/";
-
 // E.g. "c++,javascript,python".split(tagSeparator) -> ["c++", "javascript", "python"].
 const tagSeparator = ",";
 
@@ -38,7 +34,7 @@ export default {
         }
     },
     mounted() {
-        window.addEventListener("hashchange", this.hash_change_monitor);
+        window.addEventListener("dokki0-hash-router-updated-tag-hash", this.hash_change_monitor);
         window.addEventListener("dokki-tag-clicked", (event)=>this.add_tag(event.detail));
         this.$nextTick(this.hash_change_monitor);
     },
@@ -54,18 +50,12 @@ export default {
 
             // If this isn't a valid tag hash, assume the user is trying to navigate to a
             // particular topic via the navi bar. In that case, we want to clear the active
-            // tags to make sure all topics become visible and the desired topic scrolls
-            // into view.
+            // tags to make sure all topics become visible, so that the page can scroll to
+            // the desired one.
             if (!this.is_valid_tag_hash(hash)) {
                 this.activeTags.length = 0; // Avoid triggering the watcher.
                 this.showHeader = false;
                 this.unhide_all_topic_elements();
-                if (hash.length) {
-                    const targetEl = document.querySelector(hash);
-                    if (targetEl) {
-                        targetEl.scrollIntoView();
-                    }
-                }
                 return;
             }
 
@@ -150,7 +140,7 @@ export default {
             console.assert(typeof string == "string");
 
             return string
-                .substring(tagMarker.length)
+                .substring(this.tagMarker.length)
                 .toLowerCase()
                 .trim()
                 .replaceAll("%20", " ");
@@ -161,7 +151,7 @@ export default {
                 return false;
             }
 
-            return hash.startsWith(tagMarker);
+            return hash.startsWith(this.tagMarker);
         },
         is_valid_tag_string(string = "") {
             if (typeof string !== "string") {
@@ -212,11 +202,16 @@ export default {
             console.assert(Array.isArray(tags));
 
             const newHash = tags.length
-                ? `${tagMarker}${tags.join(",")}`
+                ? `${this.tagMarker}${tags.join(",")}`
                 : " ";
 
             history.replaceState(null, null, newHash);
         },
+    },
+    computed: {
+        tagMarker() {
+            return this.$store.state.tagHashMarker;
+        }
     },
 }
 </script>
