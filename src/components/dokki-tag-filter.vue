@@ -187,7 +187,7 @@ export default {
                 return false;
             }
 
-            if (tags.join("").match(/[^a-zA-Z0-9+-\s#]/)) {
+            if (tags.join("").match(/[^a-zA-Z0-9+-\s#\.]/)) {
                 console.warn("Illegal characters in one or more tags", tags);
                 return false;
             }
