@@ -23,7 +23,6 @@
         </header>
 
         <dokki0-animated-expander ref="image-expander"
-                                  class="dokkiCSS-checker-background"
                                   @expanded="isExpanded = true"
                                   @minimized="isExpanded = false">
             

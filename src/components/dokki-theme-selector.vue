@@ -23,8 +23,8 @@ export default {
         return {
             currentThemeIdx: 0,
             themes: [
-                {name: "dark", icon: "far fa-lightbulb"},
-                {name: "light", icon: "fas fa-lightbulb"},
+                {name: "dark", icon: "fas fa-lightbulb"},
+                {name: "light", icon: "far fa-lightbulb"},
             ],
         }
     },

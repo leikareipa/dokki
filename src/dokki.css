@@ -74,6 +74,11 @@
     font-display: swap;
 }
 
+[v-cloak]
+{
+    visibility: hidden;
+} 
+
 body
 {
     --dokkiCSS-header-height: 40px;
@@ -142,7 +147,7 @@ body,
     --dokkiCSS-page-inert-fg-color: #a5a5a5;
     --dokkiCSS-page-primary-line-color: lightgray;
     --dokkiCSS-page-secondary-line-color: lightgray;
-    --dokkiCSS-embedded-header-bg-color: #f6f6f6;
+    --dokkiCSS-embedded-header-bg-color: var(--document-bg-color);
     --dokkiCSS-embedded-footer-bg-color: var(--document-bg-color);
     --dokkiCSS-embedded-code-comment-fg-color: #3e8220;
 }
@@ -154,11 +159,11 @@ body,
     --dokkiCSS-page-secondary-bg-color: #222222;
     --dokkiCSS-page-inert-bg-color: #272727;
     --dokkiCSS-page-primary-fg-color: #e4e4e4;
-    --dokkiCSS-page-secondary-fg-color: #a9a9a9;
+    --dokkiCSS-page-secondary-fg-color: #afafaf;
     --dokkiCSS-page-inert-fg-color: gray;
     --dokkiCSS-page-primary-line-color: black;
     --dokkiCSS-page-secondary-line-color: black;
-    --dokkiCSS-embedded-header-bg-color: #323232;
+    --dokkiCSS-embedded-header-bg-color: var(--document-bg-color);
     --dokkiCSS-embedded-footer-bg-color: var(--document-bg-color);
     --dokkiCSS-embedded-code-comment-fg-color: #00aeae;
 }
@@ -189,11 +194,6 @@ code .hljs-comment
     font-style: normal;
 }
 
-[data-v-app] > [while-dokki-initializing]
-{
-    display: none;
-}
-
 .dokki-theme-selector
 {
     margin-left: auto;
@@ -207,16 +207,7 @@ code .hljs-comment
     align-items: center;
 }
 
-.dokki-theme-selector > i
-{
-    background-color: #272727;
-    padding: 5px;
-    border-radius: 3px;
-    color: white;
-}
-
-.dokki-header,
-[while-dokki-initializing]
+.dokki-header
 {
     overflow-x: auto;
     overflow-y: hidden;
@@ -238,14 +229,6 @@ code .hljs-comment
     width: 100%;
     background-color: var(--dokkiCSS-page-inert-bg-color);
     opacity: 0.92;
-}
-
-[while-dokki-initializing]
-{
-    padding-left: 10px;
-    font-size: initial;
-    font-weight: normal;
-    color: var(--dokkiCSS-page-secondary-fg-color);
 }
 
 .dokkiCSS-header-container
@@ -340,7 +323,6 @@ code .hljs-comment
 {
     margin: 0 0.8rem;
     margin-left: 0;
-    line-height: 2rem
 }
 
 .dokki-tag-filter
@@ -436,12 +418,13 @@ ul.dokkiCSS-vertical-navi
 
 .dokkiCSS-vertical-navi .dokkiCSS-navi-link-icon
 {
-    background-color: var(--dokkiCSS-page-secondary-line-color);
+    background-color: var(--dokkiCSS-page-primary-bg-color);
+    border: 1px solid var(--dokkiCSS-page-secondary-line-color);
     border-radius: var(--dokkiCSS-embedded-border-radius);
-    padding: 1px 4.5px;
+    padding: 1px 4px;
     color: var(--dokkiCSS-page-primary-fg-color);
     display: block;
-    margin-right: 0.5ch;
+    margin-right: 0.75ch;
     z-index: 1;
 }
 
@@ -464,36 +447,38 @@ ul.dokkiCSS-vertical-navi
 
 .dokkiCSS-vertical-navi .dokkiCSS-navi-link-subtopic
 {
-    border-left: 2px solid transparent;
-    margin-left: calc(var(--dokkiCSS-navibar-item-padding-horizontal) + 3px + 0.5ch);
-    padding-left: 1ch;
+    border-left: 1px solid transparent;
+    margin-left: calc(var(--dokkiCSS-navibar-item-padding-horizontal) + 4px + 0.5ch);
+    padding-left: 1.25ch;
     color: var(--dokkiCSS-page-secondary-fg-color);
 }
 
 .dokkiCSS-vertical-navi .dokkiCSS-navi-link-subtopic:not(:last-child)
 {
-    border-left: 2px solid var(--dokkiCSS-page-secondary-line-color);
+    border-left: 1px solid var(--dokkiCSS-page-secondary-line-color);
 }
 
 .dokkiCSS-vertical-navi .dokkiCSS-navi-link-subtopic::before
 {
     content: "";
     position: absolute;
-    left: -2px;
+    left: -1px;
     top: -13px;
-    border-left: 2px solid var(--dokkiCSS-page-secondary-line-color);
+    border-left: 1px solid var(--dokkiCSS-page-secondary-line-color);
     height: 25px;
 }
 
 .dokkiCSS-vertical-navi .dokkiCSS-navi-link-subtopic::after
 {
-    content: "";
-    padding: 5px;
-    background-color: var(--dokkiCSS-page-secondary-line-color);
+    background-color: var(--dokkiCSS-page-primary-bg-color);
+    border: 1px solid var(--dokkiCSS-page-secondary-line-color);
     border-radius: 100%;
+    content: "";
+    left: -7px;
+    padding: 5.5px;
     position: absolute;
-    left: -6px;
-    top: 11px;
+    top: 9px;
+    z-index: 1;
 }
 
 .dokkiCSS-vertical-navi .dokkiCSS-navi-link:hover
@@ -888,7 +873,7 @@ ul.dokkiCSS-vertical-navi
 .dokkiCSS-embedded.dokki-table table th
 {
     background-color: var(--dokkiCSS-embedded-header-bg-color);
-    font-weight: normal;
+    font-weight: var(--dokkiCSS-bold-text-weight);
 }
 
 .dokkiCSS-embedded.dokki-table table td:not(:last-child),
