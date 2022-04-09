@@ -17,7 +17,8 @@
             <span class="dokkiCSS-title">
                 <i class="fas fa-table" title="Table"/>
                 <span>
-                    {{title}}
+                    <slot v-if="this.$slots.caption" name="caption"/>
+                    <span v-else>&nbsp;Table</span>
                 </span>
             </span>
 
@@ -55,21 +56,6 @@ export default {
         if (this.isHeaderless)
         {
             this.$refs["table-expander"].expand({animate: false});
-        }
-    },
-    computed: {
-        title()
-        {
-            const caption = (typeof this.$slots.caption == "function")
-                ? this.$slots.caption()
-                : undefined;
-
-            if (Array.isArray(caption) && (typeof caption[0].children == "string")) {
-                return caption[0].children;
-            }
-
-            /// TODO: Don't prefix the thing with a space; use CSS spacing instead.
-            return " Table";
         }
     },
 }
