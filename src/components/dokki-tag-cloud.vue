@@ -29,13 +29,17 @@
 export default {
     props: {
         inline: {default: undefined},
-        minimumFontSize: {type: Number, default: 95},
-        maximumFontSize: {type: Number, default: 220},
+        minSize: {type: Number, default: 95},
+        maxSize: {type: Number, default: 220},
     },
     data() {
         return {
             isInline: ((this.$props.inline === undefined)? false : true),
         }
+    },
+    created() {
+        this.$props.minSize = Number(this.$props.minSize);
+        this.$props.maxSize = Number(this.$props.maxSize);
     },
     methods: {
         on_tag_click(tagName) {
@@ -54,8 +58,8 @@ export default {
             const tagCount = this.tags[tagName];
             const [minCount, maxCount] = this.minMaxTagCount;
             const ratio = ((tagCount - minCount) / Math.max(1, (maxCount - minCount)));
-            const fontSize = Math.ceil(this.minimumFontSize + (this.maximumFontSize - this.minimumFontSize) * ratio);
-            return `${Math.max(this.minimumFontSize, Math.min(this.maximumFontSize, fontSize))}%`;
+            const fontSize = Math.ceil(this.minSize + (this.maxSize - this.minSize) * ratio);
+            return `${Math.max(this.minSize, Math.min(this.maxSize, fontSize))}%`;
         },
     },
     computed: {
