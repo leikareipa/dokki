@@ -16,7 +16,7 @@ export default {
 
         window.addEventListener("dokki0-hash-router-updated-navi-hash", ()=>{
             const hash = window.location.hash;
-            if (!hash.startsWith(this.tagMarker)) {
+            if ((hash.length > 1) && !hash.startsWith(this.tagMarker)) {
                 const targetEl = document.querySelector(hash);
                 if (targetEl) {
                     targetEl.scrollIntoView();
