@@ -39,8 +39,6 @@
 
         </dokki0-animated-expander>
 
-        <hr v-if="hasFooter">
-
         <footer v-if="hasFooter" class="dokkiCSS-italic">
             <slot name="caption"/>
         </footer>

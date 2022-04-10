@@ -47,7 +47,7 @@ export default {
                 this.$refs.themeSelector.animate([
                     {transform: "rotateY(90deg)"},
                     {transform: "rotateY(0deg)"}
-                ], {duration: 150});
+                ], {duration: 200});
             }
         },
     },

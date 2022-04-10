@@ -9,6 +9,8 @@
     <p class="dokkiCSS-embedded dokki-directory dokkiCSS-expandable"
        :class="{
            'dokkiCSS-headerless': isHeaderless,
+           'dokkiCSS-expanded': isExpanded,
+           'dokkiCSS-transitioning': isTransitioning,
        }">
 
         <header v-if="!isHeaderless"
@@ -27,8 +29,9 @@
 
         <dokki0-animated-expander ref="directory-expander"
                                   :start-expanded="isExpanded"
-                                  @expanded="isExpanded = true"
-                                  @minimized="isExpanded = false">
+                                  @transitioning="isTransitioning = true"
+                                  @expanded="isExpanded = true, isTransitioning = false"
+                                  @minimized="isExpanded = false, isTransitioning = false">
 
             <div class="dokkiCSS-container">
 
@@ -74,6 +77,12 @@ export default {
     props: {
         structure: {type: Object},
         title: {type: String, default: "Directory structure"},
+    },
+    data() {
+        return {
+            codeFromSlot: undefined,
+            isTransitioning: false,
+        }
     },
     methods: {
         entryPadding(entry = {})

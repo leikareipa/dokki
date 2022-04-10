@@ -10,6 +10,8 @@
        :class="{
            'dokkiCSS-has-output': hasOutput,
            'dokkiCSS-headerless': isHeaderless,
+           'dokkiCSS-expanded': isExpanded,
+           'dokkiCSS-transitioning': isTransitioning,
        }">
 
         <header v-if="!isHeaderless"
@@ -28,8 +30,9 @@
 
         <dokki0-animated-expander ref="code-expander"
                                   :start-expanded="isExpanded"
-                                  @expanded="isExpanded = true"
-                                  @minimized="isExpanded = false">
+                                  @transitioning="isTransitioning = true"
+                                  @expanded="isExpanded = true, isTransitioning = false"
+                                  @minimized="isExpanded = false, isTransitioning = false">
 
             <div class="dokkiCSS-container">
                 <dokki0-text-block-with-line-numbers :syntax="syntax" :text="codeFromSlot || code">
@@ -60,6 +63,7 @@ export default {
     data() {
         return {
             codeFromSlot: undefined,
+            isTransitioning: false,
         }
     },
     mounted()
