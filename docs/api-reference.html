@@ -12,34 +12,35 @@
         
         <style>
             .dokki-topic p > i,
-            .dokki-topic p > em
-            {
+            .dokki-topic p > em {
                 font-style: italic;
             }
 
-            .dokki-topic p > i::before
-            {
+            .dokki-topic p > i::before {
                 content: "<";
             }
 
-            .dokki-topic p > i::after
-            {
+            .dokki-topic p > i::after {
                 content: ">";
             }
 
-            b
-            {
+            b {
                 font-weight: 500;
+            }
+
+            h3 {
+                font-variant: small-caps;
+            }
+
+            h3 + strong {
+                margin-left: 1ch;
+                font-style: italic;
+                color: red;
+                font-size: 95%;
             }
         </style>
     </head>
     <body>
-        <div while-dokki-initializing>
-            <i class="fas fa-comment-dots"
-               style="margin-right: 6px"></i>
-            Preparing the document...
-        </div>
-
         <template id="dokki-document">
 
             <dokki-header title="API reference for dokki"
@@ -159,7 +160,7 @@
 
                     <h2>Attributes</h2>
 
-                    <h3>src</h3> (required)
+                    <h3>src</h3> <strong>required</strong>
                     <p>
                         Corresponds to the <b>src</b> attribute of the standard <i>img</i> element. 
                     </p>
@@ -262,13 +263,13 @@
 
                     <h2>Attributes</h2>
 
-                    <h3>platform</h3> (required)
+                    <h3>platform</h3> <strong>required</strong>
                     <p>
                         Identifies the platform on which the video is hosted. Currently, only <em>"youtube"</em>
                         is supported.
                     </p>
 
-                    <h3>src</h3> (required)
+                    <h3>src</h3> <strong>required</strong>
                     <p>
                         Identifies the video on the given platform.
                     </p>
@@ -355,7 +356,7 @@
                         The CSS height of the <i>dokki-iframe</i> element.
                     </p>
 
-                    <h3>src</h3> (required)
+                    <h3>src</h3> <strong>required</strong>
                     <p>
                         Corresponds to the <b>src</b> attribute of the standard <i>iframe</i> element.
                     </p>
@@ -411,7 +412,7 @@
 
                     <h2>Attributes</h2>
 
-                    <h3>command</h3> (required)
+                    <h3>command</h3> <strong>required</strong>
                     <p>
                         The console command.
                     </p>
@@ -1238,9 +1239,7 @@
                 <dokki-topic title="#dokki-document">
                     <p>
                         The <i>template id="dokki-document"</i> element is the main container of a
-                        dokki document; any other dokki element in the document &ndash; except for
-                        <a href="#while-dokki-initializing">[while-dokki-initializing]</a>&ndash;
-                        must be placed inside it.
+                        dokki document; any other dokki element in the document must be placed inside it.
                     </p>
 
                     <h2>Attributes</h2>
@@ -1254,50 +1253,6 @@
                     <dokki-code headerless
                                 code="
                                 <body>
-                                    <template id='dokki-document'>
-                                        <dokki-topics>
-                                            <dokki-topic title='Hello there'>
-                                                <dokki-lorem>
-                                                </dokki-lorem>
-                                            </dokki-topic>
-                                        </dokki-topics>
-                                    </template>
-                                </body>
-                                ">
-                    </dokki-code>
-                </dokki-topic>
-
-                <dokki-topic title="[while-dokki-initializing]">
-                    <p>
-                        The <i>div while-dokki-initializing</i> element is an optional loading indicator
-                        to be shown while the document's DOM is being prepared for first display.
-                    </p>
-
-                    <p>
-                        Any content inside <i>div while-dokki-initializing</i> <i>/div</i> will be displayed
-                        while the document loads.
-                    </p>
-
-                    <p>
-                        Unlike all other dokki elements, this element must be placed outside of the
-                        <a href="#dokki-document">#dokki-document</a> container.
-                    </p>
-
-                    <h2>Attributes</h2>
-
-                    <p>
-                        None.
-                    </p>
-
-                    <h2>Examples</h2>
-
-                    <dokki-code headerless
-                                code="
-                                <body>
-                                    <div while-dokki-initializing>
-                                        Preparing the document...
-                                    </div>
-                            
                                     <template id='dokki-document'>
                                         <dokki-topics>
                                             <dokki-topic title='Hello there'>
