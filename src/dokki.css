@@ -1275,11 +1275,6 @@ body[data-dokki-layout="vertical-narrow"]
     --dokkiCSS-header-bottom-margin: 0px;
 }
 
-body[data-dokki-layout="vertical-narrow"] .dokkiCSS-embedded.dokkiCSS-headerless:not(.dokkiCSS-has-output) > .dokki0-animated-expander > .dokkiCSS-container
-{
-    padding: 0;
-}
-
 body[data-dokki-layout="vertical-narrow"] .dokki-topics
 {
     left: var(--dokkiCSS-document-horizontal-left-start);
