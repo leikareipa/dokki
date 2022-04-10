@@ -13,11 +13,13 @@
 
             <span class="dokkiCSS-title">
                 <i :class="headerIcon" title="Video"/>
+                <span>
+                    <slot v-if="this.$slots.caption" name="caption"/>
+                    <span v-else>&nbsp;Video</span>
+                </span>
             </span>
 
-            <aside class="dokkiCSS-expander">
-                {{isExpanded? "Hide" : "Show"}}
-            </aside>
+            <dokki0-expansion-indicator :isExpanded="isExpanded"/>
 
         </header>
 
@@ -29,10 +31,6 @@
                     allow="fullscreen; autoplay;">
             </iframe>
         </dokki0-animated-expander>
-
-        <footer v-if="hasFooter" class="dokkiCSS-italic">
-            <slot name="caption"/>
-        </footer>
 
     </p>
 </template>

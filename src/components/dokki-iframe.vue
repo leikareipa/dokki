@@ -19,9 +19,7 @@
                 {{title}}
             </span>
 
-            <aside class="dokkiCSS-expander">
-                {{isExpanded? "Close frame" : "Expand frame"}}
-            </aside>
+            <dokki0-expansion-indicator :isExpanded="isExpanded"/>
 
         </header>
 

@@ -33,6 +33,7 @@ import dokkiVideo from "./components/dokki-video.vue";
 import dokkiHr from "./components/dokki-hr.vue";
 import dokkiWarning from "./components/dokki-warning.vue";
 import dokki0AnimatedExpander from "./components/dokki0-animated-expander.vue";
+import dokki0ExpansionIndicator from "./components/dokki0-expansion-indicator.vue";
 import dokki0HashRouter from "./components/dokki0-hash-router.vue";
 import dokki0PageLoadProgressBar from "./components/dokki0-page-load-progress-bar.vue";
 import dokki0TextBlockWithLineNumbers from "./components/dokki0-text-block-with-line-numbers.vue";
@@ -129,6 +130,7 @@ export function start(args = {})
     .component("dokki-warning", dokkiWarning)
     .component("dokki-hr", dokkiHr)
     .component("dokki0-animated-expander", dokki0AnimatedExpander)
+    .component("dokki0-expansion-indicator", dokki0ExpansionIndicator)
     .component("dokki0-hash-router", dokki0HashRouter)
     .component("dokki0-page-load-progress-bar", dokki0PageLoadProgressBar)
     .component("dokki0-text-block-with-line-numbers", dokki0TextBlockWithLineNumbers)

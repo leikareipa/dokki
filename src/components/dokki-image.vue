@@ -9,16 +9,22 @@
     <p class="dokkiCSS-embedded dokki-image dokkiCSS-expandable"
        :class="{expanded: isExpanded}">
 
-        <header @click="this.calculate_scaled_size(),
+        <header class="dokkiCSS-groupbox"
+                @click="this.calculate_scaled_size(),
                         this.$refs['image-expander'].toggle_expansion()">
 
-            <span class="dokkiCSS-title">
-                <i class="fas fa-image" title="Image"/>
+            <span v-if="this.$slots.caption" class="dokkiCSS-groupbox-title">
+                Image
             </span>
 
-            <aside class="dokkiCSS-expander">
-                {{isExpanded? "Hide" : "Show"}}
-            </aside>
+            <span class="dokkiCSS-title">
+                <span>
+                    <slot v-if="this.$slots.caption" name="caption"/>
+                    <span v-else>Image</span>
+                </span>
+            </span>
+            
+            <dokki0-expansion-indicator :isExpanded="isExpanded"/>
 
         </header>
 
@@ -39,9 +45,6 @@
 
         </dokki0-animated-expander>
 
-        <footer v-if="hasFooter" class="dokkiCSS-italic">
-            <slot name="caption"/>
-        </footer>
     </p>
 </template>
 

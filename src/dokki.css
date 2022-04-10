@@ -74,11 +74,6 @@
     font-display: swap;
 }
 
-[v-cloak]
-{
-    visibility: hidden;
-} 
-
 body
 {
     --dokkiCSS-header-height: 40px;
@@ -107,7 +102,7 @@ body
 
     --dokkiCSS-embedded-border-radius: 4px;
     --dokkiCSS-embedded-padding: 14px;
-    --dokkiCSS-navibar-item-padding-vertical: 6px;
+    --dokkiCSS-navibar-item-padding-vertical: 5px;
     --dokkiCSS-navibar-item-padding-horizontal: 10px;
 
     --dokkiCSS-regular-font-family: "Roboto", sans-serif;
@@ -144,7 +139,7 @@ body,
     --dokkiCSS-page-inert-bg-color: white;
     --dokkiCSS-page-primary-fg-color: #202020;
     --dokkiCSS-page-secondary-fg-color: #404040;
-    --dokkiCSS-page-inert-fg-color: #a5a5a5;
+    --dokkiCSS-page-inert-fg-color: #757575;
     --dokkiCSS-page-primary-line-color: lightgray;
     --dokkiCSS-page-secondary-line-color: lightgray;
     --dokkiCSS-embedded-header-bg-color: var(--document-bg-color);
@@ -409,6 +404,7 @@ ul.dokkiCSS-vertical-navi
     list-style-type: none;
     padding: 0;
     margin: 0;
+    padding-top: var(--dokkiCSS-navibar-item-padding-vertical);
 }
 
 .dokki-side-panel li
@@ -419,13 +415,21 @@ ul.dokkiCSS-vertical-navi
 .dokkiCSS-vertical-navi .dokkiCSS-navi-link-icon
 {
     background-color: var(--dokkiCSS-page-primary-bg-color);
-    border: 1px solid var(--dokkiCSS-page-secondary-line-color);
+    border: 1px solid var(--dokkiCSS-page-primary-line-color);
     border-radius: var(--dokkiCSS-embedded-border-radius);
-    padding: 1px 4px;
-    color: var(--dokkiCSS-page-primary-fg-color);
-    display: block;
+    padding: 2px 5px;
+    display: flex;
     margin-right: 0.75ch;
     z-index: 1;
+    justify-content: center;
+    color: var(--dokkiCSS-page-inert-fg-color);
+    font-size: 95%;
+    min-width: 2ch;
+}
+
+.dokkiCSS-vertical-navi a:hover .dokkiCSS-navi-link-icon
+{
+    color: var(--dokkiCSS-page-secondary-fg-color);
 }
 
 .dokkiCSS-vertical-navi .dokkiCSS-navi-link-label
@@ -448,14 +452,14 @@ ul.dokkiCSS-vertical-navi
 .dokkiCSS-vertical-navi .dokkiCSS-navi-link-subtopic
 {
     border-left: 1px solid transparent;
-    margin-left: calc(var(--dokkiCSS-navibar-item-padding-horizontal) + 4px + 0.5ch);
+    margin-left: calc(var(--dokkiCSS-navibar-item-padding-horizontal) + 9px + 0.5ch);
     padding-left: 1.25ch;
-    color: var(--dokkiCSS-page-secondary-fg-color);
+    color: var(--dokkiCSS-page-inert-fg-color);
 }
 
 .dokkiCSS-vertical-navi .dokkiCSS-navi-link-subtopic:not(:last-child)
 {
-    border-left: 1px solid var(--dokkiCSS-page-secondary-line-color);
+    border-left: 1px solid var(--dokkiCSS-page-primary-line-color);
 }
 
 .dokkiCSS-vertical-navi .dokkiCSS-navi-link-subtopic::before
@@ -464,18 +468,18 @@ ul.dokkiCSS-vertical-navi
     position: absolute;
     left: -1px;
     top: -13px;
-    border-left: 1px solid var(--dokkiCSS-page-secondary-line-color);
+    border-left: 1px solid var(--dokkiCSS-page-primary-line-color);
     height: 25px;
 }
 
 .dokkiCSS-vertical-navi .dokkiCSS-navi-link-subtopic::after
 {
     background-color: var(--dokkiCSS-page-primary-bg-color);
-    border: 1px solid var(--dokkiCSS-page-secondary-line-color);
+    border: 1px solid var(--dokkiCSS-page-primary-line-color);
     border-radius: 100%;
     content: "";
-    left: -7px;
-    padding: 5.5px;
+    left: -6px;
+    padding: 4.5px;
     position: absolute;
     top: 9px;
     z-index: 1;
@@ -701,6 +705,25 @@ ul.dokkiCSS-vertical-navi
     text-align: right;
 }
 
+.dokkiCSS-groupbox
+{
+    position: relative;
+}
+
+.dokkiCSS-groupbox-title
+{
+    position: absolute;
+    top: -1px;
+    left: calc(var(--dokkiCSS-embedded-padding) - 3px);
+    font-size: 95%;
+    font-variant: small-caps;
+    text-transform: lowercase;
+    background-color: white;
+    transform: translateY(-50%);
+    padding: 3px;
+    color: var(--dokkiCSS-page-inert-fg-color);
+}
+
 .dokkiCSS-checker-background
 {
     background-image: linear-gradient(45deg, rgba(0, 0, 0, 0.025) 25%, transparent 25%),
@@ -729,17 +752,15 @@ ul.dokkiCSS-vertical-navi
     box-sizing: border-box;
     border: 1px solid var(--dokkiCSS-page-primary-line-color);
     border-radius: var(--dokkiCSS-embedded-border-radius);
-    overflow: hidden;
 }
 
 .dokkiCSS-embedded > header
 {
-    line-height: normal;
     font-weight: normal;
     padding: var(--dokkiCSS-embedded-padding);
     background-color: var(--dokkiCSS-embedded-header-bg-color);
     display: flex;
-    align-items: center;
+    align-items: baseline;
     box-sizing: border-box;
     color: var(--dokkiCSS-page-secondary-fg-color);
 }
@@ -777,16 +798,21 @@ ul.dokkiCSS-vertical-navi
     margin-bottom: 0;
 }
 
-.dokkiCSS-embedded > header > .dokkiCSS-expander
+.dokki0-expansion-indicator
 {
     margin-left: 10px;
     color: var(--dokkiCSS-page-link-color);
     display: inline-block;
     margin-left: auto;
     font-weight: var(--dokkiCSS-bold-text-weight);
-    font-size: 70%;
+    font-size: 80%;
     text-transform: uppercase;
     white-space: nowrap;
+}
+
+.dokki0-expansion-indicator > :first-child
+{
+    margin-left: 10px;
 }
 
 .dokkiCSS-embedded > hr
@@ -894,11 +920,6 @@ ul.dokkiCSS-vertical-navi
     flex-direction: column;
 }
 
-.dokkiCSS-embedded.dokki-video header
-{
-    font-weight: var(--dokkiCSS-bold-text-weight);
-}
-
 .dokkiCSS-embedded.dokki-video.youtube iframe
 {
     min-width: 100%;
@@ -912,11 +933,6 @@ ul.dokkiCSS-vertical-navi
 .dokkiCSS-embedded.dokki-video.youtube .dokki0-animated-expander
 {
     max-height: 450px;
-}
-
-.dokkiCSS-embedded.dokki-video > header > .dokkiCSS-title::after
-{
-    content: " Video";
 }
 
 .dokkiCSS-embedded.dokki-console > header
@@ -1102,11 +1118,6 @@ ul.dokkiCSS-vertical-navi
     flex-direction: column;
 }
 
-.dokkiCSS-embedded.dokki-image header
-{
-    font-weight: var(--dokkiCSS-bold-text-weight);
-}
-
 .dokkiCSS-embedded.dokki-image .dokkiCSS-container
 {
     min-height: 20px;
@@ -1128,11 +1139,6 @@ ul.dokkiCSS-vertical-navi
 .dokkiCSS-embedded.dokki-image .dokkiCSS-container > img.dokkiCSS-pixelated-scale
 {
     image-rendering: pixelated;
-}
-
-.dokkiCSS-embedded.dokki-image > header > .dokkiCSS-title::after
-{
-    content: " Image";
 }
 
 /* These are kind of kludge styles that need to be incorporated into the style sheet

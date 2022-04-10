@@ -21,9 +21,7 @@
                 {{title}}
             </span>
 
-            <aside class="dokkiCSS-expander">
-                {{isExpanded? "Hide" : "Show"}}
-            </aside>
+            <dokki0-expansion-indicator :isExpanded="isExpanded"/>
 
         </header>
 
