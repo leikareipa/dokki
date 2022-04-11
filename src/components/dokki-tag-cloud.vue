@@ -29,7 +29,10 @@
         </span>
 
         <span class="dokkiCSS-title">
-            Use this tag cloud to filter the software list
+            <span>
+                <slot v-if="hasCaption" name="caption"/>
+                <span v-else>Tag cloud</span>
+            </span>
         </span>
 
         <dokki0-expansion-indicator :isExpanded="isExpanded"/>
@@ -43,7 +46,7 @@
                               @minimized="isExpanded = false, isTransitioning = false">
 
         <footer>
-            
+
             <div class="dokkiCSS-container">
 
                 <a v-for="tagName of tagNames"
@@ -114,6 +117,10 @@ export default {
         },
     },
     computed: {
+        hasCaption()
+        {
+            return !!this.$slots.caption;
+        },
         tags() {
             return this.$store.state.tags;
         },
