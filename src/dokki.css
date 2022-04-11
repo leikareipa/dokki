@@ -706,7 +706,7 @@ ul.dokkiCSS-vertical-navi
     font-size: 95%;
     font-variant: small-caps;
     text-transform: lowercase;
-    background-color: var(--dokkiCSS-page-inert-bg-color);
+    background-color: var(--dokkiCSS-page-primary-bg-color);
     transform: translateY(-50%);
     padding: 3px;
     color: var(--dokkiCSS-page-inert-fg-color);
@@ -1047,7 +1047,7 @@ ul.dokkiCSS-vertical-navi
     background-color: var(--dokkiCSS-embedded-auxiliary-color);
 }
 
-.dokkiCSS-embedded.dokki-tag-cloud .dokkiCSS-item
+.dokki-tag-cloud .dokkiCSS-item
 {
     cursor: pointer;
 }
