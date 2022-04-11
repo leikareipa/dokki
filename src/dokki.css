@@ -698,16 +698,6 @@ ul.dokkiCSS-vertical-navi
     position: relative;
 }
 
-:not(.dokkiCSS-headerless).dokkiCSS-groupbox
-{
-    margin-top: calc(var(--dokkiCSS-embedded-vertical-margin) + 0.475em) !important;
-}
-
-:not(.dokkiCSS-headerless).dokkiCSS-groupbox + :not(.dokkiCSS-headerless).dokkiCSS-groupbox
-{
-    margin-top: calc(var(--dokkiCSS-embedded-vertical-margin) + 0.75em) !important;
-}
-
 .dokkiCSS-groupbox-title
 {
     position: absolute;
@@ -752,6 +742,16 @@ ul.dokkiCSS-vertical-navi
     border-radius: var(--dokkiCSS-embedded-border-radius);
 }
 
+.dokkiCSS-embedded:not(.dokkiCSS-headerless).dokkiCSS-groupbox
+{
+    margin-top: calc(var(--dokkiCSS-embedded-vertical-margin) + 0.475em);
+}
+
+.dokkiCSS-embedded:not(.dokkiCSS-headerless).dokkiCSS-groupbox + .dokkiCSS-embedded:not(.dokkiCSS-headerless).dokkiCSS-groupbox
+{
+    margin-top: calc(var(--dokkiCSS-embedded-vertical-margin) + 0.75em);
+}
+
 .dokkiCSS-embedded > header
 {
     font-weight: normal;
@@ -787,13 +787,13 @@ ul.dokkiCSS-vertical-navi
 .dokkiCSS-embedded footer > *:first-child,
 .dokki-area > *:first-child
 {
-    margin-top: 0;
+    margin-top: 0 !important;
 }
 
 .dokkiCSS-embedded footer > *:last-child,
 .dokki-area > *:last-child
 {
-    margin-bottom: 0;
+    margin-bottom: 0 !important;
 }
 
 .dokki0-expansion-indicator
