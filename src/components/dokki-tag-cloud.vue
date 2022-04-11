@@ -14,22 +14,65 @@
         -->{{(idx == (tagNames.length - 1))? "" : ", "}}
     </span>
 </span>
-<p v-else class="dokki-tag-cloud">
-    <a v-for="tagName of tagNames"
-       class="dokkiCSS-item"
-       :style="{
-           fontSize: tag_css_font_size_percent(tagName),
-           lineHeight: `${this.maxSize / 100}rem`
-       }"
-       @click="on_tag_click(tagName)"
-    >
-        {{tagName}}
-    </a>
+<p v-else
+   class="dokkiCSS-embedded dokki-tag-cloud dokkiCSS-expandable dokkiCSS-groupbox"
+   :class="{
+        'dokkiCSS-expanded': isExpanded,
+        'dokkiCSS-transitioning': isTransitioning,
+    }">
+
+    <header @click="this.$refs['tag-cloud-expander'].toggle_expansion()">
+
+        <span class="dokkiCSS-groupbox-title">
+            <i class="fas fa-sm fa-tags"/>
+            Tag cloud
+        </span>
+
+        <span class="dokkiCSS-title">
+            Use this tag cloud to filter the software list
+        </span>
+
+        <dokki0-expansion-indicator :isExpanded="isExpanded"/>
+
+    </header>
+    
+    <dokki0-animated-expander ref="tag-cloud-expander"
+                              :start-expanded="isExpanded"
+                              @transitioning="isTransitioning = true"
+                              @expanded="isExpanded = true, isTransitioning = false"
+                              @minimized="isExpanded = false, isTransitioning = false">
+
+        <footer>
+            
+            <div class="dokkiCSS-container">
+
+                <a v-for="tagName of tagNames"
+                class="dokkiCSS-item"
+                :style="{
+                    fontSize: tag_css_font_size_percent(tagName),
+                    lineHeight: `${this.maxSize / 100}rem`
+                }"
+                @click="on_tag_click(tagName)"
+                >
+                    {{tagName}}
+                </a>
+
+            </div>
+
+        </footer>
+
+    </dokki0-animated-expander>
+    
 </p>
 </template>
 
 <script>
+import {expandedPropMixin} from "../component-mixins.js";
+
 export default {
+    mixins: [
+        expandedPropMixin,
+    ],
     props: {
         inline: {default: undefined},
 
@@ -42,6 +85,7 @@ export default {
     data() {
         return {
             isInline: ((this.$props.inline === undefined)? false : true),
+            isTransitioning: false,
         }
     },
     created() {

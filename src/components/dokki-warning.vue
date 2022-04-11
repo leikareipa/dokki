@@ -9,7 +9,8 @@
     <p class="dokkiCSS-embedded dokki-warning">
 
         <header>
-            Warning
+            <i class="fas fa-exclamation-triangle"/>
+            &nbsp;Warning
         </header>
         
         <footer>

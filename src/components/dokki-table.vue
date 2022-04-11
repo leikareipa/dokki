@@ -6,7 +6,7 @@
  */
 
 <template>
-    <p class="dokkiCSS-embedded dokki-table dokkiCSS-expandable"
+    <p class="dokkiCSS-embedded dokki-table dokkiCSS-expandable dokkiCSS-groupbox"
        :class="{
            'dokkiCSS-headerless': isHeaderless,
        }">
@@ -14,11 +14,15 @@
         <header v-if="!isHeaderless"
                 @click="this.$refs['table-expander'].toggle_expansion()">
 
+            <span v-if="hasCaption" class="dokkiCSS-groupbox-title">
+                <i class="fas fa-sm fa-table"/>
+                Table
+            </span>
+
             <span class="dokkiCSS-title">
-                <i class="fas fa-table" title="Table"/>
                 <span>
-                    <slot v-if="this.$slots.caption" name="caption"/>
-                    <span v-else>&nbsp;Table</span>
+                    <slot v-if="hasCaption" name="caption"/>
+                    <span v-else>Table</span>
                 </span>
             </span>
 
@@ -49,6 +53,12 @@ export default {
         expandedPropMixin,
         headerlessPropMixin,
     ],
+    computed: {
+        hasCaption()
+        {
+            return !!this.$slots.caption;
+        },
+    },
     mounted()
     {
         if (this.isHeaderless)

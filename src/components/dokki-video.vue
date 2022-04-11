@@ -6,13 +6,17 @@
  */
 
 <template>
-    <p class="dokkiCSS-embedded dokki-video dokkiCSS-expandable"
+    <p class="dokkiCSS-embedded dokki-video dokkiCSS-expandable dokkiCSS-groupbox"
        :class="platform">
 
         <header @click="this.$refs['video-expander'].toggle_expansion()">
 
+            <span v-if="hasCaption" class="dokkiCSS-groupbox-title">
+                <i class="fa-sm" :class="headerIcon"/>
+                Video
+            </span>
+
             <span class="dokkiCSS-title">
-                <i :class="headerIcon" title="Video"/>
                 <span>
                     <slot v-if="this.$slots.caption" name="caption"/>
                     <span v-else>&nbsp;Video</span>
@@ -45,7 +49,7 @@ export default {
         platform: {default: "youtube"},
     },
     computed: {
-        hasFooter()
+        hasCaption()
         {
             return !!this.$slots.caption;
         },

@@ -6,7 +6,7 @@
  */
 
 <template>
-    <p class="dokkiCSS-embedded dokki-iframe dokkiCSS-expandable"
+    <p class="dokkiCSS-embedded dokki-iframe dokkiCSS-expandable dokkiCSS-groupbox"
        :class="{
            'dokkiCSS-headerless': isHeaderless,
        }">
@@ -14,8 +14,12 @@
         <header v-if="!isHeaderless"
                 @click="this.$refs['frame-expander'].toggle_expansion()">
 
+            <span class="dokkiCSS-groupbox-title">
+                <i class="fas fa-sm fa-crop-alt"/>
+                Inline frame
+            </span>
+
             <span class="dokkiCSS-title">
-                <i class="fas fa-crop-alt"/>
                 {{title}}
             </span>
 

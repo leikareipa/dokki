@@ -9,7 +9,8 @@
     <p class="dokkiCSS-embedded dokki-tip">
 
         <header>
-            Tip
+            <i class="fas fa-info-circle"/>
+            &nbsp;Tip
         </header>
 
         <footer>

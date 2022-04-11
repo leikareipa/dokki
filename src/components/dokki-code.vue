@@ -6,7 +6,7 @@
  */
 
 <template>
-    <p class="dokkiCSS-embedded dokki-code dokkiCSS-expandable"
+    <p class="dokkiCSS-embedded dokki-code dokkiCSS-expandable dokkiCSS-groupbox"
        :class="{
            'dokkiCSS-has-output': hasOutput,
            'dokkiCSS-headerless': isHeaderless,
@@ -17,8 +17,12 @@
         <header v-if="!isHeaderless"
                 @click="this.$refs['code-expander'].toggle_expansion()">
 
+            <span class="dokkiCSS-groupbox-title">
+                <i class="fas fa-sm fa-code"/>
+                Code
+            </span>
+
             <span class="dokkiCSS-title">
-                <i class="fas fa-code" title="Code"/>
                 {{title}}
             </span>
 

@@ -6,20 +6,20 @@
  */
 
 <template>
-    <p class="dokkiCSS-embedded dokki-image dokkiCSS-expandable"
+    <p class="dokkiCSS-embedded dokki-image dokkiCSS-expandable dokkiCSS-groupbox"
        :class="{expanded: isExpanded}">
 
-        <header class="dokkiCSS-groupbox"
-                @click="this.calculate_scaled_size(),
+        <header @click="this.calculate_scaled_size(),
                         this.$refs['image-expander'].toggle_expansion()">
 
-            <span v-if="this.$slots.caption" class="dokkiCSS-groupbox-title">
+            <span v-if="hasCaption" class="dokkiCSS-groupbox-title">
+                <i class="fas fa-sm fa-image"/>
                 Image
             </span>
 
             <span class="dokkiCSS-title">
                 <span>
-                    <slot v-if="this.$slots.caption" name="caption"/>
+                    <slot v-if="hasCaption" name="caption"/>
                     <span v-else>Image</span>
                 </span>
             </span>
@@ -78,7 +78,7 @@ export default {
         window.addEventListener("resize", this.calculate_scaled_size);
     },
     computed: {
-        hasFooter()
+        hasCaption()
         {
             return !!this.$slots.caption;
         },

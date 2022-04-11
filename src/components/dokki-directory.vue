@@ -6,7 +6,7 @@
  */
 
 <template>
-    <p class="dokkiCSS-embedded dokki-directory dokkiCSS-expandable"
+    <p class="dokkiCSS-embedded dokki-directory dokkiCSS-expandable dokkiCSS-groupbox"
        :class="{
            'dokkiCSS-headerless': isHeaderless,
            'dokkiCSS-expanded': isExpanded,
@@ -16,8 +16,12 @@
         <header v-if="!isHeaderless"
                 @click="this.$refs['directory-expander'].toggle_expansion()">
 
+            <span class="dokkiCSS-groupbox-title">
+                <i class="fas fa-sm fa-folder"/>
+                File list
+            </span>
+
             <span class="dokkiCSS-title">
-                <i class="fas fa-folder" title="Directory structure"/>
                 {{title}}
             </span>
 
