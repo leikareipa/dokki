@@ -6,15 +6,40 @@
  */
 
 <template>
-    <dokki-output :title="title">
-        <slot/>
-    </dokki-output>
+<dokki0-embedded-expandable
+    class-name="dokki-output"
+    icon="fas fa-chevron-right"
+    title="Spoiler"
+    :class="{'dokkiCSS-unpadded': isUnpadded}">
+
+    <template #caption>
+
+        <slot name="caption"/>
+
+    </template>
+
+    <template #content>
+
+        <div class="dokkiCSS-wrapper">
+
+            <slot/>
+
+        </div>
+
+    </template>
+
+</dokki0-embedded-expandable>
 </template>
 
 <script>
 export default {
     props: {
-        title: {default: "Spoiler"},
+        unpadded: {default: undefined},
     },
+    data() {
+        return {
+            isUnpadded: (this.$props.unpadded !== undefined),
+        }
+    }
 }
 </script>

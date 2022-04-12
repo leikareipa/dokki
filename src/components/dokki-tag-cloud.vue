@@ -45,24 +45,21 @@
                               @expanded="isExpanded = true, isTransitioning = false"
                               @minimized="isExpanded = false, isTransitioning = false">
 
-        <footer>
+        <div class="dokkiCSS-container">
 
-            <div class="dokkiCSS-container">
+            <a v-for="tagName of tagNames"
+               class="dokkiCSS-item"
+               :style="{
+                   fontSize: tag_css_font_size_percent(tagName),
+                   lineHeight: `${this.maxSize / 100}rem`
+               }"
+               @click="on_tag_click(tagName)">
 
-                <a v-for="tagName of tagNames"
-                class="dokkiCSS-item"
-                :style="{
-                    fontSize: tag_css_font_size_percent(tagName),
-                    lineHeight: `${this.maxSize / 100}rem`
-                }"
-                @click="on_tag_click(tagName)"
-                >
-                    {{tagName}}
-                </a>
+                {{tagName}}
 
-            </div>
+            </a>
 
-        </footer>
+        </div>
 
     </dokki0-animated-expander>
     
@@ -82,18 +79,14 @@ export default {
         // The CSS font size of the least common (minimum) and most common (maximum) tag, given
         // as a number representing percentages (e.g. "font-size: XXX%"). The rest of the tags'
         // font sizes will be along this range.
-        minSize: {type: Number, default: 95},
-        maxSize: {type: Number, default: 220},
+        minSize: {type: [Number, String], default: 95},
+        maxSize: {type: [Number, String], default: 220},
     },
     data() {
         return {
             isInline: ((this.$props.inline === undefined)? false : true),
             isTransitioning: false,
         }
-    },
-    created() {
-        this.$props.minSize = Number(this.$props.minSize);
-        this.$props.maxSize = Number(this.$props.maxSize);
     },
     methods: {
         on_tag_click(tagName) {
@@ -109,11 +102,16 @@ export default {
                 return "100%";
             }
 
+            // The prop sizes may be strings or numbers, depending on how they were passed into the
+            // component as props, so let's convert to make sure we know what we're working with.
+            const minSize = Number(this.$props.minSize);
+            const maxSize = Number(this.$props.maxSize);
+
             const tagCount = this.tags[tagName];
             const [minCount, maxCount] = this.minMaxTagCount;
             const ratio = ((tagCount - minCount) / Math.max(1, (maxCount - minCount)));
-            const fontSize = Math.ceil(this.minSize + (this.maxSize - this.minSize) * ratio);
-            return `${Math.max(this.minSize, Math.min(this.maxSize, fontSize))}%`;
+            const fontSize = Math.ceil(minSize + (maxSize - minSize) * ratio);
+            return `${Math.max(minSize, Math.min(maxSize, fontSize))}%`;
         },
     },
     computed: {

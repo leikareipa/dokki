@@ -6,65 +6,22 @@
  */
 
 <template>
-    <p class="dokkiCSS-embedded dokki-table dokkiCSS-expandable dokkiCSS-groupbox"
-       :class="{
-           'dokkiCSS-headerless': isHeaderless,
-       }">
+<dokki0-embedded-expandable
+    class-name="dokki-table"
+    icon="fas fa-table"
+    title="Table">
 
-        <header v-if="!isHeaderless"
-                @click="this.$refs['table-expander'].toggle_expansion()">
+    <template #caption>
 
-            <span v-if="hasCaption" class="dokkiCSS-groupbox-title">
-                <i class="fas fa-sm fa-table"/>
-                Table
-            </span>
+        <slot name="caption"/>
 
-            <span class="dokkiCSS-title">
-                <span>
-                    <slot v-if="hasCaption" name="caption"/>
-                    <span v-else>Table</span>
-                </span>
-            </span>
+    </template>
 
-            <dokki0-expansion-indicator :isExpanded="isExpanded"/>
+    <template #content>
 
-        </header>
+        <slot name="table"/>
 
-        <dokki0-animated-expander ref="table-expander"
-                                  :start-expanded="isExpanded"
-                                  @expanded="isExpanded = true"
-                                  @minimized="isExpanded = false">
-                                  
-            <div class="dokkiCSS-container">
-                <slot name="table"/>
-            </div>
+    </template>
 
-        </dokki0-animated-expander>
-
-    </p>
+</dokki0-embedded-expandable>
 </template>
-
-<script>
-import {expandedPropMixin} from "../component-mixins.js";
-import {headerlessPropMixin} from "../component-mixins.js";
-
-export default {
-    mixins: [
-        expandedPropMixin,
-        headerlessPropMixin,
-    ],
-    computed: {
-        hasCaption()
-        {
-            return !!this.$slots.caption;
-        },
-    },
-    mounted()
-    {
-        if (this.isHeaderless)
-        {
-            this.$refs["table-expander"].expand({animate: false});
-        }
-    },
-}
-</script>

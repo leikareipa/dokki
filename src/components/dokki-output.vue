@@ -6,44 +6,40 @@
  */
 
 <template>
-    <p class="dokkiCSS-embedded dokki-output dokkiCSS-expandable"
-       :class="{'dokkiCSS-unpadded': isUnpadded}">
+<dokki0-embedded-expandable
+    class-name="dokki-output"
+    icon="fas fa-chevron-right"
+    title="Output"
+    header-widget="frame"
+    :class="{'dokkiCSS-unpadded': isUnpadded}">
 
-        <header @click="this.$refs.output.toggle_expansion()">
+    <template #caption>
 
-            <span class="dokkiCSS-title">
-                <i class="fas fa-chevron-right"/>
-                {{title}}
-            </span>
+        <slot name="caption"/>
 
-            <dokki0-expansion-indicator :isExpanded="isExpanded"/>
+    </template>
 
-        </header>
+    <template #content>
 
-        <dokki0-animated-expander ref="output"
-                                  :start-expanded="isExpanded"
-                                  @expanded="isExpanded = true"
-                                  @minimized="isExpanded = false">
-            <footer>
-                <slot/>
-            </footer>
-        </dokki0-animated-expander>
+        <div class="dokkiCSS-wrapper">
 
-    </p>
+            <slot/>
+
+        </div>
+
+    </template>
+
+</dokki0-embedded-expandable>
 </template>
 
 <script>
-import {expandedPropMixin} from "../component-mixins.js";
-
 export default {
-    mixins: [expandedPropMixin],
     props: {
-        title: {default: "Output"},
         unpadded: {default: undefined},
     },
     data() {
         return {
-            isUnpadded: ((this.$props.unpadded === undefined)? false : true),
+            isUnpadded: (this.$props.unpadded !== undefined),
         }
     }
 }

@@ -6,61 +6,43 @@
  */
 
 <template>
-    <p class="dokkiCSS-embedded dokki-iframe dokkiCSS-expandable dokkiCSS-groupbox"
-       :class="{
-           'dokkiCSS-headerless': isHeaderless,
-       }">
+<dokki0-embedded-expandable
+    class-name="dokki-iframe"
+    icon="fas fa-crop-alt"
+    title="Inline frame"
+    @expanded="update_autofocus">
 
-        <header v-if="!isHeaderless"
-                @click="this.$refs['frame-expander'].toggle_expansion()">
+    <template #caption>
 
-            <span class="dokkiCSS-groupbox-title">
-                <i class="fas fa-sm fa-crop-alt"/>
-                Inline frame
-            </span>
+        <slot v-if="this.$slots['caption']" name="caption"/>
+        <span v-else>{{src}}</span>
 
-            <span class="dokkiCSS-title">
-                {{title}}
-            </span>
+    </template>
 
-            <dokki0-expansion-indicator :isExpanded="isExpanded"/>
+    <template #content>
 
-        </header>
+        <div class="dokkiCSS-wrapper" :style="{height: height}">
 
-        <dokki0-animated-expander ref="frame-expander"
-                                  :start-expanded="isExpanded"
-                                  @expanded="isExpanded = true"
-                                  @minimized="isExpanded = false">
+            <iframe
+                class="dokki-iframe"
+                :src="src"
+                :srcdoc="srcdoc"
+                ref="iframe">
+            </iframe>
+            
+        </div>
 
-            <footer :style="{height: height}">
+    </template>
 
-                <iframe class="dokki-iframe"
-                        :src="src"
-                        :srcdoc="srcdoc"
-                        ref="iframe">
-                </iframe>
-                
-            </footer>
-
-        </dokki0-animated-expander>
-
-    </p>
+</dokki0-embedded-expandable>
 </template>
 
 <script>
-import {headerlessPropMixin} from "../component-mixins.js";
-import {expandedPropMixin} from "../component-mixins.js";
-
 export default {
-    mixins: [
-        headerlessPropMixin,
-        expandedPropMixin,
-    ],
     props: {
         src: {default: undefined},
         srcdoc: {default: undefined},
         height: {default: "500px"},
-        title: {default: "Inline frame"},
         autofocus: {default: undefined},
     },
     computed: {
@@ -69,21 +51,14 @@ export default {
             return (this.$props.autofocus !== undefined);
         },
     },
-    mounted()
-    {
-        if (this.isHeaderless)
+    methods: {
+        update_autofocus()
         {
-            this.$refs["frame-expander"].expand({animate: false});
-        }
-    },
-    watch: {
-        isExpanded()
-        {
-            if (this.isExpanded && this.hasAutofocus)
+            if (this.hasAutofocus)
             {
-                this.$nextTick(()=>this.$refs["iframe"].focus());
+                this.$refs["iframe"].focus();
             }
-        },
+        }
     },
 }
 </script>

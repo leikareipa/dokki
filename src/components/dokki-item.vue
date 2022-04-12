@@ -12,6 +12,8 @@
 
 <script>
 export default {
-    props: ["title"],
+    props: {
+        title: {required: true, type: String},
+    }
 }
 </script>

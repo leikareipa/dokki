@@ -6,57 +6,38 @@
  */
 
 <template>
-    <p class="dokkiCSS-embedded dokki-code dokkiCSS-expandable dokkiCSS-groupbox"
-       :class="{
-           'dokkiCSS-has-output': hasOutput,
-           'dokkiCSS-headerless': isHeaderless,
-           'dokkiCSS-expanded': isExpanded,
-           'dokkiCSS-transitioning': isTransitioning,
-       }">
+<dokki0-embedded-expandable
+    class-name="dokki-code"
+    icon="fas fa-code"
+    title="Code">
 
-        <header v-if="!isHeaderless"
-                @click="this.$refs['code-expander'].toggle_expansion()">
+    <template #caption>
 
-            <span class="dokkiCSS-groupbox-title">
-                <i class="fas fa-sm fa-code"/>
-                Code
-            </span>
+        <slot name="caption"/>
 
-            <span class="dokkiCSS-title">
-                {{title}}
-            </span>
+    </template>
 
-            <dokki0-expansion-indicator :isExpanded="isExpanded"/>
+    <template #content>
 
-        </header>
+        <dokki0-text-block-with-line-numbers
+            :syntax="syntax"
+            :text="codeFromSlot || code">
+        </dokki0-text-block-with-line-numbers>
 
-        <dokki0-animated-expander ref="code-expander"
-                                  :start-expanded="isExpanded"
-                                  @transitioning="isTransitioning = true"
-                                  @expanded="isExpanded = true, isTransitioning = false"
-                                  @minimized="isExpanded = false, isTransitioning = false">
+    </template>
 
-            <div class="dokkiCSS-container">
-                <dokki0-text-block-with-line-numbers :syntax="syntax" :text="codeFromSlot || code">
-                </dokki0-text-block-with-line-numbers>
-            </div>
+    <template #after>
 
-        </dokki0-animated-expander>
+        <slot v-if="this.$slots['output']" name="output"/>
+        <slot v-else/>
 
-    </p>
+    </template>
 
-    <slot/>
+</dokki0-embedded-expandable>
 </template>
 
 <script>
-import {headerlessPropMixin} from "../component-mixins.js";
-import {expandedPropMixin} from "../component-mixins.js";
-
 export default {
-    mixins: [
-        headerlessPropMixin,
-        expandedPropMixin,
-    ],
     props: {
         title: {default: "Code"},
         code: {default: undefined},
@@ -65,16 +46,10 @@ export default {
     data() {
         return {
             codeFromSlot: undefined,
-            isTransitioning: false,
         }
     },
     mounted()
     {
-        if (this.isHeaderless)
-        {
-            this.$refs["code-expander"].expand({animate: false});
-        }
-        
         if ((typeof this.$slots.code == "function"))
         {
             const codeElement = this.$slots.code()[0];

@@ -368,8 +368,8 @@ code .hljs-comment
     width: 100%;
     box-sizing: border-box;
     padding: var(--dokkiCSS-embedded-vertical-padding) var(--dokkiCSS-embedded-horizontal-padding);
-    background-color: var(--dokkiCSS-embedded-header-bg-color);
-    border-left: 5px solid var(--dokkiCSS-page-inert-fg-color);
+    background-color: var(--dokkiCSS-embedded-auxiliary-color);
+    border-radius: var(--dokkiCSS-embedded-border-radius);
 }
 
 .dokki-side-panel
@@ -776,21 +776,21 @@ ul.dokkiCSS-vertical-navi
     margin-right: 2px;
 }
 
-.dokkiCSS-embedded footer
+.dokkiCSS-embedded .dokkiCSS-container
 {
     line-height: normal;
-    overflow: auto;
+    overflow: hidden;
     padding: var(--dokkiCSS-embedded-vertical-padding) var(--dokkiCSS-embedded-horizontal-padding);
     background-color: var(--dokkiCSS-embedded-footer-bg-color); 
 }
 
-.dokkiCSS-embedded footer > *:first-child,
+.dokkiCSS-embedded .dokkiCSS-container > *:first-child,
 .dokki-area > *:first-child
 {
     margin-top: 0 !important;
 }
 
-.dokkiCSS-embedded footer > *:last-child,
+.dokkiCSS-embedded .dokkiCSS-container > *:last-child,
 .dokki-area > *:last-child
 {
     margin-bottom: 0 !important;
@@ -833,13 +833,18 @@ ul.dokkiCSS-vertical-navi
     border-radius: 0;
 }
 
-.dokkiCSS-embedded.dokki-iframe footer
+.dokkiCSS-embedded.dokki-iframe .dokkiCSS-container
+{
+    padding: 0;
+}
+
+.dokkiCSS-embedded.dokki-iframe .dokkiCSS-wrapper
 {
     padding: 0;
     overflow: hidden;
 }
 
-.dokkiCSS-embedded.dokki-iframe footer > iframe
+.dokkiCSS-embedded.dokki-iframe .dokkiCSS-wrapper > iframe
 {
     max-width: 100%;
     min-width: 100%;
@@ -850,6 +855,7 @@ ul.dokkiCSS-vertical-navi
 
 .dokkiCSS-embedded.dokki-table .dokkiCSS-container
 {
+    padding: 0;
     overflow: auto;
     border-top: 1px solid var(--dokkiCSS-page-primary-line-color);
 }
@@ -918,6 +924,15 @@ ul.dokkiCSS-vertical-navi
     flex-direction: column;
 }
 
+.dokkiCSS-embedded.dokki-video .dokkiCSS-container
+{
+    padding: 0;
+    min-height: 20px;
+    display: flex;
+    overflow: auto;
+    background-color: var(--dokkiCSS-embedded-auxiliary-color);
+}
+
 .dokkiCSS-embedded.dokki-video.youtube iframe
 {
     min-width: 100%;
@@ -971,7 +986,7 @@ ul.dokkiCSS-vertical-navi
     font-weight: var(--dokkiCSS-bold-text-weight);
 }
 
-.dokkiCSS-embedded.dokki-output.dokkiCSS-unpadded footer
+.dokkiCSS-embedded.dokki-output.dokkiCSS-unpadded .dokkiCSS-wrapper
 {
     padding: 0;
 }
@@ -1140,7 +1155,7 @@ ul.dokkiCSS-vertical-navi
     white-space: pre;
 }
 
-.dokkiCSS-embedded.dokki-code .dokkiCSS-container
+.dokkiCSS-embedded.dokki-code > .dokki0-animated-expander > .dokkiCSS-container
 {
     overflow: auto;
     padding: var(--dokkiCSS-embedded-vertical-padding) var(--dokkiCSS-embedded-horizontal-padding);
@@ -1152,8 +1167,19 @@ ul.dokkiCSS-vertical-navi
     flex-direction: column;
 }
 
+.dokkiCSS-embedded.dokki-image.dokkiCSS-headerless
+{
+    border: none;
+}
+
+.dokkiCSS-embedded.dokki-image.dokkiCSS-headerless .dokkiCSS-container
+{
+    border-radius: var(--dokkiCSS-embedded-border-radius);
+}
+
 .dokkiCSS-embedded.dokki-image .dokkiCSS-container
 {
+    padding: 0;
     min-height: 20px;
     display: flex;
     overflow: auto;
@@ -1178,6 +1204,18 @@ ul.dokkiCSS-vertical-navi
 
 /* These are kind of kludge styles that need to be incorporated into the style sheet
  * properly.*/
+.dokkiCSS-embedded.dokki-code.dokkiCSS-has-after > .dokkiCSS-embedded.dokki-output
+{
+    margin-top: 0;
+    background: var(--dokkiCSS-page-inert-bg-color);
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    overflow: hidden;
+}
+.dokkiCSS-embedded.dokki-code.dokkiCSS-has-after > .dokkiCSS-embedded.dokki-output header
+{
+    border: none;
+}
 .dokkiCSS-embedded.dokki-code,
 .dokkiCSS-embedded.dokki-directory,
 .dokkiCSS-embedded.dokki-console,
@@ -1195,7 +1233,7 @@ ul.dokkiCSS-vertical-navi
     border: 1px solid var(--dokkiCSS-page-primary-line-color);
     background-color: var(--dokkiCSS-page-primary-bg-color);
 }
-.dokkiCSS-embedded.dokki-code.dokkiCSS-has-output header,
+.dokkiCSS-embedded.dokki-code.dokkiCSS-has-after header,
 .dokkiCSS-embedded.dokki-code.dokkiCSS-expanded header,
 .dokkiCSS-embedded.dokki-code.dokkiCSS-transitioning:not(.dokkiCSS-expanded) header,
 .dokkiCSS-embedded.dokki-directory.dokkiCSS-expanded header,
@@ -1206,11 +1244,11 @@ ul.dokkiCSS-vertical-navi
     border-bottom-left-radius: 0 !important;
     border-bottom-right-radius: 0 !important;
 }
-.dokkiCSS-embedded.dokki-code.dokkiCSS-has-output header
+.dokkiCSS-embedded.dokki-code.dokkiCSS-has-after header
 {
     border-bottom: none;
 }
-.dokkiCSS-embedded.dokki-code.dokkiCSS-has-output:not(.dokkiCSS-headerless) .dokkiCSS-container
+.dokkiCSS-embedded.dokki-code.dokkiCSS-has-after:not(.dokkiCSS-headerless) .dokkiCSS-container
 {
     box-shadow: inset 0 1px 0 var(--dokkiCSS-page-primary-line-color);
 }

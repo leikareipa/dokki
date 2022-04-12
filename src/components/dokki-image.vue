@@ -6,59 +6,45 @@
  */
 
 <template>
-    <p class="dokkiCSS-embedded dokki-image dokkiCSS-expandable dokkiCSS-groupbox"
-       :class="{expanded: isExpanded}">
+<dokki0-embedded-expandable
+    class-name="dokki-image"
+    icon="fas fa-image"
+    title="Image"
+    :headerless="headerless">
 
-        <header @click="this.calculate_scaled_size(),
-                        this.$refs['image-expander'].toggle_expansion()">
+    <template #caption>
 
-            <span v-if="hasCaption" class="dokkiCSS-groupbox-title">
-                <i class="fas fa-sm fa-image"/>
-                Image
-            </span>
+        <slot name="caption"/>
 
-            <span class="dokkiCSS-title">
-                <span>
-                    <slot v-if="hasCaption" name="caption"/>
-                    <span v-else>Image</span>
-                </span>
-            </span>
-            
-            <dokki0-expansion-indicator :isExpanded="isExpanded"/>
+    </template>
 
-        </header>
+    <template #content>
 
-        <dokki0-animated-expander ref="image-expander"
-                                  @expanded="isExpanded = true"
-                                  @minimized="isExpanded = false">
-            
-            <div class="dokkiCSS-container">
-                <img :src="src"
-                     ref="image-element"
-                     :class="{
-                         'dokkiCSS-upscale-to-fit': hasUpscaleToFit,
-                         'dokkiCSS-pixelated-scale': hasPixelated,
-                     }"
-                     :width="scaledWidth"
-                     :height="scaledHeight">
-            </div>
+        <img
+            :src="src"
+            ref="image-element"
+            :class="{
+                'dokkiCSS-upscale-to-fit': hasUpscaleToFit,
+                'dokkiCSS-pixelated-scale': hasPixelated,
+            }"
+            :width="scaledWidth"
+            :height="scaledHeight"
+        >
 
-        </dokki0-animated-expander>
-
-    </p>
+    </template>
+    
+</dokki0-embedded-expandable>
 </template>
 
 <script>
-import {expandedPropMixin} from "../component-mixins.js";
-
 export default {
-    mixins: [expandedPropMixin],
     props: {
         src: {default: "//about:blank"},
         upscaleToFit: {default: undefined},
         pixelatedScale: {default: undefined},
         width: {default: undefined},
         height: {default: undefined},
+        headerless: {default: undefined},
     },
     data()
     {
@@ -69,19 +55,10 @@ export default {
     },
     mounted()
     {
-        if (this.isExpanded)
-        {
-            this.calculate_scaled_size();
-            this.$refs["image-expander"].expand({animate: false});
-        }
-
+        this.calculate_scaled_size();
         window.addEventListener("resize", this.calculate_scaled_size);
     },
     computed: {
-        hasCaption()
-        {
-            return !!this.$slots.caption;
-        },
         hasUpscaleToFit()
         {
             return (this.$props.upscaleToFit !== undefined);
@@ -96,7 +73,7 @@ export default {
         // to fit the container, being equal to CSS's "object-fit: scale-down".
         calculate_scaled_size()
         {
-            const containerBorderWidth = 1;
+            const containerBorderWidth = ((this.$props.headerless === undefined)? 1 : 0);
             const imageWidth = this.$props.width;
             const imageHeight = this.$props.height;
             let containerWidth = this.$el.offsetWidth;

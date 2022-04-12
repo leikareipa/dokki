@@ -6,53 +6,35 @@
  */
 
 <template>
-    <p class="dokkiCSS-embedded dokki-video dokkiCSS-expandable dokkiCSS-groupbox"
-       :class="platform">
+<dokki0-embedded-expandable
+    class-name="dokki-video"
+    :icon="headerIcon"
+    title="Video"
+    :class="platform">
 
-        <header @click="this.$refs['video-expander'].toggle_expansion()">
+    <template #caption>
 
-            <span v-if="hasCaption" class="dokkiCSS-groupbox-title">
-                <i class="fa-sm" :class="headerIcon"/>
-                Video
-            </span>
+        <slot name="caption"/>
 
-            <span class="dokkiCSS-title">
-                <span>
-                    <slot v-if="this.$slots.caption" name="caption"/>
-                    <span v-else>&nbsp;Video</span>
-                </span>
-            </span>
+    </template>
 
-            <dokki0-expansion-indicator :isExpanded="isExpanded"/>
+    <template #content>
 
-        </header>
+        <iframe :src="videoUrl" allow="fullscreen; autoplay;">
+        </iframe>
+        
+    </template>
 
-        <dokki0-animated-expander ref="video-expander"
-                                  :start-expanded="isExpanded"
-                                  @expanded="isExpanded = true"
-                                  @minimized="isExpanded = false">
-            <iframe :src="videoUrl"
-                    allow="fullscreen; autoplay;">
-            </iframe>
-        </dokki0-animated-expander>
-
-    </p>
+</dokki0-embedded-expandable>
 </template>
 
 <script>
-import {expandedPropMixin} from "../component-mixins.js";
-
 export default {
-    mixins: [expandedPropMixin],
     props: {
         src: {},
         platform: {default: "youtube"},
     },
     computed: {
-        hasCaption()
-        {
-            return !!this.$slots.caption;
-        },
         videoUrl()
         {
             switch (this.platform)
