@@ -7,16 +7,100 @@
 
 <template>
 <aside class="dokki-tag-filter" v-if="showHeader" ref="container">
-    <div class="dokkiCSS-label">
+
+    <div class="label">
+
         Showing all ({{numResults}}) {{entityName}} tagged
+        
     </div>
-    <div class="dokkiCSS-button"
+
+    <div class="button"
          v-for="tagName of activeTags"
          @click="remove_tag(tagName)">
+
         {{tagName}}
+
     </div>
+
 </aside>
 </template>
+
+<style lang="scss">
+.dokki-tag-filter
+{
+    display: flex;
+    align-items: center;
+    padding: 16px;
+    width: 100%;
+    margin: var(--dokkiCSS-topic-bottom-margin) 0;
+    justify-content: left;
+    font-weight: 500;
+    flex-wrap: wrap;
+    border-left: 7px solid #2264e8;
+    box-sizing: border-box;
+    background-color: #1d59d115;
+    border-radius: var(--dokkiCSS-embedded-border-radius);
+
+    .label
+    {
+        margin-right: 8px;
+    }
+
+    .button
+    {
+        cursor: pointer;
+        background: linear-gradient(#256eff, #1d59d1);
+        color: whitesmoke;
+        padding: 4px 6px;
+        border-radius: 4px;
+        border: 1px solid #2264e8;
+        display: inline-flex;
+        align-items: center;
+        text-transform: uppercase;
+        font-size: 90%;
+        margin: 4px 0px;
+
+        &:not(:last-of-type)
+        {
+            margin-right: 8px;
+        }
+
+        &::after
+        {
+            font-family: "Font Awesome 5 Free";
+            font-weight: bold;
+            content: "\f55a";
+            margin-left: 6px;
+            font-size: 95%;
+            opacity: 0.8;
+        }
+
+        &:hover::after
+        {
+            opacity: 1;
+        }
+    }
+
+    body[data-dokki-layout="vertical-narrow"] &
+    {
+        border-radius: 0;
+        display: block;
+
+        header
+        {
+            border: none;
+            border-bottom: 1px solid var(--dokkiCSS-page-primary-line-color);
+            line-height: normal;
+        }
+
+        .label
+        {
+            margin-right: 0;
+            margin-bottom: 6px;
+        }
+    }
+}
+</style>
 
 <script>
 // E.g. "c++,javascript,python".split(tagSeparator) -> ["c++", "javascript", "python"].

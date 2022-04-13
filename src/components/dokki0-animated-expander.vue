@@ -17,6 +17,14 @@
     </div>
 </template>
 
+<style lang="scss">
+.dokki0-animated-expander
+{
+    transition: height 0.15s ease;
+    overflow: hidden;
+}
+</style>
+
 <script>
 export default {
     props: {

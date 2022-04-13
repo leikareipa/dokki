@@ -9,16 +9,13 @@
     <table class="dokki0-text-block-with-line-numbers">
 
         <tr v-for="(line, lineNum) in formattedText"
-            class="dokkiCSS-text-block-line">
+            class="line">
 
-            <span class="dokkiCSS-anchor dokkiCSS-anchor-text-block-line">
-            </span>
-
-            <td class="dokkiCSS-text-block-line-number">
+            <td class="number">
                 {{lineNum+1}}
             </td>
             
-            <td class="dokkiCSS-text-block-line-content">
+            <td class="content">
                 <code :class="(syntax !== undefined)? `language-${syntax}` : 'unspecified-syntax'">
                     {{line}}
                 </code>
@@ -28,6 +25,35 @@
 
     </table>
 </template>
+
+<style lang="scss">
+.dokki0-text-block-with-line-numbers
+{
+    width: 100%;
+    white-space: pre;
+    border-collapse: collapse;
+    line-height: var(--dokkiCSS-content-line-height);
+
+    .line
+    {
+        height: 1em;
+        font-size: var(--dokkiCSS-monospace-font-size);
+        font-family: var(--dokkiCSS-monospace-font-family);
+        font-variant-ligatures: none;
+
+        .number
+        {
+            color: var(--dokkiCSS-page-secondary-fg-color);
+            user-select: none;
+            width: 1ch; /* Shrink to minimum width required by the widest line number <td>.*/
+            padding: 0;
+            white-space: normal;
+            padding-right: 1.75ch;
+            text-align: right;
+        }
+    }
+}
+</style>
 
 <script>
 export default {
@@ -41,7 +67,7 @@ export default {
         {
             if (this.is_syntax_highlighting_enabled())
             {
-                const codeElements = this.$el.querySelectorAll(".dokkiCSS-text-block-line-content > code");
+                const codeElements = this.$el.querySelectorAll(".line code");
 
                 for (const element of codeElements)
                 {

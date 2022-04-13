@@ -6,7 +6,7 @@
  */
 
 <template>
-    <span class="dokkiCSS-anchor dokkiCSS-anchor-subtopic"
+    <span class="dokkiCSS-anchor subtopic"
           :id="anchor_id">
     </span>
 
@@ -14,6 +14,13 @@
     
     <slot/>
 </template>
+
+<style lang="scss">
+.dokkiCSS-anchor.subtopic
+{
+    top: calc(-1*var(--dokkiCSS-header-height) - var(--dokkiCSS-topic-vertical-padding));
+}
+</style>
 
 <script>
 import {simplified_topic_title} from "../misc.js";

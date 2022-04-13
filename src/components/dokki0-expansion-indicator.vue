@@ -15,6 +15,24 @@
     </aside>
 </template>
 
+<style lang="scss">
+.dokki0-expansion-indicator
+{
+    color: var(--dokkiCSS-page-link-color);
+    display: inline-block;
+    margin-left: auto;
+    font-weight: var(--dokkiCSS-bold-text-weight);
+    font-size: 80%;
+    text-transform: uppercase;
+    white-space: nowrap;
+
+    :first-child
+    {
+        margin-left: 1ch;
+    }
+} 
+</style>
+
 <script>
 export default {
     props: {

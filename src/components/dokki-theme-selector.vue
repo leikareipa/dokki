@@ -16,6 +16,21 @@
     </span>
 </template>
 
+<style lang="scss">
+.dokki-theme-selector
+{
+    margin-left: auto;
+    cursor: pointer;
+    color: var(--dokkiCSS-page-secondary-fg-color);
+    font-variant: small-caps;
+    text-transform: lowercase;
+    border: none;
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+</style>
+
 <script>
 export default {
     data()
@@ -23,8 +38,8 @@ export default {
         return {
             currentThemeIdx: 0,
             themes: [
-                {name: "dark", icon: "fas fa-lightbulb"},
-                {name: "light", icon: "far fa-lightbulb"},
+                {name: "dark", icon: "fas fa-circle"},
+                {name: "light", icon: "fas fa-adjust"},
             ],
         }
     },
@@ -41,14 +56,6 @@ export default {
             const newThemeName = this.themes[this.currentThemeIdx].name;
             document.body.dataset.dokkiTheme = newThemeName;
             window.sessionStorage.setItem("dokki:theme", newThemeName);
-
-            if (this.$refs.themeSelector)
-            {
-                this.$refs.themeSelector.animate([
-                    {transform: "rotateY(90deg)"},
-                    {transform: "rotateY(0deg)"}
-                ], {duration: 200});
-            }
         },
     },
 }

@@ -14,65 +14,79 @@
         -->{{(idx == (tagNames.length - 1))? "" : ", "}}
     </span>
 </span>
-<p v-else
-   class="dokkiCSS-embedded dokki-tag-cloud dokkiCSS-expandable dokkiCSS-groupbox"
-   :class="{
-        'dokkiCSS-expanded': isExpanded,
-        'dokkiCSS-transitioning': isTransitioning,
-    }">
 
-    <header @click="this.$refs['tag-cloud-expander'].toggle_expansion()">
+<dokki0-embedded-expandable v-else
+    class-name="dokki-tag-cloud"
+    icon="fas fa-tags"
+    title="Tag cloud">
 
-        <span class="dokkiCSS-groupbox-title">
-            <i class="fas fa-sm fa-tags"/>
-            Tag cloud
-        </span>
+    <template #caption>
 
-        <span class="dokkiCSS-title">
-            <span>
-                <slot v-if="hasCaption" name="caption"/>
-                <span v-else>Tag cloud</span>
-            </span>
-        </span>
+        <slot name="caption"/>
 
-        <dokki0-expansion-indicator :isExpanded="isExpanded"/>
+    </template>
 
-    </header>
-    
-    <dokki0-animated-expander ref="tag-cloud-expander"
-                              :start-expanded="isExpanded"
-                              @transitioning="isTransitioning = true"
-                              @expanded="isExpanded = true, isTransitioning = false"
-                              @minimized="isExpanded = false, isTransitioning = false">
+    <template #content>
 
-        <div class="dokkiCSS-container">
+        <a v-for="tagName of tagNames"
+           class="dokkiCSS-item"
+           :style="{
+               fontSize: tag_css_font_size_percent(tagName),
+               lineHeight: `${this.maxSize / 100}rem`
+           }"
+           @click="on_tag_click(tagName)">
 
-            <a v-for="tagName of tagNames"
-               class="dokkiCSS-item"
-               :style="{
-                   fontSize: tag_css_font_size_percent(tagName),
-                   lineHeight: `${this.maxSize / 100}rem`
-               }"
-               @click="on_tag_click(tagName)">
+            {{tagName}}
 
-                {{tagName}}
+        </a>
 
-            </a>
+    </template>
 
-        </div>
-
-    </dokki0-animated-expander>
-    
-</p>
+</dokki0-embedded-expandable>
 </template>
 
-<script>
-import {expandedPropMixin} from "../component-mixins.js";
+<style lang="scss">
+.dokki0-embedded-expandable.dokki-tag-cloud
+{
+    border: none;
+    background-color: var(--dokkiCSS-embedded-auxiliary-color);
 
+    &.inline .dokkiCSS-item
+    {
+        cursor: pointer;
+    }
+
+    &:not(.inline) .dokkiCSS-item
+    {
+        margin: 0 0.8rem;
+        margin-left: 0;
+        cursor: pointer;
+    }
+
+    .dokkiCSS-container
+    {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    header
+    {
+        border-radius: var(--dokkiCSS-embedded-border-radius);
+        border: 1px solid var(--dokkiCSS-page-primary-line-color);
+        background-color: var(--dokkiCSS-page-primary-bg-color);
+    }
+
+    &.dokkiCSS-expanded header,
+    &.dokkiCSS-transitioning:not(.dokkiCSS-expanded) header
+    {
+        border-bottom-left-radius: 0 !important;
+        border-bottom-right-radius: 0 !important;
+    }
+}
+</style>
+
+<script>
 export default {
-    mixins: [
-        expandedPropMixin,
-    ],
     props: {
         inline: {default: undefined},
 
@@ -85,7 +99,6 @@ export default {
     data() {
         return {
             isInline: ((this.$props.inline === undefined)? false : true),
-            isTransitioning: false,
         }
     },
     methods: {
@@ -115,10 +128,6 @@ export default {
         },
     },
     computed: {
-        hasCaption()
-        {
-            return !!this.$slots.caption;
-        },
         tags() {
             return this.$store.state.tags;
         },

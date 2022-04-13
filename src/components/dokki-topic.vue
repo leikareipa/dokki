@@ -1,7 +1,7 @@
 <template>
-    <dokki0-topic v-if="reveal" :title="title">
-        <slot/>
-    </dokki0-topic>
+<dokki0-topic v-if="reveal" :title="title">
+    <slot/>
+</dokki0-topic>
 </template>
 
 <script>

@@ -22,11 +22,43 @@
 
         <iframe :src="videoUrl" allow="fullscreen; autoplay;">
         </iframe>
-        
+
     </template>
 
 </dokki0-embedded-expandable>
 </template>
+
+<style lang="scss">
+.dokki0-embedded-expandable.dokki-video
+{
+    display: flex;
+    flex-direction: column;
+
+    .dokkiCSS-container
+    {
+        padding: 0;
+        min-height: 20px;
+        display: flex;
+        overflow: auto;
+    }
+
+    &.youtube
+    {
+        iframe
+        {
+            min-width: 100%;
+            max-width: 100%;
+            height: 450px;
+            border: none;
+        }
+
+        .dokki0-animated-expander
+        {
+            max-height: 450px;
+        }
+    }
+}
+</style>
 
 <script>
 export default {

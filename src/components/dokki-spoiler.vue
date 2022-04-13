@@ -8,7 +8,8 @@
 <template>
 <dokki0-embedded-expandable
     class-name="dokki-output"
-    icon="fas fa-chevron-right"
+    expands-to="dropdown"
+    icon="fas fa-comment-dots"
     title="Spoiler"
     :class="{'dokkiCSS-unpadded': isUnpadded}">
 
@@ -20,16 +21,15 @@
 
     <template #content>
 
-        <div class="dokkiCSS-wrapper">
-
-            <slot/>
-
-        </div>
+        <slot/>
 
     </template>
 
 </dokki0-embedded-expandable>
 </template>
+
+<style lang="scss">
+</style>
 
 <script>
 export default {

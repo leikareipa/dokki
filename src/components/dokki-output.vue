@@ -11,7 +11,7 @@
     icon="fas fa-chevron-right"
     title="Output"
     header-widget="frame"
-    :class="{'dokkiCSS-unpadded': isUnpadded}">
+    :class="{'unpadded': isUnpadded}">
 
     <template #caption>
 
@@ -21,16 +21,37 @@
 
     <template #content>
 
-        <div class="dokkiCSS-wrapper">
-
-            <slot/>
-
-        </div>
+        <slot/>
 
     </template>
 
 </dokki0-embedded-expandable>
 </template>
+
+<style lang="scss">
+.dokki0-embedded-expandable.dokki-output
+{
+    &.unpadded
+    {
+        .dokkiCSS-container
+        {
+            padding: 0;
+
+            & > .dokkiCSS-embedded.groupbox:not(.headerless):only-child
+            {
+                margin-top: 0.475em !important;
+            }
+        }
+    }
+}
+</style>
+
+<style scoped lang="scss">
+.dokki-output.unpadded .wrapper
+{
+    padding: 0;
+}
+</style>
 
 <script>
 export default {

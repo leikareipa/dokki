@@ -6,50 +6,220 @@
  */
 
 <template>
-    <nav class="dokki-side-panel">
+<nav class="dokki-side-panel">
 
-        <slot/>
+    <slot/>
 
-        <div class="dokkiCSS-product-tag">
+    <div class="info-label">
 
-            <span v-if="productName !== undefined">{{productName}}</span>
-            <span v-else>Contents</span>
+        <span v-if="productName !== undefined">{{productName}}</span>
+        <span v-else>Contents</span>
 
-        </div>
+    </div>
 
-        <ul class="dokkiCSS-vertical-navi">
+    <ul class="vertical-navi">
 
-            <li v-for="(topic, topicIdx) in topics">
+        <li v-for="(topic, topicIdx) in topics">
 
-                <a :href="topic.url"
-                   class="dokkiCSS-navi-link dokkiCSS-navi-link-topic">
+            <a :href="topic.url"
+                class="navi-link topic">
 
-                    <span class="dokkiCSS-navi-link-icon">
-                        {{topicIdx + 1}}
-                    </span>
-                    
-                    <span class="dokkiCSS-navi-link-label">
-                        {{topic.title}}
-                    </span>
+                <span class="icon">
+                    {{topicIdx + 1}}
+                </span>
+                
+                <span class="label">
+                    {{topic.title}}
+                </span>
 
-                </a>
+            </a>
 
-                <a v-for="(subtopic, subtopicIdx) in topic.subtopics"
-                   :href="subtopic.url"
-                   class="dokkiCSS-navi-link dokkiCSS-navi-link-subtopic">
+            <a v-for="(subtopic, subtopicIdx) in topic.subtopics"
+               :href="subtopic.url"
+               class="navi-link subtopic">
 
-                    <span class="dokkiCSS-navi-link-label">
-                        {{subtopic.title}}
-                    </span>
-                    
-                </a>
+                <span class="label">
+                    {{subtopic.title}}
+                </span>
+                
+            </a>
 
-            </li>
+        </li>
 
-        </ul>
-    
-    </nav>
+    </ul>
+
+</nav>
 </template>
+
+<style lang="scss">
+.dokki-side-panel
+{
+    box-sizing: border-box;
+    position: fixed;
+    z-index: 3;
+    top: var(--dokkiCSS-header-height);
+    left: 0;
+    width: var(--dokkiCSS-side-panel-width);
+    text-align: left;
+    overflow-y: auto;
+    height: calc(100% - var(--dokkiCSS-header-height));
+    border-left: none;
+    border-right: 1px solid var(--dokkiCSS-page-secondary-line-color);
+
+    .info-label
+    {
+        height: var(--dokkiCSS-header-height);
+        line-height: var(--dokkiCSS-header-height);
+        align-items: center;
+        margin: 0;
+        padding: var(--dokkiCSS-navibar-item-padding-vertical) var(--dokkiCSS-navibar-item-padding-horizontal);
+        background-color: var(--dokkiCSS-page-inert-bg-color);
+        text-align: left;
+        border-bottom: 1px solid var(--dokkiCSS-page-secondary-line-color);
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        color: var(--dokkiCSS-page-secondary-fg-color);
+        box-sizing: border-box;
+        display: flex;
+        align-items: center;
+        position: sticky;
+        z-index: 9999;
+        top: 0;
+
+        i
+        {
+            color: var(--dokkiCSS-page-secondary-fg-color);
+        }
+    }
+
+    .dokkiCSS-user-element
+    {
+        min-height: var(--dokkiCSS-header-height);
+        align-items: center;
+        margin: 0;
+        padding: var(--dokkiCSS-navibar-item-padding-vertical) var(--dokkiCSS-navibar-item-padding-horizontal);
+        background-color: var(--dokkiCSS-page-inert-bg-color);
+        text-align: left;
+        border-bottom: 1px solid var(--dokkiCSS-page-secondary-line-color);
+        position: relative;
+        top: 0;
+        text-overflow: ellipsis;
+        color: var(--dokkiCSS-page-secondary-fg-color);
+        box-sizing: border-box;
+        display: flex;
+        align-items: center;
+    }
+
+    h2
+    {
+        font-size: 100%;
+        font-weight: normal;
+        padding: 0;
+        margin: 0;
+        margin-bottom: var(--dokkiCSS-topic-bottom-margin);
+        color: var(--dokkiCSS-page-primary-fg-color);
+    }
+
+    li
+    {
+        padding: 0;
+    }
+
+    .vertical-navi
+    {
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+        padding-top: var(--dokkiCSS-navibar-item-padding-vertical);
+
+        .icon
+        {
+            background-color: var(--dokkiCSS-page-primary-bg-color);
+            border: 1px solid var(--dokkiCSS-page-primary-line-color);
+            border-radius: var(--dokkiCSS-embedded-border-radius);
+            padding: 2px 5px;
+            display: flex;
+            margin-right: 0.75ch;
+            z-index: 1;
+            justify-content: center;
+            color: var(--dokkiCSS-page-inert-fg-color);
+            font-size: 95%;
+            min-width: 2ch;
+        }
+
+        a:hover .icon
+        {
+            color: var(--dokkiCSS-page-secondary-fg-color);
+        }
+
+        .label
+        {
+            display: flex;
+            align-items: center;
+        }
+
+        .navi-link
+        {
+            display: block;
+            padding: var(--dokkiCSS-navibar-item-padding-vertical) var(--dokkiCSS-navibar-item-padding-horizontal);
+            white-space: normal;
+            text-decoration: none;
+            color: var(--dokkiCSS-page-secondary-fg-color);
+            display: flex;
+            position: relative;
+
+            &:hover
+            {
+                color: var(--dokkiCSS-page-primary-fg-color);
+                background-color: var(--dokkiCSS-embedded-auxiliary-color);
+                text-decoration: none;
+            }
+        }
+
+        .subtopic
+        {
+            border-left: 1px solid transparent;
+            margin-left: calc(var(--dokkiCSS-navibar-item-padding-horizontal) + 9px + 0.5ch);
+            padding-left: 1.25ch;
+            color: var(--dokkiCSS-page-inert-fg-color);
+
+            &:not(:last-child)
+            {
+                border-left: 1px solid var(--dokkiCSS-page-primary-line-color);
+            }
+
+            &::before
+            {
+                content: "";
+                position: absolute;
+                left: -1px;
+                top: -13px;
+                border-left: 1px solid var(--dokkiCSS-page-primary-line-color);
+                height: 25px;
+            }
+
+            &::after
+            {
+                background-color: var(--dokkiCSS-page-primary-bg-color);
+                border: 1px solid var(--dokkiCSS-page-primary-line-color);
+                border-radius: 100%;
+                content: "";
+                left: -6px;
+                padding: 4.5px;
+                position: absolute;
+                top: 9px;
+                z-index: 1;
+            }
+        }
+    }
+
+    body[data-dokki-layout^="vertical"] &
+    {
+        display: none;
+    }
+}
+</style>
 
 <script>
 export default {

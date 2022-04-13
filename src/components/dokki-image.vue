@@ -8,9 +8,10 @@
 <template>
 <dokki0-embedded-expandable
     class-name="dokki-image"
+    expands-to="dropdown"
     icon="fas fa-image"
     title="Image"
-    :headerless="headerless">
+    @transitioning="calculate_scaled_size()">
 
     <template #caption>
 
@@ -36,6 +37,46 @@
 </dokki0-embedded-expandable>
 </template>
 
+<style lang="scss">
+.dokki0-embedded-expandable.dokki-image
+{
+    display: flex;
+    flex-direction: column;
+
+    &:not(.headerless)
+    {
+        .content
+        {
+            background-color: var(--dokkiCSS-embedded-auxiliary-color);
+            padding: 0;
+        }
+    }
+
+    .content
+    {
+        min-height: 20px;
+        display: flex;
+        overflow: auto;
+
+        & > img
+        {
+            max-width: 100%;
+
+            &.dokkiCSS-upscale-to-fit
+            {
+                width: 100%;
+                height: 100%;
+            }
+
+            &.dokkiCSS-pixelated-scale
+            {
+                image-rendering: pixelated;
+            }
+        }
+    }
+}
+</style>
+
 <script>
 export default {
     props: {
@@ -44,7 +85,6 @@ export default {
         pixelatedScale: {default: undefined},
         width: {default: undefined},
         height: {default: undefined},
-        headerless: {default: undefined},
     },
     data()
     {
@@ -73,7 +113,7 @@ export default {
         // to fit the container, being equal to CSS's "object-fit: scale-down".
         calculate_scaled_size()
         {
-            const containerBorderWidth = ((this.$props.headerless === undefined)? 1 : 0);
+            const containerBorderWidth = 0;
             const imageWidth = this.$props.width;
             const imageHeight = this.$props.height;
             let containerWidth = this.$el.offsetWidth;

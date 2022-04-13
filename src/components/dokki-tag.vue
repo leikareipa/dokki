@@ -11,6 +11,15 @@
 </a>
 </template>
 
+<style lang="scss">
+.dokki-tag
+{
+    display: inline-block;
+    white-space: pre;
+    cursor: pointer;
+}
+</style>
+
 <script>
 export default {
     methods: {

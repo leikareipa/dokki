@@ -21,10 +21,9 @@
 
     <template #content>
 
-        <div class="dokkiCSS-wrapper" :style="{height: height}">
+        <div class="wrapper" :style="{height: height}">
 
             <iframe
-                class="dokki-iframe"
                 :src="src"
                 :srcdoc="srcdoc"
                 ref="iframe">
@@ -36,6 +35,31 @@
 
 </dokki0-embedded-expandable>
 </template>
+
+<style lang="scss">
+.dokki0-embedded-expandable.dokki-iframe .dokkiCSS-container
+{
+    padding: 0;
+}
+</style>
+
+<style scoped lang="scss">
+.wrapper
+{
+    padding: 0;
+    overflow: hidden;
+    background-color: var(--dokkiCSS-page-inert-bg-color);
+
+    iframe
+    {
+        max-width: 100%;
+        min-width: 100%;
+        min-height: 100%;
+        max-height: 100%;
+        border: none;
+    }
+}
+</style>
 
 <script>
 export default {

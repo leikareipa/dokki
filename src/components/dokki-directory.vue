@@ -8,8 +8,9 @@
 <template>
 <dokki0-embedded-expandable
     class-name="dokki-directory"
+    expands-to="dropdown"
     icon="fas fa-folder"
-    title="File list">
+    title="File tree">
 
     <template #caption>
 
@@ -48,6 +49,76 @@
     
 </dokki0-embedded-expandable>
 </template>
+
+<style lang="scss">
+.dokki0-embedded-expandable.dokki-directory
+{
+    border: none;
+
+    &.headerless
+    {
+        transform: translateY(-0.25em);
+    }
+
+    .dokkiCSS-container
+    {
+        overflow: auto;
+        padding: var(--dokkiCSS-embedded-vertical-padding) var(--dokkiCSS-embedded-horizontal-padding);
+    }
+
+    .directory-entry
+    {
+        line-height: initial;
+        min-height: 26px;
+        display: flex;
+
+        .icon,
+        .label
+        {
+            display: flex;
+            align-items: center;
+        }
+
+        .spacer-container
+        {
+            display: flex;
+        }
+
+        .spacer
+        {
+            padding-left: 1.25em;
+            display: flex;
+        }
+
+        .spacer::before
+        {
+            border-left: 1px solid var(--dokkiCSS-page-primary-line-color);
+            content: "";
+            position: relative;
+            left: -1.5ch;
+        }
+
+        &:last-child .spacer
+        {
+            transform: translateY(-0.5ch);
+        }
+    }
+
+    .dokkiCSS-container
+    {
+        padding-top: calc(var(--dokkiCSS-embedded-vertical-padding) - 4px);
+        padding-bottom: calc(var(--dokkiCSS-embedded-vertical-padding) - 4px);
+    }
+
+    &.headerless
+    {
+        .dokkiCSS-container
+        {
+            border-top: none;
+        }
+    }
+}
+</style>
 
 <script>
 export default {

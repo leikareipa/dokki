@@ -25,3 +25,77 @@
 
 </dokki0-embedded-expandable>
 </template>
+
+<style lang="scss">
+.dokki0-embedded-expandable.dokki-table
+{
+    &.headerless 
+    {
+        background-color: var(--dokkiCSS-page-inert-bg-color);
+        border: 1px solid var(--dokkiCSS-page-primary-line-color);
+        
+        .dokkiCSS-container
+        {
+            border-top: none;
+        }
+    }
+
+    .dokkiCSS-container
+    {
+        padding: 0;
+        overflow: auto;
+        border-top: 1px solid var(--dokkiCSS-page-primary-line-color);
+    }
+
+    table
+    {
+        width: 100%;
+        border-spacing: 0;
+        border-bottom: none;
+        padding: 0;
+        border-collapse: collapse;
+
+        td,
+        th
+        {
+            padding: 8px;
+            border: none;
+            white-space: nowrap;
+            text-align: left;
+            vertical-align: baseline;
+
+            &:last-child
+            {
+                width: 100%;
+            }
+
+            &:not(:last-child)
+            {
+                border-right: 1px solid var(--dokkiCSS-page-primary-line-color);
+            }
+        }
+
+        th
+        {
+            background-color: var(--dokkiCSS-embedded-header-bg-color);
+            font-weight: var(--dokkiCSS-bold-text-weight);
+        }
+
+        tr
+        {
+            border-top: 1px solid var(--dokkiCSS-page-primary-line-color);
+            border-bottom: 1px solid var(--dokkiCSS-page-primary-line-color);
+
+            &:first-child
+            {
+                border-top: none;
+            }
+
+            &:last-child
+            {
+                border-bottom: none;
+            }
+        }
+    }
+}
+</style>

@@ -8,6 +8,26 @@
     </div>
 </template>
 
+<style lang="scss">
+.dokki0-page-load-progress-bar
+{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--dokkiCSS-page-link-color);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.5s ease-out, width 0.1s linear;
+     
+    &.progressing
+    {
+        opacity: 1;
+    }
+}
+</style>
+
 <script>
 export default {
     computed: {
