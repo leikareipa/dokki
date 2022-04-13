@@ -1,5 +1,4 @@
 const {VueLoaderPlugin} = require("vue-loader");
-const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 const path = require("path");
 
 module.exports = {
@@ -11,18 +10,25 @@ module.exports = {
                 loader: "vue-loader",
             },
             {
-                test: /\.css$/i,
-                loader: "file-loader",
-                options: {
-                    name: "[name].[ext]",
-                },
+                test: /\.s?css$/i,
+                use: [
+                    'style-loader',
+                    'css-loader',
+                    'sass-loader',
+                ],
             },
-        ],
-    },
-    optimization: {
-        minimizer: [
-            "...",
-            new CssMinimizerPlugin(),
+            {
+                test: /\.woff2?$/,
+                    use: [
+                    {
+                        loader: 'file-loader',
+                        options: {
+                            name: '[name].[ext]',
+                            outputPath: 'fonts/'
+                        }
+                    }
+                ]
+            }
         ],
     },
     entry: {
