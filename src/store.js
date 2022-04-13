@@ -5,41 +5,45 @@
  *
  */
 
-export default new Vuex.Store({
-    state: {
-        // Metadata about mounted <dokki-tag> elements. Each property key names a
-        // tag, and the property's numeric value the count of that tag in the document.
-        tags: {},
+import Vuex from "vuex"
 
-        // Metadata about mounted <dokki-topic> elements, i.e. proto-<dokki0-topic>
-        // elements. A <dokki-topic> element is simply a container for the proper
-        // topic element, <dokki0-topic>, for the purposes of reducing the initial
-        // performance cost of mounting the topic elements (which can otherwise become
-        // an issue if there are many topics in the document, as Vue mounting them will
-        // block the initial page load). Instead, we'll have Vue mount the simple
-        // <dokki-topic> containers on page load, and the containers will then
-        // progressively reveal their contents one at a time.
-        dokkiTopic: {
-            lifetimeCount: 0,
-            revealQueue: [],
-        },
+export default Vuex.createStore({
+    state() {
+        return {
+            // Metadata about mounted <dokki-tag> elements. Each property key names a
+            // tag, and the property's numeric value the count of that tag in the document.
+            tags: {},
 
-        // Metadata about mounted <dokki0-topic> elements.
-        topics: [],
+            // Metadata about mounted <dokki-topic> elements, i.e. proto-<dokki0-topic>
+            // elements. A <dokki-topic> element is simply a container for the proper
+            // topic element, <dokki0-topic>, for the purposes of reducing the initial
+            // performance cost of mounting the topic elements (which can otherwise become
+            // an issue if there are many topics in the document, as Vue mounting them will
+            // block the initial page load). Instead, we'll have Vue mount the simple
+            // <dokki-topic> containers on page load, and the containers will then
+            // progressively reveal their contents one at a time.
+            dokkiTopic: {
+                lifetimeCount: 0,
+                revealQueue: [],
+            },
 
-        // Set to true once all <dokki-topic> elements have revealed their contents.
-        areTopicsReady: false,
+            // Metadata about mounted <dokki0-topic> elements.
+            topics: [],
 
-        // Metadata about mounted <dokki-lorem> elements.
-        loremCount: 0,
+            // Set to true once all <dokki-topic> elements have revealed their contents.
+            areTopicsReady: false,
 
-        productName: undefined,
+            // Metadata about mounted <dokki-lorem> elements.
+            loremCount: 0,
 
-        productVersion: undefined,
+            productName: undefined,
 
-        // If the window.location.hash string starts with this string, the following characters
-        // in the hash string are tags.
-        tagHashMarker: "#/",
+            productVersion: undefined,
+
+            // If the window.location.hash string starts with this string, the following characters
+            // in the hash string are tags.
+            tagHashMarker: "#/",
+        };
     },
     mutations: {
         queue_topic_reveal(state, revealCallback)

@@ -43,10 +43,13 @@ module.exports = {
         path: path.resolve(__dirname, "distributable"),
         filename: "[name].js",
     },
+    resolve: {
+        alias: {
+            vue: "vue/dist/vue.esm-bundler.js",
+        },
+    },
     plugins: [
         new VueLoaderPlugin(),
     ],
-    externals: {
-        vue: "Vue",
-    }
+    
 };

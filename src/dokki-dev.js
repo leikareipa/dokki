@@ -7,6 +7,7 @@
 
 require("./dokki.css");
 
+import * as Vue from "vue";
 import store from "./store.js";
 import dokkiArea from "./components/dokki-area.vue";
 import dokkiCode from "./components/dokki-code.vue";
