@@ -202,8 +202,7 @@ export default {
         },
         hasAfter() {
             return (
-                (typeof this.$slots.after === "function") &&
-                this.$slots["after"]().some(c=>c.children.length)
+                (typeof this.$slots.after === "function")
             );
         },
     },

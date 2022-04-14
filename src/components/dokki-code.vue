@@ -26,9 +26,11 @@
 
     </template>
 
-    <template #after>
+    <template #after v-if="this.$slots['output'] || this.$slots['default']">
 
-        <slot v-if="this.$slots['output']" name="output"/>
+        <dokki-output v-if="this.$slots['output']">
+            <slot name="output"/>
+        </dokki-output>
         <slot v-else/>
 
     </template>
@@ -147,12 +149,6 @@ export default {
                 this.codeFromSlot = codeElement.children;
             }
         }
-    },
-    computed: {
-        hasOutput()
-        {
-            return !!this.$slots.default;
-        },
     },
 }
 </script>
