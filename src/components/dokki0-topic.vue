@@ -184,3 +184,7 @@ export default {
     /// TODO: Remove the topic from the store on deletion.
 }
 </script>
+
+<api-reference>
+<p>TODO</p>
+</api-reference>

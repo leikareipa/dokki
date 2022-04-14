@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width">
+        <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+        
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.14.0/css/all.css" crossorigin="anonymous" integrity="sha384-HzLeBuhoNPvSl5KYnjx0BT+WB0QEEqLprO+NBkkk5gbc67FTaL7XIGa2w1L0Xbgc">
+        <script defer src="../distributable/dokki.js"></script>
+        
+        <style>
+            .dokki-topic p > i,
+            .dokki-topic p > em {
+                font-style: italic;
+            }
+
+            .dokki-topic p > i::before {
+                content: "<";
+            }
+
+            .dokki-topic p > i::after {
+                content: ">";
+            }
+
+            b {
+                font-weight: 500;
+            }
+
+            h3 {
+                font-variant: small-caps;
+            }
+
+            h3 + strong {
+                margin-left: 0.5ch;
+                font-style: italic;
+                color: red;
+                font-size: 95%;
+            }
+        </style>
+    </head>
+    <body>
+        <template id="dokki-document">
+
+            <dokki-header title="API reference for dokki">
+            </dokki-header>
+            
+            <dokki-side-panel>
+            </dokki-side-panel>
+        
+            <dokki-topics>
+            </dokki-topics>
+
+        </template>
+
+    </body>
+</html>

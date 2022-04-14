@@ -86,3 +86,100 @@ export default {
     },
 }
 </script>
+
+<api-reference>
+<p>
+    Provides the general functionality of a standard <i>iframe</i>, with some
+    dokki-specific additions.
+</p>
+
+<h2>Attributes</h2>
+
+<h3>autofocus</h3>
+<p>
+    If present, the inline frame will be given automatic focus once its contents
+    have loaded.
+</p>
+
+<h3>expanded</h3>
+<p>
+    If present, the inline frame will be visible by default rather than requiring
+    the user to reveal it manually.
+</p>
+
+<p>
+    Note: Setting the <em>headerless</em> attribute will also set <em>expanded</em>. 
+</p>
+
+<h3>headerless</h3>
+<p>
+    If present, causes the <i>dokki-iframe</i> element's header to not be displayed.
+</p>
+
+<p>
+    Note: Setting the <em>headerless</em> attribute will also set <em>expanded</em>. 
+</p>
+
+<h3>height</h3>
+<p>
+    The CSS height of the <i>dokki-iframe</i> element.
+</p>
+
+<h3>src</h3> <strong>required</strong>
+<p>
+    Corresponds to the <b>src</b> attribute of the standard <i>iframe</i> element.
+</p>
+
+<h3>srcdoc</h3>
+<p>
+    Corresponds to the <b>srcdoc</b> attribute of the standard <i>iframe</i> element.
+</p>
+
+<h3>title</h3>
+<p>
+    The title to be shown in the header of the <i>dokki-iframe</i> element.
+</p>
+
+<h2>Examples</h2>
+<dokki-code headerless
+            code="
+            <dokki-iframe
+                src='https://www.wikipedia.org'
+                height='400px'>
+            </dokki-iframe>
+            ">
+
+    <dokki-output>
+        <dokki-iframe src='https://www.wikipedia.org' height='400px'>
+        </dokki-iframe>
+    </dokki-output>
+
+</dokki-code>
+
+<dokki-code headerless
+            code="
+            <dokki-iframe
+                src='https://www.tarpeeksihyvaesoft.com//dosbox/#rally-sport/demo'
+                autofocus>
+
+                <template #caption>
+                    Play Rally-Sport in DOSBox
+                </template>
+
+            </dokki-iframe>
+            ">
+
+    <dokki-output>
+        <dokki-iframe
+            src='https://www.tarpeeksihyvaesoft.com//dosbox/#rally-sport/demo'
+            autofocus>
+
+            <template #caption>
+                Play Rally-Sport in DOSBox
+            </template>
+
+        </dokki-iframe>
+    </dokki-output>
+
+</dokki-code>
+</api-reference>

@@ -43,3 +43,33 @@ export default {
     }
 }
 </script>
+
+<api-reference>
+<p>
+    Displays its child contents when the user clicks on the element.
+</p>
+
+<h2>Attributes</h2>
+
+<h3>title</h3>
+
+<p>
+    The title to be shown in the header of the <i>dokki-spoiler</i> element.
+</p>
+
+<h2>Examples</h2>
+<dokki-code headerless
+            code="
+            <dokki-spoiler>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+            </dokki-spoiler>
+            ">
+
+    <dokki-output>
+        <dokki-spoiler>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+        </dokki-spoiler>
+    </dokki-output>
+
+</dokki-code>
+</api-reference>

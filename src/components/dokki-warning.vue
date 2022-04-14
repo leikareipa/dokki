@@ -62,3 +62,52 @@
     }
 }
 </style>
+
+<api-reference>
+<p>
+    Displays its child contents alongside a cautionary label.
+</p>
+
+<h2>Attributes</h2>
+
+<p>
+    None.
+</p>
+
+<h2>Examples</h2>
+<dokki-code headerless
+            code="
+            <dokki-warning>
+                <dokki-lorem></dokki-lorem>
+                <dokki-lorem></dokki-lorem>
+            </dokki-warning>
+            ">
+
+    <dokki-output>
+        <dokki-warning>
+            <dokki-lorem></dokki-lorem>
+            <dokki-lorem></dokki-lorem>
+        </dokki-warning>
+    </dokki-output>
+
+</dokki-code>
+
+<dokki-code headerless
+            code="
+            <dokki-warning>
+                <p style='filter: blur(4px);'>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                </p>
+            </dokki-warning>
+            ">
+
+    <dokki-output>
+        <dokki-warning>
+            <p style='filter: blur(4px);'>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+            </p>
+        </dokki-warning>
+    </dokki-output>
+
+</dokki-code>
+</api-reference>

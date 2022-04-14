@@ -191,3 +191,87 @@ export default {
     },
 }
 </script>
+
+<api-reference>
+<p>
+    Displays a directory listing of files and folders.
+</p>
+
+<h2>Attributes</h2>
+
+<h3>expanded</h3>
+<p>
+    If present, the directory listing will be visible by default rather than requiring
+    the user to reveal it manually.
+</p>
+
+<p>
+    Note: Setting the <em>headerless</em> attribute will also set <em>expanded</em>. 
+</p>
+
+<h3>headerless</h3>
+<p>
+    If present, causes the <i>dokki-directory</i> element's header to not be displayed.
+</p>
+
+<p>
+    Note: Setting the <em>headerless</em> attribute will also set <em>expanded</em>. 
+</p>
+
+<h3>title</h3>
+<p>
+    The title to be shown in the header of the <i>dokki-directory</i> element.
+</p>
+
+<h3>structure</h3>
+<p>
+    A JavaScript object as a string describing the directory structure. Each property
+    key is the name of a folder or file, except for keys prefixed with "/", which are
+    metadata about the entry.
+</p>
+
+<p>
+    TODO: Explain the structure object in more detail.
+</p>
+
+<h2>Examples</h2>
+
+<dokki-code
+    headerless
+    code="
+        <dokki-directory :structure=``{
+            'src': {
+                'kelpo_interface': {
+                    'interface.c': {
+                        '/content': 'code',
+                        '/href': 'https://github.com/leikareipa/kelpo/blob/master/src/kelpo_interface/interface.c',
+                    },
+                    'interface.h': {
+                        '/content': 'code',
+                        '/href': 'https://github.com/leikareipa/kelpo/blob/master/src/kelpo_interface/interface.h',
+                    },
+                },
+            }
+        }``>
+        </dokki-directory>
+    ">
+
+    <dokki-output>
+        <dokki-directory :structure="{
+            'src': {
+                'kelpo_interface': {
+                    'interface.c': {
+                        '/content': 'code',
+                        '/href': 'https://github.com/leikareipa/kelpo/blob/master/src/kelpo_interface/interface.c',
+                    },
+                    'interface.h': {
+                        '/content': 'code',
+                        '/href': 'https://github.com/leikareipa/kelpo/blob/master/src/kelpo_interface/interface.h',
+                    },
+                },
+            }
+        }">
+        </dokki-directory>
+    </dokki-output>
+</dokki-code>
+</api-reference>

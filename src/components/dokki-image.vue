@@ -133,3 +133,100 @@ export default {
     }
 }
 </script>
+
+<api-reference>
+<p>
+    Displays an image, much like the standard <i>img</i>.
+</p>
+
+<h2>Attributes</h2>
+
+<h3>src</h3> <strong>required</strong>
+<p>
+    Corresponds to the <b>src</b> attribute of the standard <i>img</i> element. 
+</p>
+
+<h3>width</h3>
+<p>
+    Corresponds to the <b>width</b> attribute of the standard <i>img</i> element. 
+</p>
+
+<h3>height</h3>
+<p>
+    Corresponds to the <b>height</b> attribute of the standard <i>img</i> element. 
+</p>
+
+<h3>expanded</h3>
+<p>
+    If present, the image will be visible by default rather than requiring the user
+    to reveal it manually.
+</p>
+
+<h3>upscale-to-fit</h3>
+<p>
+    If present, images that are smaller than the image container will be upscaled
+    to fit the size of the container.
+</p>
+
+<h3>pixelated-scale</h3>
+<p>
+    If present, images whose <b>width</b> and/or <b>height</b> differs from the image
+    file's native resolution will be scaled using nearest-neighbor interpolation.
+</p>
+
+<h2>Examples</h2>
+<dokki-code headerless
+            code="
+            <dokki-image expanded src='https://upload.wikimedia.org/wikipedia/commons/thumb/7/7f/Eublepharis_macularius_2009_G6.jpg/1280px-Eublepharis_macularius_2009_G6.jpg'>
+            </dokki-image>
+            ">
+
+    <dokki-output>
+        <dokki-image expanded src='https://upload.wikimedia.org/wikipedia/commons/thumb/7/7f/Eublepharis_macularius_2009_G6.jpg/1280px-Eublepharis_macularius_2009_G6.jpg'>
+        </dokki-image>
+    </dokki-output>
+
+</dokki-code>
+
+<dokki-code headerless
+            code="
+            <dokki-image src='https://upload.wikimedia.org/wikipedia/commons/thumb/7/7f/Eublepharis_macularius_2009_G6.jpg/1280px-Eublepharis_macularius_2009_G6.jpg'>
+                <template #caption>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit
+                </template>
+            </dokki-image>
+            ">
+
+    <dokki-output>
+        <dokki-image src='https://upload.wikimedia.org/wikipedia/commons/thumb/7/7f/Eublepharis_macularius_2009_G6.jpg/1280px-Eublepharis_macularius_2009_G6.jpg'>
+            <template #caption>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit
+            </template>
+        </dokki-image>
+    </dokki-output>
+
+</dokki-code>
+
+<dokki-code headerless
+            code="
+            <dokki-image
+                expanded
+                pixelated-scale
+                width='1024'
+                height='576'
+                src='https://upload.wikimedia.org/wikipedia/commons/thumb/7/7f/Eublepharis_macularius_2009_G6.jpg/80px-Eublepharis_macularius_2009_G6.jpg'
+            ></dokki-image>
+            ">
+
+    <dokki-output>
+        <dokki-image
+            expanded
+            pixelated-scale
+            width="1024"
+            height="576"
+            src='https://upload.wikimedia.org/wikipedia/commons/thumb/7/7f/Eublepharis_macularius_2009_G6.jpg/80px-Eublepharis_macularius_2009_G6.jpg'>
+        </dokki-image>
+    </dokki-output>
+
+</dokki-code>
+</api-reference>

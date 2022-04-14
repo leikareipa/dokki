@@ -38,7 +38,7 @@ export default {
         return {
             currentThemeIdx: 0,
             themes: [
-                {name: "dark", icon: "fas fa-circle"},
+                {name: "dark", icon: "fas fa-adjust"},
                 {name: "light", icon: "fas fa-adjust"},
             ],
         }

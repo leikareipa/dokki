@@ -156,3 +156,200 @@ export default {
     },
 }
 </script>
+
+<api-reference>
+<p>
+    Displays a source code listing, with optional syntax highlighting.
+</p>
+
+<h2>Attributes</h2>
+
+<h3>code</h3>
+<p>
+    The source code can be given either inside a <i>template #code</i> element or
+    via this attribute (see examples, below).
+</p>
+
+<p>
+    Note: Inside this attribute, double quotes (") must be replaced with two
+    backticks (``). They'll be converted automatically back into double quotes for display.
+</p>
+
+<h3>expanded</h3>
+<p>
+    If present, the code listing will be visible by default rather than requiring
+    the user to reveal it manually.
+</p>
+
+<p>
+    Note: Setting the <em>headerless</em> attribute will also set <em>expanded</em>. 
+</p>
+
+<h3>headerless</h3>
+<p>
+    If present, causes the <i>dokki-code</i> element's header to not be displayed.
+</p>
+
+<p>
+    Note: Setting the <em>headerless</em> attribute will also set <em>expanded</em>. 
+</p>
+
+<h3>title</h3>
+<p>
+    The title to be shown in the header of the <i>dokki-code</i> element.
+</p>
+
+<h2>Examples</h2>
+
+<p>
+    The source code can be entered inside a <i>template #code</i> element:
+</p>
+
+<dokki-code headerless
+            code="
+            <dokki-code title='C'>
+                <template #code>
+                    <pre>
+                        int main(void)
+                        {
+                            printf(``Hello there.\n``);
+                            return 0;
+                        }
+                    </pre>
+                </template>
+            </dokki-code>
+            ">
+
+    <dokki-output>
+        <dokki-code title='C'>
+            <template #code>
+                <pre>
+                    int main(void)
+                    {
+                        printf("Hello there.\n");
+                        return 0;
+                    }
+                </pre>
+            </template>
+        </dokki-code>
+    </dokki-output>
+
+</dokki-code>
+
+<p>
+    Notice that the above sample nests the code inside a <i>pre</i> element.
+    This isn't required, but whitespace won't be preserved without it:
+</p>
+
+<dokki-code headerless
+            code="
+            <dokki-code title='C'>
+                <template #code>
+                    int main(void)
+                    {
+                        printf(``Hello there.\n``);
+                        return 0;
+                    }
+                </template>
+            </dokki-code>
+            ">
+
+    <dokki-output>
+        <dokki-code title='C'>
+            <template #code>
+                int main(void)
+                {
+                    printf("Hello there.\n");
+                    return 0;
+                }
+            </template>
+        </dokki-code>
+    </dokki-output>
+
+</dokki-code>
+
+<p>
+    Embedding a <i>dokki-output</i> element lets you document the code's
+    expected output:
+</p>
+
+<dokki-code headerless
+            code="
+            <dokki-code title='C'>
+                <template #code>
+                    <pre>
+                        int main(void)
+                        {
+                            printf(``Hello there.\n``);
+                            return 0;
+                        }
+                    </pre>
+                </template>
+
+                <dokki-output>
+                    <samp>Hello there.</samp>
+                </dokki-output>
+            </dokki-code>
+            ">
+
+    <dokki-output>
+        <dokki-code title='C'>
+            <template #code>
+                <pre>
+                    int main(void)
+                    {
+                        printf(``Hello there.\n``);
+                        return 0;
+                    }
+                </pre>
+            </template>
+
+            <dokki-output>
+                <samp>Hello there.</samp>
+            </dokki-output>
+        </dokki-code>
+    </dokki-output>
+
+</dokki-code>
+
+<p>
+    Optionally, the code can be given as a string via the <b>output</b> attribute:
+</p>
+
+<dokki-code headerless
+            code="
+            <dokki-code title=``HTML``
+                        code=``
+                            <i class='fas fa-fw fa-hammer'></i>
+                            <i class='fas fa-fw fa-screwdriver'></i>
+                            <i class='fas fa-fw fa-wrench'></i>
+                        ``>
+
+                <dokki-output>
+                    <i class='fas fa-fw fa-hammer'></i>
+                    <i class='fas fa-fw fa-screwdriver'></i>
+                    <i class='fas fa-fw fa-wrench'></i>
+                </dokki-output>
+
+            </dokki-code>
+            ">
+
+    <dokki-output>
+        <dokki-code headerless
+                    code="
+                        <i class='fas fa-fw fa-hammer'></i>
+                        <i class='fas fa-fw fa-screwdriver'></i>
+                        <i class='fas fa-fw fa-wrench'></i>
+                    ">
+
+            <dokki-output>
+                <i class='fas fa-fw fa-hammer'></i>
+                <i class='fas fa-fw fa-screwdriver'></i>
+                <i class='fas fa-fw fa-wrench'></i>
+            </dokki-output>
+            
+        </dokki-code>
+    </dokki-output>
+
+</dokki-code>
+</api-reference>

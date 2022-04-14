@@ -6,6 +6,7 @@
         "@vue/compiler-sfc": "^3.2.32",
         "css-loader": "^5.2.6",
         "file-loader": "^6.2.0",
+        "node-html-parser": "^5.3.3",
         "sass": "^1.50.0",
         "sass-loader": "^12.6.0",
         "style-loader": "^3.3.1",

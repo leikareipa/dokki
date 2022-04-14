@@ -86,3 +86,53 @@ export default {
     }
 }
 </script>
+
+<api-reference>
+<p>
+    Displays a video from a given source.
+</p>
+
+<p>
+    Right now, only YouTube embeds are supported.
+</p>
+
+<h2>Attributes</h2>
+
+<h3>platform</h3> <strong>required</strong>
+<p>
+    Identifies the platform on which the video is hosted. Currently, only <em>"youtube"</em>
+    is supported.
+</p>
+
+<h3>src</h3> <strong>required</strong>
+<p>
+    Identifies the video on the given platform.
+</p>
+
+<h3>expanded</h3>
+<p>
+    If present, the video will be visible by default rather than requiring
+    the user to reveal it manually.
+</p>
+
+<h2>Examples</h2>
+
+<dokki-code headerless
+            code="
+            <dokki-video platform='youtube' src='ZgWGmggi5Xo'>
+                <template #caption>
+                    Sriracha Mayoo + Curly Fries
+                </template>
+            </dokki-video>
+            ">
+
+    <dokki-output>
+        <dokki-video platform='youtube' src='ZgWGmggi5Xo'>
+            <template #caption>
+                Sriracha Mayoo + Curly Fries
+            </template>
+        </dokki-video>
+    </dokki-output>
+
+</dokki-code>
+</api-reference>
