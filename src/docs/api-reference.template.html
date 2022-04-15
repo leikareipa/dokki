@@ -6,26 +6,110 @@
         
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.14.0/css/all.css" crossorigin="anonymous" integrity="sha384-HzLeBuhoNPvSl5KYnjx0BT+WB0QEEqLprO+NBkkk5gbc67FTaL7XIGa2w1L0Xbgc">
         <script defer src="../distributable/dokki.js"></script>
+
+        <!-- Custom components for dokki. -->
+        <script>
+            const examplesListing = {
+                $tag: "x-examples",
+                template: `
+                <dokki-output inline-class="examples">
+                    <template #caption>
+                        Examples
+                    </template>
+                    <template #content>
+                        <slot/>
+                    </template>
+                </dokki-output>
+                `,
+            };
+
+            const example = {
+                $tag: "x-example",
+                template: `
+                <dokki-area inline-class="example">
+                    <slot/>
+                </dokki-area>
+                `,
+            };
+
+            window.dokkiUserComponents = [examplesListing, example];
+        </script>
         
         <style>
             .dokki-topic p > i,
-            .dokki-topic p > em {
+            .dokki-topic p > em,
+            .dokki-topic x-tag {
                 font-style: italic;
             }
 
-            .dokki-topic p > i::before {
+            .dokki-topic p > i::before,
+            .dokki-topic x-tag::before {
                 content: "<";
             }
 
-            .dokki-topic p > i::after {
+            .dokki-topic p > i::after,
+            .dokki-topic x-tag::after {
                 content: ">";
+            }
+
+            .dokki-output.examples {
+                background-color: var(--dokkiCSS-embedded-auxiliary-color);
+                border: none;
+            }
+
+            .dokki-output.examples > header {
+                font-weight: var(--dokkiCSS-bold-text-weight);
+            }
+
+            .dokki-output.examples > header > .caption i
+            {
+                display: none;
+            }
+
+            .dokki-output.examples > header > .caption::before
+            {
+                font-family: "Font Awesome 5 Free";
+                content: "\f19c";
+                font-weight: 900;
+            }
+
+            .dokki-area.example {
+                background-color: var(--dokkiCSS-page-inert-bg-color);
+                border: 1px solid var(--dokkiCSS-page-primary-line-color);
             }
 
             b {
                 font-weight: 500;
             }
 
-            h3 {
+            x-required {
+                font-weight: var(--dokkiCSS-bold-text-weight);
+                color: red;
+                font-variant: normal;
+                font-size: 95%;
+            }
+
+            * + x-required {
+                margin-left: 0.5ch;
+            }
+
+            x-required::before {
+                content: "(required)";
+            }
+
+            x-templ::before {
+                content: "#";
+            }
+
+            x-attr,
+            x-templ {
+                font-weight: var(--dokkiCSS-bold-text-weight);
+                display: inline;
+            }
+
+            h3,
+            x-attr,
+            x-templ {
                 font-variant: small-caps;
             }
 
