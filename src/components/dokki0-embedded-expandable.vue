@@ -20,6 +20,11 @@
     <header v-if="!isHeaderless"
             @click="this.$refs['expander'].toggle_expansion()">
 
+        <span v-if="headerWidget == 'groupbox'" class="title blocker">
+            <i :class="icon" class="fa-sm"/>
+            {{title}}
+        </span>
+
         <span v-if="headerWidget == 'groupbox'" class="title">
             <i :class="icon" class="fa-sm"/>
             {{title}}
@@ -101,7 +106,6 @@
         user-select: none;
         font-weight: normal;
         padding: var(--dokkiCSS-embedded-vertical-padding) var(--dokkiCSS-embedded-horizontal-padding);
-        background-color: var(--dokkiCSS-embedded-header-bg-color);
         display: flex;
         align-items: baseline;
         box-sizing: border-box;
@@ -130,7 +134,6 @@
         line-height: normal;
         overflow: hidden;
         padding: var(--dokkiCSS-embedded-vertical-padding) var(--dokkiCSS-embedded-horizontal-padding);
-        background-color: var(--dokkiCSS-embedded-footer-bg-color);
     }
 
     &:not(.headerless).groupbox
@@ -155,10 +158,18 @@
             font-size: 95%;
             font-variant: small-caps;
             text-transform: lowercase;
-            background-color: var(--dokkiCSS-page-primary-bg-color);
             transform: translateY(-50%);
             padding: 3px;
-            color: var(--dokkiCSS-page-inert-fg-color);
+            color: var(--dokkiCSS-page-secondary-fg-color);
+
+            &.blocker
+            {
+                top: 0;
+                background-color: var(--dokkiCSS-embedded-footer-bg-color);
+                color: transparent;
+                height: 1px;
+                transform: none;
+            }
         }
     }
 }
