@@ -6,7 +6,8 @@
  */
 
 <template>
-<p class="dokki-area dokkiCSS-vertical-collapse">
+<p class="dokki-area dokkiCSS-vertical-collapse"
+   :class="inlineClass">
     <slot/>
 </p>
 </template>
@@ -21,6 +22,14 @@
     border-radius: var(--dokkiCSS-embedded-border-radius);
 }
 </style>
+
+<script>
+export default {
+    props: {
+        inlineClass: {type: String, default: ""}
+    }
+}
+</script>
 
 <api-reference>
 <p>TODO</p>
