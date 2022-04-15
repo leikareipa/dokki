@@ -8,7 +8,7 @@
 <template>
 <span v-if="isInline" class="dokki-tag-cloud inline">
     <span v-for="(tagName, idx) of tagNames">
-        <a class="dokkiCSS-item" @click="on_tag_click(tagName)">
+        <a class="tag" @click="on_tag_click(tagName)">
             {{tagName}}
         </a><!--
         -->{{(idx == (tagNames.length - 1))? "" : ", "}}
@@ -29,7 +29,7 @@
     <template #content>
 
         <a v-for="tagName of tagNames"
-           class="dokkiCSS-item"
+           class="tag"
            :style="{
                fontSize: tag_css_font_size_percent(tagName),
                lineHeight: `${this.maxSize / 100}rem`
@@ -45,22 +45,23 @@
 </dokki0-embedded-expandable>
 </template>
 
+<style scoped lang="scss">
+.tag
+{
+    cursor: pointer;
+}
+</style>
+
 <style lang="scss">
 .dokki0-embedded-expandable.dokki-tag-cloud
 {
     border: none;
     background-color: var(--dokkiCSS-embedded-auxiliary-color);
 
-    &.inline .dokkiCSS-item
-    {
-        cursor: pointer;
-    }
-
-    &:not(.inline) .dokkiCSS-item
+    &:not(.inline) .tag
     {
         margin: 0 0.8rem;
         margin-left: 0;
-        cursor: pointer;
     }
 
     .dokkiCSS-container
