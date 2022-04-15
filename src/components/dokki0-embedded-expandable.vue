@@ -8,6 +8,7 @@
 <template>
 <p class="dokki0-embedded-expandable dokkiCSS-embedded"
    :class="{
+       [inlineClass]: true,
        [className]: true,
        'groupbox': (headerWidget == 'groupbox'),
        'expands-to-dropdown': (expandsTo == 'dropdown'),
@@ -53,7 +54,7 @@
                               @expanded="isExpanded = true, isTransitioning = false"
                               @minimized="isExpanded = false, isTransitioning = false">
 
-        <div class="content dokkiCSS-vertical-collapse dokkiCSS-container" :style="inlineStyle">
+        <div class="content dokkiCSS-vertical-collapse dokkiCSS-container">
 
             <slot name="content"/>
 
@@ -109,7 +110,6 @@
         display: flex;
         align-items: baseline;
         box-sizing: border-box;
-        color: var(--dokkiCSS-page-secondary-fg-color);
     }
 
     hr
@@ -188,7 +188,7 @@ export default {
         headerWidget: {type: String, default: "groupbox"},
         expandsTo: {type: String, default: "inline"},
         className: {required: true, type: String},
-        inlineStyle: {type: String, default: ""},
+        inlineClass: {type: String, default: ""},
         icon: {required: true, type: String},
         title: {required: true, type: String},
     },
