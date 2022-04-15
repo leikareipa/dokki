@@ -21,7 +21,8 @@
 
     <template #content>
 
-        <slot/>
+        <slot v-if="this.$slots['output']" name="output"/>
+        <slot v-else/>
 
     </template>
 
@@ -41,6 +42,14 @@
             {
                 margin-top: 0.475em !important;
             }
+        }
+    }
+
+    &:not(.unpadded):not(.headerless)
+    {
+        & > .dokki0-animated-expander > .content
+        {
+            padding-top: calc(var(--dokkiCSS-embedded-vertical-padding) - var(--dokkiCSS-embedded-horizontal-padding));
         }
     }
 }
