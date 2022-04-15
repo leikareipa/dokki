@@ -153,7 +153,7 @@
         .title
         {
             position: absolute;
-            top: -1px;
+            top: 0;
             left: calc(var(--dokkiCSS-embedded-horizontal-padding) - 3px);
             font-size: 95%;
             font-variant: small-caps;
@@ -164,10 +164,10 @@
 
             &.blocker
             {
-                top: 0;
+                top: -1px;
                 background-color: var(--dokkiCSS-embedded-footer-bg-color);
                 color: transparent;
-                height: 1px;
+                height: 0;
                 transform: none;
             }
         }
