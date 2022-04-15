@@ -177,7 +177,7 @@ export default {
     <h2>Markup</h2>
 
         <dokki-code headerless code="
-            <dokki-code syntax code expanded headerless inline-class>
+            <dokki-code code expanded headerless inline-class syntax>
 
                 <template #caption>
                 </template>
@@ -437,5 +437,19 @@ export default {
             <p>
                 The class name(s) given in this string will be appended to the
                 <x-tag>dokki-code</x-tag> element's class list.
+            </p>
+
+        <x-attr>syntax</x-attr>
+
+            <p>
+                Identifies the language of the <x-tag>dokki-code</x-tag> element's code, using the
+                syntax types of <a href="https://highlightjs.org/">highlight.js</a> (e.g. "javascript"
+                for JavaScript, "x86asm" for x86 assembly).
+            </p>
+            
+            <p>
+                If this attribute is set and the HTML document includes highlight.js, the
+                <x-tag>dokki-code</x-tag> element's code will be parsed and segmented by syntax,
+                and you can apply custom CSS to the various syntactic classes (e.g. "hljs-string").
             </p>
 </api-reference>
