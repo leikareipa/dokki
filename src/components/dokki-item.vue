@@ -6,14 +6,12 @@
  */
 
 <template>
-    <h3 :id="id">{{this.title}}</h3>
-    <slot/>
+    <h3 :id="id"><slot/></h3>
 </template>
 
 <script>
 export default {
     props: {
-        title: {required: true, type: String},
         id: {type: String, default: undefined}
     }
 }
