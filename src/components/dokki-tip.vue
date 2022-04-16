@@ -64,51 +64,21 @@
 </style>
 
 <api-reference>
-<p>
-    Displays its child contents as a tip to the reader.
-</p>
+    <p>
+        Displays its contents as a tip to the reader.
+    </p>
+    
+    <h2>Sample</h2>
 
-<h2>Attributes</h2>
+        <dokki-tip>
+            Keep that in mind.
+        </dokki-tip>
 
-<p>
-    None.
-</p>
+    <h2>Markup</h2>
 
-<h2>Examples</h2>
-
-<dokki-code headerless
-            code="
+        <dokki-code headerless code="
             <dokki-tip>
-                <dokki-lorem></dokki-lorem>
-                <dokki-lorem></dokki-lorem>
             </dokki-tip>
             ">
-
-    <dokki-output>
-        <dokki-tip>
-            <dokki-lorem></dokki-lorem>
-            <dokki-lorem></dokki-lorem>
-        </dokki-tip>
-    </dokki-output>
-
-</dokki-code>
-
-<dokki-code headerless
-            code="
-            <dokki-tip>
-                <p style='filter: blur(4px);'>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                </p>
-            </dokki-tip>
-            ">
-
-    <dokki-output>
-        <dokki-tip>
-            <p style='filter: blur(4px);'>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-            </p>
-        </dokki-tip>
-    </dokki-output>
-
-</dokki-code>
+        </dokki-code>
 </api-reference>

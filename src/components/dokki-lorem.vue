@@ -53,40 +53,24 @@ export default {
 </script>
 
 <api-reference>
-<p>
-    Provides a generator of placeholder text.
-</p>
+    <p>
+        Provides a generator of placeholder text.
+    </p>
 
-<p>
-    Each instance of this element produces one paragraph of lorem ipsum. There
-    are about five unique paragraphs available; the sixth instance will repeat
-    the first paragraph and so on.
-</p>
+    <p>
+        Each instance of this element produces one paragraph of lorem ipsum.
+    </p>
 
-<h2>Attributes</h2>
+    <h2>Sample</h2>
 
-<p>
-    None.
-</p>
+        <dokki-lorem>
+        </dokki-lorem>
 
-<h2>Examples</h2>
+    <h2>Markup</h2>
 
-<dokki-code headerless
-    code="
-        <dokki-lorem></dokki-lorem>
-        <dokki-area>
-            <dokki-lorem></dokki-lorem>
-        </dokki-area>
-        <dokki-lorem></dokki-lorem>
-    ">
-
-    <dokki-output>
-        <dokki-lorem></dokki-lorem>
-        <dokki-area>
-            <dokki-lorem></dokki-lorem>
-        </dokki-area>
-        <dokki-lorem></dokki-lorem>
-    </dokki-output>
-
-</dokki-code>
+        <dokki-code headerless code="
+            <dokki-lorem>
+            </dokki-lorem>
+            ">
+        </dokki-code>
 </api-reference>

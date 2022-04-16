@@ -88,98 +88,237 @@ export default {
 </script>
 
 <api-reference>
-<p>
-    Provides the general functionality of a standard <i>iframe</i>, with some
-    dokki-specific additions.
-</p>
+    <p>
+        Provides the general functionality of a standard <i>iframe</i>, with some dokki-specific
+        extensions.
+    </p>
 
-<h2>Attributes</h2>
+    <h2>Sample</h2>
 
-<h3>autofocus</h3>
-<p>
-    If present, the inline frame will be given automatic focus once its contents
-    have loaded.
-</p>
-
-<h3>expanded</h3>
-<p>
-    If present, the inline frame will be visible by default rather than requiring
-    the user to reveal it manually.
-</p>
-
-<p>
-    Note: Setting the <em>headerless</em> attribute will also set <em>expanded</em>. 
-</p>
-
-<h3>headerless</h3>
-<p>
-    If present, causes the <i>dokki-iframe</i> element's header to not be displayed.
-</p>
-
-<p>
-    Note: Setting the <em>headerless</em> attribute will also set <em>expanded</em>. 
-</p>
-
-<h3>height</h3>
-<p>
-    The CSS height of the <i>dokki-iframe</i> element.
-</p>
-
-<h3>src</h3> <strong>required</strong>
-<p>
-    Corresponds to the <b>src</b> attribute of the standard <i>iframe</i> element.
-</p>
-
-<h3>srcdoc</h3>
-<p>
-    Corresponds to the <b>srcdoc</b> attribute of the standard <i>iframe</i> element.
-</p>
-
-<h3>title</h3>
-<p>
-    The title to be shown in the header of the <i>dokki-iframe</i> element.
-</p>
-
-<h2>Examples</h2>
-<dokki-code headerless
-            code="
-            <dokki-iframe
-                src='https://www.wikipedia.org'
-                height='400px'>
-            </dokki-iframe>
-            ">
-
-    <dokki-output>
-        <dokki-iframe src='https://www.wikipedia.org' height='400px'>
+        <dokki-iframe src="https://www.wikipedia.org">
+            <template #caption>
+                Wikipedia.org
+            </template>
         </dokki-iframe>
-    </dokki-output>
 
-</dokki-code>
+    <h2>Markup</h2>
 
-<dokki-code headerless
-            code="
-            <dokki-iframe
-                src='https://www.tarpeeksihyvaesoft.com//dosbox/#rally-sport/demo'
-                autofocus>
+        <dokki-code headerless code="
+            <dokki-iframe autofocus expanded headerless height inline-class src srcdoc>
 
                 <template #caption>
-                    Play Rally-Sport in DOSBox
                 </template>
 
             </dokki-iframe>
             ">
+        </dokki-code>
 
-    <dokki-output>
-        <dokki-iframe
-            src='https://www.tarpeeksihyvaesoft.com//dosbox/#rally-sport/demo'
-            autofocus>
+    <h2>Templates</h2>
 
-            <template #caption>
-                Play Rally-Sport in DOSBox
-            </template>
+        <x-templ>caption</x-templ>
 
-        </dokki-iframe>
-    </dokki-output>
+            <p>
+                The template's children will be displayed as the <x-tag>dokki-iframe</x-tag>
+                element's caption.
+            </p>
 
-</dokki-code>
+            <x-examples>
+                <x-example>
+
+                    <dokki-code headerless
+                        code="
+                        <template #caption>
+                            Hello there
+                        </template>
+                        ">
+                    </dokki-code>
+
+                    <dokki-iframe height="2em">
+                        <template #caption>
+                            Hello there
+                        </template>
+                    </dokki-iframe>
+
+                </x-example>
+
+                <x-example>
+
+                    <dokki-code headerless
+                        code="
+                        <template #caption>
+                            <span style='filter: blur(2px);'>Hello there</span>
+                        </template>
+                        ">
+                    </dokki-code>
+
+                    <dokki-iframe height="2em">
+                        <template #caption>
+                            <span style='filter: blur(2px);'>Hello there</span>
+                        </template>
+                    </dokki-iframe>
+
+                </x-example>
+            </x-examples>
+
+    <h2>Attributes</h2>
+
+        <h3>autofocus</h3>
+            
+            <p>
+                If present, the <x-tag>dokki-iframe</x-tag> element's inline frame will be given
+                focus when the frame is expanded.
+            </p>
+
+        <h3>expanded</h3>
+            
+            <p>
+                If present, the <x-tag>dokki-iframe</x-tag> element's inline frame will be visible
+                initially, rather than requiring the user to reveal it.
+            </p>
+
+            <p>
+                Setting the <x-attr>headerless</x-attr> attribute will implicitly set this attribute
+                as well.
+            </p>
+
+        <x-attr>headerless</x-attr>
+
+            <p>
+                If present, causes the <x-tag>dokki-iframe</x-tag> element to be displayed without its
+                caption.
+            </p>
+
+            <p>
+                Setting this attribute will implicitly set the <x-attr>expanded</x-attr> attribute
+                as well. 
+            </p>
+
+            <x-examples>
+                <x-example>
+
+                    <dokki-code headerless
+                        code="
+                        <dokki-iframe headerless src='https://www.wikipedia.org'>
+                        </dokki-iframe>
+                        ">
+                    </dokki-code>
+
+                    <dokki-iframe headerless src='https://www.wikipedia.org'>
+                    </dokki-iframe>
+
+                </x-example>
+            </x-examples>
+
+        <x-attr>height</x-attr>
+            
+            <p>
+                The CSS height of the <x-tag>dokki-iframe</x-tag> element's inline frame.
+            </p>
+
+            <dokki-tip>
+                The width of the frame will be set automatically by dokki according to the
+                parent document's layout.
+            </dokki-tip>
+
+        <x-attr>src</x-attr>
+        <x-required></x-required>
+
+            <p>
+                Corresponds to the <x-attr>src</x-attr> attribute of the standard <x-tag>iframe</x-tag>
+                element.
+            </p>
+
+            <p>
+                Either this or the <x-attr>srcdoc</x-attr> attribute must be set.
+            </p>
+
+        <x-attr>srcdoc</x-attr>
+        <x-required></x-required>
+
+            <p>
+                Corresponds to the <x-attr>srcdoc</x-attr> attribute of the standard <x-tag>iframe</x-tag>
+                element.
+            </p>
+
+            <p>
+                Either this or the <x-attr>src</x-attr> attribute must be set.
+            </p>
+
+            <dokki-tip>
+                Among other things, this attribute allows you to embed JavaScript that will be
+                executed only when the <x-tag>dokki-iframe</x-tag> element's inline frame is
+                expanded.
+            </dokki-tip>
+
+            <x-examples>
+                <x-example>
+
+                    <dokki-code
+                        headerless
+                        code="
+                        <dokki-iframe
+                            headerless
+                            height='2.5em'
+                            srcdoc='
+                                <style>
+                                    span {
+                                        display: inline-block;
+                                        white-space: break-spaces;
+                                    }
+                                </style>
+                                <body>
+                                    <script>
+                                        (function jump(delta = 0) {
+                                            document.body.innerHTML =
+                                                `Current time: ${Date.now()}`
+                                                .split('')
+                                                .reduce((str, ch)=>(str+`<span>${ch}</span>`), '');
+                                            const chSpans = Array.from(document.body.querySelectorAll('span'));
+                                            const chOffsets = chSpans.map((ch, idx)=>(2 * Math.cos(idx)));
+                                            chSpans.forEach((span, idx)=>{
+                                                const offset = Math.cos(chOffsets[idx] + delta);
+                                                span.style.transform = `translateY(${offset}px)`;
+                                            });
+                                            window.requestAnimationFrame(()=>jump(delta + 0.3));
+                                        })();
+                                    </script>
+                                </body>
+                            '>
+                        </dokki-iframe>
+                        ">
+                    </dokki-code>
+
+                    <dokki-iframe
+                        headerless
+                        height="2.5em"
+                        srcdoc="
+                            <style>
+                                span {
+                                    display: inline-block;
+                                    white-space: break-spaces;
+                                }
+                            </style>
+                            <body>
+                                <script>
+                                    (function jump(delta = 0) {
+                                        document.body.innerHTML =
+                                            `Current time: ${Date.now()}`
+                                            .split('')
+                                            .reduce((str, ch)=>(str+`<span>${ch}</span>`), '');
+                                        const chSpans = Array.from(document.body.querySelectorAll('span'));
+                                        const chOffsets = chSpans.map((ch, idx)=>(2 * Math.cos(idx)));
+                                        
+                                        chSpans.forEach((span, idx)=>{
+                                            const offset = Math.cos(chOffsets[idx] + delta);
+                                            span.style.transform = `translateY(${offset}px)`;
+                                        });
+                                        window.requestAnimationFrame(()=>jump(delta + 0.3));
+                                    })();
+                                </script>
+                            </body>
+                        "
+                    ></dokki-iframe>
+
+                </x-example>
+            </x-examples>
 </api-reference>

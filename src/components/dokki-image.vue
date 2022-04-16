@@ -135,98 +135,185 @@ export default {
 </script>
 
 <api-reference>
-<p>
-    Displays an image, much like the standard <i>img</i>.
-</p>
+    <p>
+        Provides the general functionality of a standard <x-tag>img</x-tag>, with some
+        dokki-specific extensions. 
+    </p>
 
-<h2>Attributes</h2>
+    <h2>Sample</h2>
 
-<h3>src</h3> <strong>required</strong>
-<p>
-    Corresponds to the <b>src</b> attribute of the standard <i>img</i> element. 
-</p>
-
-<h3>width</h3>
-<p>
-    Corresponds to the <b>width</b> attribute of the standard <i>img</i> element. 
-</p>
-
-<h3>height</h3>
-<p>
-    Corresponds to the <b>height</b> attribute of the standard <i>img</i> element. 
-</p>
-
-<h3>expanded</h3>
-<p>
-    If present, the image will be visible by default rather than requiring the user
-    to reveal it manually.
-</p>
-
-<h3>upscale-to-fit</h3>
-<p>
-    If present, images that are smaller than the image container will be upscaled
-    to fit the size of the container.
-</p>
-
-<h3>pixelated-scale</h3>
-<p>
-    If present, images whose <b>width</b> and/or <b>height</b> differs from the image
-    file's native resolution will be scaled using nearest-neighbor interpolation.
-</p>
-
-<h2>Examples</h2>
-<dokki-code headerless
-            code="
-            <dokki-image expanded src='https://upload.wikimedia.org/wikipedia/commons/thumb/7/7f/Eublepharis_macularius_2009_G6.jpg/1280px-Eublepharis_macularius_2009_G6.jpg'>
-            </dokki-image>
-            ">
-
-    <dokki-output>
-        <dokki-image expanded src='https://upload.wikimedia.org/wikipedia/commons/thumb/7/7f/Eublepharis_macularius_2009_G6.jpg/1280px-Eublepharis_macularius_2009_G6.jpg'>
-        </dokki-image>
-    </dokki-output>
-
-</dokki-code>
-
-<dokki-code headerless
-            code="
-            <dokki-image src='https://upload.wikimedia.org/wikipedia/commons/thumb/7/7f/Eublepharis_macularius_2009_G6.jpg/1280px-Eublepharis_macularius_2009_G6.jpg'>
-                <template #caption>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit
-                </template>
-            </dokki-image>
-            ">
-
-    <dokki-output>
-        <dokki-image src='https://upload.wikimedia.org/wikipedia/commons/thumb/7/7f/Eublepharis_macularius_2009_G6.jpg/1280px-Eublepharis_macularius_2009_G6.jpg'>
+        <dokki-image width="1280" height="720" src='https://upload.wikimedia.org/wikipedia/commons/thumb/7/7f/Eublepharis_macularius_2009_G6.jpg/1280px-Eublepharis_macularius_2009_G6.jpg'>
             <template #caption>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit
+                Eublepharis macularius
             </template>
         </dokki-image>
-    </dokki-output>
 
-</dokki-code>
+    <h2>Markup</h2>
 
-<dokki-code headerless
-            code="
-            <dokki-image
-                expanded
-                pixelated-scale
-                width='1024'
-                height='576'
-                src='https://upload.wikimedia.org/wikipedia/commons/thumb/7/7f/Eublepharis_macularius_2009_G6.jpg/80px-Eublepharis_macularius_2009_G6.jpg'
-            ></dokki-image>
+        <dokki-code headerless code="
+            <dokki-image expanded headerless height inline-class pixelated-scale src upscaled-to-fit width>
+
+                <template #caption>
+                </template>
+
+            </dokki-image>
             ">
+        </dokki-code>
 
-    <dokki-output>
-        <dokki-image
-            expanded
-            pixelated-scale
-            width="1024"
-            height="576"
-            src='https://upload.wikimedia.org/wikipedia/commons/thumb/7/7f/Eublepharis_macularius_2009_G6.jpg/80px-Eublepharis_macularius_2009_G6.jpg'>
-        </dokki-image>
-    </dokki-output>
+    <h2>Templates</h2>
 
-</dokki-code>
+        <x-templ>caption</x-templ>
+
+            <p>
+                The template's children will be displayed as the <x-tag>dokki-image</x-tag>
+                element's caption.
+            </p>
+
+            <x-examples>
+                <x-example>
+
+                    <dokki-code headerless
+                        code="
+                        <template #caption>
+                            Hello there
+                        </template>
+                        ">
+                    </dokki-code>
+
+                    <dokki-image>
+                        <template #caption>
+                            Hello there
+                        </template>
+                    </dokki-image>
+
+                </x-example>
+
+                <x-example>
+
+                    <dokki-code headerless
+                        code="
+                        <template #caption>
+                            <span style='filter: blur(2px);'>Hello there</span>
+                        </template>
+                        ">
+                    </dokki-code>
+
+                    <dokki-image>
+                        <template #caption>
+                            <span style='filter: blur(2px);'>Hello there</span>
+                        </template>
+                    </dokki-image>
+
+                </x-example>
+            </x-examples>
+
+    <h2>Attributes</h2>
+
+        <x-attr>expanded</x-attr>
+
+            <p>
+                If present, the <x-tag>dokki-image</x-tag> element's image container will be visible
+                initially, rather than requiring the user to reveal it.
+            </p>
+
+            <p>
+                Setting the <x-attr>headerless</x-attr> attribute will implicitly set this attribute
+                as well.
+            </p>
+
+        <x-attr>headerless</x-attr>
+
+            <p>
+                If present, causes the <x-tag>dokki-image</x-tag> element to be displayed without its
+                caption.
+            </p>
+
+            <p>
+                Setting this attribute will implicitly set the <x-attr>expanded</x-attr> attribute
+                as well. 
+            </p>
+
+            <x-examples>
+                <x-example>
+
+                    <dokki-code headerless
+                        code="
+                        <dokki-image headerless src='...'>
+                        </dokki-image>
+                        ">
+                    </dokki-code>
+
+                    <dokki-image headerless width="1280" height="720" src='https://upload.wikimedia.org/wikipedia/commons/thumb/7/7f/Eublepharis_macularius_2009_G6.jpg/1280px-Eublepharis_macularius_2009_G6.jpg'>
+                    </dokki-image>
+
+                </x-example>
+            </x-examples>
+
+        <x-attr>height</x-attr>
+
+            <p>
+                Corresponds to the <x-attr>height</x-attr> attribute of the standard <x-tag>img</x-tag>
+                element. 
+            </p>
+
+        <x-attr>inline-class</x-attr>
+
+            <p>
+                The class name(s) given in this string will be appended to the
+                <x-tag>dokki-image</x-tag> element's class list.
+            </p>
+
+        <x-attr>pixelated-scale</x-attr>
+
+            <p>
+                If the <x-attr>width</x-attr> and/or <x-attr>height</x-attr> attributes are set
+                higher than the image's native resolution, or if the image is smaller than the
+                <x-tag>dokki-image</x-tag> element's image container and the <x-attr>upscale-to-fit</x-attr>
+                attribute is set, the image will be upscaled using nearest-neighbor interpolation
+                (rather than e.g. bilinear sampling).
+            </p>
+
+            <x-examples>
+                <x-example>
+
+                    <dokki-code headerless
+                        code="
+                        <dokki-image pixelated-scale width='...' height='...' src='...'>
+                        </dokki-image>
+                        ">
+                    </dokki-code>
+
+                    <dokki-image
+                        expanded
+                        pixelated-scale
+                        width='1024'
+                        height='576'
+                        src='https://upload.wikimedia.org/wikipedia/commons/thumb/7/7f/Eublepharis_macularius_2009_G6.jpg/80px-Eublepharis_macularius_2009_G6.jpg'
+                    ></dokki-image>
+
+                </x-example>
+            </x-examples>
+
+        <x-attr>src</x-attr>
+        <x-required></x-required>
+
+            <p>
+                Corresponds to the <x-attr>src</x-attr> attribute of the standard <x-tag>img</x-tag>
+                element. 
+            </p>
+
+        <x-attr>upscale-to-fit</x-attr>
+
+            <p>
+                If present, images that are smaller than the <x-tag>dokki-image</x-tag> element's
+                image container will be upscaled to fit the container. 
+            </p>
+
+        <x-attr>width</x-attr>
+
+            <p>
+                Corresponds to the <x-attr>width</x-attr> attribute of the standard <x-tag>img</x-tag>
+                element. 
+            </p>
+
 </api-reference>

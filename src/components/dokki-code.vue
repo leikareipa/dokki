@@ -158,7 +158,7 @@ export default {
         Displays a source code snippet, with optional syntax highlighting and sample output.
     </p>
 
-    <h2>Samples</h2>
+    <h2>Sample</h2>
 
         <dokki-code>
             <template #caption>
@@ -392,22 +392,22 @@ export default {
                 initially, rather than requiring the user to reveal it.
             </p>
 
-            <dokki-tip>
+            <p>
                 Setting the <x-attr>headerless</x-attr> attribute will implicitly set this attribute
                 as well.
-            </dokki-tip>
+            </p>
 
         <x-attr>headerless</x-attr>
 
             <p>
-                If present, causes the <x-tag>dokki-code</x-tag> element to be rendered without its
+                If present, causes the <x-tag>dokki-code</x-tag> element to be dispayed without its
                 caption.
             </p>
 
-            <dokki-tip>
+            <p>
                 Setting this attribute will implicitly set the <x-attr>expanded</x-attr> attribute
                 as well. 
-            </dokki-tip>
+            </p>
 
             <x-examples>
                 <x-example>
@@ -430,7 +430,6 @@ export default {
 
                 </x-example>
             </x-examples>
-
 
         <x-attr>inline-class</x-attr>
 

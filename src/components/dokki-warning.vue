@@ -64,50 +64,21 @@
 </style>
 
 <api-reference>
-<p>
-    Displays its child contents alongside a cautionary label.
-</p>
+    <p>
+        Displays its contents in a cautionary tone.
+    </p>
+    
+    <h2>Sample</h2>
 
-<h2>Attributes</h2>
+        <dokki-warning>
+            This isn't recommended.
+        </dokki-warning>
 
-<p>
-    None.
-</p>
+    <h2>Markup</h2>
 
-<h2>Examples</h2>
-<dokki-code headerless
-            code="
+        <dokki-code headerless code="
             <dokki-warning>
-                <dokki-lorem></dokki-lorem>
-                <dokki-lorem></dokki-lorem>
             </dokki-warning>
             ">
-
-    <dokki-output>
-        <dokki-warning>
-            <dokki-lorem></dokki-lorem>
-            <dokki-lorem></dokki-lorem>
-        </dokki-warning>
-    </dokki-output>
-
-</dokki-code>
-
-<dokki-code headerless
-            code="
-            <dokki-warning>
-                <p style='filter: blur(4px);'>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                </p>
-            </dokki-warning>
-            ">
-
-    <dokki-output>
-        <dokki-warning>
-            <p style='filter: blur(4px);'>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-            </p>
-        </dokki-warning>
-    </dokki-output>
-
-</dokki-code>
+        </dokki-code>
 </api-reference>

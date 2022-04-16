@@ -138,10 +138,10 @@ body,
     --dokkiCSS-page-inert-fg-color: #757575;
     --dokkiCSS-page-primary-line-color: lightgray;
     --dokkiCSS-page-secondary-line-color: lightgray;
-    --dokkiCSS-embedded-header-bg-color: var(--document-bg-color);
-    --dokkiCSS-embedded-footer-bg-color: var(--document-bg-color);
+    --dokkiCSS-embedded-header-bg-color: var(--dokkiCSS-page-inert-bg-color);
+    --dokkiCSS-embedded-footer-bg-color: var(--dokkiCSS-page-inert-bg-color);
     --dokkiCSS-embedded-code-comment-fg-color: #317b10;
-    --dokkiCSS-embedded-auxiliary-color: #f5f5f5;
+    --dokkiCSS-embedded-auxiliary-color: rgba(0, 0, 0, 0.04);
 }
 
 [data-dokki-theme="dark"]
@@ -155,10 +155,10 @@ body,
     --dokkiCSS-page-inert-fg-color: #8f8f8f;
     --dokkiCSS-page-primary-line-color: black;
     --dokkiCSS-page-secondary-line-color: black;
-    --dokkiCSS-embedded-header-bg-color: var(--document-bg-color);
-    --dokkiCSS-embedded-footer-bg-color: var(--document-bg-color);
+    --dokkiCSS-embedded-header-bg-color: var(--dokkiCSS-page-inert-bg-color);
+    --dokkiCSS-embedded-footer-bg-color: var(--dokkiCSS-page-inert-bg-color);
     --dokkiCSS-embedded-code-comment-fg-color: #00aeae;
-    --dokkiCSS-embedded-auxiliary-color: #1f1f1f;
+    --dokkiCSS-embedded-auxiliary-color: rgba(0, 0, 0, 0.2);
 }
 
 code,
@@ -185,12 +185,12 @@ code .hljs-comment
     padding-top: var(--dokkiCSS-topic-bottom-margin);
 }
 
-.dokkiCSS-vertical-collapse > :first-child
+.dokkiCSS-vertical-collapse :first-child
 {
     margin-top: 0 !important;
 }
 
-.dokkiCSS-vertical-collapse > :last-child
+.dokkiCSS-vertical-collapse :last-child
 {
     margin-bottom: 0 !important;
 }
