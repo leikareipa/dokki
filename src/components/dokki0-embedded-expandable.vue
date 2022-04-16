@@ -131,7 +131,6 @@
     {
         border-bottom-left-radius: calc(var(--dokkiCSS-embedded-border-radius) - 1px);
         border-bottom-right-radius: calc(var(--dokkiCSS-embedded-border-radius) - 1px);
-        line-height: normal;
         overflow: hidden;
         padding: var(--dokkiCSS-embedded-vertical-padding) var(--dokkiCSS-embedded-horizontal-padding);
     }

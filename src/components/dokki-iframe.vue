@@ -40,6 +40,7 @@
 .dokki0-embedded-expandable.dokki-iframe .dokkiCSS-container
 {
     padding: 0;
+    line-height: normal;
 }
 </style>
 
