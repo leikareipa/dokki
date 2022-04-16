@@ -133,7 +133,7 @@
 
     h3
     {
-        font-size: 100%;
+        font-size: 105%;
         display: inline;
         font-weight: var(--dokkiCSS-bold-text-weight);
     }
