@@ -48,7 +48,6 @@
     {
         .content
         {
-            background-color: var(--dokkiCSS-embedded-auxiliary-color);
             padding: 0;
         }
     }
