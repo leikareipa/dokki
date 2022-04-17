@@ -48,7 +48,6 @@
     position: fixed;
     width: 100%;
     background-color: var(--dokkiCSS-page-inert-bg-color);
-    opacity: 0.92;
 
     .container
     {
