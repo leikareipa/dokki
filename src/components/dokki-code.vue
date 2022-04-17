@@ -314,9 +314,6 @@ export default {
                     </dokki-code>
 
                     <dokki-code>
-                        <template #code>
-                            console.log("Hello there.");
-                        </template>
                         <template #output>
                             Hello there.
                         </template>
@@ -336,12 +333,9 @@ export default {
                     </dokki-code>
 
                     <dokki-code>
-                        <template #code>
-                            console.log("Hello there.");
-                        </template>
                         <dokki-output>
                             <template #caption>Run it</template>
-                            <template #content>Hello there.</template>
+                            <template #output>Hello there.</template>
                         </dokki-output>
                     </dokki-code>
 
