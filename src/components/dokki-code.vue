@@ -277,7 +277,7 @@ export default {
                         ">
                     </dokki-code>
 
-                    <dokki-code expanded>
+                    <dokki-code>
                         <template #code>
                             <pre>
                                 void main(void) {
@@ -375,12 +375,12 @@ export default {
 
                     <dokki-code headerless
                         code="
-                        <dokki-code code=``console.log('Hello there'')``>
+                        <dokki-code code=``console.log('Hello there')``>
                         </dokki-code>
                         ">
                     </dokki-code>
 
-                    <dokki-code code='console.log("Hello there")'>
+                    <dokki-code code="console.log('Hello there')">
                     </dokki-code>
 
                 </x-example>
