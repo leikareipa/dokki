@@ -208,7 +208,7 @@ export default {
     {
         if (this.isHeaderless || this.isExpanded)
         {
-            this.$refs["expander"].expand({animate: false});
+            this.expand_content();
         }
     },
     computed: {
@@ -223,6 +223,14 @@ export default {
                 (typeof this.$slots.after === "function")
             );
         },
+    },
+    methods: {
+        expand_content() {
+            if (this.hasContent && (typeof this.$refs["expander"] === 'object'))
+            {
+                this.$refs["expander"].expand({animate: false});
+            }
+        }
     },
     watch: {
         isExpanded() {
