@@ -8,6 +8,7 @@
 <template>
 <dokki0-embedded-expandable
     class-name="dokki-table"
+    :has-content="(typeof this.$slots['table'] === 'function')"
     icon="fas fa-table"
     title="Table">
 

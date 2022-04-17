@@ -8,6 +8,7 @@
 <template>
 <dokki0-embedded-expandable
     class-name="dokki-video"
+    :has-content="Boolean(src)"
     :icon="headerIcon"
     title="Video"
     :class="platform">
@@ -63,8 +64,8 @@
 <script>
 export default {
     props: {
-        src: {},
-        platform: {default: "youtube"},
+        src: {type: String, default: undefined},
+        platform: {type: String, default: "youtube"},
     },
     computed: {
         videoUrl()

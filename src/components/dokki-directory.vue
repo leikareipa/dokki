@@ -8,6 +8,7 @@
 <template>
 <dokki0-embedded-expandable
     class-name="dokki-directory"
+    :has-content="Boolean(Object.keys(structure).length)"
     expands-to="dropdown"
     icon="fas fa-folder"
     title="File tree">
@@ -123,12 +124,7 @@
 <script>
 export default {
     props: {
-        structure: {type: Object},
-    },
-    data() {
-        return {
-            codeFromSlot: undefined,
-        }
+        structure: {type: Object, default: {}},
     },
     methods: {
         entryPadding(entry = {})

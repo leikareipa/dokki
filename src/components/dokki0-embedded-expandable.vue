@@ -10,6 +10,7 @@
    :class="{
        [inlineClass]: true,
        [className]: true,
+       'has-content': hasContent,
        'groupbox': (headerWidget == 'groupbox'),
        'expands-to-dropdown': (expandsTo == 'dropdown'),
        'headerless': isHeaderless,
@@ -19,7 +20,7 @@
    }">
 
     <header v-if="!isHeaderless"
-            @click="this.$refs['expander'].toggle_expansion()">
+            @click="hasContent? this.$refs['expander'].toggle_expansion() : 0">
 
         <span v-if="headerWidget == 'groupbox'" class="title blocker">
             <i :class="icon" class="fa-sm"/>
@@ -44,11 +45,12 @@
 
         </span>
 
-        <dokki0-expansion-indicator :isExpanded="isExpanded"/>
+        <dokki0-expansion-indicator v-if="hasContent" :isExpanded="isExpanded"/>
 
     </header>
 
-    <dokki0-animated-expander ref="expander"
+    <dokki0-animated-expander v-if="hasContent"
+                              ref="expander"
                               :start-expanded="isExpanded"
                               @transitioning="isTransitioning = true"
                               @expanded="isExpanded = true, isTransitioning = false"
@@ -99,6 +101,11 @@
             border-bottom-left-radius: 0;
             border-bottom-right-radius: 0;
         }
+    }
+
+    &:not(.has-content) header
+    {
+        cursor: default;
     }
 
     header
@@ -188,6 +195,7 @@ export default {
         expandsTo: {type: String, default: "inline"},
         className: {required: true, type: String},
         inlineClass: {type: String, default: ""},
+        hasContent: {type: Boolean, default: true},
         icon: {required: true, type: String},
         title: {required: true, type: String},
     },

@@ -8,6 +8,7 @@
 <template>
 <dokki0-embedded-expandable
     class-name="dokki-code"
+    :has-content="Boolean(codeFromSlot || code)"
     icon="fas fa-code"
     title="Code">
 

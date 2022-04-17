@@ -9,6 +9,7 @@
 <dokki0-embedded-expandable
     class-name="dokki-output"
     expands-to="dropdown"
+    :has-content="(typeof this.$slots['default'] === 'function')"
     icon="fas fa-asterisk"
     title="Spoiler"
     :class="{'dokkiCSS-unpadded': isUnpadded}">

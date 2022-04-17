@@ -8,6 +8,7 @@
 <template>
 <dokki0-embedded-expandable
     class-name="dokki-image"
+    :has-content="(src !== '//about:blank')"
     expands-to="dropdown"
     icon="fas fa-image"
     title="Image"

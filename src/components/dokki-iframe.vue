@@ -8,6 +8,7 @@
 <template>
 <dokki0-embedded-expandable
     class-name="dokki-iframe"
+    :has-content="Boolean(src || srcdoc)"
     icon="fas fa-crop-alt"
     title="Inline frame"
     @expanded="update_autofocus">
@@ -134,7 +135,7 @@ export default {
                         ">
                     </dokki-code>
 
-                    <dokki-iframe height="2em">
+                    <dokki-iframe>
                         <template #caption>
                             Hello there
                         </template>
@@ -152,7 +153,7 @@ export default {
                         ">
                     </dokki-code>
 
-                    <dokki-iframe height="2em">
+                    <dokki-iframe>
                         <template #caption>
                             <span style='filter: blur(2px);'>Hello there</span>
                         </template>
