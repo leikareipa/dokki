@@ -152,7 +152,7 @@ export default {
     <h2>Markup</h2>
 
         <dokki-code headerless code="
-            <dokki-image expanded headerless height inline-class pixelated-scale src upscaled-to-fit width>
+            <dokki-image expanded headerless height inline-class pixelated-scale src upscale-to-fit width>
 
                 <template #caption>
                 </template>
