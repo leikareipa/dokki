@@ -135,20 +135,10 @@ export default {
         code: {default: undefined},
         syntax: {default: undefined},
     },
-    data() {
-        return {
-            codeFromSlot: undefined,
-        }
-    },
-    mounted()
-    {
-        if ((typeof this.$slots.code == "function"))
+    computed: {
+        codeFromSlot()
         {
-            const codeElement = this.$slots.code()[0];
-            if (codeElement)
-            {
-                this.codeFromSlot = codeElement.children;
-            }
+            return this.$slots["code"]?.()[0]?.children;
         }
     },
 }
