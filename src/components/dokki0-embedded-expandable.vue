@@ -11,9 +11,10 @@
        [inlineClass]: true,
        [className]: true,
        'has-content': hasContent,
-       'groupbox': (headerWidget == 'groupbox'),
+       'groupbox': ((headerWidget == 'groupbox') && !isPlain),
        'expands-to-dropdown': (expandsTo == 'dropdown'),
        'headerless': isHeaderless,
+       'plain': isPlain,
        'has-after': hasAfter,
        'dokkiCSS-expanded': isExpanded,
        'dokkiCSS-transitioning': isTransitioning,
@@ -79,6 +80,18 @@
     border-radius: var(--dokkiCSS-embedded-border-radius);
     background-color: var(--dokkiCSS-page-inert-bg-color);
 
+    &.plain
+    {
+        background-color: var(--dokkiCSS-embedded-auxiliary-color);
+        border: none;
+
+        .title,
+        .title-blocker
+        {
+            display: none;
+        }
+    }
+
     &.headerless,
     &.expands-to-dropdown
     {
@@ -86,7 +99,7 @@
         background-color: var(--dokkiCSS-embedded-auxiliary-color);
     }
 
-    &.expands-to-dropdown
+    &.expands-to-dropdown:not(.plain)
     {
         & > header
         {
@@ -134,7 +147,7 @@
     }
 
     & > .content,
-    .dokkiCSS-container
+    .dokkiCSS-container /* 'dokkikCSS-container' is an obsolete class name and will be removed in the future.*/
     {
         border-bottom-left-radius: calc(var(--dokkiCSS-embedded-border-radius) - 1px);
         border-bottom-right-radius: calc(var(--dokkiCSS-embedded-border-radius) - 1px);
@@ -198,6 +211,7 @@ export default {
         hasContent: {type: Boolean, default: true},
         icon: {required: true, type: String},
         title: {required: true, type: String},
+        plain: {default: undefined},
     },
     data() {
         return {
@@ -222,6 +236,9 @@ export default {
             return (
                 (typeof this.$slots.after === "function")
             );
+        },
+        isPlain() {
+            return (this.$props.plain !== undefined);
         },
     },
     methods: {
