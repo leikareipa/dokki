@@ -79,7 +79,7 @@ body
     --dokkiCSS-header-height: 40px;
     --dokkiCSS-header-bottom-margin: 23px;
 
-    --dokkiCSS-side-panel-width: 280px;
+    --dokkiCSS-side-panel-width: 300px;
     --dokkiCSS-topics-container-width: 49%;
     --dokkiCSS-document-width: calc(var(--dokkiCSS-side-panel-width) + var(--dokkiCSS-topics-container-width));
 
@@ -135,7 +135,7 @@ body,
     --dokkiCSS-page-inert-bg-color: white;
     --dokkiCSS-page-primary-fg-color: #202020;
     --dokkiCSS-page-secondary-fg-color: #404040;
-    --dokkiCSS-page-inert-fg-color: #757575;
+    --dokkiCSS-page-inert-fg-color: #707070;
     --dokkiCSS-page-primary-line-color: lightgray;
     --dokkiCSS-page-secondary-line-color: lightgray;
     --dokkiCSS-embedded-header-bg-color: var(--dokkiCSS-page-inert-bg-color);

@@ -32,14 +32,13 @@
     overflow-x: auto;
     overflow-y: hidden;
     white-space: nowrap;
-    border-bottom: 1px solid var(--dokkiCSS-page-secondary-line-color);
     display: flex;
     flex-direction: row;
     align-items: center;
     white-space: nowrap;
     top: 0;
     left: 0;
-    z-index: 2;
+    z-index: 4;
     box-sizing: border-box;
     text-align: left;
     font-weight: normal;
@@ -48,6 +47,7 @@
     position: fixed;
     width: 100%;
     background-color: var(--dokkiCSS-page-inert-bg-color);
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.5);
 
     .container
     {
@@ -70,7 +70,6 @@
         flex: 1;
         overflow: auto;
         overflow-y: hidden;
-        font-weight: 500;
         height: var(--dokkiCSS-header-height);
         line-height: var(--dokkiCSS-header-height);
     }

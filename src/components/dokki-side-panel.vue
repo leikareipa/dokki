@@ -63,8 +63,7 @@
     text-align: left;
     overflow-y: auto;
     height: calc(100% - var(--dokkiCSS-header-height));
-    border-left: none;
-    border-right: 1px solid var(--dokkiCSS-page-secondary-line-color);
+    padding-top: 7px;
 
     .info-label
     {
@@ -75,7 +74,6 @@
         padding: var(--dokkiCSS-navibar-item-padding-vertical) var(--dokkiCSS-navibar-item-padding-horizontal);
         background-color: var(--dokkiCSS-page-inert-bg-color);
         text-align: left;
-        border-bottom: 1px solid var(--dokkiCSS-page-secondary-line-color);
         white-space: nowrap;
         text-overflow: ellipsis;
         overflow: hidden;
@@ -83,9 +81,9 @@
         box-sizing: border-box;
         display: flex;
         align-items: center;
-        position: sticky;
-        z-index: 9999;
-        top: 0;
+        margin-left: calc(0.5 * var(--dokkiCSS-navibar-item-padding-horizontal));
+        margin-right: calc(0.5 * var(--dokkiCSS-navibar-item-padding-horizontal));
+        border-radius: 4px;
 
         i
         {
@@ -101,7 +99,6 @@
         padding: var(--dokkiCSS-navibar-item-padding-vertical) var(--dokkiCSS-navibar-item-padding-horizontal);
         background-color: var(--dokkiCSS-page-inert-bg-color);
         text-align: left;
-        border-bottom: 1px solid var(--dokkiCSS-page-secondary-line-color);
         position: relative;
         top: 0;
         text-overflow: ellipsis;
@@ -109,6 +106,9 @@
         box-sizing: border-box;
         display: flex;
         align-items: center;
+        margin-left: calc(0.5 * var(--dokkiCSS-navibar-item-padding-horizontal));
+        margin-right: calc(0.5 * var(--dokkiCSS-navibar-item-padding-horizontal));
+        border-radius: 4px;
     }
 
     h2
@@ -131,7 +131,8 @@
         list-style-type: none;
         padding: 0;
         margin: 0;
-        padding-top: var(--dokkiCSS-navibar-item-padding-vertical);
+        padding-left: calc(0.5 * var(--dokkiCSS-navibar-item-padding-horizontal));
+        padding-right: calc(0.5 * var(--dokkiCSS-navibar-item-padding-horizontal));
 
         .icon
         {
@@ -168,6 +169,7 @@
             color: var(--dokkiCSS-page-secondary-fg-color);
             display: flex;
             position: relative;
+            border-radius: 4px;
 
             &:hover
             {
@@ -183,10 +185,17 @@
             margin-left: calc(var(--dokkiCSS-navibar-item-padding-horizontal) + 9px + 0.5ch);
             padding-left: 1.25ch;
             color: var(--dokkiCSS-page-inert-fg-color);
+            border-top-left-radius: 0;
+            border-bottom-left-radius: 0;
 
             &:not(:last-child)
             {
                 border-left: 1px solid var(--dokkiCSS-page-primary-line-color);
+            }
+
+            &:last-child
+            {
+                border-bottom-left-radius: 4px;
             }
 
             &::before
