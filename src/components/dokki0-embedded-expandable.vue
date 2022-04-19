@@ -33,20 +33,22 @@
             {{title}}
         </span>
 
+        <dokki0-expansion-indicator v-if="hasContent" :isExpanded="isExpanded" :isTransitioning="isTransitioning"/>
+
         <span class="caption">
 
                 <span class="icon" v-if="(headerWidget != 'groupbox') || isPlain" :title="title">
                     <i :class="icon"/>&nbsp;
                 </span>
 
-                <slot v-if="hasCaption" name="caption"/>
-                <span v-else>
-                    {{title}}
+                <span class="label">
+                    <slot v-if="hasCaption" name="caption"/>
+                    <span v-else>
+                        {{title}}
+                    </span>
                 </span>
 
         </span>
-
-        <dokki0-expansion-indicator v-if="hasContent" :isExpanded="isExpanded"/>
 
     </header>
 

@@ -6,12 +6,14 @@
  */
 
 <template>
-    <aside class="dokki0-expansion-indicator">
-        <i class="fas" :class="{
-            'fa-chevron-up': isExpanded,
-            'fa-chevron-down': !isExpanded
-            }"
-        />
+    <aside class="dokki0-expansion-indicator" :class="{
+        'maximized': isExpanded,
+        'minimized': !isExpanded,
+        'transitioning': isTransitioning,
+    }">
+
+        <i class="icon fas fa-chevron-down"/>
+
     </aside>
 </template>
 
@@ -20,15 +22,26 @@
 {
     color: var(--dokkiCSS-page-link-color);
     display: inline-block;
-    margin-left: auto;
     font-weight: var(--dokkiCSS-bold-text-weight);
-    font-size: 80%;
     text-transform: uppercase;
     white-space: nowrap;
+    margin-right: 1ch;
 
-    :first-child
+    .icon
     {
-        margin-left: 1ch;
+        transition: transform 0.30s ease;
+    }
+
+    &.minimized .icon,
+    &.maximized.transitioning .icon
+    {
+        transform: rotateX(0deg);
+    }
+
+    &.maximized .icon,
+    &.minimized.transitioning .icon
+    {
+        transform: rotateX(180deg);
     }
 } 
 </style>
@@ -37,6 +50,7 @@
 export default {
     props: {
         isExpanded: {required: true, type: Boolean},
+        isTransitioning: {required: true, type: Boolean},
     },
 }
 </script>
