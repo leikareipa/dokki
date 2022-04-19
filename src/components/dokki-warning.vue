@@ -32,7 +32,7 @@
     footer,
     header
     {
-        padding: var(--dokkiCSS-embedded-vertical-padding) var(--dokkiCSS-embedded-horizontal-padding);
+        padding: var(--dokkiCSS-embedded-header-padding);
     }
 
     footer

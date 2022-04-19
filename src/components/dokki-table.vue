@@ -40,34 +40,7 @@
             border-top: none;
         }
     }
-
-    &.plain
-    {
-        tr,
-        th,
-        td
-        {
-            border: none !important;
-
-            &:first-child
-            {
-                padding-left: 0 !important;
-            }
-        }
-
-        th
-        {
-            padding-top: 0;
-        }
-
-        .container,
-        .dokkiCSS-container
-        {
-            border: none;   
-            padding: var(--dokkiCSS-embedded-vertical-padding) var(--dokkiCSS-embedded-horizontal-padding);
-        }
-    }
-
+    
     .dokkiCSS-container
     {
         padding: 0;

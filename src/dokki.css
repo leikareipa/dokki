@@ -102,8 +102,9 @@ body
 
     --dokkiCSS-embedded-border-radius: 4px;
     --dokkiCSS-embedded-vertical-margin: 18px;
+    --dokkiCSS-embedded-header-padding: 18px 14px;
     --dokkiCSS-embedded-horizontal-padding: 14px;
-    --dokkiCSS-embedded-vertical-padding: 18px;
+    --dokkiCSS-embedded-vertical-padding: 14px;
     --dokkiCSS-navibar-item-padding-vertical: 5px;
     --dokkiCSS-navibar-item-padding-horizontal: 10px;
 
