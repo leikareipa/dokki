@@ -38,10 +38,19 @@
 </template>
 
 <style lang="scss">
-.dokki0-embedded-expandable.dokki-iframe .dokkiCSS-container
+.dokki0-embedded-expandable.dokki-iframe
 {
-    padding: 0;
-    line-height: normal;
+    .content
+    {
+        padding: 0;
+        line-height: normal;
+    }
+
+    &.plain .content
+    {
+        border: 1px solid var(--dokkiCSS-embedded-auxiliary-color);
+        border-top: 0;
+    }
 }
 </style>
 
@@ -95,9 +104,15 @@ export default {
         extensions.
     </p>
 
-    <h2>Sample</h2>
+    <h2>Samples</h2>
 
         <dokki-iframe src="https://www.wikipedia.org">
+            <template #caption>
+                Wikipedia.org
+            </template>
+        </dokki-iframe>
+
+        <dokki-iframe plain src="https://www.wikipedia.org">
             <template #caption>
                 Wikipedia.org
             </template>

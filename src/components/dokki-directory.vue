@@ -193,9 +193,24 @@ export default {
         Displays a nested listing of files and folders.
     </p>
 
-    <h2>Sample</h2>
+    <h2>Samples</h2>
 
         <dokki-directory :structure="{
+                'Directory': {
+                    'Sub-directory': {
+                        'file.1': {},
+                        'file.2': {},
+                    },
+                }
+            }">
+
+            <template #caption>
+                A listing of files and folders
+            </template>
+
+        </dokki-directory>
+
+        <dokki-directory plain :structure="{
                 'Directory': {
                     'Sub-directory': {
                         'file.1': {},

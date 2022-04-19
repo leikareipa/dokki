@@ -140,9 +140,15 @@ export default {
         dokki-specific extensions. 
     </p>
 
-    <h2>Sample</h2>
+    <h2>Samples</h2>
 
         <dokki-image width="1280" height="720" src='https://upload.wikimedia.org/wikipedia/commons/thumb/7/7f/Eublepharis_macularius_2009_G6.jpg/1280px-Eublepharis_macularius_2009_G6.jpg'>
+            <template #caption>
+                Eublepharis macularius
+            </template>
+        </dokki-image>
+
+        <dokki-image plain width="1280" height="720" src='https://upload.wikimedia.org/wikipedia/commons/thumb/7/7f/Eublepharis_macularius_2009_G6.jpg/1280px-Eublepharis_macularius_2009_G6.jpg'>
             <template #caption>
                 Eublepharis macularius
             </template>

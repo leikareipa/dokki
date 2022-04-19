@@ -45,7 +45,7 @@
     border: none;
     background-color: var(--dokkiCSS-embedded-auxiliary-color);
 
-    header
+    &:not(.plain) header
     {
         border-radius: var(--dokkiCSS-embedded-border-radius);
         border: 1px solid var(--dokkiCSS-page-primary-line-color);
@@ -149,9 +149,23 @@ export default {
         Displays a source code snippet, with optional syntax highlighting and sample output.
     </p>
 
-    <h2>Sample</h2>
+    <h2>Samples</h2>
 
         <dokki-code>
+            <template #caption>
+                A listing of a C program
+            </template>
+            <template #code>
+                <pre>
+                    void main(void)
+                    {
+                        printf("Hello there.\n");
+                    }
+                </pre>
+            </template>
+        </dokki-code>
+
+        <dokki-code plain>
             <template #caption>
                 A listing of a C program
             </template>
@@ -303,7 +317,7 @@ export default {
                         ">
                     </dokki-code>
 
-                    <dokki-code>
+                    <dokki-code plain>
                         <template #output>
                             Hello there.
                         </template>

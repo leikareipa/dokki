@@ -50,9 +50,30 @@ export default {
         Displays its contents when the user expands the element.
     </p>
 
-    <h2>Sample</h2>
+    <h2>Samples</h2>
 
         <dokki-spoiler>
+            <template #caption>
+                Secret information
+            </template>
+
+            <dokki-output unpadded>
+                <template #caption>
+                    Surveillance photo
+                </template>
+                
+                <dokki-image
+                    headerless
+                    width="80"
+                    height="45"
+                    upscale-to-fit
+                    src='https://upload.wikimedia.org/wikipedia/commons/thumb/7/7f/Eublepharis_macularius_2009_G6.jpg/80px-Eublepharis_macularius_2009_G6.jpg'>
+                </dokki-image>
+                
+            </dokki-output>
+        </dokki-spoiler>
+
+        <dokki-spoiler plain>
             <template #caption>
                 Secret information
             </template>

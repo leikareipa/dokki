@@ -93,9 +93,15 @@ export default {
         Displays a video from YouTube.
     </p>
 
-    <h2>Sample</h2>
+    <h2>Samples</h2>
 
         <dokki-video src="Pjx1B7Kt9xs">
+            <template #caption>
+                Shitty MS-DOS Games
+            </template>
+        </dokki-video>
+
+        <dokki-video plain src="Pjx1B7Kt9xs">
             <template #caption>
                 Shitty MS-DOS Games
             </template>

@@ -41,6 +41,33 @@
         }
     }
 
+    &.plain
+    {
+        tr,
+        th,
+        td
+        {
+            border: none !important;
+
+            &:first-child
+            {
+                padding-left: 0 !important;
+            }
+        }
+
+        th
+        {
+            padding-top: 0;
+        }
+
+        .container,
+        .dokkiCSS-container
+        {
+            border: none;   
+            padding: var(--dokkiCSS-embedded-vertical-padding) var(--dokkiCSS-embedded-horizontal-padding);
+        }
+    }
+
     .dokkiCSS-container
     {
         padding: 0;
@@ -105,9 +132,32 @@
         A dokki wapper for the standard <x-tag>table</x-tag> element.
     </p>
 
-    <h2>Sample</h2>
+    <h2>Samples</h2>
 
         <dokki-table>
+            <template #caption>
+                Releases
+            </template>
+
+            <template #table>
+                <table>
+                    <tr>
+                        <th>Name</th>
+                        <th>Year</th>
+                    </tr>
+                    <tr>
+                        <td>Кров у наших криницях</td>
+                        <td>2006</td>
+                    </tr>
+                    <tr>
+                        <td>Відчуженість</td>
+                        <td>2007</td>
+                    </tr>
+                </table>
+            </template>
+        </dokki-table>
+
+        <dokki-table plain>
             <template #caption>
                 Releases
             </template>
