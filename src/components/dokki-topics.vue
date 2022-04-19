@@ -67,8 +67,6 @@
 </style>
 
 <script>
-import * as Vue from "vue";
-
 export default {
     computed: {
         areTopicsReady() {
@@ -78,7 +76,7 @@ export default {
     watch: {
         areTopicsReady(are) {
             if (are) {
-                Vue.nextTick(()=>window.dispatchEvent(new CustomEvent("dokki-topics-ready")));
+                this.$nextTick(()=>window.dispatchEvent(new CustomEvent("dokki-topics-ready")));
             }
         }
     },
