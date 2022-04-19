@@ -35,8 +35,8 @@
 
         <span class="caption">
 
-                <span v-if="headerWidget != 'groupbox'">
-                    <i class="fa" :class="icon" style="margin-right: 0.35em;"/>
+                <span class="icon" v-if="(headerWidget != 'groupbox') || isPlain" :title="title">
+                    <i :class="icon"/>&nbsp;
                 </span>
 
                 <slot v-if="hasCaption" name="caption"/>
@@ -92,14 +92,14 @@
         }
     }
 
-    &.headerless,
-    &.expands-to-dropdown
+    &:not(.plain).headerless,
+    &:not(.plain).expands-to-dropdown
     {
         border: none;
         background-color: var(--dokkiCSS-embedded-auxiliary-color);
     }
 
-    &.expands-to-dropdown:not(.plain)
+    &:not(.plain).expands-to-dropdown
     {
         & > header
         {
@@ -126,7 +126,7 @@
         cursor: pointer;
         user-select: none;
         font-weight: normal;
-        padding: var(--dokkiCSS-embedded-vertical-padding) var(--dokkiCSS-embedded-horizontal-padding);
+        padding: var(--dokkiCSS-embedded-header-padding);
         display: flex;
         align-items: baseline;
         box-sizing: border-box;
