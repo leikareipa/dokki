@@ -40,7 +40,7 @@
             border-top: none;
         }
     }
-    
+
     .dokkiCSS-container
     {
         padding: 0;
@@ -59,7 +59,7 @@
         td,
         th
         {
-            padding: 8px;
+            padding: 9px;
             border: none;
             white-space: nowrap;
             text-align: left;
