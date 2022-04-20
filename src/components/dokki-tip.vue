@@ -6,7 +6,10 @@
  */
 
 <template>
-<p class="dokkiCSS-embedded dokki-tip">
+<p class="dokkiCSS-embedded dokki-tip"
+   :class="{
+       [inlineClass]: true,
+   }">
 
     <header>
         <i class="fas fa-info-circle"/>
@@ -63,6 +66,14 @@
 }
 </style>
 
+<script>
+export default {
+    props: {
+        inlineClass: {type: String, default: ""},
+    },
+}
+</script>
+
 <api-reference>
     <p>
         Displays its contents as a tip to the reader.
@@ -77,8 +88,17 @@
     <h2>Markup</h2>
 
         <dokki-code headerless code="
-            <dokki-tip>
+            <dokki-tip inline-class>
             </dokki-tip>
             ">
         </dokki-code>
+
+    <h2>Attributes</h2>
+
+        <x-attr>inline-class</x-attr>
+
+            <p>
+                The class name(s) given in this string will be appended to the
+                <x-tag>dokki-tip</x-tag> element's class list.
+            </p>
 </api-reference>

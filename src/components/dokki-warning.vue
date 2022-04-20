@@ -6,7 +6,10 @@
  */
 
 <template>
-<p class="dokkiCSS-embedded dokki-warning">
+<p class="dokkiCSS-embedded dokki-warning"
+   :class="{
+       [inlineClass]: true,
+   }">
 
     <header>
         <i class="fas fa-exclamation-triangle"/>
@@ -63,6 +66,14 @@
 }
 </style>
 
+<script>
+export default {
+    props: {
+        inlineClass: {type: String, default: ""},
+    },
+}
+</script>
+
 <api-reference>
     <p>
         Displays its contents in a cautionary tone.
@@ -77,8 +88,17 @@
     <h2>Markup</h2>
 
         <dokki-code headerless code="
-            <dokki-warning>
+            <dokki-warning inline-class>
             </dokki-warning>
             ">
         </dokki-code>
+
+    <h2>Attributes</h2>
+
+        <x-attr>inline-class</x-attr>
+
+            <p>
+                The class name(s) given in this string will be appended to the
+                <x-tag>dokki-warning</x-tag> element's class list.
+            </p>
 </api-reference>
