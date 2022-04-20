@@ -13,7 +13,7 @@
     <div class="info-label">
 
         <span v-if="productName !== undefined">{{productName}}</span>
-        <span v-else>Contents</span>
+        <span v-else>Contents:</span>
 
     </div>
 
@@ -63,12 +63,11 @@
     text-align: left;
     overflow-y: auto;
     height: calc(100% - var(--dokkiCSS-header-height));
-    padding-top: 7px;
+    padding-top: 13px;
 
     .info-label
     {
-        height: var(--dokkiCSS-header-height);
-        line-height: var(--dokkiCSS-header-height);
+        min-height: var(--dokkiCSS-header-height);
         align-items: center;
         margin: 0;
         padding: var(--dokkiCSS-navibar-item-padding-vertical) var(--dokkiCSS-navibar-item-padding-horizontal);
