@@ -29,7 +29,7 @@
 
     .icon
     {
-        transition: transform 0.30s ease;
+        transition: transform 0.15s ease-out;
     }
 
     &.minimized .icon,
