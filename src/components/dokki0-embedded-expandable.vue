@@ -37,7 +37,7 @@
 
         <span class="caption">
 
-                <span class="icon" v-if="(headerWidget != 'groupbox') || isPlain" :title="title">
+                <span class="icon" v-if="isPlain" :title="title">
                     <i :class="icon"/>&nbsp;
                 </span>
 
@@ -59,7 +59,7 @@
                               @expanded="isExpanded = true, isTransitioning = false"
                               @minimized="isExpanded = false, isTransitioning = false">
 
-        <div class="content dokkiCSS-vertical-collapse dokkiCSS-container">
+        <div class="content dokkiCSS-container">
 
             <slot name="content"/>
 
