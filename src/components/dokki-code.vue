@@ -72,7 +72,7 @@
             border-bottom-right-radius: 0;
         }
 
-        &:not(.headerless)
+        &:not(.headerless):not(.plain)
         {
             & > .dokki0-animated-expander > .dokkiCSS-container
             {
