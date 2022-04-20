@@ -4,15 +4,10 @@ A documentation framework for creating single-page end-user-oriented docs.
 
 Dokki is currently work in progress.
 
-## Screenshots
-
 ![](./media/screenshots/beta-1.png)\
-*Viewing a tag-filtered list of topics (dokki being used as a personal blogging platform). Horizontal layout.*
+*Viewing a document containing an embedded table (dokki being used as a personal blogging platform).*
 
-![](./media/screenshots/beta-2.png)\
-*Viewing documentation containing dokki's embedded code and table elements. Vertical layout.*
-
-## The rest
+## Where's the rest?
 
 Since dokki is work in progress, this readme is a bit light on content for the moment. More info will be added in the future as the software matures.
 
