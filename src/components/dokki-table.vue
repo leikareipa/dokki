@@ -30,7 +30,7 @@
 <style lang="scss">
 .dokki0-embedded-expandable.dokki-table
 {
-    &.headerless 
+    &:not(.plain).headerless
     {
         background-color: var(--dokkiCSS-page-inert-bg-color);
         border: 1px solid var(--dokkiCSS-page-primary-line-color);
