@@ -57,22 +57,6 @@
                 border: none;
             }
 
-            .dokki-output.examples > header {
-                font-weight: var(--dokkiCSS-bold-text-weight);
-            }
-
-            .dokki-output.examples > header > .caption i
-            {
-                display: none;
-            }
-
-            .dokki-output.examples > header > .caption::before
-            {
-                font-family: "Font Awesome 5 Free";
-                content: "\f19c";
-                font-weight: 900;
-            }
-
             .dokki-area.example {
                 background-color: var(--dokkiCSS-page-inert-bg-color);
                 border: 1px solid var(--dokkiCSS-page-primary-line-color);
@@ -146,9 +130,23 @@
         Displays a source code snippet, with optional syntax highlighting and sample output.
     </p>
 
-    <h2>Sample</h2>
+    <h2>Samples</h2>
 
         <dokki-code>
+            <template #caption>
+                A listing of a C program
+            </template>
+            <template #code>
+                <pre>
+                    void main(void)
+                    {
+                        printf("Hello there.\n");
+                    }
+                </pre>
+            </template>
+        </dokki-code>
+
+        <dokki-code plain>
             <template #caption>
                 A listing of a C program
             </template>
@@ -300,10 +298,7 @@
                         ">
                     </dokki-code>
 
-                    <dokki-code>
-                        <template #code>
-                            console.log("Hello there.");
-                        </template>
+                    <dokki-code plain>
                         <template #output>
                             Hello there.
                         </template>
@@ -323,12 +318,9 @@
                     </dokki-code>
 
                     <dokki-code>
-                        <template #code>
-                            console.log("Hello there.");
-                        </template>
                         <dokki-output>
                             <template #caption>Run it</template>
-                            <template #content>Hello there.</template>
+                            <template #output>Hello there.</template>
                         </dokki-output>
                     </dokki-code>
 
@@ -449,9 +441,24 @@
         Displays a nested listing of files and folders.
     </p>
 
-    <h2>Sample</h2>
+    <h2>Samples</h2>
 
         <dokki-directory :structure="{
+                'Directory': {
+                    'Sub-directory': {
+                        'file.1': {},
+                        'file.2': {},
+                    },
+                }
+            }">
+
+            <template #caption>
+                A listing of files and folders
+            </template>
+
+        </dokki-directory>
+
+        <dokki-directory plain :structure="{
                 'Directory': {
                     'Sub-directory': {
                         'file.1': {},
@@ -690,9 +697,15 @@
         extensions.
     </p>
 
-    <h2>Sample</h2>
+    <h2>Samples</h2>
 
         <dokki-iframe src="https://www.wikipedia.org">
+            <template #caption>
+                Wikipedia.org
+            </template>
+        </dokki-iframe>
+
+        <dokki-iframe plain src="https://www.wikipedia.org">
             <template #caption>
                 Wikipedia.org
             </template>
@@ -927,9 +940,15 @@
         dokki-specific extensions. 
     </p>
 
-    <h2>Sample</h2>
+    <h2>Samples</h2>
 
         <dokki-image width="1280" height="720" src='https://upload.wikimedia.org/wikipedia/commons/thumb/7/7f/Eublepharis_macularius_2009_G6.jpg/1280px-Eublepharis_macularius_2009_G6.jpg'>
+            <template #caption>
+                Eublepharis macularius
+            </template>
+        </dokki-image>
+
+        <dokki-image plain width="1280" height="720" src='https://upload.wikimedia.org/wikipedia/commons/thumb/7/7f/Eublepharis_macularius_2009_G6.jpg/1280px-Eublepharis_macularius_2009_G6.jpg'>
             <template #caption>
                 Eublepharis macularius
             </template>
@@ -1161,9 +1180,29 @@
         Displays its contents when the user expands the element.
     </p>
 
-    <h2>Sample</h2>
+    <h2>Samples</h2>
 
         <dokki-spoiler>
+            <template #caption>
+                Secret information
+            </template>
+
+            <dokki-output unpadded>
+                <template #caption>
+                    Surveillance photo
+                </template>
+                
+                <dokki-image                     headerless
+                    width="80"
+                    height="45"
+                    upscale-to-fit
+                    src='https://upload.wikimedia.org/wikipedia/commons/thumb/7/7f/Eublepharis_macularius_2009_G6.jpg/80px-Eublepharis_macularius_2009_G6.jpg'>
+                </dokki-image>
+                
+            </dokki-output>
+        </dokki-spoiler>
+
+        <dokki-spoiler plain>
             <template #caption>
                 Secret information
             </template>
@@ -1309,9 +1348,32 @@
         A dokki wapper for the standard <x-tag>table</x-tag> element.
     </p>
 
-    <h2>Sample</h2>
+    <h2>Samples</h2>
 
         <dokki-table>
+            <template #caption>
+                Releases
+            </template>
+
+            <template #table>
+                <table>
+                    <tr>
+                        <th>Name</th>
+                        <th>Year</th>
+                    </tr>
+                    <tr>
+                        <td>Кров у наших криницях</td>
+                        <td>2006</td>
+                    </tr>
+                    <tr>
+                        <td>Відчуженість</td>
+                        <td>2007</td>
+                    </tr>
+                </table>
+            </template>
+        </dokki-table>
+
+        <dokki-table plain>
             <template #caption>
                 Releases
             </template>
@@ -1547,10 +1609,19 @@
     <h2>Markup</h2>
 
         <dokki-code headerless code="
-            <dokki-tip>
+            <dokki-tip inline-class>
             </dokki-tip>
             ">
         </dokki-code>
+
+    <h2>Attributes</h2>
+
+        <x-attr>inline-class</x-attr>
+
+            <p>
+                The class name(s) given in this string will be appended to the
+                <x-tag>dokki-tip</x-tag> element's class list.
+            </p>
 
         </dokki-topic>
         
@@ -1575,9 +1646,15 @@
         Displays a video from YouTube.
     </p>
 
-    <h2>Sample</h2>
+    <h2>Samples</h2>
 
         <dokki-video src="Pjx1B7Kt9xs">
+            <template #caption>
+                Shitty MS-DOS Games
+            </template>
+        </dokki-video>
+
+        <dokki-video plain src="Pjx1B7Kt9xs">
             <template #caption>
                 Shitty MS-DOS Games
             </template>
@@ -1716,10 +1793,19 @@
     <h2>Markup</h2>
 
         <dokki-code headerless code="
-            <dokki-warning>
+            <dokki-warning inline-class>
             </dokki-warning>
             ">
         </dokki-code>
+
+    <h2>Attributes</h2>
+
+        <x-attr>inline-class</x-attr>
+
+            <p>
+                The class name(s) given in this string will be appended to the
+                <x-tag>dokki-warning</x-tag> element's class list.
+            </p>
 
         </dokki-topic>
         
