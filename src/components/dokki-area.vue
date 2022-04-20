@@ -6,7 +6,7 @@
  */
 
 <template>
-<p class="dokki-area dokkiCSS-vertical-collapse"
+<p class="dokki-area"
    :class="inlineClass">
     <slot/>
 </p>

@@ -16,7 +16,7 @@
         &nbsp;Warning
     </header>
     
-    <footer class="dokkiCSS-vertical-collapse">
+    <footer>
         <slot/>
     </footer>
 
