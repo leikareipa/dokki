@@ -81,6 +81,8 @@
 
     body[data-dokki-layout="vertical-narrow"] &
     {
+        box-shadow: none;
+
         .title
         {
             margin-left: 0;

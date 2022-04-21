@@ -132,6 +132,11 @@
         display: flex;
         align-items: baseline;
         box-sizing: border-box;
+
+        & .dokki0-expansion-indicator
+        {
+            margin-right: 1ch;
+        }
     }
 
     hr
@@ -190,6 +195,20 @@
                 color: transparent;
                 height: 0;
                 transform: none;
+            }
+        }
+    }
+
+    body[data-dokki-layout="vertical-narrow"] &
+    {
+        header
+        {
+            flex-direction: row-reverse;
+
+            & .dokki0-expansion-indicator
+            {
+                margin-right: unset;
+                margin-left: auto;
             }
         }
     }

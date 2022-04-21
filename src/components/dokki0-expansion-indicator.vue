@@ -25,7 +25,6 @@
     font-weight: var(--dokkiCSS-bold-text-weight);
     text-transform: uppercase;
     white-space: nowrap;
-    margin-right: 1ch;
 
     .icon
     {

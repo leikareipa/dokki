@@ -269,9 +269,17 @@ body[data-dokki-layout^="vertical"]
 
 body[data-dokki-layout="vertical-narrow"]
 {
+    --dokkiCSS-header-height: 60px;
     --dokkiCSS-topic-bottom-margin: 12px;
-    --dokkiCSS-topic-horizontal-padding: 16px;
-    --dokkiCSS-topic-vertical-padding: 12px;
+    --dokkiCSS-topic-horizontal-padding: 15px;
+    --dokkiCSS-topic-vertical-padding: 25px;
     --dokkiCSS-topic-header-top-margin: 25px;
     --dokkiCSS-header-bottom-margin: 0px;
+    --dokkiCSS-embedded-header-padding: 18px 13px;
+    --dokkiCSS-embedded-horizontal-padding: 13px;
+}
+
+body[data-dokki-layout="vertical-narrow"] .dokkiCSS-anchor:first-child
+{
+    padding-top: 0;
 }

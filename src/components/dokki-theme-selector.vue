@@ -21,7 +21,6 @@
 {
     margin-left: auto;
     cursor: pointer;
-    color: var(--dokkiCSS-page-secondary-fg-color);
     font-variant: small-caps;
     text-transform: lowercase;
     border: none;
