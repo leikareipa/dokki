@@ -10,13 +10,6 @@
 
     <slot/>
 
-    <div class="info-label">
-
-        <span v-if="productName !== undefined">{{productName}}</span>
-        <span v-else>Contents:</span>
-
-    </div>
-
     <ul class="vertical-navi">
 
         <li v-for="(topic, topicIdx) in topics">
@@ -65,31 +58,6 @@
     height: calc(100% - var(--dokkiCSS-header-height));
     padding-top: 13px;
 
-    .info-label
-    {
-        min-height: var(--dokkiCSS-header-height);
-        align-items: center;
-        margin: 0;
-        padding: var(--dokkiCSS-navibar-item-padding-vertical) var(--dokkiCSS-navibar-item-padding-horizontal);
-        background-color: var(--dokkiCSS-page-inert-bg-color);
-        text-align: left;
-        white-space: nowrap;
-        text-overflow: ellipsis;
-        overflow: hidden;
-        color: var(--dokkiCSS-page-secondary-fg-color);
-        box-sizing: border-box;
-        display: flex;
-        align-items: center;
-        margin-left: calc(0.5 * var(--dokkiCSS-navibar-item-padding-horizontal));
-        margin-right: calc(0.5 * var(--dokkiCSS-navibar-item-padding-horizontal));
-        border-radius: 4px;
-
-        i
-        {
-            color: var(--dokkiCSS-page-secondary-fg-color);
-        }
-    }
-
     .dokkiCSS-user-element
     {
         min-height: var(--dokkiCSS-header-height);
@@ -108,6 +76,11 @@
         margin-left: calc(0.5 * var(--dokkiCSS-navibar-item-padding-horizontal));
         margin-right: calc(0.5 * var(--dokkiCSS-navibar-item-padding-horizontal));
         border-radius: 4px;
+    }
+
+    .dokkiCSS-user-element:last-of-type
+    {
+        margin-bottom: 10px;
     }
 
     h2
