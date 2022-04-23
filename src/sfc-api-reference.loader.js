@@ -22,6 +22,7 @@
  */
 
 const htmlParser = require("node-html-parser");
+const markdownIt = require("markdown-it")({html: true});
 const fs = require("fs");
 
 const topics = {};
@@ -42,14 +43,18 @@ module.exports = function (source) {
         topicsContainerEl = templateDoc.querySelector("dokki-topics");
     }
 
-    // Insert the custom block's contents into the output API reference file.
+    // Vue SFC files store their data inside HTML-like tag blocks, like <style></style> and
+    // <script></script>; the custom documentation we're interested in is stored inside an
+    // <api-reference></api-reference> block. So we'll parse the SFC file as HTML and extract
+    // the doc block's contents.
     const docEl = sfcContents.querySelector("api-reference"); 
     if (docEl) {
         const componentName = srcFilename.match(/components\/(.*)\.vue$/)[1];
+        const docMarkdown = docEl.innerHTML;
+        const docHtml = markdownIt.render(docMarkdown);
 
-        topics[componentName] = topic_html_string(componentName, docEl.innerHTML);
+        topics[componentName] = topic_html_string(componentName, docHtml);
         topicsContainerEl.innerHTML = Object.keys(topics).sort().map(key=>topics[key]).join("\n");
-
         fs.writeFileSync(dstFilename, templateDoc.toString(), "utf-8");
 
         // Don't pass the custom block to other loaders.
