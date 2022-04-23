@@ -102,14 +102,10 @@ export default {
     props: {
         icon: {default: "fas fa-atlas"},
         title: {default: "Untitled"},
-        productName: {default: undefined},
-        productVersion: {default: undefined},
     },
     beforeCreate()
     {
         document.title = this.title;
-        this.$store.commit("set_product_name", this.productName);
-        this.$store.commit("set_product_version", this.productVersion);
     },
 }
 </script>

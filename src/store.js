@@ -36,10 +36,6 @@ export default Vuex.createStore({
             // Metadata about mounted <dokki-lorem> elements.
             loremCount: 0,
 
-            productName: undefined,
-
-            productVersion: undefined,
-
             // If the window.location.hash string starts with this string, the following characters
             // in the hash string are tags.
             tagHashMarker: "#/",
@@ -133,13 +129,5 @@ export default Vuex.createStore({
         {
             state.loremCount++;
         },
-        set_product_name(state, name)
-        {
-            state.productName = name;
-        },
-        set_product_version(state, version)
-        {
-            state.productVersion = version;
-        }
     }
 });

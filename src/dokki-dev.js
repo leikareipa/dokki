@@ -40,7 +40,6 @@ import dokki0HashRouter from "./components/dokki0-hash-router.vue";
 import dokki0PageLoadProgressBar from "./components/dokki0-page-load-progress-bar.vue";
 import dokki0TextBlockWithLineNumbers from "./components/dokki0-text-block-with-line-numbers.vue";
 import dokki0Topic from "./components/dokki0-topic.vue";
-import productName from "./components/product-name.vue";
 
 export function start(args = {})
 {
@@ -137,8 +136,7 @@ export function start(args = {})
     .component("dokki0-hash-router", dokki0HashRouter)
     .component("dokki0-page-load-progress-bar", dokki0PageLoadProgressBar)
     .component("dokki0-text-block-with-line-numbers", dokki0TextBlockWithLineNumbers)
-    .component("dokki0-topic", dokki0Topic)
-    .component("product-name", productName);
+    .component("dokki0-topic", dokki0Topic);
 
     // Register any user-provided custom components.
     if (Array.isArray(parent.window.dokkiUserComponents))

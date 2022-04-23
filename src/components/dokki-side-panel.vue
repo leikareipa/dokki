@@ -209,30 +209,6 @@ export default {
         {
             return this.$store.state.topics;
         },
-        productName()
-        {
-            const name = (this.$store.state.productName !== undefined)
-                            ? this.$store.state.productName
-                            : "";
-
-            const version = (this.$store.state.productVersion !== undefined)
-                            ? this.$store.state.productVersion
-                            : "";
-
-            if (name.length && !version.length) {
-                return name;
-            }
-
-            if (!name.length && version.length) {
-                return version;
-            }
-
-            if (name.length && version.length) {
-                return `${name} ${version}`;
-            }
-
-            return undefined;
-        }
     },
 }
 </script>
