@@ -75,7 +75,7 @@ export default {
 }
 </script>
 
-<api-reference>
+<api-reference lang="md">
 <p>
     TODO
 </p>

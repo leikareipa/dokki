@@ -100,230 +100,191 @@
 }
 </style>
 
-<api-reference>
-    <p>
-        A dokki wapper for the standard <x-tag>table</x-tag> element.
-    </p>
+<api-reference lang="md">
+A dokki wapper for the standard \<table\> element, providing the features of \<table\>
+with certain dokki-specific extensions.
 
-    <h2>Samples</h2>
+## Samples
 
+<dokki-table>
+    <template #caption>
+        Releases
+    </template>
+    <template #table>
+        <table>
+            <tr>
+                <th>Name</th>
+                <th>Year</th>
+            </tr>
+            <tr>
+                <td>Кров у наших криницях</td>
+                <td>2006</td>
+            </tr>
+            <tr>
+                <td>Відчуженість</td>
+                <td>2007</td>
+            </tr>
+        </table>
+    </template>
+</dokki-table>
+
+<dokki-table plain>
+    <template #caption>
+        Releases
+    </template>
+    <template #table>
+        <table>
+            <tr>
+                <th>Name</th>
+                <th>Year</th>
+            </tr>
+            <tr>
+                <td>Кров у наших криницях</td>
+                <td>2006</td>
+            </tr>
+            <tr>
+                <td>Відчуженість</td>
+                <td>2007</td>
+            </tr>
+        </table>
+    </template>
+</dokki-table>
+
+## Markup
+
+    <dokki-table expanded headerless inline-class>
+
+        <template #caption>
+        </template>
+
+        <template #table>
+        </template>
+
+    </dokki-table>
+
+</dokki-code>
+
+## Templates
+
+### #caption
+
+The template's children will be displayed as the \<dokki-table\> element's caption.
+
+<x-examples>
+    <x-example>
+        <dokki-code headerless code="
+            <template #caption>
+                Hello there
+            </template>
+            ">
+        </dokki-code>
         <dokki-table>
             <template #caption>
-                Releases
-            </template>
-
-            <template #table>
-                <table>
-                    <tr>
-                        <th>Name</th>
-                        <th>Year</th>
-                    </tr>
-                    <tr>
-                        <td>Кров у наших криницях</td>
-                        <td>2006</td>
-                    </tr>
-                    <tr>
-                        <td>Відчуженість</td>
-                        <td>2007</td>
-                    </tr>
-                </table>
+                Hello there
             </template>
         </dokki-table>
-
-        <dokki-table plain>
-            <template #caption>
-                Releases
-            </template>
-
-            <template #table>
-                <table>
-                    <tr>
-                        <th>Name</th>
-                        <th>Year</th>
-                    </tr>
-                    <tr>
-                        <td>Кров у наших криницях</td>
-                        <td>2006</td>
-                    </tr>
-                    <tr>
-                        <td>Відчуженість</td>
-                        <td>2007</td>
-                    </tr>
-                </table>
-            </template>
-        </dokki-table>
-
-    <h2>Markup</h2>
-
+    </x-example>
+    <x-example>
         <dokki-code headerless code="
-            <dokki-table expanded headerless inline-class>
+            <template #caption>
+                <span style='filter: blur(2px);'>Hello there</span>
+            </template>
+            ">
+        </dokki-code>
+        <dokki-table>
+            <template #caption>
+                <span style='filter: blur(2px);'>Hello there</span>
+            </template>
+        </dokki-table>
+    </x-example>
+</x-examples>
 
-                <template #caption>
-                </template>
+### #table <x-required></x-required>
 
+The template's children will be displayed as the \<dokki-table\> element's table.
+Generally, the template should have one child: a standard \<table\> element, whose
+children define the table's contents.
+
+<x-examples>
+    <x-example>
+        <dokki-code headerless code="
+            <template #table>
+                <table>
+                    <tr>
+                        <th>First</th>
+                        <th>Second</th>
+                    </tr>
+                    <tr>
+                        <td>Hello</td>
+                        <td>there</td>
+                    </tr>
+                </table>
+            </template>
+            ">
+        </dokki-code>
+        <dokki-table>
+            <template #table>
+                <table>
+                    <tr>
+                        <th>First</th>
+                        <th>Second</th>
+                    </tr>
+                    <tr>
+                        <td>Hello</td>
+                        <td>there</td>
+                    </tr>
+                </table>
+            </template>
+        </dokki-table>
+    </x-example>
+</x-examples>
+
+## Attributes
+
+### expanded
+
+If present, the \<dokki-table\> element's code listing will be visible initially,
+rather than requiring the user to reveal it.
+
+Setting the **headerless** attribute will implicitly set this attribute as well.
+
+### headerless
+
+If present, causes the \<dokki-table\> element to be dispayed without its caption.
+
+Setting this attribute will implicitly set the **expanded** attribute as well. 
+
+<x-examples>
+    <x-example>
+        <dokki-code headerless
+            code="
+            <dokki-table headerless>
                 <template #table>
+                    <table>
+                        <tr>
+                            <td>Hello</td>
+                            <td>there</td>
+                        </tr>
+                    </table>
                 </template>
-
             </dokki-table>
             ">
         </dokki-code>
+        <dokki-table headerless>
+            <template #table>
+                <table>
+                    <tr>
+                        <td>Hello</td>
+                        <td>there</td>
+                    </tr>
+                </table>
+            </template>
+        </dokki-table>
+    </x-example>
+</x-examples>
 
-    <h2>Templates</h2>
+### inline-class
 
-        <x-templ>caption</x-templ>
-
-            <p>
-                The template's children will be displayed as the <x-tag>dokki-table</x-tag>
-                element's caption.
-            </p>
-
-            <x-examples>
-                <x-example>
-
-                    <dokki-code headerless
-                        code="
-                        <template #caption>
-                            Hello there
-                        </template>
-                        ">
-                    </dokki-code>
-
-                    <dokki-table>
-                        <template #caption>
-                            Hello there
-                        </template>
-                    </dokki-table>
-
-                </x-example>
-
-                <x-example>
-
-                    <dokki-code headerless
-                        code="
-                        <template #caption>
-                            <span style='filter: blur(2px);'>Hello there</span>
-                        </template>
-                        ">
-                    </dokki-code>
-
-                    <dokki-table>
-                        <template #caption>
-                            <span style='filter: blur(2px);'>Hello there</span>
-                        </template>
-                    </dokki-table>
-
-                </x-example>
-            </x-examples>
-
-        <x-templ>table</x-templ>
-        <x-required></x-required>
-
-            <p>
-                The template's children will be displayed as the <x-tag>dokki-table</x-tag> element's
-                table. Generally, the template should have one child: a standard <x-tag>table</x-tag>
-                element, whose children define the table's contents.
-            </p>
-
-            <x-examples>
-                <x-example>
-
-                    <dokki-code headerless
-                        code="
-                        <template #table>
-                            <table>
-                                <tr>
-                                    <th>First</th>
-                                    <th>Second</th>
-                                </tr>
-                                <tr>
-                                    <td>Hello</td>
-                                    <td>there</td>
-                                </tr>
-                            </table>
-                        </template>
-                        ">
-                    </dokki-code>
-
-                    <dokki-table>
-                        <template #table>
-                            <table>
-                                <tr>
-                                    <th>First</th>
-                                    <th>Second</th>
-                                </tr>
-                                <tr>
-                                    <td>Hello</td>
-                                    <td>there</td>
-                                </tr>
-                            </table>
-                        </template>
-                    </dokki-table>
-
-                </x-example>
-            </x-examples>
-
-    <h2>Attributes</h2>
-
-        <x-attr>expanded</x-attr>
-
-            <p>
-                If present, the <x-tag>dokki-table</x-tag> element's code listing will be visible
-                initially, rather than requiring the user to reveal it.
-            </p>
-
-            <p>
-                Setting the <x-attr>headerless</x-attr> attribute will implicitly set this attribute
-                as well.
-            </p>
-
-        <x-attr>headerless</x-attr>
-
-            <p>
-                If present, causes the <x-tag>dokki-table</x-tag> element to be dispayed without its
-                caption.
-            </p>
-
-            <p>
-                Setting this attribute will implicitly set the <x-attr>expanded</x-attr> attribute
-                as well. 
-            </p>
-
-            <x-examples>
-                <x-example>
-
-                    <dokki-code headerless
-                        code="
-                        <dokki-table headerless>
-                            <template #table>
-                                <table>
-                                    <tr>
-                                        <td>Hello</td>
-                                        <td>there</td>
-                                    </tr>
-                                </table>
-                            </template>
-                        </dokki-table>
-                        ">
-                    </dokki-code>
-
-                    <dokki-table headerless>
-                        <template #table>
-                            <table>
-                                <tr>
-                                    <td>Hello</td>
-                                    <td>there</td>
-                                </tr>
-                            </table>
-                        </template>
-                    </dokki-table>
-
-                </x-example>
-            </x-examples>
-
-        <x-attr>inline-class</x-attr>
-
-            <p>
-                The class name(s) given in this string will be appended to the
-                <x-tag>dokki-table</x-tag> element's class list.
-            </p>
+The class name(s) given in this string will be appended to the \<dokki-table\>
+element's class list.
 </api-reference>

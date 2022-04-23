@@ -88,137 +88,106 @@ export default {
 }
 </script>
 
-<api-reference>
-    <p>
-        Displays a video from YouTube.
-    </p>
+<api-reference lang="md">
+Displays a video from YouTube.
 
-    <h2>Samples</h2>
+## Samples
 
-        <dokki-video src="Pjx1B7Kt9xs">
+<dokki-video src="Pjx1B7Kt9xs">
+    <template #caption>
+        Shitty MS-DOS Games
+    </template>
+</dokki-video>
+
+<dokki-video plain src="Pjx1B7Kt9xs">
+    <template #caption>
+        Shitty MS-DOS Games
+    </template>
+</dokki-video>
+
+## Markup
+
+    <dokki-video expanded headerless inline-class src>
+
+        <template #caption>
+        </template>
+
+    </dokki-video>
+
+## Templates
+
+### #caption
+
+The template's children will be displayed as the \<dokki-video\> element's caption.
+
+<x-examples>
+    <x-example>
+        <dokki-code headerless
+            code="
             <template #caption>
-                Shitty MS-DOS Games
+                Hello there
+            </template>
+            ">
+        </dokki-code>
+        <dokki-video>
+            <template #caption>
+                Hello there
             </template>
         </dokki-video>
-
-        <dokki-video plain src="Pjx1B7Kt9xs">
+    </x-example>
+    <x-example>
+        <dokki-code headerless
+            code="
             <template #caption>
-                Shitty MS-DOS Games
+                <span style='filter: blur(2px);'>Hello there</span>
+            </template>
+            ">
+        </dokki-code>
+        <dokki-video>
+            <template #caption>
+                <span style='filter: blur(2px);'>Hello there</span>
             </template>
         </dokki-video>
+    </x-example>
+</x-examples>
 
-   <h2>Markup</h2>
+## Attributes
 
-        <dokki-code headerless code="
-            <dokki-video expanded headerless inline-class src>
+### expanded
 
-                <template #caption>
-                </template>
+If present, the \<dokki-video\> element's video container will be visible initially,
+rather than requiring the user to reveal it.
 
+Setting the **headerless** attribute will implicitly set this attribute as well.
+
+### headerless
+
+If present, causes the \<dokki-video\> element to be displayed without its caption.
+
+Setting this attribute will implicitly set the **expanded** attributeas well.
+
+<x-examples>
+    <x-example>
+        <dokki-code headerless
+            code="
+            <dokki-video headerless src='...'>
             </dokki-video>
             ">
         </dokki-code>
+        <dokki-video headerless src="Pjx1B7Kt9xs">
+        </dokki-video>
+    </x-example>
+</x-examples>
 
-    <h2>Templates</h2>
+### inline-class
 
-        <x-templ>caption</x-templ>
+The class name(s) given in this string will be appended to the \<dokki-video\>
+element's class list.
 
-            <p>
-                The template's children will be displayed as the <x-tag>dokki-video</x-tag>
-                element's caption.
-            </p>
+### src <x-required></x-required>
 
-            <x-examples>
-                <x-example>
+The video's YouTube ID.
 
-                    <dokki-code headerless
-                        code="
-                        <template #caption>
-                            Hello there
-                        </template>
-                        ">
-                    </dokki-code>
-
-                    <dokki-video>
-                        <template #caption>
-                            Hello there
-                        </template>
-                    </dokki-video>
-
-                </x-example>
-
-                <x-example>
-
-                    <dokki-code headerless
-                        code="
-                        <template #caption>
-                            <span style='filter: blur(2px);'>Hello there</span>
-                        </template>
-                        ">
-                    </dokki-code>
-
-                    <dokki-video>
-                        <template #caption>
-                            <span style='filter: blur(2px);'>Hello there</span>
-                        </template>
-                    </dokki-video>
-
-                </x-example>
-            </x-examples>
-
-    <h2>Attributes</h2>
-
-        <x-attr>expanded</x-attr>
-
-            <p>
-                If present, the <x-tag>dokki-video</x-tag> element's video container will be visible
-                initially, rather than requiring the user to reveal it.
-            </p>
-
-            <p>
-                Setting the <x-attr>headerless</x-attr> attribute will implicitly set this attribute
-                as well.
-            </p>
-
-        <x-attr>headerless</x-attr>
-
-            <p>
-                If present, causes the <x-tag>dokki-video</x-tag> element to be displayed without its
-                caption.
-            </p>
-
-            <p>
-                Setting this attribute will implicitly set the <x-attr>expanded</x-attr> attribute
-                as well. 
-            </p>
-
-            <x-examples>
-                <x-example>
-
-                    <dokki-code headerless
-                        code="
-                        <dokki-video headerless src='...'>
-                        </dokki-video>
-                        ">
-                    </dokki-code>
-
-                    <dokki-video headerless src="Pjx1B7Kt9xs">
-                    </dokki-video>
-
-                </x-example>
-            </x-examples>
-
-        <x-attr>inline-class</x-attr>
-
-            <p>
-                The class name(s) given in this string will be appended to the
-                <x-tag>dokki-video</x-tag> element's class list.
-            </p>
-
-        <x-attr>src</x-attr>
-        <x-required></x-required>
-
-            <p>
-                The video's YouTube ID.
-            </p>
+For example, if the video's URL is "youtube.com/watch?v=Pjx1B7Kt9xs", the ID would
+be "Pjx1B7Kt9xs".
 </api-reference>

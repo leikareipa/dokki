@@ -144,310 +144,252 @@ export default {
 }
 </script>
 
-<api-reference>
-    <p>
-        Displays a source code snippet, with optional syntax highlighting and sample output.
-    </p>
+<api-reference lang="md">
+Displays a source code snippet, with optional syntax highlighting and sample output.
 
-    <h2>Samples</h2>
+## Samples
 
+<dokki-code>
+    <template #caption>
+        A listing of a C program
+    </template>
+    <template #code>
+        <pre>
+            void main(void)
+            {
+                printf("Hello there.\n");
+            }
+        </pre>
+    </template>
+</dokki-code>
+
+<dokki-code plain>
+    <template #caption>
+        A listing of a C program
+    </template>
+    <template #code>
+        <pre>
+            void main(void)
+            {
+                printf("Hello there.\n");
+            }
+        </pre>
+    </template>
+</dokki-code>
+
+## Markup
+
+    <dokki-code code expanded headerless inline-class syntax>
+
+        <template #caption>
+        </template>
+
+        <template #code>
+        </template>
+
+        <template #output>
+        </template>
+
+    </dokki-code>
+
+## Templates
+
+### #caption
+
+The template's children will be displayed as the \<dokki-code\> element's caption.
+
+<x-examples>
+    <x-example>
+        <dokki-code headerless
+            code="
+            <template #caption>
+                Hello there
+            </template>
+            ">
+        </dokki-code>
         <dokki-code>
             <template #caption>
-                A listing of a C program
-            </template>
-            <template #code>
-                <pre>
-                    void main(void)
-                    {
-                        printf("Hello there.\n");
-                    }
-                </pre>
+                Hello there
             </template>
         </dokki-code>
-
-        <dokki-code plain>
+    </x-example>
+    <x-example>
+        <dokki-code headerless
+            code="
             <template #caption>
-                A listing of a C program
+                <span style='filter: blur(2px);'>Hello there</span>
             </template>
+            ">
+        </dokki-code>
+        <dokki-code>
+            <template #caption>
+                <span style='filter: blur(2px);'>Hello there</span>
+            </template>
+        </dokki-code>
+    </x-example>
+</x-examples>
+
+### #code <x-required></x-required>
+
+The textual contents of the template's children will be displayed as the \<dokki-code\>
+element's code.
+
+<dokki-tip>
+    <ul>
+        <li>
+            To preserve whitespace, wrap the children in a &lt;pre&gt; element.
+        </li>
+        <li>
+            If the code includes characters that clash with HTML parsers (e.g. &lt;&gt;
+            braces), use the <strong>code</strong> attribute instead.
+        </li>
+    </ul>
+</dokki-tip>
+
+<x-examples>
+    <x-example>
+        <dokki-code headerless
+            code="
             <template #code>
                 <pre>
-                    void main(void)
-                    {
+                    void main(void) {
+                        printf(``Hello there.\n``);
+                    }
+                </pre>
+            </template>
+            ">
+        </dokki-code>
+        <dokki-code>
+            <template #code>
+                <pre>
+                    void main(void) {
                         printf("Hello there.\n");
                     }
                 </pre>
             </template>
         </dokki-code>
+    </x-example>
+</x-examples>
 
-    <h2>Markup</h2>
+### #output
 
-        <dokki-code headerless code="
-            <dokki-code code expanded headerless inline-class syntax>
+The template's children will be displayed as the output of the \<dokki-code\>
+element's code, using \<dokki-output\> as a container.
 
-                <template #caption>
-                </template>
+<dokki-tip>
+    If you want to customize the container element, replace the <strong>#output</strong>
+    template with a &lt;dokki-output&gt; element.
+</dokki-tip>
 
-                <template #code>
-                </template>
+<x-examples>
+    <x-example>
+        <dokki-code headerless
+            code="
+            <template #output>
+                Hello there.
+            </template>
+            ">
+        </dokki-code>
+        <dokki-code plain>
+            <template #output>
+                Hello there.
+            </template>
+        </dokki-code>
+    </x-example>
+    <x-example>
+        <dokki-code headerless
+            code="
+            <dokki-output>
+                <template #caption>Run it</template>
+                <template #output>Hello there.</template>
+            </dokki-output>
+            ">
+        </dokki-code>
+        <dokki-code>
+            <dokki-output>
+                <template #caption>Run it</template>
+                <template #output>Hello there.</template>
+            </dokki-output>
+        </dokki-code>
+    </x-example>
+</x-examples>
 
-                <template #output>
-                </template>
+## Attributes
 
+### code
+
+If the **#code** template isn't provided, the value of this attribute
+(a string) will be used in place of the template to populate the \<dokki-code\>
+element's code listing.
+
+You might generally use this attribute instead of the **#code** template
+if your code string includes characters that cause problems with HTML parsers, like
+&lt;&gt; brackets.
+
+<dokki-warning>
+    If you want to include double quote characters (") in your code string, you must
+    represent them using two backticks (``). Dokki will convert double backticks into
+    double quotes for display.
+</dokki-warning>
+
+<x-examples>
+    <x-example>
+        <dokki-code headerless
+            code="
+            <dokki-code code=``console.log('Hello there')``>
             </dokki-code>
             ">
         </dokki-code>
+        <dokki-code code="console.log('Hello there')">
+        </dokki-code>
+    </x-example>
+</x-examples>
 
-    <h2>Templates</h2>
+### expanded
 
-        <x-templ>caption</x-templ>
+If present, the \<dokki-code\> element's code listing will be visible initially,
+rather than requiring the user to reveal it.
 
-            <p>
-                The template's children will be displayed as the <x-tag>dokki-code</x-tag>
-                element's caption.
-            </p>
+Setting the **headerless** attribute will implicitly set this attribute as well.
 
-            <x-examples>
-                <x-example>
+### headerless
 
-                    <dokki-code headerless
-                        code="
-                        <template #caption>
-                            Hello there
-                        </template>
-                        ">
-                    </dokki-code>
+If present, causes the \<dokki-code\> element to be dispayed without its caption.
 
-                    <dokki-code>
-                        <template #caption>
-                            Hello there
-                        </template>
-                    </dokki-code>
+Setting this attribute will implicitly set the **expanded** attribute as well. 
 
-                </x-example>
+<x-examples>
+    <x-example>
+        <dokki-code headerless
+            code="
+            <dokki-code headerless>
+                <template #code>
+                    const x = 1;
+                </template>
+            </dokki-code>
+            ">
+        </dokki-code>
+        <dokki-code headerless>
+            <template #code>
+                const x = 1;
+            </template>
+        </dokki-code>
+    </x-example>
+</x-examples>
 
-                <x-example>
+### inline-class
 
-                    <dokki-code headerless
-                        code="
-                        <template #caption>
-                            <span style='filter: blur(2px);'>Hello there</span>
-                        </template>
-                        ">
-                    </dokki-code>
+The class name(s) given in this string will be appended to the \<dokki-code\>
+element's class list.
 
-                    <dokki-code>
-                        <template #caption>
-                            <span style='filter: blur(2px);'>Hello there</span>
-                        </template>
-                    </dokki-code>
+### syntax
 
-                </x-example>
-            </x-examples>
+Identifies the language of the \<dokki-code\> element's code, using one of
+[the language aliases of highlight.js](https://github.com/highlightjs/highlight.js/blob/main/SUPPORTED_LANGUAGES.md)
+(e.g. "javascript" for JavaScript, "x86asm" for x86 assembly).
 
-        <x-templ>code</x-templ>
-        <x-required></x-required>
-
-            <p>
-                The textual contents of the template's children will be displayed as the
-                <x-tag>dokki-code</x-tag> element's code.
-            </p>
-
-            <dokki-tip>
-                <ul>
-                    <li>
-                        To preserve whitespace, wrap the children in a <x-tag>pre</x-tag> element.
-                    </li>
-
-                    <li>
-                        If the code includes characters that clash with HTML parsers (e.g. &lt;&gt;
-                        braces), pass it in via the <x-tag>dokki-code</x-tag> element's
-                        <x-attr>code</x-attr> attribute instead.
-                    </li>
-                </ul>
-            </dokki-tip>
-
-            <x-examples>
-                <x-example>
-
-                    <dokki-code headerless
-                        code="
-                        <template #code>
-                            <pre>
-                                void main(void) {
-                                    printf(``Hello there.\n``);
-                                }
-                            </pre>
-                        </template>
-                        ">
-                    </dokki-code>
-
-                    <dokki-code>
-                        <template #code>
-                            <pre>
-                                void main(void) {
-                                    printf("Hello there.\n");
-                                }
-                            </pre>
-                        </template>
-                    </dokki-code>
-
-                </x-example>
-            </x-examples>
-
-        <x-templ>output</x-templ>
-
-            <p>
-                The template's children will be displayed as the output of the <x-tag>dokki-code</x-tag>
-                element's code, using <x-tag>dokki-output</x-tag> as a container.
-            </p>
-
-            <dokki-tip>
-                If you want to customize the container element, replace the <x-templ>output</x-templ>
-                template with a <x-tag>dokki-output</x-tag> element.
-            </dokki-tip>
-
-            <x-examples>
-                <x-example>
-
-                    <dokki-code headerless
-                        code="
-                        <template #output>
-                            Hello there.
-                        </template>
-                        ">
-                    </dokki-code>
-
-                    <dokki-code plain>
-                        <template #output>
-                            Hello there.
-                        </template>
-                    </dokki-code>
-
-                </x-example>
-
-                <x-example>
-
-                    <dokki-code headerless
-                        code="
-                        <dokki-output>
-                            <template #caption>Run it</template>
-                            <template #output>Hello there.</template>
-                        </dokki-output>
-                        ">
-                    </dokki-code>
-
-                    <dokki-code>
-                        <dokki-output>
-                            <template #caption>Run it</template>
-                            <template #output>Hello there.</template>
-                        </dokki-output>
-                    </dokki-code>
-
-                </x-example>
-            </x-examples>
-
-    <h2>Attributes</h2>
-
-        <x-attr>code</x-attr>
-
-            <p>
-                If the <x-templ>code</x-templ> template isn't provided, the value of this attribute
-                (a string) will be used in place of the template to populate the <x-tag>dokki-code</x-tag>
-                element's code listing.
-            </p>
-
-            <p>
-                You might generally use this attribute instead of the <x-templ>code</x-templ> template
-                if your code string includes characters that cause problems with HTML parses, like
-                &lt;&gt; braces.
-            </p>
-
-            <dokki-warning>
-                If you want to include double quote characters (") in your code string, you must
-                represent them using two backticks (``). Dokki will convert double backticks into
-                double quotes for display.
-            </dokki-warning>
-
-            <x-examples>
-                <x-example>
-
-                    <dokki-code headerless
-                        code="
-                        <dokki-code code=``console.log('Hello there')``>
-                        </dokki-code>
-                        ">
-                    </dokki-code>
-
-                    <dokki-code code="console.log('Hello there')">
-                    </dokki-code>
-
-                </x-example>
-            </x-examples>
-
-        <x-attr>expanded</x-attr>
-
-            <p>
-                If present, the <x-tag>dokki-code</x-tag> element's code listing will be visible
-                initially, rather than requiring the user to reveal it.
-            </p>
-
-            <p>
-                Setting the <x-attr>headerless</x-attr> attribute will implicitly set this attribute
-                as well.
-            </p>
-
-        <x-attr>headerless</x-attr>
-
-            <p>
-                If present, causes the <x-tag>dokki-code</x-tag> element to be dispayed without its
-                caption.
-            </p>
-
-            <p>
-                Setting this attribute will implicitly set the <x-attr>expanded</x-attr> attribute
-                as well. 
-            </p>
-
-            <x-examples>
-                <x-example>
-
-                    <dokki-code headerless
-                        code="
-                        <dokki-code headerless>
-                            <template #code>
-                                const x = 1;
-                            </template>
-                        </dokki-code>
-                        ">
-                    </dokki-code>
-
-                    <dokki-code headerless>
-                        <template #code>
-                            const x = 1;
-                        </template>
-                    </dokki-code>
-
-                </x-example>
-            </x-examples>
-
-        <x-attr>inline-class</x-attr>
-
-            <p>
-                The class name(s) given in this string will be appended to the
-                <x-tag>dokki-code</x-tag> element's class list.
-            </p>
-
-        <x-attr>syntax</x-attr>
-
-            <p>
-                Identifies the language of the <x-tag>dokki-code</x-tag> element's code, using the
-                syntax types of <a href="https://highlightjs.org/">highlight.js</a> (e.g. "javascript"
-                for JavaScript, "x86asm" for x86 assembly).
-            </p>
-            
-            <p>
-                If this attribute is set and the HTML document includes highlight.js, the
-                <x-tag>dokki-code</x-tag> element's code will be parsed and segmented by syntax,
-                and you can apply custom CSS to the various syntactic classes (e.g. "hljs-string").
-            </p>
+If this attribute is set, the HTML document includes highlight.js, and highlight.js
+is configured to include support for the given language alias, the \<dokki-code\>
+element's code will be parsed for syntax and you can apply custom CSS to the
+various syntactic classes (e.g. "hljs-string").
 </api-reference>

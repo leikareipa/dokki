@@ -74,31 +74,24 @@ export default {
 }
 </script>
 
-<api-reference>
-    <p>
-        Displays its contents in a cautionary tone.
-    </p>
-    
-    <h2>Sample</h2>
+<api-reference lang="md">
+Displays its contents in a cautionary tone.
 
-        <dokki-warning>
-            This isn't recommended.
-        </dokki-warning>
+## Sample
 
-    <h2>Markup</h2>
+<dokki-warning>
+    This isn't recommended.
+</dokki-warning>
 
-        <dokki-code headerless code="
-            <dokki-warning inline-class>
-            </dokki-warning>
-            ">
-        </dokki-code>
+## Markup
 
-    <h2>Attributes</h2>
+    <dokki-warning inline-class>
+    </dokki-warning>
 
-        <x-attr>inline-class</x-attr>
+## Attributes
 
-            <p>
-                The class name(s) given in this string will be appended to the
-                <x-tag>dokki-warning</x-tag> element's class list.
-            </p>
+### inline-class
+
+The class name(s) given in this string will be appended to the \<dokki-warning\>
+element's class list.
 </api-reference>

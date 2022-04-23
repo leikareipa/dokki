@@ -188,240 +188,200 @@ export default {
 }
 </script>
 
-<api-reference>
-    <p>
-        Displays a nested listing of files and folders.
-    </p>
+<api-reference lang="md">
+Displays a nested listing of files and folders.
 
-    <h2>Samples</h2>
+## Samples
 
-        <dokki-directory :structure="{
-                'Directory': {
-                    'Sub-directory': {
-                        'file.1': {},
-                        'file.2': {},
-                    },
-                }
-            }">
+<dokki-directory :structure="{
+    'Directory': {
+        'Sub-directory': {
+            'file.1': {},
+            'file.2': {},
+        },
+    }}">
+    <template #caption>
+        A listing of files and folders
+    </template>
+</dokki-directory>
 
+<dokki-directory plain :structure="{
+    'Directory': {
+        'Sub-directory': {
+            'file.1': {},
+            'file.2': {},
+        },
+    }}">
+    <template #caption>
+        A listing of files and folders
+    </template>
+</dokki-directory>
+
+## Markup
+
+    <dokki-directory expanded headerless inline-class :structure>
+
+        <template #caption>
+        </template>
+
+    </dokki-directory>
+
+## Templates
+
+### #caption
+
+The template's children will be displayed as the \<dokki-directory\>
+element's caption.
+
+<x-examples>
+    <x-example>
+        <dokki-code headerless
+            code="
             <template #caption>
-                A listing of files and folders
+                Hello there
             </template>
-
-        </dokki-directory>
-
-        <dokki-directory plain :structure="{
-                'Directory': {
-                    'Sub-directory': {
-                        'file.1': {},
-                        'file.2': {},
-                    },
-                }
-            }">
-
+            ">
+        </dokki-code>
+        <dokki-directory>
             <template #caption>
-                A listing of files and folders
+                Hello there
             </template>
-
         </dokki-directory>
+    </x-example>
+    <x-example>
+        <dokki-code headerless
+            code="
+            <template #caption>
+                <span style='filter: blur(2px);'>Hello there</span>
+            </template>
+            ">
+        </dokki-code>
+        <dokki-directory>
+            <template #caption>
+                <span style='filter: blur(2px);'>Hello there</span>
+            </template>
+        </dokki-directory>
+    </x-example>
+</x-examples>
 
-    <h2>Markup</h2>
+## Attributes
 
-        <dokki-code headerless code="
-            <dokki-directory expanded headerless inline-class :structure>
+### expanded
 
-                <template #caption>
-                </template>
+If present, the \<dokki-directory\> element's directory listing will be visible
+initially, rather than requiring the user to reveal it.
 
+Setting the **headerless** attribute will implicitly set this attribute as well.
+
+### headerless
+
+If present, causes the \<dokki-directory\> element to be displayed without its
+caption.
+
+Setting this attribute will implicitly set the **expanded** attribute
+as well. 
+
+<x-examples>
+    <x-example>
+        <dokki-code headerless
+            code="
+            <dokki-directory headerless :structure=``{
+                'Directory': {
+                    'file.1': {},
+                }
+            }``>
             </dokki-directory>
             ">
         </dokki-code>
+        <dokki-directory headerless :structure="{
+            'Directory': {
+                'file.1': {},
+            }
+        }">
+        </dokki-directory>
+    </x-example>
+</x-examples>
 
-    <h2>Templates</h2>
+### inline-class
 
-        <x-templ>caption</x-templ>
+The class name(s) given in this string will be appended to the \<dokki-directory\>
+element's class list.
 
-            <p>
-                The template's children will be displayed as the <x-tag>dokki-directory</x-tag>
-                element's caption.
-            </p>
+### :structure <x-required></x-required>
 
-            <x-examples>
-                <x-example>
+A string-serialized JavaScript object describing the directory structure. Each
+property key is the name of a folder or file, with files being those properties
+which have no further sub-properties (apart from metadata). Property keys prefixed
+with "/" are interpreted as metadata.
 
-                    <dokki-code headerless
-                        code="
-                        <template #caption>
-                            Hello there
-                        </template>
-                        ">
-                    </dokki-code>
+<dokki-table plain>
+    <template #caption>
+        File metadata identifiers in <strong>:structure</strong>
+    </template>
+    <template #table>
+        <table>
+            <tr>
+                <td>/content</td>
+                <td>
+                    Determines the name of the Font Awesome icon used for the file (&lt;i&gt;fa-file-&lt;/i&gt;xxxx).
+                </td>
+            </tr>
+            <tr>
+                <td>/href</td>
+                <td>
+                    A hyperlink that will be applied to the file's name.
+                </td>
+            </tr>
+        </table>
+    </template>
+</dokki-table>
 
-                    <dokki-directory>
-                        <template #caption>
-                            Hello there
-                        </template>
-                    </dokki-directory>
-
-                </x-example>
-
-                <x-example>
-
-                    <dokki-code headerless
-                        code="
-                        <template #caption>
-                            <span style='filter: blur(2px);'>Hello there</span>
-                        </template>
-                        ">
-                    </dokki-code>
-
-                    <dokki-directory>
-                        <template #caption>
-                            <span style='filter: blur(2px);'>Hello there</span>
-                        </template>
-                    </dokki-directory>
-
-                </x-example>
-            </x-examples>
-
-    <h2>Attributes</h2>
-
-        <x-attr>expanded</x-attr>
-
-            <p>
-                If present, the <x-tag>dokki-directory</x-tag> element's directory listing will be visible
-                initially, rather than requiring the user to reveal it.
-            </p>
-
-            <p>
-                Setting the <x-attr>headerless</x-attr> attribute will implicitly set this attribute
-                as well.
-            </p>
-
-        <x-attr>headerless</x-attr>
-
-            <p>
-                If present, causes the <x-tag>dokki-directory</x-tag> element to be displayed without its
-                caption.
-            </p>
-
-            <p>
-                Setting this attribute will implicitly set the <x-attr>expanded</x-attr> attribute
-                as well. 
-            </p>
-
-            <x-examples>
-                <x-example>
-
-                    <dokki-code headerless
-                        code="
-                        <dokki-directory headerless :structure=``{
-                            'Directory': {
-                                'file.1': {},
-                            }
-                        }``>
-                        </dokki-directory>
-                        ">
-                    </dokki-code>
-
-                    <dokki-directory headerless :structure="{
-                        'Directory': {
-                            'file.1': {},
-                        }
-                    }">
-                    </dokki-directory>
-
-                </x-example>
-            </x-examples>
-
-        <x-attr>inline-class</x-attr>
-
-            <p>
-                The class name(s) given in this string will be appended to the
-                <x-tag>dokki-directory</x-tag> element's class list.
-            </p>
-
-        <x-attr>:structure</x-attr>
-        <x-required></x-required>
-
-            <p>
-                A string-serialized JavaScript object describing the directory structure. Each property
-                key is the name of a folder or file, with files being those properties which have no
-                further sub-properties (apart from metadata). Property keys prefixed with "/" are
-                interpreted as metadata.
-            </p>
-
-            <dokki-table>
-                <template #caption>
-                    File metadata identifiers
-                </template>
-                <template #table>
-                    <table>
-                        <tr>
-                            <td>/content</td>
-                            <td>
-                                Determines the name of the Font Awesome icon used for the file (<i>fa-file-</i>xxxx).
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>/href</td>
-                            <td>
-                                A hyperlink that will be applied to the file's name.
-                            </td>
-                        </tr>
-                    </table>
-                </template>
-            </dokki-table>
-
-            <x-examples>
-                <x-example>
-
-                    <dokki-code headerless
-                        code="
-                        <dokki-directory :structure=``{
-                            'Field recording B': {
-                                'Metadata': {
-                                    'readme.pdf': {
-                                        '/content': 'pdf',
-                                        '/href': '#',
-                                    },
-                                    'timestamps.xlsx': {
-                                        '/content': 'excel',
-                                    },
-                                },
-                                '1st-interview.wav': {
-                                    '/content': 'audio',
-                                },
-                                '2nd-interview.wav': {
-                                    '/content': 'audio',
-                                },
-                            }
-                        }``>
-                        </dokki-directory>
-                        ">
-                    </dokki-code>
-
-                    <dokki-directory :structure="{
-                        'Field recording B': {
-                            'Metadata': {
-                                'readme.pdf': {
-                                    '/content': 'pdf',
-                                    '/href': '#',
-                                },
-                                'timestamps.xlsx': {
-                                    '/content': 'excel',
-                                },
-                            },
-                            '1st-interview.wav': {
-                                '/content': 'audio',
-                            },
-                            '2nd-interview.wav': {
-                                '/content': 'audio',
-                            },
-                        }
-                    }">
-                    </dokki-directory>
-
-                </x-example>
-            </x-examples>
+<x-examples>
+    <x-example>
+        <dokki-code headerless
+            code="
+            <dokki-directory :structure=``{
+                'Field recording B': {
+                    'Metadata': {
+                        'readme.pdf': {
+                            '/content': 'pdf',
+                            '/href': '#',
+                        },
+                        'timestamps.xlsx': {
+                            '/content': 'excel',
+                        },
+                    },
+                    '1st-interview.wav': {
+                        '/content': 'audio',
+                    },
+                    '2nd-interview.wav': {
+                        '/content': 'audio',
+                    },
+                }
+            }``>
+            </dokki-directory>
+            ">
+        </dokki-code>
+        <dokki-directory :structure="{
+            'Field recording B': {
+                'Metadata': {
+                    'readme.pdf': {
+                        '/content': 'pdf',
+                        '/href': '#',
+                    },
+                    'timestamps.xlsx': {
+                        '/content': 'excel',
+                    },
+                },
+                '1st-interview.wav': {
+                    '/content': 'audio',
+                },
+                '2nd-interview.wav': {
+                    '/content': 'audio',
+                },
+            }
+        }">
+        </dokki-directory>
+    </x-example>
+</x-examples>
 </api-reference>

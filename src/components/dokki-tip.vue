@@ -74,31 +74,25 @@ export default {
 }
 </script>
 
-<api-reference>
-    <p>
-        Displays its contents as a tip to the reader.
-    </p>
-    
-    <h2>Sample</h2>
+<api-reference lang="md">
+Displays its contents as a tip to the reader.
 
-        <dokki-tip>
-            Keep that in mind.
-        </dokki-tip>
+## Samples
 
-    <h2>Markup</h2>
+<dokki-tip>
+    Keep that in mind.
+</dokki-tip>
 
-        <dokki-code headerless code="
-            <dokki-tip inline-class>
-            </dokki-tip>
-            ">
-        </dokki-code>
+## Markup
 
-    <h2>Attributes</h2>
+    <dokki-tip inline-class>
+    </dokki-tip>
 
-        <x-attr>inline-class</x-attr>
+## Attributes
 
-            <p>
-                The class name(s) given in this string will be appended to the
-                <x-tag>dokki-tip</x-tag> element's class list.
-            </p>
+### inline-class
+
+The class name(s) given in this string will be appended to the \<dokki-tip\> element's
+class list.
+
 </api-reference>

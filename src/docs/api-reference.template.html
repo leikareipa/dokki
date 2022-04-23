@@ -37,19 +37,26 @@
         
         <style>
             .dokki-topic p > i,
-            .dokki-topic p > em,
-            .dokki-topic x-tag {
+            .dokki-topic p > em {
                 font-style: italic;
             }
 
-            .dokki-topic p > i::before,
-            .dokki-topic x-tag::before {
+            .dokki-topic p > i::before {
                 content: "<";
             }
 
-            .dokki-topic p > i::after,
-            .dokki-topic x-tag::after {
+            .dokki-topic p > i::after {
                 content: ">";
+            }
+
+            /* Style Markdown <code> elements like <dokki-area>.*/
+            .dokki-topic > pre
+            {
+                background-color: var(--dokkiCSS-embedded-auxiliary-color);
+                padding: var(--dokkiCSS-embedded-header-padding);
+                border-radius: var(--dokkiCSS-embedded-border-radius);
+                font-family: var(--dokkiCSS-regular-font-family);
+                font-size: var(--dokkiCSS-regular-font-size);
             }
 
             .dokki-output.examples {
@@ -81,21 +88,7 @@
                 content: "(required)";
             }
 
-            x-templ::before {
-                content: "#";
-                font-size: 85%;
-            }
-
-            x-attr,
-            x-templ {
-                font-weight: var(--dokkiCSS-bold-text-weight);
-                display: inline;
-                font-size: 110%;
-            }
-
-            h3,
-            x-attr,
-            x-templ {
+            h3 {
                 font-variant: small-caps;
             }
 
@@ -104,6 +97,12 @@
                 font-style: italic;
                 color: red;
                 font-size: 95%;
+            }
+
+            .dokki-topic strong {
+                font-variant: small-caps;
+                font-weight: var(--dokkiCSS-bold-text-weight);
+                font-size: 110%;
             }
         </style>
     </head>

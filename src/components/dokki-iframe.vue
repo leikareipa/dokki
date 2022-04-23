@@ -98,244 +98,200 @@ export default {
 }
 </script>
 
-<api-reference>
-    <p>
-        Provides the general functionality of a standard <i>iframe</i>, with some dokki-specific
-        extensions.
-    </p>
+<api-reference lang="md">
+Provides the general functionality of a standard \<iframe\>, with some dokki-specific
+extensions.
 
-    <h2>Samples</h2>
+## Samples
 
-        <dokki-iframe src="https://www.wikipedia.org">
+<dokki-iframe src="https://www.wikipedia.org">
+    <template #caption>
+        Wikipedia.org
+    </template>
+</dokki-iframe>
+
+<dokki-iframe plain src="https://www.wikipedia.org">
+    <template #caption>
+        Wikipedia.org
+    </template>
+</dokki-iframe>
+
+## Markup
+
+    <dokki-iframe autofocus expanded headerless height inline-class src srcdoc>
+
+        <template #caption>
+        </template>
+
+    </dokki-iframe>
+
+## Templates
+
+### #caption
+
+The template's children will be displayed as the \<dokki-iframe\> element's caption.
+
+<x-examples>
+    <x-example>
+        <dokki-code headerless
+            code="
             <template #caption>
-                Wikipedia.org
+                Hello there
             </template>
-        </dokki-iframe>
-
-        <dokki-iframe plain src="https://www.wikipedia.org">
-            <template #caption>
-                Wikipedia.org
-            </template>
-        </dokki-iframe>
-
-    <h2>Markup</h2>
-
-        <dokki-code headerless code="
-            <dokki-iframe autofocus expanded headerless height inline-class src srcdoc>
-
-                <template #caption>
-                </template>
-
-            </dokki-iframe>
             ">
         </dokki-code>
+        <dokki-iframe>
+            <template #caption>
+                Hello there
+            </template>
+        </dokki-iframe>
+    </x-example>
+    <x-example>
+        <dokki-code headerless
+            code="
+            <template #caption>
+                <span style='filter: blur(2px);'>Hello there</span>
+            </template>
+            ">
+        </dokki-code>
+        <dokki-iframe>
+            <template #caption>
+                <span style='filter: blur(2px);'>Hello there</span>
+            </template>
+        </dokki-iframe>
+    </x-example>
+</x-examples>
 
-    <h2>Templates</h2>
+## Attributes
 
-        <x-templ>caption</x-templ>
+### autofocus
+    
+If present, the \<dokki-iframe\> element's inline frame will be given focus when
+the frame is expanded.
+    
+### expanded
 
-            <p>
-                The template's children will be displayed as the <x-tag>dokki-iframe</x-tag>
-                element's caption.
-            </p>
+If present, the \<dokki-iframe\> element's inline frame will be visible initially,
+rather than requiring the user to reveal it.
 
-            <x-examples>
-                <x-example>
+Setting the **headerless** attribute will implicitly set this attribute as well.
 
-                    <dokki-code headerless
-                        code="
-                        <template #caption>
-                            Hello there
-                        </template>
-                        ">
-                    </dokki-code>
+### headerless
 
-                    <dokki-iframe>
-                        <template #caption>
-                            Hello there
-                        </template>
-                    </dokki-iframe>
+If present, causes the \<dokki-iframe\> element to be displayed without its caption.
 
-                </x-example>
+Setting this attribute will implicitly set the **expanded** attribute as well. 
 
-                <x-example>
+<x-examples>
+    <x-example>
+        <dokki-code headerless code="
+            <dokki-iframe headerless src='https://www.wikipedia.org'>
+            </dokki-iframe>
+        ">
+        </dokki-code>
+        <dokki-iframe headerless src='https://www.wikipedia.org'>
+        </dokki-iframe>
+    </x-example>
+</x-examples>
 
-                    <dokki-code headerless
-                        code="
-                        <template #caption>
-                            <span style='filter: blur(2px);'>Hello there</span>
-                        </template>
-                        ">
-                    </dokki-code>
+### height
 
-                    <dokki-iframe>
-                        <template #caption>
-                            <span style='filter: blur(2px);'>Hello there</span>
-                        </template>
-                    </dokki-iframe>
+The CSS height of the \<dokki-iframe\> element's inline frame.
 
-                </x-example>
-            </x-examples>
+<dokki-tip>
+    The width of the frame will be set automatically by dokki according to the
+    parent document's layout.
+</dokki-tip>
 
-    <h2>Attributes</h2>
+### src <x-required></x-required>
 
-        <h3>autofocus</h3>
-            
-            <p>
-                If present, the <x-tag>dokki-iframe</x-tag> element's inline frame will be given
-                focus when the frame is expanded.
-            </p>
+Corresponds to the **src** attribute of the standard \<iframe\> element.
 
-        <h3>expanded</h3>
-            
-            <p>
-                If present, the <x-tag>dokki-iframe</x-tag> element's inline frame will be visible
-                initially, rather than requiring the user to reveal it.
-            </p>
+Either this or the **srcdoc** attribute must be set.
 
-            <p>
-                Setting the <x-attr>headerless</x-attr> attribute will implicitly set this attribute
-                as well.
-            </p>
+### srcdoc <x-required></x-required>
 
-        <x-attr>headerless</x-attr>
+Corresponds to the **srcdoc** attribute of the standard \<iframe\> element.
 
-            <p>
-                If present, causes the <x-tag>dokki-iframe</x-tag> element to be displayed without its
-                caption.
-            </p>
+Either this or the **src** attribute must be set.
 
-            <p>
-                Setting this attribute will implicitly set the <x-attr>expanded</x-attr> attribute
-                as well. 
-            </p>
+<dokki-tip>
+    Among other things, this attribute allows you to embed JavaScript that will
+    be executed only when the &lt;dokki-iframe&gt; element's inline frame is expanded.
+</dokki-tip>
 
-            <x-examples>
-                <x-example>
-
-                    <dokki-code headerless
-                        code="
-                        <dokki-iframe headerless src='https://www.wikipedia.org'>
-                        </dokki-iframe>
-                        ">
-                    </dokki-code>
-
-                    <dokki-iframe headerless src='https://www.wikipedia.org'>
-                    </dokki-iframe>
-
-                </x-example>
-            </x-examples>
-
-        <x-attr>height</x-attr>
-            
-            <p>
-                The CSS height of the <x-tag>dokki-iframe</x-tag> element's inline frame.
-            </p>
-
-            <dokki-tip>
-                The width of the frame will be set automatically by dokki according to the
-                parent document's layout.
-            </dokki-tip>
-
-        <x-attr>src</x-attr>
-        <x-required></x-required>
-
-            <p>
-                Corresponds to the <x-attr>src</x-attr> attribute of the standard <x-tag>iframe</x-tag>
-                element.
-            </p>
-
-            <p>
-                Either this or the <x-attr>srcdoc</x-attr> attribute must be set.
-            </p>
-
-        <x-attr>srcdoc</x-attr>
-        <x-required></x-required>
-
-            <p>
-                Corresponds to the <x-attr>srcdoc</x-attr> attribute of the standard <x-tag>iframe</x-tag>
-                element.
-            </p>
-
-            <p>
-                Either this or the <x-attr>src</x-attr> attribute must be set.
-            </p>
-
-            <dokki-tip>
-                Among other things, this attribute allows you to embed JavaScript that will be
-                executed only when the <x-tag>dokki-iframe</x-tag> element's inline frame is
-                expanded.
-            </dokki-tip>
-
-            <x-examples>
-                <x-example>
-
-                    <dokki-code
-                        headerless
-                        code="
-                        <dokki-iframe
-                            headerless
-                            height='2.5em'
-                            srcdoc='
-                                <style>
-                                    span {
-                                        display: inline-block;
-                                        white-space: break-spaces;
-                                    }
-                                </style>
-                                <body>
-                                    <script>
-                                        (function jump(delta = 0) {
-                                            document.body.innerHTML =
-                                                `Current time: ${Date.now()}`
-                                                .split('')
-                                                .reduce((str, ch)=>(str+`<span>${ch}</span>`), '');
-                                            const chSpans = Array.from(document.body.querySelectorAll('span'));
-                                            const chOffsets = chSpans.map((ch, idx)=>(2 * Math.cos(idx)));
-                                            chSpans.forEach((span, idx)=>{
-                                                const offset = Math.cos(chOffsets[idx] + delta);
-                                                span.style.transform = `translateY(${offset}px)`;
-                                            });
-                                            window.requestAnimationFrame(()=>jump(delta + 0.3));
-                                        })();
-                                    </script>
-                                </body>
-                            '>
-                        </dokki-iframe>
-                        ">
-                    </dokki-code>
-
-                    <dokki-iframe
-                        headerless
-                        height="2.5em"
-                        srcdoc="
-                            <style>
-                                span {
-                                    display: inline-block;
-                                    white-space: break-spaces;
-                                }
-                            </style>
-                            <body>
-                                <script>
-                                    (function jump(delta = 0) {
-                                        document.body.innerHTML =
-                                            `Current time: ${Date.now()}`
-                                            .split('')
-                                            .reduce((str, ch)=>(str+`<span>${ch}</span>`), '');
-                                        const chSpans = Array.from(document.body.querySelectorAll('span'));
-                                        const chOffsets = chSpans.map((ch, idx)=>(2 * Math.cos(idx)));
-                                        
-                                        chSpans.forEach((span, idx)=>{
-                                            const offset = Math.cos(chOffsets[idx] + delta);
-                                            span.style.transform = `translateY(${offset}px)`;
-                                        });
-                                        window.requestAnimationFrame(()=>jump(delta + 0.3));
-                                    })();
-                                </script>
-                            </body>
-                        "
-                    ></dokki-iframe>
-
-                </x-example>
-            </x-examples>
+<x-examples>
+    <x-example>
+        <dokki-code
+            headerless
+            code="
+            <dokki-iframe
+                headerless
+                height='2.5em'
+                srcdoc='
+                    <style>
+                        body {
+                            background-color: blueviolet;
+                            color: white
+                        }
+                        span {
+                            display: inline-block;
+                            white-space: break-spaces;
+                        }
+                    </style>
+                    <body>
+                        <script>
+                            (function jump(delta = 0) {
+                                document.body.innerHTML =
+                                    `Current time: ${Date.now()}`
+                                    .split('')
+                                    .reduce((str, ch)=>(str+`<span>${ch}</span>`), '');
+                                const chSpans = Array.from(document.body.querySelectorAll('span'));
+                                const chOffsets = chSpans.map((ch, idx)=>(2 * Math.cos(idx)));
+                                chSpans.forEach((span, idx)=>{
+                                    const offset = Math.cos(chOffsets[idx] + delta);
+                                    span.style.transform = `translateY(${offset}px)`;
+                                });
+                                window.requestAnimationFrame(()=>jump(delta + 0.3));
+                            })();
+                        </script>
+                    </body>
+            '></dokki-iframe>
+            ">
+        </dokki-code>
+        <dokki-iframe
+            headerless
+            height="2.5em"
+            srcdoc="
+                <style>
+                    body {
+                        background-color: blueviolet;
+                        color: white
+                    }
+                    span {
+                        display: inline-block;
+                        white-space: break-spaces;
+                    }
+                </style>
+                <body>
+                    <script>
+                        (function jump(delta = 0) {
+                            document.body.innerHTML =
+                                `Current time: ${Date.now()}`
+                                .split('')
+                                .reduce((str, ch)=>(str+`<span>${ch}</span>`), '');
+                            const chSpans = Array.from(document.body.querySelectorAll('span'));
+                            const chOffsets = chSpans.map((ch, idx)=>(2 * Math.cos(idx)));                            
+                            chSpans.forEach((span, idx)=>{
+                                const offset = Math.cos(chOffsets[idx] + delta);
+                                span.style.transform = `translateY(${offset}px)`;
+                            });
+                            window.requestAnimationFrame(()=>jump(delta + 0.3));
+                        })();
+                    </script>
+                </body>
+            "
+        ></dokki-iframe>
+    </x-example>
+</x-examples>
 </api-reference>

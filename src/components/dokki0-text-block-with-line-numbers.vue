@@ -130,6 +130,6 @@ export default {
 }
 </script>
 
-<api-reference>
-<p>TODO</p>
+<api-reference lang="md">
+TODO
 </api-reference>

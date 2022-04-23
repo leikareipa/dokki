@@ -134,192 +134,140 @@ export default {
 }
 </script>
 
-<api-reference>
-    <p>
-        Provides the general functionality of a standard <x-tag>img</x-tag>, with some
-        dokki-specific extensions. 
-    </p>
+<api-reference lang="md">
+Provides the general functionality of a standard \<img\>, with some dokki-specific
+extensions. 
 
-    <h2>Samples</h2>
+## Samples
 
-        <dokki-image width="1280" height="720" src='https://upload.wikimedia.org/wikipedia/commons/thumb/7/7f/Eublepharis_macularius_2009_G6.jpg/1280px-Eublepharis_macularius_2009_G6.jpg'>
-            <template #caption>
-                Eublepharis macularius
-            </template>
-        </dokki-image>
+<dokki-image width="1280" height="720" src='https://upload.wikimedia.org/wikipedia/commons/thumb/7/7f/Eublepharis_macularius_2009_G6.jpg/1280px-Eublepharis_macularius_2009_G6.jpg'>
+    <template #caption>
+        Eublepharis macularius
+    </template>
+</dokki-image>
 
-        <dokki-image plain width="1280" height="720" src='https://upload.wikimedia.org/wikipedia/commons/thumb/7/7f/Eublepharis_macularius_2009_G6.jpg/1280px-Eublepharis_macularius_2009_G6.jpg'>
-            <template #caption>
-                Eublepharis macularius
-            </template>
-        </dokki-image>
+<dokki-image plain width="1280" height="720" src='https://upload.wikimedia.org/wikipedia/commons/thumb/7/7f/Eublepharis_macularius_2009_G6.jpg/1280px-Eublepharis_macularius_2009_G6.jpg'>
+    <template #caption>
+        Eublepharis macularius
+    </template>
+</dokki-image>
 
-    <h2>Markup</h2>
+## Markup
 
+    <dokki-image expanded headerless height inline-class pixelated-scale src upscale-to-fit width>
+
+        <template #caption>
+        </template>
+
+    </dokki-image>
+
+</dokki-code>
+
+## Templates
+
+### #caption
+
+The template's children will be displayed as the \<dokki-image\> element's caption.
+
+<x-examples>
+    <x-example>
         <dokki-code headerless code="
-            <dokki-image expanded headerless height inline-class pixelated-scale src upscale-to-fit width>
+            <template #caption>
+                Hello there
+            </template>
+            ">
+        </dokki-code>
+        <dokki-image>
+            <template #caption>
+                Hello there
+            </template>
+        </dokki-image>
+    </x-example>
+    <x-example>
+        <dokki-code headerless code="
+            <template #caption>
+                <span style='filter: blur(2px);'>Hello there</span>
+            </template>
+            ">
+        </dokki-code>
+        <dokki-image>
+            <template #caption>
+                <span style='filter: blur(2px);'>Hello there</span>
+            </template>
+        </dokki-image>
+    </x-example>
+</x-examples>
 
-                <template #caption>
-                </template>
+## Attributes
 
+### expanded
+
+If present, the \<dokki-image\> element's image container will be visible initially,
+rather than requiring the user to reveal it.
+
+Setting the **headerless** attribute will implicitly set this attribute as well.
+
+### headerless
+
+If present, causes the \<dokki-image\> element to be displayed without its caption.
+
+Setting this attribute will implicitly set the **expanded** attribute as well. 
+
+<x-examples>
+    <x-example>
+        <dokki-code headerless code="
+            <dokki-image headerless src='...'>
             </dokki-image>
             ">
         </dokki-code>
+        <dokki-image headerless width="1280" height="720" src='https://upload.wikimedia.org/wikipedia/commons/thumb/7/7f/Eublepharis_macularius_2009_G6.jpg/1280px-Eublepharis_macularius_2009_G6.jpg'>
+        </dokki-image>
+    </x-example>
+</x-examples>
 
-    <h2>Templates</h2>
+### height
 
-        <x-templ>caption</x-templ>
+Corresponds to the **height** attribute of the standard \<img\> element. 
 
-            <p>
-                The template's children will be displayed as the <x-tag>dokki-image</x-tag>
-                element's caption.
-            </p>
+### inline-class
 
-            <x-examples>
-                <x-example>
+The class name(s) given in this string will be appended to the \<dokki-image\>
+element's class list.
 
-                    <dokki-code headerless
-                        code="
-                        <template #caption>
-                            Hello there
-                        </template>
-                        ">
-                    </dokki-code>
+### pixelated-scale
 
-                    <dokki-image>
-                        <template #caption>
-                            Hello there
-                        </template>
-                    </dokki-image>
+If the **width** and/or **height** attributes are set higher than the image's native
+resolution, or if the image is smaller than the \<dokki-image\> element's image
+container and the **upscale-to-fit** attribute is set, the image will be upscaled
+using nearest-neighbor interpolation (rather than e.g. bilinear sampling).
 
-                </x-example>
+<x-examples>
+    <x-example>
+        <dokki-code headerless code="
+            <dokki-image pixelated-scale width='...' height='...' src='...'>
+            </dokki-image>
+            ">
+        </dokki-code>
+        <dokki-image
+            expanded
+            pixelated-scale
+            width='1024'
+            height='576'
+            src='https://upload.wikimedia.org/wikipedia/commons/thumb/7/7f/Eublepharis_macularius_2009_G6.jpg/80px-Eublepharis_macularius_2009_G6.jpg'
+        ></dokki-image>
+    </x-example>
+</x-examples>
 
-                <x-example>
+### src <x-required></x-required>
 
-                    <dokki-code headerless
-                        code="
-                        <template #caption>
-                            <span style='filter: blur(2px);'>Hello there</span>
-                        </template>
-                        ">
-                    </dokki-code>
+Corresponds to the **src** attribute of the standard \<img\> element. 
 
-                    <dokki-image>
-                        <template #caption>
-                            <span style='filter: blur(2px);'>Hello there</span>
-                        </template>
-                    </dokki-image>
+### upscale-to-fit
 
-                </x-example>
-            </x-examples>
+If present, images that are smaller than the \<dokki-image\> element's image container
+will be upscaled to fit the container. 
 
-    <h2>Attributes</h2>
+### width
 
-        <x-attr>expanded</x-attr>
-
-            <p>
-                If present, the <x-tag>dokki-image</x-tag> element's image container will be visible
-                initially, rather than requiring the user to reveal it.
-            </p>
-
-            <p>
-                Setting the <x-attr>headerless</x-attr> attribute will implicitly set this attribute
-                as well.
-            </p>
-
-        <x-attr>headerless</x-attr>
-
-            <p>
-                If present, causes the <x-tag>dokki-image</x-tag> element to be displayed without its
-                caption.
-            </p>
-
-            <p>
-                Setting this attribute will implicitly set the <x-attr>expanded</x-attr> attribute
-                as well. 
-            </p>
-
-            <x-examples>
-                <x-example>
-
-                    <dokki-code headerless
-                        code="
-                        <dokki-image headerless src='...'>
-                        </dokki-image>
-                        ">
-                    </dokki-code>
-
-                    <dokki-image headerless width="1280" height="720" src='https://upload.wikimedia.org/wikipedia/commons/thumb/7/7f/Eublepharis_macularius_2009_G6.jpg/1280px-Eublepharis_macularius_2009_G6.jpg'>
-                    </dokki-image>
-
-                </x-example>
-            </x-examples>
-
-        <x-attr>height</x-attr>
-
-            <p>
-                Corresponds to the <x-attr>height</x-attr> attribute of the standard <x-tag>img</x-tag>
-                element. 
-            </p>
-
-        <x-attr>inline-class</x-attr>
-
-            <p>
-                The class name(s) given in this string will be appended to the
-                <x-tag>dokki-image</x-tag> element's class list.
-            </p>
-
-        <x-attr>pixelated-scale</x-attr>
-
-            <p>
-                If the <x-attr>width</x-attr> and/or <x-attr>height</x-attr> attributes are set
-                higher than the image's native resolution, or if the image is smaller than the
-                <x-tag>dokki-image</x-tag> element's image container and the <x-attr>upscale-to-fit</x-attr>
-                attribute is set, the image will be upscaled using nearest-neighbor interpolation
-                (rather than e.g. bilinear sampling).
-            </p>
-
-            <x-examples>
-                <x-example>
-
-                    <dokki-code headerless
-                        code="
-                        <dokki-image pixelated-scale width='...' height='...' src='...'>
-                        </dokki-image>
-                        ">
-                    </dokki-code>
-
-                    <dokki-image
-                        expanded
-                        pixelated-scale
-                        width='1024'
-                        height='576'
-                        src='https://upload.wikimedia.org/wikipedia/commons/thumb/7/7f/Eublepharis_macularius_2009_G6.jpg/80px-Eublepharis_macularius_2009_G6.jpg'
-                    ></dokki-image>
-
-                </x-example>
-            </x-examples>
-
-        <x-attr>src</x-attr>
-        <x-required></x-required>
-
-            <p>
-                Corresponds to the <x-attr>src</x-attr> attribute of the standard <x-tag>img</x-tag>
-                element. 
-            </p>
-
-        <x-attr>upscale-to-fit</x-attr>
-
-            <p>
-                If present, images that are smaller than the <x-tag>dokki-image</x-tag> element's
-                image container will be upscaled to fit the container. 
-            </p>
-
-        <x-attr>width</x-attr>
-
-            <p>
-                Corresponds to the <x-attr>width</x-attr> attribute of the standard <x-tag>img</x-tag>
-                element. 
-            </p>
-
+Corresponds to the **width** attribute of the standard \<img\> element. 
 </api-reference>
