@@ -74,20 +74,21 @@
             }
 
             x-required {
-                font-weight: var(--dokkiCSS-bold-text-weight);
-                color: red;
-                font-variant: normal;
-                font-size: 95%;
-            }
-
-            * + x-required {
-                margin-left: 0.5ch;
+                background-color: red;
+                color: white;
+                padding: 2px 5px;
+                font-size: 80%;
+                font-variant: small-caps;
+                border-radius: 15px;
+                vertical-align: top;
+                border-bottom-left-radius: 0;
+                margin-left: 0.25em;
             }
 
             x-required::before {
-                content: "(required)";
+                content: "required";
             }
-
+            
             h3 {
                 font-variant: small-caps;
             }
