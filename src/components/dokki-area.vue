@@ -32,5 +32,29 @@ export default {
 </script>
 
 <api-reference lang="md">
-TODO
+A visually emphasized region in which you can embed content (e.g. a quote).
+
+## Samples
+
+<dokki-area>
+    <p>Fortune favours the bold.</p>
+    <p style="font-style: italic;">&ndash; Virgil</p>
+</dokki-area>
+
+<dokki-area>
+    <p>1x nested</p>
+    <dokki-area>
+        2x nested
+    </dokki-area>
+    <dokki-area>
+        <dokki-area>
+            3x nested
+        </dokki-area>
+    </dokki-area>
+</dokki-area>
+
+## Markdown
+
+    <dokki-area>
+    </dokki-area>
 </api-reference>
