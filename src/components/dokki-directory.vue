@@ -8,7 +8,7 @@
 <template>
 <dokki0-embedded-expandable
     class-name="dokki-directory"
-    :has-content="Boolean(Object.keys(structure).length)"
+    :has-content="Boolean(Object.keys(this.structureObject).length)"
     expands-to="dropdown"
     icon="fas fa-folder"
     title="File tree">
@@ -124,7 +124,7 @@
 <script>
 export default {
     props: {
-        structure: {type: Object, default: {}},
+        structure: {type: String, default: "{}"},
     },
     methods: {
         entryPadding(entry = {})
@@ -149,9 +149,13 @@ export default {
         },
     },
     computed: {
+        structureObject()
+        {
+            return eval(`(${this.structure})`);
+        },
         flattenedStructure()
         {
-            return recurse(this.$props.structure);
+            return recurse(this.structureObject);
 
             function recurse(object, flattened = [], depth = 0)
             {
@@ -193,7 +197,7 @@ Displays a nested listing of files and folders.
 
 ## Samples
 
-<dokki-directory :structure="{
+<dokki-directory structure="{
     'Directory': {
         'Sub-directory': {
             'file.1': {},
@@ -205,7 +209,7 @@ Displays a nested listing of files and folders.
     </template>
 </dokki-directory>
 
-<dokki-directory plain :structure="{
+<dokki-directory plain structure="{
     'Directory': {
         'Sub-directory': {
             'file.1': {},
@@ -219,7 +223,7 @@ Displays a nested listing of files and folders.
 
 ## Markup
 
-    <dokki-directory expanded headerless inline-class :structure>
+    <dokki-directory expanded headerless inline-class structure>
 
         <template #caption>
         </template>
@@ -285,7 +289,7 @@ as well.
     <x-example>
         <dokki-code headerless
             code="
-            <dokki-directory headerless :structure=``{
+            <dokki-directory headerless structure=``{
                 'Directory': {
                     'file.1': {},
                 }
@@ -293,7 +297,7 @@ as well.
             </dokki-directory>
             ">
         </dokki-code>
-        <dokki-directory headerless :structure="{
+        <dokki-directory headerless structure="{
             'Directory': {
                 'file.1': {},
             }
@@ -307,7 +311,7 @@ as well.
 The class name(s) given in this string will be appended to the \<dokki-directory\>
 element's class list.
 
-### :structure <x-required></x-required>
+### structure <x-required></x-required>
 
 A string-serialized JavaScript object describing the directory structure. Each
 property key is the name of a folder or file, with files being those properties
@@ -316,7 +320,7 @@ with "/" are interpreted as metadata.
 
 <dokki-table plain>
     <template #caption>
-        File metadata identifiers in <strong>:structure</strong>
+        File metadata identifiers in <strong>structure</strong>
     </template>
     <template #table>
         <table>
@@ -340,7 +344,7 @@ with "/" are interpreted as metadata.
     <x-example>
         <dokki-code headerless
             code="
-            <dokki-directory :structure=``{
+            <dokki-directory structure=``{
                 'Field recording B': {
                     'Metadata': {
                         'readme.pdf': {
@@ -362,7 +366,7 @@ with "/" are interpreted as metadata.
             </dokki-directory>
             ">
         </dokki-code>
-        <dokki-directory :structure="{
+        <dokki-directory structure="{
             'Field recording B': {
                 'Metadata': {
                     'readme.pdf': {

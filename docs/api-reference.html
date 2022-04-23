@@ -74,20 +74,21 @@
             }
 
             x-required {
-                font-weight: var(--dokkiCSS-bold-text-weight);
-                color: red;
-                font-variant: normal;
-                font-size: 95%;
-            }
-
-            * + x-required {
-                margin-left: 0.5ch;
+                background-color: red;
+                color: white;
+                padding: 2px 5px;
+                font-size: 80%;
+                font-variant: small-caps;
+                border-radius: 15px;
+                vertical-align: top;
+                border-bottom-left-radius: 0;
+                margin-left: 0.25em;
             }
 
             x-required::before {
-                content: "(required)";
+                content: "required";
             }
-
+            
             h3 {
                 font-variant: small-caps;
             }
@@ -117,7 +118,27 @@
         
             <dokki-topics>
         <dokki-topic title='dokki-area'>
-            <p>TODO</p>
+            <p>A visually emphasized region in which you can embed content (e.g. a quote).</p>
+<h2>Samples</h2>
+<dokki-area>
+    <p>Fortune favours the bold.</p>
+    <p style="font-style: italic;">&ndash; Virgil</p>
+</dokki-area>
+<dokki-area>
+    <p>1x nested</p>
+    <dokki-area>
+        2x nested
+    </dokki-area>
+    <dokki-area>
+        <dokki-area>
+            3x nested
+        </dokki-area>
+    </dokki-area>
+</dokki-area>
+<h2>Markdown</h2>
+<pre><code>&lt;dokki-area&gt;
+&lt;/dokki-area&gt;
+</code></pre>
 
         </dokki-topic>
         
@@ -343,7 +364,7 @@ various syntactic classes (e.g. &quot;hljs-string&quot;).</p>
         <dokki-topic title='dokki-directory'>
             <p>Displays a nested listing of files and folders.</p>
 <h2>Samples</h2>
-<p><dokki-directory :structure="{
+<p><dokki-directory structure="{
     'Directory': {
         'Sub-directory': {
             'file.1': {},
@@ -354,7 +375,7 @@ various syntactic classes (e.g. &quot;hljs-string&quot;).</p>
 A listing of files and folders
 
 </dokki-directory></p>
-<p><dokki-directory plain :structure="{
+<p><dokki-directory plain structure="{
     'Directory': {
         'Sub-directory': {
             'file.1': {},
@@ -366,7 +387,7 @@ A listing of files and folders
 
 </dokki-directory></p>
 <h2>Markup</h2>
-<pre><code>&lt;dokki-directory expanded headerless inline-class :structure&gt;
+<pre><code>&lt;dokki-directory expanded headerless inline-class structure&gt;
 
     &lt;template #caption&gt;
     &lt;/template&gt;
@@ -421,7 +442,7 @@ as well.</p>
     <x-example>
         <dokki-code headerless
             code="
-            <dokki-directory headerless :structure=``{
+            <dokki-directory headerless structure=``{
                 'Directory': {
                     'file.1': {},
                 }
@@ -429,7 +450,7 @@ as well.</p>
             </dokki-directory>
             ">
         </dokki-code>
-        <dokki-directory headerless :structure="{
+        <dokki-directory headerless structure="{
             'Directory': {
                 'file.1': {},
             }
@@ -440,14 +461,14 @@ as well.</p>
 <h3>inline-class</h3>
 <p>The class name(s) given in this string will be appended to the &lt;dokki-directory&gt;
 element's class list.</p>
-<h3>:structure <x-required></x-required></h3>
+<h3>structure <x-required></x-required></h3>
 <p>A string-serialized JavaScript object describing the directory structure. Each
 property key is the name of a folder or file, with files being those properties
 which have no further sub-properties (apart from metadata). Property keys prefixed
 with &quot;/&quot; are interpreted as metadata.</p>
 <dokki-table plain>
     <template #caption>
-        File metadata identifiers in <strong>:structure</strong>
+        File metadata identifiers in <strong>structure</strong>
     </template>
     <template #table>
         <table>
@@ -470,7 +491,7 @@ with &quot;/&quot; are interpreted as metadata.</p>
     <x-example>
         <dokki-code headerless
             code="
-            <dokki-directory :structure=``{
+            <dokki-directory structure=``{
                 'Field recording B': {
                     'Metadata': {
                         'readme.pdf': {
@@ -492,7 +513,7 @@ with &quot;/&quot; are interpreted as metadata.</p>
             </dokki-directory>
             ">
         </dokki-code>
-        <dokki-directory :structure="{
+        <dokki-directory structure="{
             'Field recording B': {
                 'Metadata': {
                     'readme.pdf': {
