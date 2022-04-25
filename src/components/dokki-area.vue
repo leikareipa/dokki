@@ -38,17 +38,17 @@ A visually emphasized region in which you can embed content (e.g. a quote).
 
 <dokki-area>
     <p>Fortune favours the bold.</p>
-    <p style="font-style: italic;">&ndash; Virgil</p>
+    <p>&ndash; Virgil</p>
 </dokki-area>
 
 <dokki-area>
-    <p>1x nested</p>
+    <p>Nesting: none</p>
     <dokki-area>
-        2x nested
+        Nesting: 1x
     </dokki-area>
     <dokki-area>
         <dokki-area>
-            3x nested
+            Nesting: 2x
         </dokki-area>
     </dokki-area>
 </dokki-area>

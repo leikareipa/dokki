@@ -6,7 +6,7 @@
  */
 
 <template>
-<nav class="dokki-side-panel">
+<nav class="dokki-navi">
 
     <header>
 
@@ -51,7 +51,7 @@
 </template>
 
 <style lang="scss">
-.dokki-side-panel
+.dokki-navi
 {
     box-sizing: border-box;
     position: fixed;
@@ -189,7 +189,7 @@ export default {
             const observer = new IntersectionObserver(entries=>{
                 for (const entry of entries) {
                     const id = entry.target.getAttribute("id");
-                    const tocEl = document.querySelector(`.dokki-side-panel .vertical-navi a[href="#${id}"]`);
+                    const tocEl = document.querySelector(`.dokki-navi .vertical-navi a[href="#${id}"]`);
                     tocEl?.classList[entry.intersectionRatio? "add" : "remove"]("viewing");
                 }
             });

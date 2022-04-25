@@ -110,11 +110,11 @@
     <body>
         <template id="dokki-document">
 
-            <dokki-side-panel>
+            <dokki-navi>
                 <template #caption>
                     API reference for dokki
                 </template>
-            </dokki-side-panel>
+            </dokki-navi>
         
             <dokki-topics>
         <dokki-topic title='dokki-area'>
@@ -122,16 +122,16 @@
 <h2>Samples</h2>
 <dokki-area>
     <p>Fortune favours the bold.</p>
-    <p style="font-style: italic;">&ndash; Virgil</p>
+    <p>&ndash; Virgil</p>
 </dokki-area>
 <dokki-area>
-    <p>1x nested</p>
+    <p>Nesting: none</p>
     <dokki-area>
-        2x nested
+        Nesting: 1x
     </dokki-area>
     <dokki-area>
         <dokki-area>
-            3x nested
+            Nesting: 2x
         </dokki-area>
     </dokki-area>
 </dokki-area>
@@ -539,12 +539,6 @@ with &quot;/&quot; are interpreted as metadata.</p>
         </dokki-topic>
         
 
-        <dokki-topic title='dokki-header'>
-            <p>TODO</p>
-
-        </dokki-topic>
-        
-
         <dokki-topic title='dokki-hr'>
             <p>TODO</p>
 
@@ -851,16 +845,16 @@ five unique such paragraphs.</p>
         </dokki-topic>
         
 
-        <dokki-topic title='dokki-output'>
-            <p>
-    TODO
-</p>
+        <dokki-topic title='dokki-navi'>
+            <p>TODO</p>
 
         </dokki-topic>
         
 
-        <dokki-topic title='dokki-side-panel'>
-            <p>TODO</p>
+        <dokki-topic title='dokki-output'>
+            <p>
+    TODO
+</p>
 
         </dokki-topic>
         
