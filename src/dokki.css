@@ -100,7 +100,7 @@ body
     --dokkiCSS-subtopic-anchor-top-margin: 30px;
     --dokkiCSS-text-block-line-anchor-top-margin: 20vh;
 
-    --dokkiCSS-embedded-border-radius: 0;
+    --dokkiCSS-embedded-border-radius: 4px;
     --dokkiCSS-embedded-vertical-margin: 18px;
     --dokkiCSS-embedded-header-padding: 18px 16px;
     --dokkiCSS-embedded-horizontal-padding: 16px;
@@ -233,8 +233,15 @@ code .hljs-comment
     .dokki-topics
     {
         border-right: none;
-        padding-left: var(--dokkiCSS-topic-horizontal-padding);
-        padding-right: var(--dokkiCSS-topic-horizontal-padding);
+        top: 0;
+    }
+
+    .dokki-topic
+    {
+        border-left: none;
+        border-right: none;
+        border-top: none;
+        margin-bottom: 0;
     }
 
     .dokkiCSS-header-container

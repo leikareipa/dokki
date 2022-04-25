@@ -67,7 +67,6 @@
         box-sizing: border-box;
         display: flex;
         align-items: center;
-        border-radius: var(--dokkiCSS-embedded-border-radius);
         border-bottom: 1px solid var(--dokkiCSS-page-secondary-line-color);
     }
 
