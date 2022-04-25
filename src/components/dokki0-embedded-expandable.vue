@@ -29,7 +29,7 @@
         </span>
 
         <span v-if="headerWidget == 'groupbox'" class="title">
-            <i :class="icon" class="fa-sm"/>
+            <i :class="icon"/>
             {{title}}
         </span>
 
@@ -181,9 +181,9 @@
             position: absolute;
             top: 0;
             left: calc(var(--dokkiCSS-embedded-horizontal-padding) - 3px);
-            font-size: 95%;
+            font-size: 80%;
             font-variant: small-caps;
-            text-transform: lowercase;
+            text-transform: uppercase;
             transform: translateY(-50%);
             padding: 3px;
             color: var(--dokkiCSS-page-secondary-fg-color);
