@@ -100,7 +100,7 @@ body
     --dokkiCSS-subtopic-anchor-top-margin: 30px;
     --dokkiCSS-text-block-line-anchor-top-margin: 20vh;
 
-    --dokkiCSS-embedded-border-radius: 4px;
+    --dokkiCSS-embedded-border-radius: 0;
     --dokkiCSS-embedded-vertical-margin: 18px;
     --dokkiCSS-embedded-header-padding: 18px 16px;
     --dokkiCSS-embedded-horizontal-padding: 16px;

@@ -6,19 +6,16 @@
  */
 
 <template>
-    <span class="dokkiCSS-anchor subtopic"
-          :id="anchor_id">
-    </span>
-
-    <h2>{{this.title}}</h2>
-    
-    <slot/>
+    <section class="dokki-subtopic" :id="anchor_id">
+        <h2>{{this.title}}</h2>
+        <slot/>
+    </section>
 </template>
 
 <style lang="scss">
 .dokkiCSS-anchor.subtopic
 {
-    top: calc(-1*var(--dokkiCSS-header-height) - var(--dokkiCSS-topic-vertical-padding));
+    top: calc(-2 * var(--dokkiCSS-topic-vertical-padding));
 }
 </style>
 

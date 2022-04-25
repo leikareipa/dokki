@@ -6,11 +6,7 @@
  */
 
 <template>
-    <span class="dokkiCSS-anchor topic"
-          :id="anchor_id">
-    </span>
-
-    <section class="dokki-topic">
+    <section class="dokki-topic" :id="anchor_id">
     
         <h1 class="dokkiCSS-topic-title">
             {{this.title}}
@@ -33,7 +29,7 @@
     margin-bottom: var(--dokkiCSS-topic-bottom-margin);
     width: 100%;
     border: 1px solid var(--dokkiCSS-page-primary-line-color);
-    border-radius: 4px;
+    border-radius: 0;
 
     p
     {
@@ -99,7 +95,7 @@
 
     h2
     {
-        margin-top: var(--dokkiCSS-topic-header-top-margin);
+        margin-top: var(--dokkiCSS-topic-header-top-margin) !important;
         font-size: 135%;
     }
 
@@ -144,11 +140,6 @@
             }
         }
     }
-}
-
-.dokkiCSS-anchor.topic
-{
-    top: calc(-1*var(--dokkiCSS-header-height) - 16px);
 }
 </style>
 

@@ -177,12 +177,13 @@ export default {
             }
 
             this.showHeader = true;
+
+            // If the header isn't visible, scroll it into view.
             this.$nextTick(()=>{
                 const tagHeaderEl = this.$refs["container"];
                 const style = getComputedStyle(document.body);
-                const dokkiHeaderHeight = Number(style.getPropertyValue("--dokkiCSS-header-height").match(/\d+/)[0]);
                 const dokkiElementVerticalSpacing = Number(style.getPropertyValue("--dokkiCSS-topic-bottom-margin").match(/\d+/)[0]);
-                const topMargin = (dokkiHeaderHeight + dokkiElementVerticalSpacing);
+                const topMargin = dokkiElementVerticalSpacing;
 
                 if (tagHeaderEl && (tagHeaderEl.getBoundingClientRect().bottom < topMargin)) {
                     tagHeaderEl.scrollIntoView(true);

@@ -8,7 +8,7 @@
 <template>
 <dokki0-embedded-expandable
     class-name="dokki-output"
-    icon="fas fa-chevron-right"
+    icon="fas fa-cogs"
     title="Output"
     header-widget="frame"
     :class="{'unpadded': isUnpadded}">

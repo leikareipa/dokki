@@ -33,8 +33,6 @@
             {{title}}
         </span>
 
-        <dokki0-expansion-indicator v-if="hasContent" :isExpanded="isExpanded" :isTransitioning="isTransitioning"/>
-
         <span class="caption">
 
                 <span class="icon" v-if="isPlain" :title="title">
@@ -49,6 +47,8 @@
                 </span>
 
         </span>
+
+        <dokki0-expansion-indicator v-if="hasContent" :isExpanded="isExpanded" :isTransitioning="isTransitioning"/>
 
     </header>
 
@@ -135,7 +135,7 @@
 
         & .dokki0-expansion-indicator
         {
-            margin-right: 1ch;
+            margin-left: auto;
         }
     }
 

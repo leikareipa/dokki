@@ -18,7 +18,8 @@
 <style lang="scss">
 .dokki-topics
 {
-    padding-bottom: calc(100vh - var(--dokkiCSS-header-height));
+    top: var(--dokkiCSS-topic-bottom-margin);
+    padding-bottom: 100vh;
     width: var(--dokkiCSS-topics-container-width);
     background-color: transparent;
     display: flex;
@@ -27,7 +28,6 @@
     text-align: left;
     position: relative;
     left: calc(var(--dokkiCSS-document-horizontal-left-start) + var(--dokkiCSS-side-panel-width));
-    top: var(--dokkiCSS-header-height);
     z-index: 1;
     box-sizing: border-box;
 

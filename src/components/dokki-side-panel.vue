@@ -16,10 +16,6 @@
 
             <a :href="topic.url"
                 class="navi-link topic">
-
-                <span class="icon">
-                    {{topicIdx + 1}}
-                </span>
                 
                 <span class="label">
                     {{topic.title}}
@@ -50,20 +46,18 @@
     box-sizing: border-box;
     position: fixed;
     z-index: 3;
-    top: var(--dokkiCSS-header-height);
     left: 0;
     width: var(--dokkiCSS-side-panel-width);
     text-align: left;
     overflow-y: auto;
-    height: calc(100% - var(--dokkiCSS-header-height));
-    padding-top: 13px;
+    height: 100%;
+    border-right: 1px solid var(--dokkiCSS-page-secondary-line-color);
 
     .dokkiCSS-user-element
     {
-        min-height: var(--dokkiCSS-header-height);
         align-items: center;
         margin: 0;
-        padding: var(--dokkiCSS-navibar-item-padding-vertical) var(--dokkiCSS-navibar-item-padding-horizontal);
+        padding: 14px 20px;
         background-color: var(--dokkiCSS-page-inert-bg-color);
         text-align: left;
         position: relative;
@@ -73,14 +67,14 @@
         box-sizing: border-box;
         display: flex;
         align-items: center;
-        margin-left: calc(0.5 * var(--dokkiCSS-navibar-item-padding-horizontal));
-        margin-right: calc(0.5 * var(--dokkiCSS-navibar-item-padding-horizontal));
-        border-radius: 4px;
+        border-radius: var(--dokkiCSS-embedded-border-radius);
+        border-bottom: 1px solid var(--dokkiCSS-page-secondary-line-color);
     }
 
     .dokkiCSS-user-element:last-of-type
     {
         margin-bottom: 10px;
+        border-bottom: 1px solid var(--dokkiCSS-page-secondary-line-color);
     }
 
     h2
@@ -103,28 +97,9 @@
         list-style-type: none;
         padding: 0;
         margin: 0;
-        padding-left: calc(0.5 * var(--dokkiCSS-navibar-item-padding-horizontal));
-        padding-right: calc(0.5 * var(--dokkiCSS-navibar-item-padding-horizontal));
-
-        .icon
-        {
-            background-color: var(--dokkiCSS-page-primary-bg-color);
-            border: 1px solid var(--dokkiCSS-page-primary-line-color);
-            border-radius: var(--dokkiCSS-embedded-border-radius);
-            padding: 2px 5px;
-            display: flex;
-            margin-right: 0.75ch;
-            z-index: 1;
-            justify-content: center;
-            color: var(--dokkiCSS-page-inert-fg-color);
-            font-size: 95%;
-            min-width: 2ch;
-        }
-
-        a:hover .icon
-        {
-            color: var(--dokkiCSS-page-secondary-fg-color);
-        }
+        padding-left: var(--dokkiCSS-navibar-item-padding-horizontal);
+        padding-right: var(--dokkiCSS-navibar-item-padding-horizontal);
+        margin-top: 10px;
 
         .label
         {
@@ -141,7 +116,7 @@
             color: var(--dokkiCSS-page-secondary-fg-color);
             display: flex;
             position: relative;
-            border-radius: 4px;
+            border-radius: var(--dokkiCSS-embedded-border-radius);
 
             &:hover
             {
@@ -149,48 +124,21 @@
                 background-color: var(--dokkiCSS-embedded-auxiliary-color);
                 text-decoration: none;
             }
-        }
 
-        .subtopic
-        {
-            border-left: 1px solid transparent;
-            margin-left: calc(var(--dokkiCSS-navibar-item-padding-horizontal) + 9px + 0.5ch);
-            padding-left: 1.25ch;
-            color: var(--dokkiCSS-page-inert-fg-color);
-            border-top-left-radius: 0;
-            border-bottom-left-radius: 0;
-
-            &:not(:last-child)
+            &.viewing,
+            &.subtopic.viewing
             {
-                border-left: 1px solid var(--dokkiCSS-page-primary-line-color);
+                color: var(--dokkiCSS-page-link-color);
             }
 
-            &:last-child
+            &.subtopic
             {
-                border-bottom-left-radius: 4px;
-            }
-
-            &::before
-            {
-                content: "";
-                position: absolute;
-                left: -1px;
-                top: -13px;
-                border-left: 1px solid var(--dokkiCSS-page-primary-line-color);
-                height: 25px;
-            }
-
-            &::after
-            {
-                background-color: var(--dokkiCSS-page-primary-bg-color);
-                border: 1px solid var(--dokkiCSS-page-primary-line-color);
-                border-radius: 100%;
-                content: "";
-                left: -6px;
-                padding: 4.5px;
-                position: absolute;
-                top: 9px;
-                z-index: 1;
+                border-left: 1px solid transparent;
+                margin-left: calc(1.5 * var(--dokkiCSS-navibar-item-padding-horizontal));
+                padding-left: 1.25ch;
+                color: var(--dokkiCSS-page-inert-fg-color);
+                border-top-left-radius: 0;
+                border-bottom-left-radius: 0;
             }
         }
     }
@@ -209,6 +157,21 @@ export default {
         {
             return this.$store.state.topics;
         },
+    },
+    created() {
+        // Have the table of contents highlight the topics that are currently inside the viewport.
+        window.addEventListener("dokki-topics-ready", ()=>{
+            const observer = new IntersectionObserver(entries=>{
+                for (const entry of entries) {
+                    const id = entry.target.getAttribute("id");
+                    const tocEl = document.querySelector(`.dokki-side-panel .vertical-navi a[href="#${id}"]`);
+                    tocEl?.classList[entry.intersectionRatio? "add" : "remove"]("viewing");
+                }
+            });
+            
+            const targetEls = document.querySelectorAll(".dokki-topic, .dokki-subtopic");
+            targetEls.forEach(el=>observer.observe(el));
+        });
     },
 }
 </script>
