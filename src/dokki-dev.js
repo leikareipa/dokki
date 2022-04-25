@@ -13,7 +13,6 @@ import dokkiArea from "./components/dokki-area.vue";
 import dokkiCode from "./components/dokki-code.vue";
 import dokkiConsole from "./components/dokki-console.vue";
 import dokkiDirectory from "./components/dokki-directory.vue";
-import dokkiHeader from "./components/dokki-header.vue";
 import dokkiIframe from "./components/dokki-iframe.vue";
 import dokkiImage from "./components/dokki-image.vue";
 import dokkiItem from "./components/dokki-item.vue";
@@ -110,7 +109,6 @@ export function start(args = {})
     .component("dokki-code", dokkiCode)
     .component("dokki-console", dokkiConsole)
     .component("dokki-directory", dokkiDirectory)
-    .component("dokki-header", dokkiHeader)
     .component("dokki-iframe", dokkiIframe)
     .component("dokki-image", dokkiImage)
     .component("dokki-item", dokkiItem)

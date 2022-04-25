@@ -8,6 +8,16 @@
 <template>
 <nav class="dokki-side-panel">
 
+    <header>
+
+        <span class="title">
+            
+            {{caption}}
+
+        </span>
+
+    </header>
+
     <slot/>
 
     <ul class="vertical-navi">
@@ -52,6 +62,16 @@
     overflow-y: auto;
     height: 100%;
     border-right: 1px solid var(--dokkiCSS-page-secondary-line-color);
+
+    header
+    {
+        width: 100%;
+        padding: 20px;
+        box-sizing: border-box;
+        font-weight: var(--dokkiCSS-bold-text-weight);
+        line-height: var(--dokkiCSS-content-line-height);
+        border-bottom: 1px solid var(--dokkiCSS-page-secondary-line-color);
+    }
 
     .dokkiCSS-user-element
     {
@@ -156,6 +176,12 @@ export default {
         {
             return this.$store.state.topics;
         },
+        caption() {
+            return (
+                this.$slots["caption"]?.()[0]?.children ||
+                "Untitled document"
+            );
+        },
     },
     created() {
         // Have the table of contents highlight the topics that are currently inside the viewport.
@@ -171,6 +197,8 @@ export default {
             const targetEls = document.querySelectorAll(".dokki-topic, .dokki-subtopic");
             targetEls.forEach(el=>observer.observe(el));
         });
+
+        document.title = this.caption;
     },
 }
 </script>
