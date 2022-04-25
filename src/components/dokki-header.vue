@@ -6,16 +6,13 @@
  */
 
 <template>
-    <header class="dokki-header">
+<header class="dokki-header">
 
-        <span class="title" :title="title">
-            {{title}}
-        </span>
+    <span class="title" :title="title">
+        {{title}}
+    </span>
 
-        <dokki0-page-load-progress-bar>
-        </dokki0-page-load-progress-bar>
-
-    </header>
+</header>
 </template>
 
 <style lang="scss">

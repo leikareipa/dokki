@@ -1,7 +1,10 @@
 <template>
     <div
         class="dokki0-page-load-progress-bar"
-        :class="{progressing: (!hasFinishedLoading && (progressPercent > 0))}"
+        :class="{
+            'progressing': (!hasFinishedLoading && (progressPercent > 0)),
+            'finished': hasFinishedLoading,
+        }"
         :style="{
             width: `${hasFinishedLoading? 100 : progressPercent}%`,
         }">
@@ -11,19 +14,20 @@
 <style lang="scss">
 .dokki0-page-load-progress-bar
 {
-    position: absolute;
-    bottom: 0;
+    position: fixed;
+    z-index: 9999999;
+    top: 0;
     left: 0;
     width: 0;
     height: 2px;
     background-color: var(--dokkiCSS-page-link-color);
-    opacity: 0;
     pointer-events: none;
-    transition: opacity 0.5s ease-out, width 0.1s linear;
+    opacity: 1;
+    transition: opacity 0.3s ease-out, width 0.1s linear;
      
-    &.progressing
+    &.finished
     {
-        opacity: 1;
+        opacity: 0;
     }
 }
 </style>

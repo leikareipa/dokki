@@ -49,8 +49,9 @@ export function start(args = {})
         ...args,
     };
 
-    console.assert(args.container instanceof HTMLElement,
-                   "Invalid document container");
+    console.assert(args.container instanceof HTMLElement, "Invalid document container");
+
+    document.body.appendChild(document.createElement("dokki0-page-load-progress-bar"));
 
     if (args.template instanceof HTMLTemplateElement)
     {
@@ -59,8 +60,7 @@ export function start(args = {})
     }
     else
     {
-        console.assert((args.template === null),
-                       "Invalid document template");
+        console.assert((args.template === null), "Invalid document template");
     }
 
     if (!document.documentElement.hasAttribute("lang"))
