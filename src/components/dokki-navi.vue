@@ -81,7 +81,7 @@
         box-shadow: 0 0 6px rgba(0, 0, 0, 0.55);
     }
 
-    .dokkiCSS-user-element
+    .dokki-user-element
     {
         align-items: center;
         margin: 0;
@@ -99,7 +99,7 @@
         transition: padding-top 0.15s ease;
     }
 
-    .dokkiCSS-user-element.clickable:hover
+    .dokki-user-element.clickable:hover
     {
         padding-top: 25px;
         background-color: var(--dokkiCSS-navi-clickable-hover-bg-color);
@@ -226,11 +226,11 @@ export default {
         document.title = this.caption;
     },
     mounted() {
-        const widgetEls = this.$refs["widgets"].children;
+        const widgetEls = (this.$refs["widgets"]?.children || []);
         for (let i = 0; i < widgetEls.length; i++)
         {
             widgetEls[i].style.zIndex = `${widgetEls.length-i}`;
-            widgetEls[i].classList.add("dokkiCSS-user-element");
+            widgetEls[i].classList.add("dokki-user-element");
         }
     },
 }
