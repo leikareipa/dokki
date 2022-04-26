@@ -42,15 +42,13 @@ A visually emphasized region for embedding content (e.g. a quote).
 </dokki-area>
 
 <dokki-area>
-    <p>Area not nested</p>
-    <dokki-area>
-        Area nested 1x
-    </dokki-area>
     <dokki-area>
         <dokki-area>
-            Area nested 2x
+            <p>Nested 2x</p>
         </dokki-area>
+        <p>Nested 1x</p>
     </dokki-area>
+    <p>No nesting</p>
 </dokki-area>
 
 ## Markdown
