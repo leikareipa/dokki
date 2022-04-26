@@ -1,14 +1,14 @@
 <template>
-    <div
-        class="dokki0-page-load-progress-bar"
-        :class="{
-            'progressing': (!hasFinishedLoading && (progressPercent > 0)),
-            'finished': hasFinishedLoading,
-        }"
-        :style="{
-            width: `${hasFinishedLoading? 100 : progressPercent}%`,
-        }">
-    </div>
+<aside
+    class="dokki0-page-load-progress-bar"
+    :class="{
+        'progressing': (!hasFinishedLoading && (progressPercent > 0)),
+        'finished': hasFinishedLoading,
+    }"
+    :style="{
+        width: `${hasFinishedLoading? 100 : progressPercent}%`,
+    }">
+</aside>
 </template>
 
 <style lang="scss">

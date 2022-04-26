@@ -6,54 +6,54 @@
  */
 
 <template>
-<nav class="dokki-navi">
+<aside class="dokki-navi">
 
     <header>
-
-        <span class="title">
             
-            {{caption}}
-
-        </span>
+        {{caption}}
 
     </header>
 
-    <span class="widgets" ref="widgets">
+    <section class="widgets" ref="widgets">
 
-        <dokki-theme-selector/>
+        <dokki0-theme-selector/>
 
         <slot name="widgets"/>
 
-    </span>
+    </section>
 
-    <ul class="vertical-navi">
+    <nav>
 
-        <li v-for="(topic, topicIdx) in topics">
+        <ul class="vertical-navi">
 
-            <a :href="topic.url"
-                class="navi-link topic">
-                
-                <span class="label">
-                    {{topic.title}}
-                </span>
+            <li v-for="(topic, topicIdx) in topics">
 
-            </a>
+                <a :href="topic.url"
+                    class="navi-link topic">
+                    
+                    <span class="label">
+                        {{topic.title}}
+                    </span>
 
-            <a v-for="(subtopic, subtopicIdx) in topic.subtopics"
-               :href="subtopic.url"
-               class="navi-link subtopic">
+                </a>
 
-                <span class="label">
-                    {{subtopic.title}}
-                </span>
-                
-            </a>
+                <a v-for="(subtopic, subtopicIdx) in topic.subtopics"
+                :href="subtopic.url"
+                class="navi-link subtopic">
 
-        </li>
+                    <span class="label">
+                        {{subtopic.title}}
+                    </span>
+                    
+                </a>
 
-    </ul>
+            </li>
 
-</nav>
+        </ul>
+
+    </nav>
+
+</aside>
 </template>
 
 <style lang="scss">
@@ -71,6 +71,7 @@
 
     header
     {
+        font-weight: var(--dokkiCSS-bold-text-weight);
         position: sticky;
         top: 0;
         z-index: 999999999;
@@ -78,38 +79,39 @@
         width: 100%;
         padding: 20px;
         box-sizing: border-box;
-        font-weight: var(--dokkiCSS-bold-text-weight);
         line-height: var(--dokkiCSS-content-line-height);
-        box-shadow: 0 0 6px rgba(0, 0, 0, 0.55);
-    }
-
-    .dokki-user-element
-    {
-        align-items: center;
-        margin: 0;
-        padding: 14px 20px;
-        background-color: var(--dokkiCSS-page-inert-bg-color);
-        text-align: left;
-        position: relative;
-        top: 0;
-        text-overflow: ellipsis;
-        color: var(--dokkiCSS-page-secondary-fg-color);
-        box-sizing: border-box;
-        display: flex;
-        align-items: center;
         border-bottom: 1px solid var(--dokkiCSS-page-secondary-line-color);
-        transition: padding-top 0.15s ease;
     }
 
-    .dokki-user-element.clickable
+    .widgets
     {
-        cursor: pointer;
-    }
+        border-bottom: 1px solid var(--dokkiCSS-page-secondary-line-color);
+        padding: 10px 0;
 
-    .dokki-user-element.clickable:hover
-    {
-        padding-top: 25px;
-        background-color: var(--dokkiCSS-navi-clickable-hover-bg-color);
+        .dokki-user-element
+        {
+            align-items: center;
+            margin: 0;
+            padding: 12px 20px;
+            background-color: var(--dokkiCSS-page-inert-bg-color);
+            text-align: left;
+            position: relative;
+            text-overflow: ellipsis;
+            color: var(--dokkiCSS-page-secondary-fg-color);
+            box-sizing: border-box;
+            display: flex;
+            align-items: center;
+        }
+
+        .dokki-user-element.clickable
+        {
+            cursor: pointer;
+        }
+
+        .dokki-user-element.clickable:hover
+        {
+            background-color: var(--dokkiCSS-navi-clickable-hover-bg-color);
+        }
     }
 
     h2
@@ -130,11 +132,8 @@
     .vertical-navi
     {
         list-style-type: none;
-        padding: 0;
+        padding: 14px 10px;
         margin: 0;
-        padding-left: var(--dokkiCSS-navibar-item-padding-horizontal);
-        padding-right: var(--dokkiCSS-navibar-item-padding-horizontal);
-        margin-top: 14px;
 
         .label
         {
@@ -156,7 +155,7 @@
             &:hover
             {
                 color: var(--dokkiCSS-page-primary-fg-color);
-                background-color: var(--dokkiCSS-embedded-auxiliary-color);
+                background-color: var(--dokkiCSS-navi-clickable-hover-bg-color);
                 text-decoration: none;
             }
 
@@ -168,12 +167,8 @@
 
             &.subtopic
             {
-                border-left: 1px solid transparent;
-                margin-left: calc(1.5 * var(--dokkiCSS-navibar-item-padding-horizontal));
-                padding-left: 1.25ch;
+                padding-left: calc(1.5 * var(--dokkiCSS-navibar-item-padding-horizontal) + 1.25ch);;
                 color: var(--dokkiCSS-page-inert-fg-color);
-                border-top-left-radius: 0;
-                border-bottom-left-radius: 0;
             }
         }
     }
