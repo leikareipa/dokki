@@ -99,6 +99,11 @@
         transition: padding-top 0.15s ease;
     }
 
+    .dokki-user-element.clickable
+    {
+        cursor: pointer;
+    }
+
     .dokki-user-element.clickable:hover
     {
         padding-top: 25px;
@@ -229,8 +234,12 @@ export default {
         const widgetEls = (this.$refs["widgets"]?.children || []);
         for (let i = 0; i < widgetEls.length; i++)
         {
-            widgetEls[i].style.zIndex = `${widgetEls.length-i}`;
-            widgetEls[i].classList.add("dokki-user-element");
+            const el = widgetEls[i];
+            el.style.zIndex = `${widgetEls.length-i}`;
+            el.classList.add("dokki-user-element");
+            if (el.tagName === "A") {
+                el.classList.add("clickable");
+            }
         }
     },
 }
