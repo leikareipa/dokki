@@ -32,7 +32,7 @@ export default {
 </script>
 
 <api-reference lang="md">
-A visually emphasized region in which you can embed content (e.g. a quote).
+A visually emphasized region for embedding content (e.g. a quote).
 
 ## Samples
 
@@ -42,13 +42,13 @@ A visually emphasized region in which you can embed content (e.g. a quote).
 </dokki-area>
 
 <dokki-area>
-    <p>Nesting: none</p>
+    <p>Area not nested</p>
     <dokki-area>
-        Nesting: 1x
+        Area nested 1x
     </dokki-area>
     <dokki-area>
         <dokki-area>
-            Nesting: 2x
+            Area nested 2x
         </dokki-area>
     </dokki-area>
 </dokki-area>

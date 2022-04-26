@@ -43,6 +43,7 @@
         padding-left: var(--dokkiCSS-header-bottom-margin);
         padding-right: var(--dokkiCSS-header-bottom-margin);
         padding-bottom: 16px;
+        position: unset;
     }
 
     body[data-dokki-layout="vertical-narrow"] &

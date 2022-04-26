@@ -105,6 +105,10 @@
                 font-weight: var(--dokkiCSS-bold-text-weight);
                 font-size: 110%;
             }
+
+            pre {
+                overflow-x: auto;
+            }
         </style>
     </head>
     <body>
@@ -112,26 +116,26 @@
 
             <dokki-navi>
                 <template #caption>
-                    API reference for dokki
+                    dokki &bull; API reference
                 </template>
             </dokki-navi>
         
             <dokki-topics>
         <dokki-topic title='dokki-area'>
-            <p>A visually emphasized region in which you can embed content (e.g. a quote).</p>
+            <p>A visually emphasized region for embedding content (e.g. a quote).</p>
 <h2>Samples</h2>
 <dokki-area>
     <p>Fortune favours the bold.</p>
     <p>&ndash; Virgil</p>
 </dokki-area>
 <dokki-area>
-    <p>Nesting: none</p>
+    <p>Area not nested</p>
     <dokki-area>
-        Nesting: 1x
+        Area nested 1x
     </dokki-area>
     <dokki-area>
         <dokki-area>
-            Nesting: 2x
+            Area nested 2x
         </dokki-area>
     </dokki-area>
 </dokki-area>

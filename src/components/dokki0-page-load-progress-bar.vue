@@ -29,6 +29,11 @@
     {
         opacity: 0;
     }
+
+    body[data-dokki-layout^="vertical"] &
+    {
+        position: absolute;
+    }
 }
 </style>
 

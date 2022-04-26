@@ -18,7 +18,11 @@
 
     </header>
 
-    <slot/>
+    <span class="widgets" ref="widgets">
+
+        <slot name="widgets"/>
+
+    </span>
 
     <ul class="vertical-navi">
 
@@ -65,12 +69,16 @@
 
     header
     {
+        position: sticky;
+        top: 0;
+        z-index: 999999999;
+        background-color: var(--dokkiCSS-page-inert-bg-color);
         width: 100%;
         padding: 20px;
         box-sizing: border-box;
         font-weight: var(--dokkiCSS-bold-text-weight);
         line-height: var(--dokkiCSS-content-line-height);
-        border-bottom: 1px solid var(--dokkiCSS-page-secondary-line-color);
+        box-shadow: 0 0 6px rgba(0, 0, 0, 0.55);
     }
 
     .dokkiCSS-user-element
@@ -88,12 +96,13 @@
         display: flex;
         align-items: center;
         border-bottom: 1px solid var(--dokkiCSS-page-secondary-line-color);
+        transition: padding-top 0.15s ease;
     }
 
-    .dokkiCSS-user-element:last-of-type
+    .dokkiCSS-user-element.clickable:hover
     {
-        margin-bottom: 10px;
-        border-bottom: 1px solid var(--dokkiCSS-page-secondary-line-color);
+        padding-top: 25px;
+        background-color: var(--dokkiCSS-navi-clickable-hover-bg-color);
     }
 
     h2
@@ -118,7 +127,7 @@
         margin: 0;
         padding-left: var(--dokkiCSS-navibar-item-padding-horizontal);
         padding-right: var(--dokkiCSS-navibar-item-padding-horizontal);
-        margin-top: 10px;
+        margin-top: 14px;
 
         .label
         {
@@ -164,7 +173,23 @@
 
     body[data-dokki-layout^="vertical"] &
     {
-        display: none;
+        width: 100%;
+        height: unset;
+        position: unset;
+        box-sizing: border-box;
+        border: none;
+        border-bottom: 1px solid var(--dokkiCSS-page-secondary-line-color);
+
+        header
+        {
+            position: unset;
+        }
+
+        .widgets,
+        .vertical-navi
+        {
+            display: none;
+        }
     }
 }
 </style>
@@ -199,6 +224,14 @@ export default {
         });
 
         document.title = this.caption;
+    },
+    mounted() {
+        const widgetEls = this.$refs["widgets"].children;
+        for (let i = 0; i < widgetEls.length; i++)
+        {
+            widgetEls[i].style.zIndex = `${widgetEls.length-i}`;
+            widgetEls[i].classList.add("dokkiCSS-user-element");
+        }
     },
 }
 </script>
