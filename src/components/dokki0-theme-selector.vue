@@ -6,8 +6,7 @@
  */
 
 <template>
-<a class="dokki-theme-selector"
-   title="Light switch"
+<a class="dokki0-theme-selector"
    ref="themeSelector"
    @click="set_current_theme(themes[(currentThemeIdx + 1) % themes.length].name)">
 

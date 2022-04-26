@@ -25,7 +25,6 @@ import dokkiTable from "./components/dokki-table.vue";
 import dokkiTag from "./components/dokki-tag.vue";
 import dokkiTagCloud from "./components/dokki-tag-cloud.vue";
 import dokkiTagFilter from "./components/dokki-tag-filter.vue";
-import dokkiThemeSelector from "./components/dokki-theme-selector.vue";
 import dokkiTip from "./components/dokki-tip.vue";
 import dokkiTopic from "./components/dokki-topic.vue";
 import dokkiTopics from "./components/dokki-topics.vue";
@@ -38,6 +37,7 @@ import dokki0ExpansionIndicator from "./components/dokki0-expansion-indicator.vu
 import dokki0HashRouter from "./components/dokki0-hash-router.vue";
 import dokki0PageLoadProgressBar from "./components/dokki0-page-load-progress-bar.vue";
 import dokki0TextBlockWithLineNumbers from "./components/dokki0-text-block-with-line-numbers.vue";
+import dokki0ThemeSelector from "./components/dokki0-theme-selector.vue";
 import dokki0Topic from "./components/dokki0-topic.vue";
 
 export function start(args = {})
@@ -121,7 +121,7 @@ export function start(args = {})
     .component("dokki-tag", dokkiTag)
     .component("dokki-tag-cloud", dokkiTagCloud)
     .component("dokki-tag-filter", dokkiTagFilter)
-    .component("dokki-theme-selector", dokkiThemeSelector)
+    .component("dokki0-theme-selector", dokki0ThemeSelector)
     .component("dokki-tip", dokkiTip)
     .component("dokki-topic", dokkiTopic)
     .component("dokki-topics", dokkiTopics)
