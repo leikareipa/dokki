@@ -100,7 +100,7 @@ body
     --dokkiCSS-subtopic-anchor-top-margin: 30px;
     --dokkiCSS-text-block-line-anchor-top-margin: 20vh;
 
-    --dokkiCSS-embedded-border-radius: 4px;
+    --dokkiCSS-embedded-border-radius: 0;
     --dokkiCSS-embedded-vertical-margin: 18px;
     --dokkiCSS-embedded-header-padding: 18px 16px;
     --dokkiCSS-embedded-horizontal-padding: 16px;
@@ -161,7 +161,7 @@ body,
     --dokkiCSS-embedded-footer-bg-color: var(--dokkiCSS-page-inert-bg-color);
     --dokkiCSS-embedded-code-comment-fg-color: #00aeae;
     --dokkiCSS-embedded-auxiliary-color: rgba(0, 0, 0, 0.2);
-    --dokkiCSS-navi-clickable-hover-bg-color: #ffe210; /*TODO*/
+    --dokkiCSS-navi-clickable-hover-bg-color: #1f1f1f;
 }
 
 body :first-child

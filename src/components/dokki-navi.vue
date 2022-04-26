@@ -20,6 +20,8 @@
 
     <span class="widgets" ref="widgets">
 
+        <dokki-theme-selector/>
+
         <slot name="widgets"/>
 
     </span>

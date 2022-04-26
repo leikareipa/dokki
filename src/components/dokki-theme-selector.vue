@@ -6,29 +6,18 @@
  */
 
 <template>
-    <span class="dokki-theme-selector"
-          title="Light switch"
-          ref="themeSelector"
-          @click="set_current_theme(themes[(currentThemeIdx + 1) % themes.length].name)">
+<a class="dokki-theme-selector"
+   title="Light switch"
+   ref="themeSelector"
+   @click="set_current_theme(themes[(currentThemeIdx + 1) % themes.length].name)">
 
-        <i :class="'fa-fw ' + themes[currentThemeIdx].icon"/>
-
+    <i :class="themes[currentThemeIdx].icon"/>
+    <span style="margin-left: 1ch">
+        Switch to {{themes[((currentThemeIdx + 1) % themes.length)].name}} mode
     </span>
-</template>
 
-<style lang="scss">
-.dokki-theme-selector
-{
-    margin-left: auto;
-    cursor: pointer;
-    font-variant: small-caps;
-    text-transform: lowercase;
-    border: none;
-    height: 100%;
-    display: flex;
-    align-items: center;
-}
-</style>
+</a>
+</template>
 
 <script>
 export default {
@@ -37,8 +26,8 @@ export default {
         return {
             currentThemeIdx: 0,
             themes: [
-                {name: "dark", icon: "fas fa-adjust"},
-                {name: "light", icon: "fas fa-adjust"},
+                {name: "dark", icon: "fas fa-lightbulb"},
+                {name: "light", icon: "far fa-lightbulb"},
             ],
         }
     },
