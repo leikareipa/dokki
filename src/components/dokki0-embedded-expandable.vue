@@ -35,7 +35,7 @@
 
         <span class="caption">
 
-                <span class="icon" v-if="isPlain" :title="title">
+                <span class="icon" v-if="isPlain || (headerWidget !== 'groupbox')" :title="title">
                     <i :class="icon"/>&nbsp;
                 </span>
 
@@ -139,6 +139,11 @@
         }
     }
 
+    .dokki0-expansion-indicator
+    {
+        padding-left: 10px;
+    }
+
     hr
     {
         padding: 0;
@@ -198,20 +203,6 @@
             }
         }
     }
-
-    body[data-dokki-layout="vertical-narrow"] &
-    {
-        header
-        {
-            flex-direction: row-reverse;
-
-            & .dokki0-expansion-indicator
-            {
-                margin-right: unset;
-                margin-left: auto;
-            }
-        }
-    }
 }
 </style>
 
@@ -225,7 +216,7 @@ export default {
         expandedPropMixin,
     ],
     props: {
-        headerWidget: {type: String, default: "groupbox"},
+        headerWidget: {type: String, default: "inline"},
         expandsTo: {type: String, default: "inline"},
         className: {required: true, type: String},
         inlineClass: {type: String, default: ""},
