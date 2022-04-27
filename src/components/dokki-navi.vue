@@ -132,7 +132,7 @@
     .vertical-navi
     {
         list-style-type: none;
-        padding: 14px 10px;
+        padding: 15px 0;
         margin: 0;
 
         .label
@@ -150,19 +150,17 @@
             color: var(--dokkiCSS-page-secondary-fg-color);
             display: flex;
             position: relative;
-            border-radius: var(--dokkiCSS-embedded-border-radius);
 
             &:hover
             {
-                color: var(--dokkiCSS-page-primary-fg-color);
-                background-color: var(--dokkiCSS-navi-clickable-hover-bg-color);
+                color: var(--dokkiCSS-page-link-color) !important;
                 text-decoration: none;
             }
 
             &.viewing,
             &.subtopic.viewing
             {
-                color: var(--dokkiCSS-page-link-color);
+                background-color: var(--dokkiCSS-navi-clickable-hover-bg-color);
             }
 
             &.subtopic

@@ -35,7 +35,7 @@
 
         <span class="caption">
 
-                <span class="icon" v-if="isPlain || (headerWidget !== 'groupbox')" :title="title">
+                <span class="icon" v-if="(icon !== undefined) && (isPlain || (headerWidget !== 'groupbox'))" :title="title">
                     <i :class="icon"/>&nbsp;
                 </span>
 
@@ -195,6 +195,8 @@
 
             &.blocker
             {
+                padding: 3px 5px;
+                left: calc(var(--dokkiCSS-embedded-horizontal-padding) - 5px);
                 top: -1px;
                 background-color: var(--dokkiCSS-embedded-footer-bg-color);
                 color: transparent;
@@ -216,12 +218,12 @@ export default {
         expandedPropMixin,
     ],
     props: {
-        headerWidget: {type: String, default: "inline"},
+        headerWidget: {type: String, default: "groupbox"},
         expandsTo: {type: String, default: "inline"},
         className: {required: true, type: String},
         inlineClass: {type: String, default: ""},
         hasContent: {type: Boolean, default: true},
-        icon: {required: true, type: String},
+        icon: {type: String, default: undefined},
         title: {required: true, type: String},
         plain: {default: undefined},
     },
