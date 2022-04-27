@@ -73,6 +73,7 @@
 
     header
     {
+        color: var(--dokkiCSS-page-primary-fg-color);
         position: relative;
         font-weight: var(--dokkiCSS-bold-text-weight);
         width: 100%;
@@ -204,16 +205,18 @@ export default {
     created() {
         // Have the table of contents highlight the topics that are currently inside the viewport.
         window.addEventListener("dokki-topics-ready", ()=>{
-            const observer = new IntersectionObserver(entries=>{
-                for (const entry of entries) {
-                    const id = entry.target.getAttribute("id");
-                    const tocEl = document.querySelector(`.dokki-navi .vertical-navi a[href="#${id}"]`);
-                    tocEl?.classList[entry.intersectionRatio? "add" : "remove"]("viewing");
-                }
-            });
-            
-            const targetEls = document.querySelectorAll(".dokki-topic, .dokki-subtopic");
-            targetEls.forEach(el=>observer.observe(el));
+            window.addEventListener("scroll", ()=>{
+                const observer = new IntersectionObserver(entries=>{
+                    for (const entry of entries) {
+                        const id = entry.target.getAttribute("id");
+                        const tocEl = document.querySelector(`.dokki-navi .vertical-navi a[href="#${id}"]`);
+                        tocEl?.classList[entry.intersectionRatio? "add" : "remove"]("viewing");
+                    }
+                });
+                
+                const targetEls = document.querySelectorAll(".dokki-topic, .dokki-subtopic");
+                targetEls.forEach(el=>observer.observe(el));
+            }, {once: true});
         });
 
         document.title = this.caption;
