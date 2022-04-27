@@ -183,6 +183,7 @@
 
         .title
         {
+            font-weight: var(--dokkiCSS-bold-text-weight);
             position: absolute;
             top: 0;
             left: calc(var(--dokkiCSS-embedded-horizontal-padding) - 3px);
@@ -191,7 +192,7 @@
             text-transform: uppercase;
             transform: translateY(-50%);
             padding: 3px;
-            color: var(--dokkiCSS-page-secondary-fg-color);
+            color: var(--dokkiCSS-page-inert-fg-color);
 
             &.blocker
             {

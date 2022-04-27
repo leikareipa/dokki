@@ -12,6 +12,8 @@
             
         {{caption}}
 
+        <dokki0-page-load-progress-bar/>
+
     </header>
 
     <section class="widgets" ref="widgets">
@@ -71,20 +73,17 @@
 
     header
     {
+        position: relative;
         font-weight: var(--dokkiCSS-bold-text-weight);
-        position: sticky;
-        top: 0;
-        z-index: 999999999;
-        background-color: var(--dokkiCSS-page-inert-bg-color);
         width: 100%;
         padding: 20px;
         box-sizing: border-box;
         line-height: var(--dokkiCSS-content-line-height);
-        border-bottom: 1px solid var(--dokkiCSS-page-secondary-line-color);
     }
 
     .widgets
     {
+        border-top: 1px solid var(--dokkiCSS-page-secondary-line-color);
         border-bottom: 1px solid var(--dokkiCSS-page-secondary-line-color);
         padding: 10px 0;
 
@@ -153,8 +152,7 @@
 
             &:hover
             {
-                color: var(--dokkiCSS-page-link-color) !important;
-                text-decoration: none;
+                text-decoration: underline;
             }
 
             &.viewing,
@@ -179,11 +177,6 @@
         box-sizing: border-box;
         border: none;
         border-bottom: 1px solid var(--dokkiCSS-page-secondary-line-color);
-
-        header
-        {
-            position: unset;
-        }
 
         .widgets,
         .vertical-navi

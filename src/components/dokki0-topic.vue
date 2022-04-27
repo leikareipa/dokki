@@ -124,8 +124,6 @@
 
     body[data-dokki-layout="vertical-narrow"] &
     {
-        border: none;
-        border-top: 1px solid;
         border-radius: 0;
         margin-bottom: 0;
 

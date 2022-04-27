@@ -3,7 +3,6 @@
     class="dokki0-page-load-progress-bar"
     :class="{
         'progressing': (!hasFinishedLoading && (progressPercent > 0)),
-        'finished': hasFinishedLoading,
     }"
     :style="{
         width: `${hasFinishedLoading? 100 : progressPercent}%`,
@@ -14,25 +13,20 @@
 <style lang="scss">
 .dokki0-page-load-progress-bar
 {
-    position: fixed;
+    position: absolute;
     z-index: 9999999;
-    top: 0;
+    bottom: 0;
     left: 0;
     width: 0;
-    height: 2px;
+    height: 3px;
     background-color: var(--dokkiCSS-page-link-color);
     pointer-events: none;
-    opacity: 1;
-    transition: opacity 0.3s ease-out, width 0.1s linear;
+    opacity: 0;
+    transition: opacity 0.5s ease-out, width 0.1s linear;
      
-    &.finished
+    &.progressing
     {
-        opacity: 0;
-    }
-
-    body[data-dokki-layout^="vertical"] &
-    {
-        position: absolute;
+        opacity: 1;
     }
 }
 </style>

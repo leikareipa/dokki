@@ -50,8 +50,6 @@ export function start(args = {})
 
     console.assert(args.container instanceof HTMLElement, "Invalid document container");
 
-    document.body.appendChild(document.createElement("dokki0-page-load-progress-bar"));
-
     if (args.template instanceof HTMLTemplateElement)
     {
         args.container.appendChild(args.template.content)
