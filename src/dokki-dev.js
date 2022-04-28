@@ -39,6 +39,7 @@ import dokki0PageLoadProgressBar from "./components/dokki0-page-load-progress-ba
 import dokki0TextBlockWithLineNumbers from "./components/dokki0-text-block-with-line-numbers.vue";
 import dokki0ThemeSelector from "./components/dokki0-theme-selector.vue";
 import dokki0Topic from "./components/dokki0-topic.vue";
+import dokki0TopicSkeleton from "./components/dokki0-topic-skeleton.vue";
 
 export function start(args = {})
 {
@@ -132,7 +133,8 @@ export function start(args = {})
     .component("dokki0-hash-router", dokki0HashRouter)
     .component("dokki0-page-load-progress-bar", dokki0PageLoadProgressBar)
     .component("dokki0-text-block-with-line-numbers", dokki0TextBlockWithLineNumbers)
-    .component("dokki0-topic", dokki0Topic);
+    .component("dokki0-topic", dokki0Topic)
+    .component("dokki0-topic-skeleton", dokki0TopicSkeleton);
 
     // Register any user-provided custom components.
     if (Array.isArray(parent.window.dokkiUserComponents))

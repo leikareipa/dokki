@@ -24,36 +24,40 @@
 
     </section>
 
-    <nav>
+    <transition name="vue-fade" appear>
 
-        <ul class="vertical-navi">
+        <nav v-if="areTopicsReady">
 
-            <li v-for="(topic, topicIdx) in topics">
+            <ul class="vertical-navi">
 
-                <a :href="topic.url"
-                    class="navi-link topic">
-                    
-                    <span class="label">
-                        {{topic.title}}
-                    </span>
+                <li v-for="(topic, topicIdx) in topics">
 
-                </a>
+                    <a :href="topic.url"
+                        class="navi-link topic">
+                        
+                        <span class="label">
+                            {{topic.title}}
+                        </span>
 
-                <a v-for="(subtopic, subtopicIdx) in topic.subtopics"
-                :href="subtopic.url"
-                class="navi-link subtopic">
+                    </a>
 
-                    <span class="label">
-                        {{subtopic.title}}
-                    </span>
-                    
-                </a>
+                    <a v-for="(subtopic, subtopicIdx) in topic.subtopics"
+                    :href="subtopic.url"
+                    class="navi-link subtopic">
 
-            </li>
+                        <span class="label">
+                            {{subtopic.title}}
+                        </span>
+                        
+                    </a>
 
-        </ul>
+                </li>
 
-    </nav>
+            </ul>
+
+        </nav>
+
+    </transition>
 
 </aside>
 </template>
@@ -191,6 +195,9 @@
 <script>
 export default {
     computed: {
+        areTopicsReady() {
+            return this.$store.state.areTopicsReady;
+        },
         topics()
         {
             return this.$store.state.topics;

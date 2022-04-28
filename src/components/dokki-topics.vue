@@ -7,11 +7,8 @@
 
 <template>
 <dokki0-hash-router/>
-
-<main class="dokki-topics" :class="{'hidden': !areTopicsReady}">
-
+<main class="dokki-topics" :class="{'skeletonized': !areTopicsReady}">
     <slot/>
-
 </main>
 </template>
 
@@ -31,10 +28,23 @@
     z-index: 1;
     box-sizing: border-box;
 
-    &.hidden
+    &.skeletonized
     {
-        opacity: 0;
-        pointer-events: none;
+        padding-bottom: var(--dokkiCSS-topic-bottom-margin);
+
+        .dokki-topic:not(.skeleton)
+        {
+            display: none;
+            pointer-events: none;
+        }
+    }
+
+    &:not(.skeletonized)
+    {
+        .dokki-topic.skeleton
+        {
+            display: none !important;
+        }
     }
 
     body[data-dokki-layout^="vertical"] &

@@ -1,5 +1,8 @@
 <template>
-<dokki0-topic v-if="reveal" :title="title">
+<transition name="vue-fade" appear>
+    <dokki0-topic-skeleton v-if="!areTopicsReady"/>
+</transition>
+<dokki0-topic v-if="reveal" :title="title" :id="id">
     <slot/>
 </dokki0-topic>
 </template>
@@ -8,11 +11,17 @@
 export default {
     props: {
         title: {required: true, type: String},
+        id: {type: String, default: undefined},
     },
     data() {
         return {
             reveal: false,
         }
+    },
+    computed: {
+        areTopicsReady() {
+            return this.$store.state.areTopicsReady;
+        },
     },
     mounted()
     {

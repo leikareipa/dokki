@@ -6,17 +6,17 @@
  */
 
 <template>
-    <section class="dokki-topic" :id="anchor_id">
-    
-        <h1 class="dokkiCSS-topic-title">
-            {{this.title}}
-        </h1>
+<section class="dokki-topic" :id="anchor_id">
 
-        <dokki-hr/>
+    <h1 class="dokkiCSS-topic-title">
+        {{this.title}}
+    </h1>
 
-        <slot/>
+    <dokki-hr/>
 
-    </section>
+    <slot/>
+
+</section>
 </template>
 
 <style lang="scss">
@@ -28,7 +28,7 @@
     margin: 0;
     margin-bottom: var(--dokkiCSS-topic-bottom-margin);
     width: 100%;
-    border: 1px solid var(--dokkiCSS-page-primary-line-color);
+    border: 1px solid var(--dokkiCSS-page-secondary-line-color);
     border-radius: 0;
 
     p
@@ -117,7 +117,7 @@
     & > .dokki-hr
     {
         border: none;
-        border-bottom: 1px solid var(--dokkiCSS-page-primary-line-color);
+        border-bottom: 1px solid var(--dokkiCSS-page-secondary-line-color);
         width: calc(100% + calc(2 * var(--dokkiCSS-topic-horizontal-padding)));
         transform: translateX(calc(-1 * var(--dokkiCSS-topic-horizontal-padding)));
     }
