@@ -120,6 +120,9 @@ export default {
             );
         },
     },
+    created() {
+        document.title = this.caption;
+    },
     mounted() {
         const widgetEls = (this.$refs["widgets"]?.children || []);
         for (let i = 0; i < widgetEls.length; i++)

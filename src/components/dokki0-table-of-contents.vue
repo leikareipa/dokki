@@ -113,8 +113,6 @@ export default {
                 targetEls.forEach(el=>observer.observe(el));
             }, {once: true});
         });
-
-        document.title = this.caption;
     },
 }
 </script>
