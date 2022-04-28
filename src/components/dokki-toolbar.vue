@@ -16,46 +16,17 @@
 
     </header>
 
-    <section class="widgets" ref="widgets">
+    <div class="widgets" ref="widgets">
 
         <dokki0-theme-selector/>
 
         <slot name="widgets"/>
 
-    </section>
+    </div>
 
     <transition name="vue-fade" appear>
 
-        <nav v-if="areTopicsReady">
-
-            <ul class="vertical-navi">
-
-                <li v-for="(topic, topicIdx) in topics">
-
-                    <a :href="topic.url"
-                        class="navi-link topic">
-                        
-                        <span class="label">
-                            {{topic.title}}
-                        </span>
-
-                    </a>
-
-                    <a v-for="(subtopic, subtopicIdx) in topic.subtopics"
-                    :href="subtopic.url"
-                    class="navi-link subtopic">
-
-                        <span class="label">
-                            {{subtopic.title}}
-                        </span>
-                        
-                    </a>
-
-                </li>
-
-            </ul>
-
-        </nav>
+        <dokki0-table-of-contents v-if="areTopicsReady"/>
 
     </transition>
 
@@ -118,62 +89,6 @@
         }
     }
 
-    h2
-    {
-        font-size: 100%;
-        font-weight: normal;
-        padding: 0;
-        margin: 0;
-        margin-bottom: var(--dokkiCSS-topic-bottom-margin);
-        color: var(--dokkiCSS-page-primary-fg-color);
-    }
-
-    li
-    {
-        padding: 0;
-    }
-
-    .vertical-navi
-    {
-        list-style-type: none;
-        padding: 15px 0;
-        margin: 0;
-
-        .label
-        {
-            display: flex;
-            align-items: center;
-        }
-
-        .navi-link
-        {
-            display: block;
-            padding: var(--dokkiCSS-navibar-item-padding-vertical) var(--dokkiCSS-navibar-item-padding-horizontal);
-            white-space: normal;
-            text-decoration: none;
-            color: var(--dokkiCSS-page-secondary-fg-color);
-            display: flex;
-            position: relative;
-
-            &:hover
-            {
-                text-decoration: underline;
-            }
-
-            &.viewing,
-            &.subtopic.viewing
-            {
-                background-color: var(--dokkiCSS-navi-clickable-hover-bg-color);
-            }
-
-            &.subtopic
-            {
-                padding-left: calc(1.5 * var(--dokkiCSS-navibar-item-padding-horizontal) + 1.25ch);;
-                color: var(--dokkiCSS-page-inert-fg-color);
-            }
-        }
-    }
-
     body[data-dokki-layout^="vertical"] &
     {
         width: 100%;
@@ -184,7 +99,7 @@
         border-bottom: 1px solid var(--dokkiCSS-page-secondary-line-color);
 
         .widgets,
-        .vertical-navi
+        .dokki0-table-of-contents
         {
             display: none;
         }
@@ -198,35 +113,12 @@ export default {
         areTopicsReady() {
             return this.$store.state.areTopicsReady;
         },
-        topics()
-        {
-            return this.$store.state.topics;
-        },
         caption() {
             return (
                 this.$slots["caption"]?.()[0]?.children ||
                 "Untitled document"
             );
         },
-    },
-    created() {
-        // Have the table of contents highlight the topics that are currently inside the viewport.
-        window.addEventListener("dokki-topics-ready", ()=>{
-            window.addEventListener("scroll", ()=>{
-                const observer = new IntersectionObserver(entries=>{
-                    for (const entry of entries) {
-                        const id = entry.target.getAttribute("id");
-                        const tocEl = document.querySelector(`.dokki-toolbar .vertical-navi a[href="#${id}"]`);
-                        tocEl?.classList[entry.intersectionRatio? "add" : "remove"]("viewing");
-                    }
-                });
-                
-                const targetEls = document.querySelectorAll(".dokki-topic, .dokki-subtopic");
-                targetEls.forEach(el=>observer.observe(el));
-            }, {once: true});
-        });
-
-        document.title = this.caption;
     },
     mounted() {
         const widgetEls = (this.$refs["widgets"]?.children || []);
