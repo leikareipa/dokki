@@ -6,40 +6,53 @@
  */
 
 <template>
-<aside class="dokki-tag-filter" v-if="showHeader" ref="container">
+<dokki-area inline-class="dokki-tag-filter" v-if="showHeader">
 
-    <div class="label">
+    <div class="container">
 
-        Showing all ({{numResults}}) {{entityName}} tagged
-        
+        <div class="label">
+
+            Showing all ({{numResults}}) {{entityName}} tagged
+            
+        </div>
+
+        <div class="button"
+            v-for="tagName of activeTags"
+            @click="remove_tag(tagName)">
+
+            {{tagName}}
+
+        </div>
+
     </div>
 
-    <div class="button"
-         v-for="tagName of activeTags"
-         @click="remove_tag(tagName)">
-
-        {{tagName}}
-
-    </div>
-
-</aside>
+</dokki-area>
 </template>
 
 <style lang="scss">
 .dokki-tag-filter
 {
+    margin: var(--dokkiCSS-topic-bottom-margin) 0;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+}
+</style>
+
+<style lang="scss" scoped>
+.container
+{
     display: flex;
     align-items: center;
-    padding: 16px;
+    padding: 15px;
     width: 100%;
-    margin: var(--dokkiCSS-topic-bottom-margin) 0;
     justify-content: left;
     font-weight: 500;
     flex-wrap: wrap;
-    border-left: 7px solid #2264e8;
     box-sizing: border-box;
-    background-color: #1d59d115;
-    border-radius: var(--dokkiCSS-embedded-border-radius);
+    background-color: var(--dokkiCSS-page-inert-bg-color); 
+    border-radius: 4px;
+    box-shadow: 0 0px 8px -2px rgba(0, 0, 0, 0.5);
 
     .label
     {
@@ -50,7 +63,7 @@
     {
         cursor: pointer;
         background: linear-gradient(#256eff, #1d59d1);
-        color: whitesmoke;
+        color: white;
         padding: 4px 6px;
         border-radius: 4px;
         border: 1px solid #2264e8;
@@ -177,24 +190,7 @@ export default {
             }
 
             this.showHeader = true;
-
-            // If the header isn't visible, scroll it into view.
-            this.$nextTick(()=>{
-                const tagHeaderEl = this.$refs["container"];
-                const style = getComputedStyle(document.body);
-                const dokkiElementVerticalSpacing = Number(style.getPropertyValue("--dokkiCSS-topic-bottom-margin").match(/\d+/)[0]);
-                const topMargin = dokkiElementVerticalSpacing;
-
-                if (tagHeaderEl && (tagHeaderEl.getBoundingClientRect().bottom < topMargin)) {
-                    tagHeaderEl.scrollIntoView(true);
-                    window.scrollBy(0, -topMargin);
-                }
-                else if (!tagHeaderEl) {
-                    window.scrollTo(0, 0);
-                }
-
-                update_topic_visibility();
-            });
+            update_topic_visibility();
             
             return;
         },

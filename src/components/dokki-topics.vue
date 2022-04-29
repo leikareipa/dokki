@@ -37,6 +37,11 @@
             display: none;
             pointer-events: none;
         }
+
+        .dokki-tag-filter
+        {
+            display: none;
+        }
     }
 
     &:not(.skeletonized)

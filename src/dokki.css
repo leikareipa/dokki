@@ -261,6 +261,11 @@ code .hljs-comment
     {
         padding: 0 10px;
     }
+
+    .dokki-area.dokki-tag-filter
+    {
+        margin: 0;
+    }
 }
 
 @media only screen and (max-width: 1100px)

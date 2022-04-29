@@ -24,7 +24,7 @@
             @click="hasContent? this.$refs['expander'].toggle_expansion() : 0">
 
         <span v-if="headerWidget == 'groupbox'" class="title blocker">
-            <i :class="icon" class="fa-sm"/>
+            <i :class="icon"/>
             {{title}}
         </span>
 
