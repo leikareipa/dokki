@@ -63,6 +63,22 @@
 
         }
     }
+
+    body[data-dokki-layout^="vertical"] &
+    {
+        .dokki0-text-block-with-line-numbers .line
+        {
+            .number
+            {
+                display: none;
+            }
+
+            .content
+            {
+                padding-left: 0;
+            }
+        }
+    }
 }
 </style>
 
