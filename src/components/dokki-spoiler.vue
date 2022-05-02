@@ -8,11 +8,10 @@
 <template>
 <dokki0-embedded-expandable
     class-name="dokki-output"
-    expands-to="dropdown"
     :has-content="(typeof this.$slots['default'] === 'function')"
     icon="fas fa-asterisk"
     title="Spoiler"
-    :class="{'dokkiCSS-unpadded': isUnpadded}">
+>
 
     <template #caption>
 
@@ -34,9 +33,6 @@
 
 <script>
 export default {
-    props: {
-        unpadded: {default: undefined},
-    },
     data() {
         return {
             isUnpadded: (this.$props.unpadded !== undefined),
@@ -54,36 +50,7 @@ Displays its contents when the user expands the element.
     <template #caption>
         Secret information
     </template>
-    <dokki-output unpadded>
-        <template #caption>
-            Surveillance photo
-        </template>
-        <dokki-image
-            headerless
-            width="80"
-            height="45"
-            upscale-to-fit
-            src='https://upload.wikimedia.org/wikipedia/commons/thumb/7/7f/Eublepharis_macularius_2009_G6.jpg/80px-Eublepharis_macularius_2009_G6.jpg'>
-        </dokki-image>
-    </dokki-output>
-</dokki-spoiler>
-
-<dokki-spoiler plain>
-    <template #caption>
-        Secret information
-    </template>
-    <dokki-output unpadded>
-        <template #caption>
-            Surveillance photo
-        </template>
-        <dokki-image
-            headerless
-            width="80"
-            height="45"
-            upscale-to-fit
-            src='https://upload.wikimedia.org/wikipedia/commons/thumb/7/7f/Eublepharis_macularius_2009_G6.jpg/80px-Eublepharis_macularius_2009_G6.jpg'>
-        </dokki-image>
-    </dokki-output>
+    Hello there.
 </dokki-spoiler>
 
 ## Markup
@@ -101,36 +68,22 @@ Displays its contents when the user expands the element.
 
 The template's children will be displayed as the \<dokki-spoiler\> element's caption.
 
-<x-examples>
-    <x-example>
-        <dokki-code headerless
-            code="
-            <template #caption>
-                Hello there
-            </template>
-            ">
-        </dokki-code>
-        <dokki-spoiler height="2em">
+<x-example>
+    <dokki-code headerless
+        code="
+        <dokki-spoiler>
             <template #caption>
                 Hello there
             </template>
         </dokki-spoiler>
-    </x-example>
-    <x-example>
-        <dokki-code headerless
-            code="
-            <template #caption>
-                <span style='filter: blur(2px);'>Hello there</span>
-            </template>
-            ">
-        </dokki-code>
-        <dokki-spoiler height="2em">
-            <template #caption>
-                <span style='filter: blur(2px);'>Hello there</span>
-            </template>
-        </dokki-spoiler>
-    </x-example>
-</x-examples>
+        ">
+    </dokki-code>
+    <dokki-spoiler>
+        <template #caption>
+            Hello there
+        </template>
+    </dokki-spoiler>
+</x-example>
     
 ## Attributes
 
@@ -147,20 +100,18 @@ If present, causes the \<dokki-spoiler\> element to be displayed without its cap
 
 Setting this attribute will implicitly set the **expanded** attribute as well. 
 
-<x-examples>
-    <x-example>
-        <dokki-code headerless
-            code="
-            <dokki-spoiler headerless>
-                Hello there.
-            </dokki-spoiler>
-            ">
-        </dokki-code>
+<x-example>
+    <dokki-code headerless
+        code="
         <dokki-spoiler headerless>
             Hello there.
         </dokki-spoiler>
-    </x-example>
-</x-examples>
+        ">
+    </dokki-code>
+    <dokki-spoiler headerless>
+        Hello there.
+    </dokki-spoiler>
+</x-example>
 
 ### inline-class
 

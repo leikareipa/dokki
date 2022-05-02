@@ -32,7 +32,7 @@ export default {
 </script>
 
 <api-reference lang="md">
-A visually emphasized region for embedding content (e.g. a quote).
+A visually emphasized region for highlighting content.
 
 ## Samples
 

@@ -12,7 +12,7 @@
             const examplesListing = {
                 $tag: "x-examples",
                 template: `
-                <dokki-output inline-class="examples">
+                <dokki-output unpadded>
                     <template #caption>
                         Examples
                     </template>
@@ -26,9 +26,12 @@
             const example = {
                 $tag: "x-example",
                 template: `
-                <dokki-area inline-class="example">
+                <dokki-spoiler inline-class="example">
+                    <template #caption>
+                        Example
+                    </template>
                     <slot/>
-                </dokki-area>
+                </dokki-spoiler>
                 `,
             };
 
@@ -59,14 +62,25 @@
                 font-size: var(--dokkiCSS-regular-font-size);
             }
 
-            .dokki-output.examples {
-                background-color: var(--dokkiCSS-embedded-auxiliary-color);
-                border: none;
+            .dokki-output.example > header > .caption > .type {
+                display: none;
             }
 
-            .dokki-area.example {
-                background-color: var(--dokkiCSS-page-inert-bg-color);
+            .dokki-output.example > header > .caption > .label {
+                margin: 0;
+            }
+
+            .dokki-output.example > .dokki0-animated-expander > .content {
+                background-color: var(--dokkiCSS-embedded-auxiliary-color);
+            }
+
+            .dokki-output.example .dokki-area.for-embedded {
+                padding: 0;
+            }
+
+            .dokki-output.example .dokki-area.for-embedded:first-child > .dokki0-embedded-expandable {
                 border: 1px solid var(--dokkiCSS-page-primary-line-color);
+                box-shadow: none;
             }
 
             b {
@@ -122,7 +136,7 @@
         
             <dokki-topics>
         <dokki-topic title='dokki-area'>
-            <p>A visually emphasized region for embedding content (e.g. a quote).</p>
+            <p>A visually emphasized region for highlighting content.</p>
 <h2>Samples</h2>
 <dokki-area>
     <p>Fortune favours the bold.</p>
@@ -161,7 +175,7 @@
         </pre>
     </template>
 </dokki-code>
-<dokki-code plain>
+<dokki-code headerless>
     <template #caption>
         A listing of a C program
     </template>
@@ -191,36 +205,22 @@
 <h2>Templates</h2>
 <h3>#caption</h3>
 <p>The template's children will be displayed as the &lt;dokki-code&gt; element's caption.</p>
-<x-examples>
-    <x-example>
-        <dokki-code headerless
-            code="
-            <template #caption>
-                Hello there
-            </template>
-            ">
-        </dokki-code>
+<x-example>
+    <dokki-code headerless
+        code="
         <dokki-code>
             <template #caption>
                 Hello there
             </template>
         </dokki-code>
-    </x-example>
-    <x-example>
-        <dokki-code headerless
-            code="
-            <template #caption>
-                <span style='filter: blur(2px);'>Hello there</span>
-            </template>
-            ">
-        </dokki-code>
-        <dokki-code>
-            <template #caption>
-                <span style='filter: blur(2px);'>Hello there</span>
-            </template>
-        </dokki-code>
-    </x-example>
-</x-examples>
+        ">
+    </dokki-code>
+    <dokki-code>
+        <template #caption>
+            Hello there
+        </template>
+    </dokki-code>
+</x-example>
 <h3>#code <x-required></x-required></h3>
 <p>The textual contents of the template's children will be displayed as the &lt;dokki-code&gt;
 element's code.</p>
@@ -235,69 +235,56 @@ element's code.</p>
         </li>
     </ul>
 </dokki-tip>
-<x-examples>
-    <x-example>
-        <dokki-code headerless
-            code="
-            <template #code>
-                <pre>
-                    void main(void) {
-                        printf(``Hello there.\n``);
-                    }
-                </pre>
-            </template>
-            ">
-        </dokki-code>
-        <dokki-code>
-            <template #code>
-                <pre>
-                    void main(void) {
-                        printf("Hello there.\n");
-                    }
-                </pre>
-            </template>
-        </dokki-code>
-    </x-example>
-</x-examples>
+<x-example>
+    <dokki-code headerless
+        code="
+        <template #code>
+            <pre>
+                void main(void) {
+                    printf(``Hello there.\n``);
+                }
+            </pre>
+        </template>
+        ">
+    </dokki-code>
+    <dokki-code>
+        <template #code>
+            <pre>
+                void main(void) {
+                    printf("Hello there.\n");
+                }
+            </pre>
+        </template>
+    </dokki-code>
+</x-example>
 <h3>#output</h3>
-<p>The template's children will be displayed as the output of the &lt;dokki-code&gt;
-element's code, using &lt;dokki-output&gt; as a container.</p>
-<dokki-tip>
-    If you want to customize the container element, replace the <strong>#output</strong>
-    template with a &lt;dokki-output&gt; element.
-</dokki-tip>
-<x-examples>
-    <x-example>
-        <dokki-code headerless
-            code="
-            <template #output>
-                Hello there.
-            </template>
-            ">
-        </dokki-code>
-        <dokki-code plain>
-            <template #output>
-                Hello there.
-            </template>
-        </dokki-code>
-    </x-example>
-    <x-example>
-        <dokki-code headerless
-            code="
+<p>The template's child element will be indicated as the output of the &lt;dokki-code&gt;
+element's code. The child element should be one of dokki's embeddables, like
+&lt;dokki-output&gt;, &lt;dokki-image&gt;, or &lt;dokki-spoiler&gt;.</p>
+<x-example>
+    <dokki-code headerless
+        code="
+        <template #code>
+            console.log('Hello there')
+        </template>
+        <template #output>
             <dokki-output>
-                <template #caption>Run it</template>
-                <template #output>Hello there.</template>
+                Hello there.
             </dokki-output>
-            ">
-        </dokki-code>
-        <dokki-code>
+        </template>
+        ">
+    </dokki-code>
+    <dokki-code>
+        <template #code>
+            console.log('Hello there')
+        </template>
+        <template #output>
             <dokki-output>
-                <template #caption>Run it</template>
-                <template #output>Hello there.</template>
+                Hello there.
             </dokki-output>
-        </dokki-code>
-    </x-example>
-</x-examples>
+        </template>
+    </dokki-code>
+</x-example>
 <h2>Attributes</h2>
 <h3>code</h3>
 <p>If the <strong>#code</strong> template isn't provided, the value of this attribute
@@ -311,18 +298,16 @@ if your code string includes characters that cause problems with HTML parsers, l
     represent them using two backticks (``). Dokki will convert double backticks into
     double quotes for display.
 </dokki-warning>
-<x-examples>
-    <x-example>
-        <dokki-code headerless
-            code="
-            <dokki-code code=``console.log('Hello there')``>
-            </dokki-code>
-            ">
+<x-example>
+    <dokki-code headerless
+        code="
+        <dokki-code code=``console.log('Hello there')``>
         </dokki-code>
-        <dokki-code code="console.log('Hello there')">
-        </dokki-code>
-    </x-example>
-</x-examples>
+        ">
+    </dokki-code>
+    <dokki-code code="console.log('Hello there')">
+    </dokki-code>
+</x-example>
 <h3>expanded</h3>
 <p>If present, the &lt;dokki-code&gt; element's code listing will be visible initially,
 rather than requiring the user to reveal it.</p>
@@ -330,24 +315,22 @@ rather than requiring the user to reveal it.</p>
 <h3>headerless</h3>
 <p>If present, causes the &lt;dokki-code&gt; element to be dispayed without its caption.</p>
 <p>Setting this attribute will implicitly set the <strong>expanded</strong> attribute as well.</p>
-<x-examples>
-    <x-example>
-        <dokki-code headerless
-            code="
-            <dokki-code headerless>
-                <template #code>
-                    const x = 1;
-                </template>
-            </dokki-code>
-            ">
-        </dokki-code>
+<x-example>
+    <dokki-code headerless
+        code="
         <dokki-code headerless>
             <template #code>
                 const x = 1;
             </template>
         </dokki-code>
-    </x-example>
-</x-examples>
+        ">
+    </dokki-code>
+    <dokki-code headerless>
+        <template #code>
+            const x = 1;
+        </template>
+    </dokki-code>
+</x-example>
 <h3>inline-class</h3>
 <p>The class name(s) given in this string will be appended to the &lt;dokki-code&gt;
 element's class list.</p>
@@ -366,32 +349,39 @@ various syntactic classes (e.g. &quot;hljs-string&quot;).</p>
         <dokki-topic title='dokki-directory'>
             <p>Displays a nested listing of files and folders.</p>
 <h2>Samples</h2>
-<p><dokki-directory structure="{
-    'Directory': {
-        'Sub-directory': {
-            'file.1': {},
-            'file.2': {},
-        },
-    }}">
-&lt;template #caption&gt;
-A listing of files and folders
-
-</dokki-directory></p>
-<p><dokki-directory plain structure="{
-    'Directory': {
-        'Sub-directory': {
-            'file.1': {},
-            'file.2': {},
-        },
-    }}">
-&lt;template #caption&gt;
-A listing of files and folders
-
-</dokki-directory></p>
+<dokki-directory>
+    <template #caption>
+        A listing of files and folders
+    </template>
+    <template #structure>
+        "Directory": {
+            "Sub-directory": {
+                "file.1": {},
+                "file.2": {},
+            },
+        }
+    </template>
+</dokki-directory>
+<dokki-directory headerless>
+    <template #caption>
+        A listing of files and folders
+    </template>
+    <template #structure>
+        "Directory": {
+            "Sub-directory": {
+                "file.1": {},
+                "file.2": {},
+            },
+        }
+    </template>
+</dokki-directory>
 <h2>Markup</h2>
-<pre><code>&lt;dokki-directory expanded headerless inline-class structure&gt;
+<pre><code>&lt;dokki-directory expanded headerless inline-class&gt;
 
     &lt;template #caption&gt;
+    &lt;/template&gt;
+
+    &lt;template #structure&gt;
     &lt;/template&gt;
 
 &lt;/dokki-directory&gt;
@@ -400,100 +390,51 @@ A listing of files and folders
 <h3>#caption</h3>
 <p>The template's children will be displayed as the &lt;dokki-directory&gt;
 element's caption.</p>
-<x-examples>
-    <x-example>
-        <dokki-code headerless
-            code="
-            <template #caption>
-                Hello there
-            </template>
-            ">
-        </dokki-code>
+<x-example>
+    <dokki-code headerless
+        code="
         <dokki-directory>
             <template #caption>
                 Hello there
             </template>
         </dokki-directory>
-    </x-example>
-    <x-example>
-        <dokki-code headerless
-            code="
-            <template #caption>
-                <span style='filter: blur(2px);'>Hello there</span>
-            </template>
-            ">
-        </dokki-code>
-        <dokki-directory>
-            <template #caption>
-                <span style='filter: blur(2px);'>Hello there</span>
-            </template>
-        </dokki-directory>
-    </x-example>
-</x-examples>
-<h2>Attributes</h2>
-<h3>expanded</h3>
-<p>If present, the &lt;dokki-directory&gt; element's directory listing will be visible
-initially, rather than requiring the user to reveal it.</p>
-<p>Setting the <strong>headerless</strong> attribute will implicitly set this attribute as well.</p>
-<h3>headerless</h3>
-<p>If present, causes the &lt;dokki-directory&gt; element to be displayed without its
-caption.</p>
-<p>Setting this attribute will implicitly set the <strong>expanded</strong> attribute
-as well.</p>
-<x-examples>
-    <x-example>
-        <dokki-code headerless
-            code="
-            <dokki-directory headerless structure=``{
-                'Directory': {
-                    'file.1': {},
-                }
-            }``>
-            </dokki-directory>
-            ">
-        </dokki-code>
-        <dokki-directory headerless structure="{
-            'Directory': {
-                'file.1': {},
-            }
-        }">
-        </dokki-directory>
-    </x-example>
-</x-examples>
-<h3>inline-class</h3>
-<p>The class name(s) given in this string will be appended to the &lt;dokki-directory&gt;
-element's class list.</p>
-<h3>structure <x-required></x-required></h3>
+        ">
+    </dokki-code>
+    <dokki-directory>
+        <template #caption>
+            Hello there
+        </template>
+    </dokki-directory>
+</x-example>
+<h3>#structure <x-required></x-required></h3>
 <p>A string-serialized JavaScript object describing the directory structure. Each
 property key is the name of a folder or file, with files being those properties
 which have no further sub-properties (apart from metadata). Property keys prefixed
 with &quot;/&quot; are interpreted as metadata.</p>
-<dokki-table plain>
+<dokki-table>
     <template #caption>
-        File metadata identifiers in <strong>structure</strong>
+        File metadata identifiers
     </template>
     <template #table>
-        <table>
-            <tr>
-                <td>/content</td>
-                <td>
-                    Determines the name of the Font Awesome icon used for the file (&lt;i&gt;fa-file-&lt;/i&gt;xxxx).
-                </td>
-            </tr>
-            <tr>
-                <td>/href</td>
-                <td>
-                    A hyperlink that will be applied to the file's name.
-                </td>
-            </tr>
-        </table>
+        <tr>
+            <td>/content</td>
+            <td>
+                Determines the name of the Font Awesome icon used for the file (&lt;i&gt;fa-file-&lt;/i&gt;xxxx).
+            </td>
+        </tr>
+        <tr>
+            <td>/href</td>
+            <td>
+                A hyperlink that will be applied to the file's name.
+            </td>
+        </tr>
     </template>
 </dokki-table>
-<x-examples>
-    <x-example>
-        <dokki-code headerless
-            code="
-            <dokki-directory structure=``{
+<x-example>
+    <dokki-code headerless
+        code="
+        <dokki-directory>
+            <template #structure>
                 'Field recording B': {
                     'Metadata': {
                         'readme.pdf': {
@@ -511,11 +452,12 @@ with &quot;/&quot; are interpreted as metadata.</p>
                         '/content': 'audio',
                     },
                 }
-            }``>
-            </dokki-directory>
-            ">
-        </dokki-code>
-        <dokki-directory structure="{
+            </template>
+        </dokki-directory>
+        ">
+    </dokki-code>
+    <dokki-directory>
+        <template #structure>
             'Field recording B': {
                 'Metadata': {
                     'readme.pdf': {
@@ -533,10 +475,44 @@ with &quot;/&quot; are interpreted as metadata.</p>
                     '/content': 'audio',
                 },
             }
-        }">
+        </template>
+    </dokki-directory>
+</x-example>
+<h2>Attributes</h2>
+<h3>expanded</h3>
+<p>If present, the &lt;dokki-directory&gt; element's directory listing will be visible
+initially, rather than requiring the user to reveal it.</p>
+<p>Setting the <strong>headerless</strong> attribute will implicitly set this attribute as well.</p>
+<h3>headerless</h3>
+<p>If present, causes the &lt;dokki-directory&gt; element to be displayed without its
+caption.</p>
+<p>Setting this attribute will implicitly set the <strong>expanded</strong> attribute
+as well.</p>
+<x-example>
+    <dokki-code headerless
+        code="
+        <dokki-directory headerless>
+            <template #structure>
+                'Directory': {
+                    'file.1': {},
+                    'file.2': {},
+                }
+            </template>
         </dokki-directory>
-    </x-example>
-</x-examples>
+        ">
+    </dokki-code>
+    <dokki-directory headerless>
+        <template #structure>
+            'Directory': {
+                'file.1': {},
+                'file.2': {},
+            }
+        </template>
+    </dokki-directory>
+</x-example>
+<h3>inline-class</h3>
+<p>The class name(s) given in this string will be appended to the &lt;dokki-directory&gt;
+element's class list.</p>
 
         </dokki-topic>
         
@@ -556,11 +532,6 @@ extensions.</p>
         Wikipedia.org
     </template>
 </dokki-iframe>
-<dokki-iframe plain src="https://www.wikipedia.org">
-    <template #caption>
-        Wikipedia.org
-    </template>
-</dokki-iframe>
 <h2>Markup</h2>
 <pre><code>&lt;dokki-iframe autofocus expanded headerless height inline-class src srcdoc&gt;
 
@@ -572,36 +543,22 @@ extensions.</p>
 <h2>Templates</h2>
 <h3>#caption</h3>
 <p>The template's children will be displayed as the &lt;dokki-iframe&gt; element's caption.</p>
-<x-examples>
-    <x-example>
-        <dokki-code headerless
-            code="
-            <template #caption>
-                Hello there
-            </template>
-            ">
-        </dokki-code>
+<x-example>
+    <dokki-code headerless
+        code="
         <dokki-iframe>
             <template #caption>
                 Hello there
             </template>
         </dokki-iframe>
-    </x-example>
-    <x-example>
-        <dokki-code headerless
-            code="
-            <template #caption>
-                <span style='filter: blur(2px);'>Hello there</span>
-            </template>
-            ">
-        </dokki-code>
-        <dokki-iframe>
-            <template #caption>
-                <span style='filter: blur(2px);'>Hello there</span>
-            </template>
-        </dokki-iframe>
-    </x-example>
-</x-examples>
+        ">
+    </dokki-code>
+    <dokki-iframe>
+        <template #caption>
+            Hello there
+        </template>
+    </dokki-iframe>
+</x-example>
 <h2>Attributes</h2>
 <h3>autofocus</h3>
 <p>If present, the &lt;dokki-iframe&gt; element's inline frame will be given focus when
@@ -613,17 +570,15 @@ rather than requiring the user to reveal it.</p>
 <h3>headerless</h3>
 <p>If present, causes the &lt;dokki-iframe&gt; element to be displayed without its caption.</p>
 <p>Setting this attribute will implicitly set the <strong>expanded</strong> attribute as well.</p>
-<x-examples>
-    <x-example>
-        <dokki-code headerless code="
-            <dokki-iframe headerless src='https://www.wikipedia.org'>
-            </dokki-iframe>
-        ">
-        </dokki-code>
+<x-example>
+    <dokki-code headerless code="
         <dokki-iframe headerless src='https://www.wikipedia.org'>
         </dokki-iframe>
-    </x-example>
-</x-examples>
+    ">
+    </dokki-code>
+    <dokki-iframe headerless src='https://www.wikipedia.org'>
+    </dokki-iframe>
+</x-example>
 <h3>height</h3>
 <p>The CSS height of the &lt;dokki-iframe&gt; element's inline frame.</p>
 <dokki-tip>
@@ -640,51 +595,17 @@ rather than requiring the user to reveal it.</p>
     Among other things, this attribute allows you to embed JavaScript that will
     be executed only when the &lt;dokki-iframe&gt; element's inline frame is expanded.
 </dokki-tip>
-<x-examples>
-    <x-example>
-        <dokki-code             headerless
-            code="
-            <dokki-iframe
-                headerless
-                height='2.5em'
-                srcdoc='
-                    <style>
-                        body {
-                            background-color: blueviolet;
-                            color: white
-                        }
-                        span {
-                            display: inline-block;
-                            white-space: break-spaces;
-                        }
-                    </style>
-                    <body>
-                        <script>
-                            (function jump(delta = 0) {
-                                document.body.innerHTML =
-                                    `Current time: ${Date.now()}`
-                                    .split('')
-                                    .reduce((str, ch)=>(str+`<span>${ch}</span>`), '');
-                                const chSpans = Array.from(document.body.querySelectorAll('span'));
-                                const chOffsets = chSpans.map((ch, idx)=>(2 * Math.cos(idx)));
-                                chSpans.forEach((span, idx)=>{
-                                    const offset = Math.cos(chOffsets[idx] + delta);
-                                    span.style.transform = `translateY(${offset}px)`;
-                                });
-                                window.requestAnimationFrame(()=>jump(delta + 0.3));
-                            })();
-                        </script>
-                    </body>
-            '></dokki-iframe>
-            ">
-        </dokki-code>
-        <dokki-iframe             headerless
-            height="2.5em"
-            srcdoc="
+<x-example>
+    <dokki-code         headerless
+        code="
+        <dokki-iframe
+            headerless
+            height='2.5em'
+            srcdoc='
                 <style>
                     body {
-                        background-color: blueviolet;
-                        color: white
+                        background-color: #86db74;
+                        color: black
                     }
                     span {
                         display: inline-block;
@@ -699,7 +620,7 @@ rather than requiring the user to reveal it.</p>
                                 .split('')
                                 .reduce((str, ch)=>(str+`<span>${ch}</span>`), '');
                             const chSpans = Array.from(document.body.querySelectorAll('span'));
-                            const chOffsets = chSpans.map((ch, idx)=>(2 * Math.cos(idx)));                            
+                            const chOffsets = chSpans.map((ch, idx)=>(2 * Math.cos(idx)));
                             chSpans.forEach((span, idx)=>{
                                 const offset = Math.cos(chOffsets[idx] + delta);
                                 span.style.transform = `translateY(${offset}px)`;
@@ -708,10 +629,43 @@ rather than requiring the user to reveal it.</p>
                         })();
                     </script>
                 </body>
-            "
+            '
         ></dokki-iframe>
-    </x-example>
-</x-examples>
+        ">
+    </dokki-code>
+    <dokki-iframe         headerless
+        height="2.5em"
+        srcdoc="
+            <style>
+                body {
+                    background-color: #86db74;
+                    color: black
+                }
+                span {
+                    display: inline-block;
+                    white-space: break-spaces;
+                }
+            </style>
+            <body>
+                <script>
+                    (function jump(delta = 0) {
+                        document.body.innerHTML =
+                            `Current time: ${Date.now()}`
+                            .split('')
+                            .reduce((str, ch)=>(str+`<span>${ch}</span>`), '');
+                        const chSpans = Array.from(document.body.querySelectorAll('span'));
+                        const chOffsets = chSpans.map((ch, idx)=>(2 * Math.cos(idx)));                            
+                        chSpans.forEach((span, idx)=>{
+                            const offset = Math.cos(chOffsets[idx] + delta);
+                            span.style.transform = `translateY(${offset}px)`;
+                        });
+                        window.requestAnimationFrame(()=>jump(delta + 0.3));
+                    })();
+                </script>
+            </body>
+        "
+    ></dokki-iframe>
+</x-example>
 
         </dokki-topic>
         
@@ -725,7 +679,7 @@ extensions.</p>
         Eublepharis macularius
     </template>
 </dokki-image>
-<dokki-image plain width="1280" height="720" src='https://upload.wikimedia.org/wikipedia/commons/thumb/7/7f/Eublepharis_macularius_2009_G6.jpg/1280px-Eublepharis_macularius_2009_G6.jpg'>
+<dokki-image headerless width="1280" height="720" src='https://upload.wikimedia.org/wikipedia/commons/thumb/7/7f/Eublepharis_macularius_2009_G6.jpg/1280px-Eublepharis_macularius_2009_G6.jpg'>
     <template #caption>
         Eublepharis macularius
     </template>
@@ -741,34 +695,21 @@ extensions.</p>
 <h2>Templates</h2>
 <h3>#caption</h3>
 <p>The template's children will be displayed as the &lt;dokki-image&gt; element's caption.</p>
-<x-examples>
-    <x-example>
-        <dokki-code headerless code="
-            <template #caption>
-                Hello there
-            </template>
-            ">
-        </dokki-code>
+<x-example>
+    <dokki-code headerless code="
         <dokki-image>
             <template #caption>
                 Hello there
             </template>
         </dokki-image>
-    </x-example>
-    <x-example>
-        <dokki-code headerless code="
-            <template #caption>
-                <span style='filter: blur(2px);'>Hello there</span>
-            </template>
-            ">
-        </dokki-code>
-        <dokki-image>
-            <template #caption>
-                <span style='filter: blur(2px);'>Hello there</span>
-            </template>
-        </dokki-image>
-    </x-example>
-</x-examples>
+        ">
+    </dokki-code>
+    <dokki-image>
+        <template #caption>
+            Hello there
+        </template>
+    </dokki-image>
+</x-example>
 <h2>Attributes</h2>
 <h3>expanded</h3>
 <p>If present, the &lt;dokki-image&gt; element's image container will be visible initially,
@@ -777,17 +718,15 @@ rather than requiring the user to reveal it.</p>
 <h3>headerless</h3>
 <p>If present, causes the &lt;dokki-image&gt; element to be displayed without its caption.</p>
 <p>Setting this attribute will implicitly set the <strong>expanded</strong> attribute as well.</p>
-<x-examples>
-    <x-example>
-        <dokki-code headerless code="
-            <dokki-image headerless src='...'>
-            </dokki-image>
-            ">
-        </dokki-code>
-        <dokki-image headerless width="1280" height="720" src='https://upload.wikimedia.org/wikipedia/commons/thumb/7/7f/Eublepharis_macularius_2009_G6.jpg/1280px-Eublepharis_macularius_2009_G6.jpg'>
+<x-example>
+    <dokki-code headerless code="
+        <dokki-image headerless src='...'>
         </dokki-image>
-    </x-example>
-</x-examples>
+        ">
+    </dokki-code>
+    <dokki-image headerless width="1280" height="720" src='https://upload.wikimedia.org/wikipedia/commons/thumb/7/7f/Eublepharis_macularius_2009_G6.jpg/1280px-Eublepharis_macularius_2009_G6.jpg'>
+    </dokki-image>
+</x-example>
 <h3>height</h3>
 <p>Corresponds to the <strong>height</strong> attribute of the standard &lt;img&gt; element.</p>
 <h3>inline-class</h3>
@@ -798,21 +737,19 @@ element's class list.</p>
 resolution, or if the image is smaller than the &lt;dokki-image&gt; element's image
 container and the <strong>upscale-to-fit</strong> attribute is set, the image will be upscaled
 using nearest-neighbor interpolation (rather than e.g. bilinear sampling).</p>
-<x-examples>
-    <x-example>
-        <dokki-code headerless code="
-            <dokki-image pixelated-scale width='...' height='...' src='...'>
-            </dokki-image>
-            ">
-        </dokki-code>
-        <dokki-image             expanded
-            pixelated-scale
-            width='1024'
-            height='576'
-            src='https://upload.wikimedia.org/wikipedia/commons/thumb/7/7f/Eublepharis_macularius_2009_G6.jpg/80px-Eublepharis_macularius_2009_G6.jpg'
-        ></dokki-image>
-    </x-example>
-</x-examples>
+<x-example>
+    <dokki-code headerless code="
+        <dokki-image pixelated-scale width='...' height='...' src='...'>
+        </dokki-image>
+        ">
+    </dokki-code>
+    <dokki-image         expanded
+        pixelated-scale
+        width='1024'
+        height='576'
+        src='https://upload.wikimedia.org/wikipedia/commons/thumb/7/7f/Eublepharis_macularius_2009_G6.jpg/80px-Eublepharis_macularius_2009_G6.jpg'
+    ></dokki-image>
+</x-example>
 <h3>src <x-required></x-required></h3>
 <p>Corresponds to the <strong>src</strong> attribute of the standard &lt;img&gt; element.</p>
 <h3>upscale-to-fit</h3>
@@ -848,9 +785,13 @@ five unique such paragraphs.</p>
         
 
         <dokki-topic title='dokki-output'>
-            <p>
-    TODO
-</p>
+            <p>TODO</p>
+<h2>Samples</h2>
+<dokki-output>
+    <template #output>
+        Hello there.
+    </template>
+</dokki-output>
 
         </dokki-topic>
         
@@ -862,33 +803,7 @@ five unique such paragraphs.</p>
     <template #caption>
         Secret information
     </template>
-    <dokki-output unpadded>
-        <template #caption>
-            Surveillance photo
-        </template>
-        <dokki-image             headerless
-            width="80"
-            height="45"
-            upscale-to-fit
-            src='https://upload.wikimedia.org/wikipedia/commons/thumb/7/7f/Eublepharis_macularius_2009_G6.jpg/80px-Eublepharis_macularius_2009_G6.jpg'>
-        </dokki-image>
-    </dokki-output>
-</dokki-spoiler>
-<dokki-spoiler plain>
-    <template #caption>
-        Secret information
-    </template>
-    <dokki-output unpadded>
-        <template #caption>
-            Surveillance photo
-        </template>
-        <dokki-image             headerless
-            width="80"
-            height="45"
-            upscale-to-fit
-            src='https://upload.wikimedia.org/wikipedia/commons/thumb/7/7f/Eublepharis_macularius_2009_G6.jpg/80px-Eublepharis_macularius_2009_G6.jpg'>
-        </dokki-image>
-    </dokki-output>
+    Hello there.
 </dokki-spoiler>
 <h2>Markup</h2>
 <pre><code>&lt;dokki-spoiler expanded headerless inline-class&gt;
@@ -901,36 +816,22 @@ five unique such paragraphs.</p>
 <h2>Templates</h2>
 <h3>#caption</h3>
 <p>The template's children will be displayed as the &lt;dokki-spoiler&gt; element's caption.</p>
-<x-examples>
-    <x-example>
-        <dokki-code headerless
-            code="
-            <template #caption>
-                Hello there
-            </template>
-            ">
-        </dokki-code>
-        <dokki-spoiler height="2em">
+<x-example>
+    <dokki-code headerless
+        code="
+        <dokki-spoiler>
             <template #caption>
                 Hello there
             </template>
         </dokki-spoiler>
-    </x-example>
-    <x-example>
-        <dokki-code headerless
-            code="
-            <template #caption>
-                <span style='filter: blur(2px);'>Hello there</span>
-            </template>
-            ">
-        </dokki-code>
-        <dokki-spoiler height="2em">
-            <template #caption>
-                <span style='filter: blur(2px);'>Hello there</span>
-            </template>
-        </dokki-spoiler>
-    </x-example>
-</x-examples>
+        ">
+    </dokki-code>
+    <dokki-spoiler>
+        <template #caption>
+            Hello there
+        </template>
+    </dokki-spoiler>
+</x-example>
 <h2>Attributes</h2>
 <h3>expanded</h3>
 <p>If present, the &lt;dokki-spoiler&gt; element's content container will be visible
@@ -939,20 +840,18 @@ initially, rather than requiring the user to reveal it.</p>
 <h3>headerless</h3>
 <p>If present, causes the &lt;dokki-spoiler&gt; element to be displayed without its caption.</p>
 <p>Setting this attribute will implicitly set the <strong>expanded</strong> attribute as well.</p>
-<x-examples>
-    <x-example>
-        <dokki-code headerless
-            code="
-            <dokki-spoiler headerless>
-                Hello there.
-            </dokki-spoiler>
-            ">
-        </dokki-code>
+<x-example>
+    <dokki-code headerless
+        code="
         <dokki-spoiler headerless>
             Hello there.
         </dokki-spoiler>
-    </x-example>
-</x-examples>
+        ">
+    </dokki-code>
+    <dokki-spoiler headerless>
+        Hello there.
+    </dokki-spoiler>
+</x-example>
 <h3>inline-class</h3>
 <p>The class name(s) given in this string will be appended to the &lt;dokki-spoiler&gt;
 element's class list.</p>
@@ -975,41 +874,47 @@ with certain dokki-specific extensions.</p>
         Releases
     </template>
     <template #table>
-        <table>
-            <tr>
-                <th>Name</th>
-                <th>Year</th>
-            </tr>
-            <tr>
-                <td>Кров у наших криницях</td>
-                <td>2006</td>
-            </tr>
-            <tr>
-                <td>Відчуженість</td>
-                <td>2007</td>
-            </tr>
-        </table>
+        <tr>
+            <th>Name</th>
+            <th>Year</th>
+        </tr>
+        <tr>
+            <td>Кров у наших криницях</td>
+            <td>2006<sup>*</sup></td>
+        </tr>
+        <tr>
+            <td>Відчуженість</td>
+            <td>2007</td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <sup>*</sup>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+            </td>
+        </tr>
     </template>
 </dokki-table>
-<dokki-table plain>
+<dokki-table headerless>
     <template #caption>
         Releases
     </template>
     <template #table>
-        <table>
-            <tr>
-                <th>Name</th>
-                <th>Year</th>
-            </tr>
-            <tr>
-                <td>Кров у наших криницях</td>
-                <td>2006</td>
-            </tr>
-            <tr>
-                <td>Відчуженість</td>
-                <td>2007</td>
-            </tr>
-        </table>
+        <tr>
+            <th>Name</th>
+            <th>Year</th>
+        </tr>
+        <tr>
+            <td>Кров у наших криницях</td>
+            <td>2006<sup>*</sup></td>
+        </tr>
+        <tr>
+            <td>Відчуженість</td>
+            <td>2007</td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <sup>*</sup>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+            </td>
+        </tr>
     </template>
 </dokki-table>
 <h2>Markup</h2>
@@ -1026,71 +931,53 @@ with certain dokki-specific extensions.</p>
 <h2>Templates</h2>
 <h3>#caption</h3>
 <p>The template's children will be displayed as the &lt;dokki-table&gt; element's caption.</p>
-<x-examples>
-    <x-example>
-        <dokki-code headerless code="
-            <template #caption>
-                Hello there
-            </template>
-            ">
-        </dokki-code>
+<x-example>
+    <dokki-code headerless code="
         <dokki-table>
             <template #caption>
                 Hello there
             </template>
         </dokki-table>
-    </x-example>
-    <x-example>
-        <dokki-code headerless code="
-            <template #caption>
-                <span style='filter: blur(2px);'>Hello there</span>
-            </template>
-            ">
-        </dokki-code>
-        <dokki-table>
-            <template #caption>
-                <span style='filter: blur(2px);'>Hello there</span>
-            </template>
-        </dokki-table>
-    </x-example>
-</x-examples>
+        ">
+    </dokki-code>
+    <dokki-table>
+        <template #caption>
+            Hello there
+        </template>
+    </dokki-table>
+</x-example>
 <h3>#table <x-required></x-required></h3>
-<p>The template's children will be displayed as the &lt;dokki-table&gt; element's table.
-Generally, the template should have one child: a standard &lt;table&gt; element, whose
-children define the table's contents.</p>
-<x-examples>
-    <x-example>
-        <dokki-code headerless code="
-            <template #table>
-                <table>
-                    <tr>
-                        <th>First</th>
-                        <th>Second</th>
-                    </tr>
-                    <tr>
-                        <td>Hello</td>
-                        <td>there</td>
-                    </tr>
-                </table>
-            </template>
-            ">
-        </dokki-code>
+<p>The template's children will be placed inside &lt;table&gt;&lt;/table&gt; tags and displayed
+as the &lt;dokki-table&gt; element's table.</p>
+<x-example>
+    <dokki-code headerless code="
         <dokki-table>
             <template #table>
-                <table>
-                    <tr>
-                        <th>First</th>
-                        <th>Second</th>
-                    </tr>
-                    <tr>
-                        <td>Hello</td>
-                        <td>there</td>
-                    </tr>
-                </table>
+                <tr>
+                    <th>First</th>
+                    <th>Second</th>
+                </tr>
+                <tr>
+                    <td>Hello</td>
+                    <td>there</td>
+                </tr>
             </template>
         </dokki-table>
-    </x-example>
-</x-examples>
+        ">
+    </dokki-code>
+    <dokki-table>
+        <template #table>
+            <tr>
+                <th>First</th>
+                <th>Second</th>
+            </tr>
+            <tr>
+                <td>Hello</td>
+                <td>there</td>
+            </tr>
+        </template>
+    </dokki-table>
+</x-example>
 <h2>Attributes</h2>
 <h3>expanded</h3>
 <p>If present, the &lt;dokki-table&gt; element's code listing will be visible initially,
@@ -1099,34 +986,28 @@ rather than requiring the user to reveal it.</p>
 <h3>headerless</h3>
 <p>If present, causes the &lt;dokki-table&gt; element to be dispayed without its caption.</p>
 <p>Setting this attribute will implicitly set the <strong>expanded</strong> attribute as well.</p>
-<x-examples>
-    <x-example>
-        <dokki-code headerless
-            code="
-            <dokki-table headerless>
-                <template #table>
-                    <table>
-                        <tr>
-                            <td>Hello</td>
-                            <td>there</td>
-                        </tr>
-                    </table>
-                </template>
-            </dokki-table>
-            ">
-        </dokki-code>
+<x-example>
+    <dokki-code headerless
+        code="
         <dokki-table headerless>
             <template #table>
-                <table>
-                    <tr>
-                        <td>Hello</td>
-                        <td>there</td>
-                    </tr>
-                </table>
+                <tr>
+                    <td>Hello</td>
+                    <td>there</td>
+                </tr>
             </template>
         </dokki-table>
-    </x-example>
-</x-examples>
+        ">
+    </dokki-code>
+    <dokki-table headerless>
+        <template #table>
+            <tr>
+                <td>Hello</td>
+                <td>there</td>
+            </tr>
+        </template>
+    </dokki-table>
+</x-example>
 <h3>inline-class</h3>
 <p>The class name(s) given in this string will be appended to the &lt;dokki-table&gt;
 element's class list.</p>
@@ -1196,11 +1077,6 @@ class list.</p>
         Shitty MS-DOS Games
     </template>
 </dokki-video>
-<dokki-video plain src="Pjx1B7Kt9xs">
-    <template #caption>
-        Shitty MS-DOS Games
-    </template>
-</dokki-video>
 <h2>Markup</h2>
 <pre><code>&lt;dokki-video expanded headerless inline-class src&gt;
 
@@ -1212,36 +1088,22 @@ class list.</p>
 <h2>Templates</h2>
 <h3>#caption</h3>
 <p>The template's children will be displayed as the &lt;dokki-video&gt; element's caption.</p>
-<x-examples>
-    <x-example>
-        <dokki-code headerless
-            code="
-            <template #caption>
-                Hello there
-            </template>
-            ">
-        </dokki-code>
+<x-example>
+    <dokki-code headerless
+        code="
         <dokki-video>
             <template #caption>
                 Hello there
             </template>
         </dokki-video>
-    </x-example>
-    <x-example>
-        <dokki-code headerless
-            code="
-            <template #caption>
-                <span style='filter: blur(2px);'>Hello there</span>
-            </template>
-            ">
-        </dokki-code>
-        <dokki-video>
-            <template #caption>
-                <span style='filter: blur(2px);'>Hello there</span>
-            </template>
-        </dokki-video>
-    </x-example>
-</x-examples>
+        ">
+    </dokki-code>
+    <dokki-video>
+        <template #caption>
+            Hello there
+        </template>
+    </dokki-video>
+</x-example>
 <h2>Attributes</h2>
 <h3>expanded</h3>
 <p>If present, the &lt;dokki-video&gt; element's video container will be visible initially,
@@ -1250,18 +1112,16 @@ rather than requiring the user to reveal it.</p>
 <h3>headerless</h3>
 <p>If present, causes the &lt;dokki-video&gt; element to be displayed without its caption.</p>
 <p>Setting this attribute will implicitly set the <strong>expanded</strong> attributeas well.</p>
-<x-examples>
-    <x-example>
-        <dokki-code headerless
-            code="
-            <dokki-video headerless src='...'>
-            </dokki-video>
-            ">
-        </dokki-code>
-        <dokki-video headerless src="Pjx1B7Kt9xs">
+<x-example>
+    <dokki-code headerless
+        code="
+        <dokki-video headerless src='...'>
         </dokki-video>
-    </x-example>
-</x-examples>
+        ">
+    </dokki-code>
+    <dokki-video headerless src="Pjx1B7Kt9xs">
+    </dokki-video>
+</x-example>
 <h3>inline-class</h3>
 <p>The class name(s) given in this string will be appended to the &lt;dokki-video&gt;
 element's class list.</p>
@@ -1316,6 +1176,12 @@ element's class list.</p>
         
 
         <dokki-topic title='dokki0-page-load-progress-bar'>
+            <p>TODO</p>
+
+        </dokki-topic>
+        
+
+        <dokki-topic title='dokki0-table-of-contents'>
             <p>TODO</p>
 
         </dokki-topic>

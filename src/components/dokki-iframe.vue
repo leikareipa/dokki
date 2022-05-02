@@ -40,16 +40,10 @@
 <style lang="scss">
 .dokki0-embedded-expandable.dokki-iframe
 {
-    .content
+    .content.first-level
     {
         padding: 0;
-        line-height: normal;
-    }
-
-    &.plain .content
-    {
-        border: 1px solid var(--dokkiCSS-embedded-auxiliary-color);
-        border-top: 0;
+        margin: var(--dokkiCSS-embedded-vertical-padding) var(--dokkiCSS-embedded-horizontal-padding);
     }
 }
 </style>
@@ -67,6 +61,7 @@
         min-width: 100%;
         min-height: 100%;
         max-height: 100%;
+        line-height: normal;
         border: none;
     }
 }
@@ -110,12 +105,6 @@ extensions.
     </template>
 </dokki-iframe>
 
-<dokki-iframe plain src="https://www.wikipedia.org">
-    <template #caption>
-        Wikipedia.org
-    </template>
-</dokki-iframe>
-
 ## Markup
 
     <dokki-iframe autofocus expanded headerless height inline-class src srcdoc>
@@ -131,36 +120,22 @@ extensions.
 
 The template's children will be displayed as the \<dokki-iframe\> element's caption.
 
-<x-examples>
-    <x-example>
-        <dokki-code headerless
-            code="
-            <template #caption>
-                Hello there
-            </template>
-            ">
-        </dokki-code>
+<x-example>
+    <dokki-code headerless
+        code="
         <dokki-iframe>
             <template #caption>
                 Hello there
             </template>
         </dokki-iframe>
-    </x-example>
-    <x-example>
-        <dokki-code headerless
-            code="
-            <template #caption>
-                <span style='filter: blur(2px);'>Hello there</span>
-            </template>
-            ">
-        </dokki-code>
-        <dokki-iframe>
-            <template #caption>
-                <span style='filter: blur(2px);'>Hello there</span>
-            </template>
-        </dokki-iframe>
-    </x-example>
-</x-examples>
+        ">
+    </dokki-code>
+    <dokki-iframe>
+        <template #caption>
+            Hello there
+        </template>
+    </dokki-iframe>
+</x-example>
 
 ## Attributes
 
@@ -182,17 +157,15 @@ If present, causes the \<dokki-iframe\> element to be displayed without its capt
 
 Setting this attribute will implicitly set the **expanded** attribute as well. 
 
-<x-examples>
-    <x-example>
-        <dokki-code headerless code="
-            <dokki-iframe headerless src='https://www.wikipedia.org'>
-            </dokki-iframe>
-        ">
-        </dokki-code>
+<x-example>
+    <dokki-code headerless code="
         <dokki-iframe headerless src='https://www.wikipedia.org'>
         </dokki-iframe>
-    </x-example>
-</x-examples>
+    ">
+    </dokki-code>
+    <dokki-iframe headerless src='https://www.wikipedia.org'>
+    </dokki-iframe>
+</x-example>
 
 ### height
 
@@ -220,53 +193,18 @@ Either this or the **src** attribute must be set.
     be executed only when the &lt;dokki-iframe&gt; element's inline frame is expanded.
 </dokki-tip>
 
-<x-examples>
-    <x-example>
-        <dokki-code
-            headerless
-            code="
-            <dokki-iframe
-                headerless
-                height='2.5em'
-                srcdoc='
-                    <style>
-                        body {
-                            background-color: blueviolet;
-                            color: white
-                        }
-                        span {
-                            display: inline-block;
-                            white-space: break-spaces;
-                        }
-                    </style>
-                    <body>
-                        <script>
-                            (function jump(delta = 0) {
-                                document.body.innerHTML =
-                                    `Current time: ${Date.now()}`
-                                    .split('')
-                                    .reduce((str, ch)=>(str+`<span>${ch}</span>`), '');
-                                const chSpans = Array.from(document.body.querySelectorAll('span'));
-                                const chOffsets = chSpans.map((ch, idx)=>(2 * Math.cos(idx)));
-                                chSpans.forEach((span, idx)=>{
-                                    const offset = Math.cos(chOffsets[idx] + delta);
-                                    span.style.transform = `translateY(${offset}px)`;
-                                });
-                                window.requestAnimationFrame(()=>jump(delta + 0.3));
-                            })();
-                        </script>
-                    </body>
-            '></dokki-iframe>
-            ">
-        </dokki-code>
+<x-example>
+    <dokki-code
+        headerless
+        code="
         <dokki-iframe
             headerless
-            height="2.5em"
-            srcdoc="
+            height='2.5em'
+            srcdoc='
                 <style>
                     body {
-                        background-color: blueviolet;
-                        color: white
+                        background-color: #86db74;
+                        color: black
                     }
                     span {
                         display: inline-block;
@@ -281,7 +219,7 @@ Either this or the **src** attribute must be set.
                                 .split('')
                                 .reduce((str, ch)=>(str+`<span>${ch}</span>`), '');
                             const chSpans = Array.from(document.body.querySelectorAll('span'));
-                            const chOffsets = chSpans.map((ch, idx)=>(2 * Math.cos(idx)));                            
+                            const chOffsets = chSpans.map((ch, idx)=>(2 * Math.cos(idx)));
                             chSpans.forEach((span, idx)=>{
                                 const offset = Math.cos(chOffsets[idx] + delta);
                                 span.style.transform = `translateY(${offset}px)`;
@@ -290,8 +228,42 @@ Either this or the **src** attribute must be set.
                         })();
                     </script>
                 </body>
-            "
+            '
         ></dokki-iframe>
-    </x-example>
-</x-examples>
+        ">
+    </dokki-code>
+    <dokki-iframe
+        headerless
+        height="2.5em"
+        srcdoc="
+            <style>
+                body {
+                    background-color: #86db74;
+                    color: black
+                }
+                span {
+                    display: inline-block;
+                    white-space: break-spaces;
+                }
+            </style>
+            <body>
+                <script>
+                    (function jump(delta = 0) {
+                        document.body.innerHTML =
+                            `Current time: ${Date.now()}`
+                            .split('')
+                            .reduce((str, ch)=>(str+`<span>${ch}</span>`), '');
+                        const chSpans = Array.from(document.body.querySelectorAll('span'));
+                        const chOffsets = chSpans.map((ch, idx)=>(2 * Math.cos(idx)));                            
+                        chSpans.forEach((span, idx)=>{
+                            const offset = Math.cos(chOffsets[idx] + delta);
+                            span.style.transform = `translateY(${offset}px)`;
+                        });
+                        window.requestAnimationFrame(()=>jump(delta + 0.3));
+                    })();
+                </script>
+            </body>
+        "
+    ></dokki-iframe>
+</x-example>
 </api-reference>

@@ -32,6 +32,7 @@
 <style lang="scss">
 .dokki-tag-filter
 {
+    border-radius: 0;
     margin: var(--dokkiCSS-topic-bottom-margin) 0;
     position: sticky;
     top: 0;
@@ -51,7 +52,7 @@
     flex-wrap: wrap;
     box-sizing: border-box;
     background-color: var(--dokkiCSS-page-inert-bg-color); 
-    border-radius: 4px;
+    border-radius: var(--dokkiCSS-embedded-border-radius);
     box-shadow: 0 0px 8px -2px rgba(0, 0, 0, 0.5);
 
     .label
@@ -66,7 +67,6 @@
         color: white;
         padding: 4px 6px;
         border-radius: 4px;
-        border: 1px solid #2264e8;
         display: inline-flex;
         align-items: center;
         text-transform: uppercase;

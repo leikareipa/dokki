@@ -10,7 +10,7 @@
     class-name="dokki-output"
     title="Output"
     header-widget="frame"
-    :class="{'unpadded': isUnpadded}">
+>
 
     <template #caption>
 
@@ -31,51 +31,21 @@
 <style lang="scss">
 .dokki0-embedded-expandable.dokki-output
 {
-    &.unpadded
+    &.unpadded .content
     {
-        .dokkiCSS-container
-        {
-            padding: 0;
-
-            & > .dokkiCSS-embedded.groupbox:not(.headerless):only-child
-            {
-                margin-top: 0.475em !important;
-            }
-        }
-    }
-
-    &:not(.unpadded):not(.headerless):not(.expands-to-dropdown)
-    {
-        & > .dokki0-animated-expander > .content
-        {
-            padding-top: calc(var(--dokkiCSS-embedded-vertical-padding) - var(--dokkiCSS-embedded-horizontal-padding));
-        }
+        border: none !important;
     }
 }
 </style>
-
-<style scoped lang="scss">
-.dokki-output.unpadded .wrapper
-{
-    padding: 0;
-}
-</style>
-
-<script>
-export default {
-    props: {
-        unpadded: {default: undefined},
-    },
-    data() {
-        return {
-            isUnpadded: (this.$props.unpadded !== undefined),
-        }
-    }
-}
-</script>
 
 <api-reference lang="md">
-<p>
-    TODO
-</p>
+TODO
+
+## Samples
+
+<dokki-output>
+    <template #output>
+        Hello there.
+    </template>
+</dokki-output>
 </api-reference>

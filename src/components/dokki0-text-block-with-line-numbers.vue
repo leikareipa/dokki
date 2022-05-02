@@ -43,13 +43,19 @@
 
         .number
         {
-            color: var(--dokkiCSS-page-secondary-fg-color);
+            border-right: 1px solid var(--dokkiCSS-page-primary-line-color);
+            color: var(--dokkiCSS-page-inert-fg-color);
             user-select: none;
             width: 1ch; /* Shrink to minimum width required by the widest line number <td>.*/
             padding: 0;
             white-space: normal;
             padding-right: 1.75ch;
-            text-align: right;
+            text-align: left;
+        }
+
+        .content
+        {
+            padding-left: 1.75ch;
         }
     }
 }

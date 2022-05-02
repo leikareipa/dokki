@@ -102,8 +102,9 @@
     h3
     {
         font-size: 105%;
-        display: inline;
         font-weight: var(--dokkiCSS-bold-text-weight);
+        margin-top: var(--dokkiCSS-topic-header-top-margin);
+        margin-bottom: 16px;
     }
 
     h4

@@ -8,7 +8,7 @@
 <template>
 <dokki0-embedded-expandable
     class-name="dokki-table"
-    :has-content="(typeof this.$slots['table'] === 'function')"
+    :has-content="hasContent"
     icon="fas fa-table"
     title="Table">
 
@@ -18,9 +18,13 @@
 
     </template>
 
-    <template #content>
+    <template #content v-if="hasContent">
 
-        <slot name="table"/>
+        <table>
+
+            <slot name="table"/>
+
+        </table>
 
     </template>
 
@@ -30,22 +34,10 @@
 <style lang="scss">
 .dokki0-embedded-expandable.dokki-table
 {
-    &:not(.plain).headerless
+    & > .dokki0-animated-expander > .content
     {
-        background-color: var(--dokkiCSS-page-inert-bg-color);
-        border: 1px solid var(--dokkiCSS-page-primary-line-color);
-
-        .dokkiCSS-container
-        {
-            border-top: none;
-        }
-    }
-
-    .dokkiCSS-container
-    {
-        padding: 0;
         overflow: auto;
-        border-top: 1px solid var(--dokkiCSS-page-primary-line-color);
+        padding: 0;
     }
 
     table
@@ -100,6 +92,17 @@
 }
 </style>
 
+<script>
+export default {
+    computed: {
+        hasContent()
+        {
+            return (typeof this.$slots["table"] === "function");
+        },
+    },
+}
+</script>
+
 <api-reference lang="md">
 A dokki wapper for the standard \<table\> element, providing the features of \<table\>
 with certain dokki-specific extensions.
@@ -111,42 +114,48 @@ with certain dokki-specific extensions.
         Releases
     </template>
     <template #table>
-        <table>
-            <tr>
-                <th>Name</th>
-                <th>Year</th>
-            </tr>
-            <tr>
-                <td>Кров у наших криницях</td>
-                <td>2006</td>
-            </tr>
-            <tr>
-                <td>Відчуженість</td>
-                <td>2007</td>
-            </tr>
-        </table>
+        <tr>
+            <th>Name</th>
+            <th>Year</th>
+        </tr>
+        <tr>
+            <td>Кров у наших криницях</td>
+            <td>2006<sup>*</sup></td>
+        </tr>
+        <tr>
+            <td>Відчуженість</td>
+            <td>2007</td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <sup>*</sup>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+            </td>
+        </tr>
     </template>
 </dokki-table>
 
-<dokki-table plain>
+<dokki-table headerless>
     <template #caption>
         Releases
     </template>
     <template #table>
-        <table>
-            <tr>
-                <th>Name</th>
-                <th>Year</th>
-            </tr>
-            <tr>
-                <td>Кров у наших криницях</td>
-                <td>2006</td>
-            </tr>
-            <tr>
-                <td>Відчуженість</td>
-                <td>2007</td>
-            </tr>
-        </table>
+        <tr>
+            <th>Name</th>
+            <th>Year</th>
+        </tr>
+        <tr>
+            <td>Кров у наших криницях</td>
+            <td>2006<sup>*</sup></td>
+        </tr>
+        <tr>
+            <td>Відчуженість</td>
+            <td>2007</td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <sup>*</sup>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+            </td>
+        </tr>
     </template>
 </dokki-table>
 
@@ -170,74 +179,56 @@ with certain dokki-specific extensions.
 
 The template's children will be displayed as the \<dokki-table\> element's caption.
 
-<x-examples>
-    <x-example>
-        <dokki-code headerless code="
-            <template #caption>
-                Hello there
-            </template>
-            ">
-        </dokki-code>
+<x-example>
+    <dokki-code headerless code="
         <dokki-table>
             <template #caption>
                 Hello there
             </template>
         </dokki-table>
-    </x-example>
-    <x-example>
-        <dokki-code headerless code="
-            <template #caption>
-                <span style='filter: blur(2px);'>Hello there</span>
-            </template>
-            ">
-        </dokki-code>
-        <dokki-table>
-            <template #caption>
-                <span style='filter: blur(2px);'>Hello there</span>
-            </template>
-        </dokki-table>
-    </x-example>
-</x-examples>
+        ">
+    </dokki-code>
+    <dokki-table>
+        <template #caption>
+            Hello there
+        </template>
+    </dokki-table>
+</x-example>
 
 ### #table <x-required></x-required>
 
-The template's children will be displayed as the \<dokki-table\> element's table.
-Generally, the template should have one child: a standard \<table\> element, whose
-children define the table's contents.
+The template's children will be placed inside \<table\>\</table\> tags and displayed
+as the \<dokki-table\> element's table.
 
-<x-examples>
-    <x-example>
-        <dokki-code headerless code="
-            <template #table>
-                <table>
-                    <tr>
-                        <th>First</th>
-                        <th>Second</th>
-                    </tr>
-                    <tr>
-                        <td>Hello</td>
-                        <td>there</td>
-                    </tr>
-                </table>
-            </template>
-            ">
-        </dokki-code>
+<x-example>
+    <dokki-code headerless code="
         <dokki-table>
             <template #table>
-                <table>
-                    <tr>
-                        <th>First</th>
-                        <th>Second</th>
-                    </tr>
-                    <tr>
-                        <td>Hello</td>
-                        <td>there</td>
-                    </tr>
-                </table>
+                <tr>
+                    <th>First</th>
+                    <th>Second</th>
+                </tr>
+                <tr>
+                    <td>Hello</td>
+                    <td>there</td>
+                </tr>
             </template>
         </dokki-table>
-    </x-example>
-</x-examples>
+        ">
+    </dokki-code>
+    <dokki-table>
+        <template #table>
+            <tr>
+                <th>First</th>
+                <th>Second</th>
+            </tr>
+            <tr>
+                <td>Hello</td>
+                <td>there</td>
+            </tr>
+        </template>
+    </dokki-table>
+</x-example>
 
 ## Attributes
 
@@ -254,34 +245,28 @@ If present, causes the \<dokki-table\> element to be dispayed without its captio
 
 Setting this attribute will implicitly set the **expanded** attribute as well. 
 
-<x-examples>
-    <x-example>
-        <dokki-code headerless
-            code="
-            <dokki-table headerless>
-                <template #table>
-                    <table>
-                        <tr>
-                            <td>Hello</td>
-                            <td>there</td>
-                        </tr>
-                    </table>
-                </template>
-            </dokki-table>
-            ">
-        </dokki-code>
+<x-example>
+    <dokki-code headerless
+        code="
         <dokki-table headerless>
             <template #table>
-                <table>
-                    <tr>
-                        <td>Hello</td>
-                        <td>there</td>
-                    </tr>
-                </table>
+                <tr>
+                    <td>Hello</td>
+                    <td>there</td>
+                </tr>
             </template>
         </dokki-table>
-    </x-example>
-</x-examples>
+        ">
+    </dokki-code>
+    <dokki-table headerless>
+        <template #table>
+            <tr>
+                <td>Hello</td>
+                <td>there</td>
+            </tr>
+        </template>
+    </dokki-table>
+</x-example>
 
 ### inline-class
 

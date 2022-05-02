@@ -22,17 +22,16 @@
 
         <dokki0-text-block-with-line-numbers
             :syntax="syntax"
-            :text="codeFromSlot || code">
-        </dokki0-text-block-with-line-numbers>
+            :text="codeFromSlot || code"
+        />
 
     </template>
 
     <template #after v-if="this.$slots['output'] || this.$slots['default']">
 
-        <dokki-output v-if="this.$slots['output']">
-            <slot name="output"/>
-        </dokki-output>
-        <slot v-else/>
+        <dokki-hr/>
+        
+        <slot name="output"/>
 
     </template>
 
@@ -42,87 +41,26 @@
 <style lang="scss">
 .dokki0-embedded-expandable.dokki-code
 {
-    border: none;
-    background-color: var(--dokkiCSS-embedded-auxiliary-color);
-
-    &:not(.plain) header
-    {
-        border-radius: var(--dokkiCSS-embedded-border-radius);
-        border: 1px solid var(--dokkiCSS-page-primary-line-color);
-        background-color: var(--dokkiCSS-page-primary-bg-color);
-    }
-
-    .dokki0-text-block-with-line-numbers > .line > .number
-    {
-        display: none;
-    }
-
-    &  > .dokki0-animated-expander > .dokkiCSS-container
+    & > .dokki0-animated-expander > .dokkiCSS-container
     {
         overflow: auto;
-        padding: var(--dokkiCSS-embedded-vertical-padding) var(--dokkiCSS-embedded-horizontal-padding);
     }
 
-    &.has-after
+    &.has-after > footer
     {
-        header
+        & > .dokki-area
         {
-            border-bottom: none;
-            border-bottom-left-radius: 0;
-            border-bottom-right-radius: 0;
-        }
-
-        &:not(.headerless):not(.plain)
-        {
-            & > .dokki0-animated-expander > .dokkiCSS-container
-            {
-                box-shadow: inset 0 1px 0 var(--dokkiCSS-page-primary-line-color);
-            }
-        }
-
-        & > .dokki-output
-        {
+            background-color: unset;
             margin-top: 0;
-            background: var(--dokkiCSS-page-inert-bg-color);
-            border-top-left-radius: 0;
-            border-top-right-radius: 0;
-            overflow: hidden;
+            padding: 0;
 
-            header
+            .dokki0-embedded-expandable
             {
+                margin: 0 !important;
+                box-shadow: none;
                 border: none;
             }
-        }
-    }
 
-    &.dokkiCSS-has-output
-    {
-        margin-bottom: 0;
-        border-bottom-left-radius: 0;
-        border-bottom-right-radius: 0;
-        border-bottom: none;
-
-        header
-        {
-            border-bottom: none;
-        }
-
-        & + .dokki-output
-        {
-            margin-top: 0;
-            border-top-left-radius: 0;
-            border-top-right-radius: 0;
-        }
-    }
-
-    &.dokkiCSS-has-output,
-    &.dokkiCSS-expanded,
-    &.dokkiCSS-transitioning
-    {
-        header
-        {
-            border-bottom-left-radius: 0 !important;
-            border-bottom-right-radius: 0 !important;
         }
     }
 }
@@ -163,7 +101,7 @@ Displays a source code snippet, with optional syntax highlighting and sample out
     </template>
 </dokki-code>
 
-<dokki-code plain>
+<dokki-code headerless>
     <template #caption>
         A listing of a C program
     </template>
@@ -198,36 +136,22 @@ Displays a source code snippet, with optional syntax highlighting and sample out
 
 The template's children will be displayed as the \<dokki-code\> element's caption.
 
-<x-examples>
-    <x-example>
-        <dokki-code headerless
-            code="
-            <template #caption>
-                Hello there
-            </template>
-            ">
-        </dokki-code>
+<x-example>
+    <dokki-code headerless
+        code="
         <dokki-code>
             <template #caption>
                 Hello there
             </template>
         </dokki-code>
-    </x-example>
-    <x-example>
-        <dokki-code headerless
-            code="
-            <template #caption>
-                <span style='filter: blur(2px);'>Hello there</span>
-            </template>
-            ">
-        </dokki-code>
-        <dokki-code>
-            <template #caption>
-                <span style='filter: blur(2px);'>Hello there</span>
-            </template>
-        </dokki-code>
-    </x-example>
-</x-examples>
+        ">
+    </dokki-code>
+    <dokki-code>
+        <template #caption>
+            Hello there
+        </template>
+    </dokki-code>
+</x-example>
 
 ### #code <x-required></x-required>
 
@@ -246,73 +170,59 @@ element's code.
     </ul>
 </dokki-tip>
 
-<x-examples>
-    <x-example>
-        <dokki-code headerless
-            code="
-            <template #code>
-                <pre>
-                    void main(void) {
-                        printf(``Hello there.\n``);
-                    }
-                </pre>
-            </template>
-            ">
-        </dokki-code>
-        <dokki-code>
-            <template #code>
-                <pre>
-                    void main(void) {
-                        printf("Hello there.\n");
-                    }
-                </pre>
-            </template>
-        </dokki-code>
-    </x-example>
-</x-examples>
+<x-example>
+    <dokki-code headerless
+        code="
+        <template #code>
+            <pre>
+                void main(void) {
+                    printf(``Hello there.\n``);
+                }
+            </pre>
+        </template>
+        ">
+    </dokki-code>
+    <dokki-code>
+        <template #code>
+            <pre>
+                void main(void) {
+                    printf("Hello there.\n");
+                }
+            </pre>
+        </template>
+    </dokki-code>
+</x-example>
 
 ### #output
 
-The template's children will be displayed as the output of the \<dokki-code\>
-element's code, using \<dokki-output\> as a container.
+The template's child element will be indicated as the output of the \<dokki-code\>
+element's code. The child element should be one of dokki's embeddables, like
+\<dokki-output\>, \<dokki-image\>, or \<dokki-spoiler\>.
 
-<dokki-tip>
-    If you want to customize the container element, replace the <strong>#output</strong>
-    template with a &lt;dokki-output&gt; element.
-</dokki-tip>
-
-<x-examples>
-    <x-example>
-        <dokki-code headerless
-            code="
-            <template #output>
-                Hello there.
-            </template>
-            ">
-        </dokki-code>
-        <dokki-code plain>
-            <template #output>
-                Hello there.
-            </template>
-        </dokki-code>
-    </x-example>
-    <x-example>
-        <dokki-code headerless
-            code="
+<x-example>
+    <dokki-code headerless
+        code="
+        <template #code>
+            console.log('Hello there')
+        </template>
+        <template #output>
             <dokki-output>
-                <template #caption>Run it</template>
-                <template #output>Hello there.</template>
+                Hello there.
             </dokki-output>
-            ">
-        </dokki-code>
-        <dokki-code>
+        </template>
+        ">
+    </dokki-code>
+    <dokki-code>
+        <template #code>
+            console.log('Hello there')
+        </template>
+        <template #output>
             <dokki-output>
-                <template #caption>Run it</template>
-                <template #output>Hello there.</template>
+                Hello there.
             </dokki-output>
-        </dokki-code>
-    </x-example>
-</x-examples>
+        </template>
+    </dokki-code>
+</x-example>
 
 ## Attributes
 
@@ -332,18 +242,16 @@ if your code string includes characters that cause problems with HTML parsers, l
     double quotes for display.
 </dokki-warning>
 
-<x-examples>
-    <x-example>
-        <dokki-code headerless
-            code="
-            <dokki-code code=``console.log('Hello there')``>
-            </dokki-code>
-            ">
+<x-example>
+    <dokki-code headerless
+        code="
+        <dokki-code code=``console.log('Hello there')``>
         </dokki-code>
-        <dokki-code code="console.log('Hello there')">
-        </dokki-code>
-    </x-example>
-</x-examples>
+        ">
+    </dokki-code>
+    <dokki-code code="console.log('Hello there')">
+    </dokki-code>
+</x-example>
 
 ### expanded
 
@@ -358,24 +266,22 @@ If present, causes the \<dokki-code\> element to be dispayed without its caption
 
 Setting this attribute will implicitly set the **expanded** attribute as well. 
 
-<x-examples>
-    <x-example>
-        <dokki-code headerless
-            code="
-            <dokki-code headerless>
-                <template #code>
-                    const x = 1;
-                </template>
-            </dokki-code>
-            ">
-        </dokki-code>
+<x-example>
+    <dokki-code headerless
+        code="
         <dokki-code headerless>
             <template #code>
                 const x = 1;
             </template>
         </dokki-code>
-    </x-example>
-</x-examples>
+        ">
+    </dokki-code>
+    <dokki-code headerless>
+        <template #code>
+            const x = 1;
+        </template>
+    </dokki-code>
+</x-example>
 
 ### inline-class
 

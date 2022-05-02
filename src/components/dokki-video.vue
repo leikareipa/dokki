@@ -10,8 +10,7 @@
     class-name="dokki-video"
     :has-content="Boolean(src)"
     :icon="headerIcon"
-    title="Video"
-    :class="platform">
+    title="Video">
 
     <template #caption>
 
@@ -32,31 +31,20 @@
 <style lang="scss">
 .dokki0-embedded-expandable.dokki-video
 {
-    display: flex;
-    flex-direction: column;
-
-    .dokkiCSS-container
+    .content.content.first-level
     {
         padding: 0;
-        min-height: 20px;
         display: flex;
         overflow: auto;
+        height: 450px;
+        min-height: 20px;
     }
 
-    &.youtube
+    iframe
     {
-        iframe
-        {
-            min-width: 100%;
-            max-width: 100%;
-            height: 450px;
-            border: none;
-        }
-
-        .dokki0-animated-expander
-        {
-            max-height: 450px;
-        }
+        width: 100%;
+        height: 100%;
+        border: none;
     }
 }
 </style>
@@ -99,12 +87,6 @@ Displays a video from YouTube.
     </template>
 </dokki-video>
 
-<dokki-video plain src="Pjx1B7Kt9xs">
-    <template #caption>
-        Shitty MS-DOS Games
-    </template>
-</dokki-video>
-
 ## Markup
 
     <dokki-video expanded headerless inline-class src>
@@ -120,36 +102,22 @@ Displays a video from YouTube.
 
 The template's children will be displayed as the \<dokki-video\> element's caption.
 
-<x-examples>
-    <x-example>
-        <dokki-code headerless
-            code="
-            <template #caption>
-                Hello there
-            </template>
-            ">
-        </dokki-code>
+<x-example>
+    <dokki-code headerless
+        code="
         <dokki-video>
             <template #caption>
                 Hello there
             </template>
         </dokki-video>
-    </x-example>
-    <x-example>
-        <dokki-code headerless
-            code="
-            <template #caption>
-                <span style='filter: blur(2px);'>Hello there</span>
-            </template>
-            ">
-        </dokki-code>
-        <dokki-video>
-            <template #caption>
-                <span style='filter: blur(2px);'>Hello there</span>
-            </template>
-        </dokki-video>
-    </x-example>
-</x-examples>
+        ">
+    </dokki-code>
+    <dokki-video>
+        <template #caption>
+            Hello there
+        </template>
+    </dokki-video>
+</x-example>
 
 ## Attributes
 
@@ -166,18 +134,16 @@ If present, causes the \<dokki-video\> element to be displayed without its capti
 
 Setting this attribute will implicitly set the **expanded** attributeas well.
 
-<x-examples>
-    <x-example>
-        <dokki-code headerless
-            code="
-            <dokki-video headerless src='...'>
-            </dokki-video>
-            ">
-        </dokki-code>
-        <dokki-video headerless src="Pjx1B7Kt9xs">
+<x-example>
+    <dokki-code headerless
+        code="
+        <dokki-video headerless src='...'>
         </dokki-video>
-    </x-example>
-</x-examples>
+        ">
+    </dokki-code>
+    <dokki-video headerless src="Pjx1B7Kt9xs">
+    </dokki-video>
+</x-example>
 
 ### inline-class
 

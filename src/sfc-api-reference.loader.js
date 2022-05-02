@@ -28,7 +28,7 @@ const fs = require("fs");
 const topics = {};
 let templateDoc, topicsContainerEl;
 
-module.exports = function (source) {
+module.exports = function(source) {
     const basePath = this.rootContext;
     const srcFilename = this.resourcePath;
     const dstFilename = `${basePath}/docs/api-reference.html`;

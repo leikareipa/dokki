@@ -6,16 +6,7 @@
  */
 
 <template>
-<span v-if="isInline" class="dokki-tag-cloud inline">
-    <span v-for="(tagName, idx) of tagNames">
-        <a class="tag" @click="on_tag_click(tagName)">
-            {{tagName}}
-        </a><!--
-        -->{{(idx == (tagNames.length - 1))? "" : ", "}}
-    </span>
-</span>
-
-<dokki0-embedded-expandable v-else
+<dokki0-embedded-expandable
     class-name="dokki-tag-cloud"
     icon="fas fa-tags"
     title="Tag cloud">
@@ -55,33 +46,16 @@
 <style lang="scss">
 .dokki0-embedded-expandable.dokki-tag-cloud
 {
-    border: none;
-    background-color: var(--dokkiCSS-embedded-auxiliary-color);
-
-    &:not(.inline) .tag
+    .tag
     {
         margin: 0 0.8rem;
         margin-left: 0;
     }
 
-    .dokkiCSS-container
+    .content.first-level
     {
         display: flex;
         flex-wrap: wrap;
-    }
-
-    header
-    {
-        border-radius: var(--dokkiCSS-embedded-border-radius);
-        border: 1px solid var(--dokkiCSS-page-primary-line-color);
-        background-color: var(--dokkiCSS-page-primary-bg-color);
-    }
-
-    &.dokkiCSS-expanded header,
-    &.dokkiCSS-transitioning:not(.dokkiCSS-expanded) header
-    {
-        border-bottom-left-radius: 0 !important;
-        border-bottom-right-radius: 0 !important;
     }
 }
 </style>
@@ -89,18 +63,11 @@
 <script>
 export default {
     props: {
-        inline: {default: undefined},
-
         // The CSS font size of the least common (minimum) and most common (maximum) tag, given
         // as a number representing percentages (e.g. "font-size: XXX%"). The rest of the tags'
         // font sizes will be along this range.
         minSize: {type: [Number, String], default: 95},
         maxSize: {type: [Number, String], default: 220},
-    },
-    data() {
-        return {
-            isInline: ((this.$props.inline === undefined)? false : true),
-        }
     },
     methods: {
         on_tag_click(tagName) {

@@ -7,44 +7,44 @@
 
 <template>
 <p class="dokki0-embedded-expandable dokkiCSS-embedded"
-   :class="{
-       [inlineClass]: true,
-       [className]: true,
-       'has-content': hasContent,
-       'groupbox': ((headerWidget == 'groupbox') && !isPlain),
-       'expands-to-dropdown': (expandsTo == 'dropdown'),
-       'headerless': isHeaderless,
-       'plain': isPlain,
-       'has-after': hasAfter,
-       'dokkiCSS-expanded': isExpanded,
-       'dokkiCSS-transitioning': isTransitioning,
-   }">
+:class="{
+    [inlineClass]: true,
+    [className]: true,
+    'has-content': hasContent,
+    'groupbox': (headerWidget == 'groupbox'),
+    'headerless': isHeaderless,
+    'unpadded': isUnpadded,
+    'has-after': hasAfter,
+    'dokkiCSS-expanded': isExpanded,
+    'dokkiCSS-transitioning': isTransitioning,
+}">
 
     <header v-if="!isHeaderless"
             @click="hasContent? this.$refs['expander'].toggle_expansion() : 0">
 
-        <span v-if="headerWidget == 'groupbox'" class="title blocker">
-            <i :class="icon"/>
-            {{title}}
-        </span>
-
-        <span v-if="headerWidget == 'groupbox'" class="title">
-            <i :class="icon"/>
-            {{title}}
-        </span>
-
         <span class="caption">
+        
+            <span class="type">
 
-                <span class="icon" v-if="(icon !== undefined) && (isPlain || (headerWidget !== 'groupbox'))" :title="title">
+                <span class="icon" v-if="icon !== undefined" :title="title">
+                
                     <i :class="icon"/>&nbsp;
+                
                 </span>
 
-                <span class="label">
-                    <slot v-if="hasCaption" name="caption"/>
-                    <span v-else>
-                        {{title}}
-                    </span>
+                <span class="text">
+
+                    {{title}}
+                    
                 </span>
+
+            </span>
+
+            <span class="label" v-if="hasCaption">
+
+                <slot name="caption"/>
+
+            </span>
 
         </span>
 
@@ -53,13 +53,13 @@
     </header>
 
     <dokki0-animated-expander v-if="hasContent"
-                              ref="expander"
-                              :start-expanded="isExpanded"
-                              @transitioning="isTransitioning = true"
-                              @expanded="isExpanded = true, isTransitioning = false"
-                              @minimized="isExpanded = false, isTransitioning = false">
+                                ref="expander"
+                                :start-expanded="isExpanded"
+                                @transitioning="isTransitioning = true"
+                                @expanded="isExpanded = true, isTransitioning = false"
+                                @minimized="isExpanded = false, isTransitioning = false">
 
-        <div class="content dokkiCSS-container">
+        <div class="content dokkiCSS-container first-level">
 
             <slot name="content"/>
 
@@ -67,7 +67,11 @@
 
     </dokki0-animated-expander>
 
-    <slot name="after"/>
+    <footer v-if="hasAfter">
+
+        <slot name="after"/>
+    
+    </footer>
 
 </p>
 </template>
@@ -76,51 +80,41 @@
 .dokki0-embedded-expandable
 {
     width: 100%;
-    margin: var(--dokkiCSS-embedded-vertical-margin) 0;
     box-sizing: border-box;
-    border: 1px solid var(--dokkiCSS-page-primary-line-color);
     border-radius: var(--dokkiCSS-embedded-border-radius);
     background-color: var(--dokkiCSS-page-inert-bg-color);
+    border: 1px solid var(--dokkiCSS-page-primary-line-color);
+    overflow: hidden;
 
-    &.plain
+    &.unpadded
     {
-        background-color: var(--dokkiCSS-embedded-auxiliary-color);
-        border: none;
-
-        .title,
-        .title-blocker
+        .content.first-level
         {
-            display: none;
+            padding: 0 !important;
+            margin-top: var(--dokkiCSS-embedded-vertical-margin);
+        }
+
+        .dokki0-embedded-expandable
+        {
+            margin: 0 !important;
+            border: none !important;
         }
     }
 
-    &:not(.plain).headerless,
-    &:not(.plain).expands-to-dropdown
+    &.has-content footer .dokki0-embedded-expandable
     {
         border: none;
-        background-color: var(--dokkiCSS-embedded-auxiliary-color);
-    }
-
-    &:not(.plain).expands-to-dropdown
-    {
-        & > header
-        {
-            border-radius: var(--dokkiCSS-embedded-border-radius);
-            border: 1px solid var(--dokkiCSS-page-primary-line-color);
-            background-color: var(--dokkiCSS-page-inert-bg-color);
-        }
-
-        &.dokkiCSS-expanded > header,
-        &.dokkiCSS-transitioning > header
-        {
-            border-bottom-left-radius: 0;
-            border-bottom-right-radius: 0;
-        }
+        margin-top: 0;
     }
 
     &:not(.has-content) header
     {
         cursor: default;
+    }
+
+    .dokki0-expansion-indicator
+    {
+        margin-left: auto;
     }
 
     header
@@ -130,18 +124,24 @@
         font-weight: normal;
         padding: var(--dokkiCSS-embedded-header-padding);
         display: flex;
-        align-items: baseline;
+        align-items: center;
         box-sizing: border-box;
 
-        & .dokki0-expansion-indicator
+        .label
         {
-            margin-left: auto;
+            display: block;
+            margin-top: 3px;
         }
-    }
 
-    .dokki0-expansion-indicator
-    {
-        padding-left: 10px;
+        .type
+        {
+            color: var(--dokkiCSS-page-inert-fg-color);
+        }
+
+        &:hover .type
+        {
+            color: inherit;
+        }
     }
 
     hr
@@ -158,25 +158,32 @@
         }
     }
 
-    & > .content,
+    .content.first-level,
     .dokkiCSS-container /* 'dokkikCSS-container' is an obsolete class name and will be removed in the future.*/
     {
-        border-bottom-left-radius: calc(var(--dokkiCSS-embedded-border-radius) - 1px);
-        border-bottom-right-radius: calc(var(--dokkiCSS-embedded-border-radius) - 1px);
+        border: 1px solid var(--dokkiCSS-page-primary-line-color);
+        border-radius: var(--dokkiCSS-embedded-border-radius);
         overflow: hidden;
+        margin: var(--dokkiCSS-embedded-vertical-padding) var(--dokkiCSS-embedded-horizontal-padding);
         padding: var(--dokkiCSS-embedded-vertical-padding) var(--dokkiCSS-embedded-horizontal-padding);
-    }
-
-    &:not(.headerless).groupbox
-    {
-        margin-top: calc(var(--dokkiCSS-embedded-vertical-margin) + 0.475em);
 
         & + &
         {
-            margin-top: calc(var(--dokkiCSS-embedded-vertical-margin) + 0.75em);
+            padding: 0 !important;
         }
     }
 
+    &:not(.headerless) > .dokki0-animated-expander > .content.first-level
+    {
+        margin-top: 0;
+    }
+
+    &.headerless > .dokki0-animated-expander > .content.first-level
+    {
+        margin: 0;
+        border: none;
+    }
+    
     &.groupbox
     {
         position: relative;
@@ -186,7 +193,6 @@
             position: absolute;
             top: 0;
             left: calc(var(--dokkiCSS-embedded-horizontal-padding) - 3px);
-            font-size: 80%;
             text-transform: uppercase;
             transform: translateY(-50%);
             padding: 3px;
@@ -217,12 +223,12 @@ export default {
     ],
     props: {
         headerWidget: {type: String, default: "groupbox"},
-        expandsTo: {type: String, default: "inline"},
         className: {required: true, type: String},
         inlineClass: {type: String, default: ""},
         hasContent: {type: Boolean, default: true},
         icon: {type: String, default: undefined},
         title: {required: true, type: String},
+        unpadded: {default: undefined},
         plain: {default: undefined},
     },
     data() {
@@ -249,8 +255,8 @@ export default {
                 (typeof this.$slots.after === "function")
             );
         },
-        isPlain() {
-            return (this.$props.plain !== undefined);
+        isUnpadded() {
+            return (this.$props.unpadded !== undefined);
         },
     },
     methods: {
