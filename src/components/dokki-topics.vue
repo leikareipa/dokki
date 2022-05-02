@@ -66,18 +66,6 @@
         left: var(--dokkiCSS-document-horizontal-left-start);
         border: none;
         border-radius: 0;
-
-        h1
-        {
-            font-size: 155%;
-            font-weight: normal;
-        }
-
-        h2
-        {
-            font-size: 130%;
-            font-weight: normal;
-        }
     }
 }
 </style>
