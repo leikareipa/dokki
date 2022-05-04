@@ -11,7 +11,7 @@
     :has-content="(src !== '//about:blank')"
     icon="fas fa-image"
     title="Image"
-    @transitioning="calculate_scaled_size()">
+>
 
     <template #caption>
 
@@ -22,14 +22,13 @@
     <template #content>
 
         <img
+            :width="width"
+            :height="height"
             :src="src"
-            ref="image-element"
             :class="{
                 'dokkiCSS-upscale-to-fit': hasUpscaleToFit,
                 'dokkiCSS-pixelated-scale': hasPixelated,
             }"
-            :width="scaledWidth"
-            :height="scaledHeight"
         >
 
     </template>
@@ -46,10 +45,6 @@
     .content.first-level
     {
         padding: 0;
-    }
-
-    .content.content.first-level
-    {
         min-height: 20px;
         display: flex;
         overflow: auto;
@@ -83,18 +78,6 @@ export default {
         width: {default: undefined},
         height: {default: undefined},
     },
-    data()
-    {
-        return {
-            scaledWidth: undefined,
-            scaledHeight: undefined,
-        }
-    },
-    mounted()
-    {
-        this.calculate_scaled_size();
-        window.addEventListener("resize", this.calculate_scaled_size);
-    },
     computed: {
         hasUpscaleToFit()
         {
@@ -105,29 +88,6 @@ export default {
             return (this.$props.pixelatedScale !== undefined);
         }
     },
-    methods: {
-        // Calculates a resolution representing the size of the image when scaled
-        // to fit the container, being equal to CSS's "object-fit: scale-down".
-        calculate_scaled_size()
-        {
-            const containerBorderWidth = 0;
-            const imageWidth = this.$props.width;
-            const imageHeight = this.$props.height;
-            let containerWidth = this.$el.offsetWidth;
-
-            if (!imageWidth || !imageHeight || !containerWidth)
-            {
-                return;
-            }
-
-            containerWidth -= (containerBorderWidth * 2);
-
-            const ratio = Math.min((this.upscaleToFit? Infinity : 1), (containerWidth / imageWidth));
-
-            this.scaledWidth = Math.round(imageWidth * ratio);
-            this.scaledHeight = Math.round(imageHeight * ratio);
-        }
-    }
 }
 </script>
 
