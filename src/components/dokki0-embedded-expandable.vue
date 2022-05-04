@@ -52,12 +52,14 @@
 
     </header>
 
-    <dokki0-animated-expander v-if="hasContent"
-                                ref="expander"
-                                :start-expanded="isExpanded"
-                                @transitioning="isTransitioning = true"
-                                @expanded="isExpanded = true, isTransitioning = false"
-                                @minimized="isExpanded = false, isTransitioning = false">
+    <dokki0-animated-expander
+        v-if="hasContent"
+        ref="expander"
+        :start-expanded="isExpanded"
+        @transitioning="isTransitioning = true"
+        @expanded="isExpanded = true, isTransitioning = false"
+        @minimized="isExpanded = false, isTransitioning = false"
+    >
 
         <div class="content dokkiCSS-container first-level">
 

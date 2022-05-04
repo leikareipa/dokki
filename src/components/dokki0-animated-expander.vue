@@ -8,13 +8,13 @@
  */
 
 <template>
-    <div v-if="isExpanded"
-         ref="container"
-         class="dokki0-animated-expander">
+<div v-if="isExpanded"
+     ref="container"
+     class="dokki0-animated-expander">
 
-        <slot/>
-        
-    </div>
+    <slot/>
+    
+</div>
 </template>
 
 <style lang="scss">
