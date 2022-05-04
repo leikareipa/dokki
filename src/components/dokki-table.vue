@@ -43,9 +43,8 @@
     table
     {
         width: 100%;
-        border-spacing: 0;
-        border-bottom: none;
         padding: 0;
+        border-style: hidden;
         border-collapse: collapse;
 
         td,
@@ -56,37 +55,17 @@
             white-space: nowrap;
             text-align: left;
             vertical-align: baseline;
+            border: 1px solid var(--dokkiCSS-page-primary-line-color);
 
             &:last-child
             {
                 width: 100%;
-            }
-
-            &:not(:last-child)
-            {
-                border-right: 1px solid var(--dokkiCSS-page-primary-line-color);
             }
         }
 
         th
         {
             font-weight: var(--dokkiCSS-bold-text-weight);
-        }
-
-        tr
-        {
-            border-top: 1px solid var(--dokkiCSS-page-primary-line-color);
-            border-bottom: 1px solid var(--dokkiCSS-page-primary-line-color);
-
-            &:first-child
-            {
-                border-top: none;
-            }
-
-            &:last-child
-            {
-                border-bottom: none;
-            }
         }
     }
 }
