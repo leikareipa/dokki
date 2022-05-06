@@ -83,7 +83,7 @@ const captionableDokkiTags = [
         {
             const topicsFilenameList = (()=>{
                 try {
-                    return eval(`[${topicsEl.innerHTML}]`);
+                    return topicsEl.innerHTML.split("\n").map(name=>name.trim()).filter(name=>name.length);
                 }
                 catch (error) {
                     return undefined;
