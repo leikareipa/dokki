@@ -259,16 +259,25 @@ function dokkify_media(dom)
                 if (option.startsWith("image:")) {
                     const [width, height] = option.split(":")[1].split("x");
                     assert(width && height);
+                    parsedObj.type = "image";
                     parsedObj.width = width;
                     parsedObj.height = height;
+                }
+                else if (option === "image") {
                     parsedObj.type = "image";
                 }
                 else if (option === "inline") {
                     parsedObj.inline = true;
                 }
-                else if (option === "video:youtube") {
+                else if (option === "autofocus") {
+                    parsedObj.autofocus = true;
+                }
+                else if (option === "youtube") {
                     parsedObj.type = "video";
                     parsedObj.platform = "youtube";
+                }
+                else if (option === "iframe") {
+                    parsedObj.type = "iframe";
                 }
                 return parsedObj;
             }, {})
@@ -279,6 +288,10 @@ function dokkify_media(dom)
         const inlineAttribute = options.inline
             ? "inline=''"
             : "inline=undefined";
+
+        const autofocusAttribute = options.autofocus
+            ? "autofocus=''"
+            : "autofocus=undefined";
         
         const dokkifiedMediaElString = (()=>{
             switch (options.type)
@@ -291,6 +304,11 @@ function dokkify_media(dom)
                     <dokki-video platform="youtube" src=${src} ${inlineAttribute}>
                     </dokki-video>
                 `;
+                case "iframe": return `
+                    <dokki-iframe src=${src} ${autofocusAttribute} ${inlineAttribute}>
+                    </dokki-iframe>
+                `;
+                default: assert.fail(`Unrecognized media type "${options.type}".`);
             }
         })();
 
