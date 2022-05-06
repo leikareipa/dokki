@@ -45,6 +45,7 @@ const captionableDokkiTags = [
     const dokkiEl = srcDOM.querySelector("dokki");
     const topicsEl = srcDOM.querySelector("topics");
     const titleEl = srcDOM.querySelector("title");
+    const widgetsEl = srcDOM.querySelector("widgets");
     assert(dokkiEl, "The source HTML is missing a <dokki> block.");
     assert(topicsEl, "The source HTML's <dokki> block is missing a <topics> child.");
     assert(titleEl, "The source HTML's <dokki> block is missing a <title> child.");
@@ -139,6 +140,9 @@ const captionableDokkiTags = [
                 <dokki-toolbar>
                     <template #caption>
                         ${docTitle}
+                    </template>
+                    <template #widgets>
+                        ${widgetsEl.innerHTML}
                     </template>
                 </dokki-toolbar>
                 <dokki-topics>
