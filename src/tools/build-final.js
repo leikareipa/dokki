@@ -292,6 +292,12 @@ function dokkify_media(dom)
                 else if (option === "autofocus") {
                     parsedObj.autofocus = true;
                 }
+                else if (option === "expanded") {
+                    parsedObj.expanded = true;
+                }
+                else if (option === "headerless") {
+                    parsedObj.headerless = true;
+                }
                 else if (option === "youtube") {
                     parsedObj.type = "video";
                     parsedObj.platform = "youtube";
@@ -303,29 +309,26 @@ function dokkify_media(dom)
             }, {})
         };
 
-        // The 'inline' attribute just needs to be present if we want the element to be inline.
-        // Otherwise, it needs to be undefined.
-        const inlineAttribute = options.inline
-            ? "inline=''"
-            : "inline=undefined";
+        const attributesString = [
+            "inline",
+            "autofocus",
+            "expanded",
+            "headerless"
+        ].reduce((str, attr)=>`${str} ${options[attr]? attr : ""}`, "");
 
-        const autofocusAttribute = options.autofocus
-            ? "autofocus=''"
-            : "autofocus=undefined";
-        
         const dokkifiedMediaElString = (()=>{
             switch (options.type)
             {
                 case "image": return `
-                    <dokki-image src=${src} width=${options.width} height=${options.height} ${inlineAttribute}>
+                    <dokki-image src=${src} width=${options.width} height=${options.height} ${attributesString}>
                     </dokki-image>
                 `;
                 case "video": return `
-                    <dokki-video platform="youtube" src=${src} ${inlineAttribute}>
+                    <dokki-video platform="youtube" src=${src} ${attributesString}>
                     </dokki-video>
                 `;
                 case "iframe": return `
-                    <dokki-iframe src=${src} ${autofocusAttribute} ${inlineAttribute}>
+                    <dokki-iframe src=${src} ${attributesString}>
                     </dokki-iframe>
                 `;
                 default: assert.fail(`Unrecognized media type "${options.type}".`);
