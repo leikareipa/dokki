@@ -241,72 +241,60 @@ function dokkify_media(dom)
     for (const el of mediaEls)
     {
         const src = el.getAttribute("src");
-        let caption = el.getAttribute("alt");
-        const isInline = (()=>{
-            if (typeof caption !== "string") {
-                return false;
-            }
-            const exp = /{inline}/;
-            if (caption.match(exp)) {
-                caption = caption.replace(exp, "");
-                return true;
-            }
-            return false;
-        })();
-        const isYouTube = (()=>{
-            if (typeof caption !== "string") {
-                return false;
-            }
-            const exp = /{video:youtube}/;
-            if (caption.match(exp)) {
-                caption = caption.replace(exp, "");
-                return true;
-            }
-            return false;
-        })();
-        const [width, height] = (()=>{
-            if (typeof caption !== "string") {
-                return [];
-            }
-            const exp = /{image:(.*?x.*?)} ?/;
-            const resolution = caption.match(exp)?.[1]?.split("x");
-            if (resolution?.length === 2) {
-                caption = caption.replace(exp, "");
-                return resolution;
-            }
-            return [];
-        })();
 
-        caption = caption.trim().length
-            ? `<template #caption>${caption.trim()}</template>`
-            : "";
+        // E.g. "{a}{b}{c}" => ["a", "b", "c"].
+        const optionString = el.getAttribute("alt").trim();
+        const optionBlocks = (optionString?.match(/{.*?}/g)?.map(match=>match.replace(/{(.*?)}/g, "$1")) || []);
+        if (optionBlocks.map(opt=>`{${opt}}`).join("").length != optionString.length)
+        {
+            console.warn(`Warning: The option string "${optionString}" includes one or more characters outside of {} blocks. Any text not inside {} will be ignored.`);
+        }
+
+        const options = {
+            // Default values.
+            type: "image",
+
+            // User-supplied options.
+            ...optionBlocks.reduce((parsedObj, option)=>{
+                if (option.startsWith("image:")) {
+                    const [width, height] = option.split(":")[1].split("x");
+                    assert(width && height);
+                    parsedObj.width = width;
+                    parsedObj.height = height;
+                    parsedObj.type = "image";
+                }
+                else if (option === "inline") {
+                    parsedObj.inline = true;
+                }
+                else if (option === "video:youtube") {
+                    parsedObj.type = "video";
+                    parsedObj.platform = "youtube";
+                }
+                return parsedObj;
+            }, {})
+        };
 
         // The 'inline' attribute just needs to be present if we want the element to be inline.
         // Otherwise, it needs to be undefined.
-        const inline = isInline
+        const inlineAttribute = options.inline
             ? "inline=''"
             : "inline=undefined";
         
-        const dokkiMediaElString = (()=>{
-            if (isYouTube)
+        const dokkifiedMediaElString = (()=>{
+            switch (options.type)
             {
-                return `
-                    <dokki-video platform="youtube" src=${src} ${inline}>
-                        ${caption}
-                    </dokki-video>
-                `;
-            }
-            else
-            {
-                return `
-                    <dokki-image src=${src} width=${width} height=${height} ${inline}>
-                        ${caption}
+                case "image": return `
+                    <dokki-image src=${src} width=${options.width} height=${options.height} ${inlineAttribute}>
                     </dokki-image>
+                `;
+                case "video": return `
+                    <dokki-video platform="youtube" src=${src} ${inlineAttribute}>
+                    </dokki-video>
                 `;
             }
         })();
 
-        el.insertAdjacentHTML("beforebegin", dokkiMediaElString);
+        el.insertAdjacentHTML("beforebegin", dokkifiedMediaElString);
         el.remove();
     }
 }
