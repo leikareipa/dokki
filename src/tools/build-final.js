@@ -21,6 +21,18 @@ const assert = require("node:assert");
 const htmlParser = require("node-html-parser");
 const markdownIt = require("markdown-it")({html: true});
 
+// The dokki elements that can receive a caption.
+const captionableDokkiTags = [
+    "dokki-image",
+    "dokki-code",
+    "dokki-iframe",
+    "dokki-directory",
+    "dokki-spoiler",
+    "dokki-output",
+    "dokki-table",
+    "dokki-video"
+];
+
 // Run.
 (function()
 {
@@ -109,8 +121,9 @@ const markdownIt = require("markdown-it")({html: true});
         dokkify_code_blocks(topicDOM);
         dokkify_tables(topicDOM);
         dokkify_media(topicDOM);
+        dokkify_nested_blockquote_captions(topicDOM);
         move_dokki_elements_out_of_p(topicDOM);
-        integrate_standalone_captions(topicDOM);
+        dokkify_adjacent_blockquote_captions(topicDOM);
         dokkify_blockquotes(topicDOM);
         merge_code_and_output(topicDOM);
         return topicDOM;
@@ -168,7 +181,10 @@ function merge_code_and_output(dom)
 
 // Converts
 //
-//   <p>Abcd <dokki-xxxx>...</dokki-xxxx></p>
+//   <p>
+//     Abcd
+//     <dokki-xxxx>...</dokki-xxxx>
+//   </p>
 //
 // into
 //
@@ -377,7 +393,9 @@ function dokkify_code_blocks(dom)
 
 // Converts
 //
-//   <p><em>Abcd</em></p>
+//   <blockquote>
+//     <p>Abcd</p>
+//   </blockquote>
 //   <dokki-xxxx></dokki-xxxx>
 //
 // into
@@ -385,18 +403,15 @@ function dokkify_code_blocks(dom)
 //   <dokki-xxxx>
 //     <template #caption>Abcd</template>
 //   </dokki-xxxx>"
-function integrate_standalone_captions(dom)
+//
+// Sample markdown (note empty line between caption and dokki element):
+//
+//   > Caption text
+//
+//   <dokki-image></dokki-image>
+function dokkify_adjacent_blockquote_captions(dom)
 {
-    const captionableEls = dom.querySelectorAll(`
-        dokki-image,
-        dokki-code,
-        dokki-iframe,
-        dokki-directory,
-        dokki-spoiler,
-        dokki-output,
-        dokki-table,
-        dokki-video
-    `).filter(el=>el.previousElementSibling?.rawTagName === "blockquote");
+    const captionableEls = dom.querySelectorAll(captionableDokkiTags.join(",")).filter(el=>el.previousElementSibling?.rawTagName === "blockquote");
 
     for (const el of captionableEls)
     {
@@ -407,6 +422,44 @@ function integrate_standalone_captions(dom)
             el.insertAdjacentHTML("afterbegin", `<template #caption>${caption}</template>`);
             captionEl.remove();
         }
+    }
+}
+
+// Converts
+//
+//   <blockquote>
+//     <p>
+//       Abcd
+//       <dokki-xxxx></dokki-xxxx>
+//     </p>
+//   </blockquote>
+//
+// into
+//
+//   <dokki-xxxx>
+//     <template #caption>Abcd</template>
+//   </dokki-xxxx>"
+//
+// Sample markdown (note lack of empty line between caption and dokki element):
+//
+//   > Caption text
+//   <dokki-image></dokki-image>
+function dokkify_nested_blockquote_captions(dom)
+{
+    const els = dom.querySelectorAll(captionableDokkiTags.map(tag=>`blockquote > p > ${tag}`).join(","));
+
+    for (const dokkiEl of els)
+    {
+        const pEl = dokkiEl.parentNode;
+        const blockquoteEl = pEl.parentNode;
+        const caption = pEl.childNodes[0].textContent.trim();
+
+        dokkiEl.insertAdjacentHTML("afterbegin", `<template #caption>${caption}</template>`);
+        blockquoteEl.insertAdjacentHTML("beforebegin", dokkiEl);
+
+        dokkiEl.remove();
+        pEl.remove();
+        blockquoteEl.remove();
     }
 }
 
