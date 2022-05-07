@@ -66,7 +66,7 @@ five unique such paragraphs.
 <dokki-lorem>
 </dokki-lorem>
 
-## Markup
+## HTML syntax
 
     <dokki-lorem>
     </dokki-lorem>

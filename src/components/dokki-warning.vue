@@ -31,11 +31,12 @@
     background-color: var(--dokkiCSS-embedded-auxiliary-color);
     border: none;
     border-radius: var(--dokkiCSS-embedded-border-radius);
+    margin: 20px 0;
 
     footer,
     header
     {
-        padding: var(--dokkiCSS-embedded-header-padding);
+        padding: 16px;
     }
 
     footer
@@ -83,12 +84,12 @@ Displays its contents in a cautionary tone.
     This isn't recommended.
 </dokki-warning>
 
-## Markup
+## HTML syntax
 
     <dokki-warning inline-class>
     </dokki-warning>
 
-## Attributes
+## HTML attributes
 
 ### inline-class
 

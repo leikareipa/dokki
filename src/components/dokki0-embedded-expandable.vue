@@ -85,8 +85,19 @@
     box-sizing: border-box;
     border-radius: var(--dokkiCSS-embedded-border-radius);
     background-color: var(--dokkiCSS-page-inert-bg-color);
-    border: 1px solid var(--dokkiCSS-page-primary-line-color);
     overflow: hidden;
+    margin: 20px 0;
+
+    &:not(.headerless),
+    &.has-after
+    {
+        border: 1px solid var(--dokkiCSS-page-primary-line-color);
+    }
+
+    &.headerless
+    {
+        border-radius: 0;
+    }
 
     &.unpadded
     {
@@ -107,6 +118,7 @@
     {
         border: none;
         margin-top: 0;
+        box-shadow: none;
     }
 
     &:not(.has-content) header
@@ -133,6 +145,7 @@
         {
             display: block;
             margin-top: 3px;
+            font-weight: var(--dokkiCSS-bold-text-weight);
         }
 
         .type
@@ -163,11 +176,8 @@
     .content.first-level,
     .dokkiCSS-container /* 'dokkikCSS-container' is an obsolete class name and will be removed in the future.*/
     {
-        border: 1px solid var(--dokkiCSS-page-primary-line-color);
-        border-radius: var(--dokkiCSS-embedded-border-radius);
         overflow: hidden;
         margin: var(--dokkiCSS-embedded-vertical-padding) var(--dokkiCSS-embedded-horizontal-padding);
-        padding: var(--dokkiCSS-embedded-vertical-padding) var(--dokkiCSS-embedded-horizontal-padding);
 
         & + &
         {

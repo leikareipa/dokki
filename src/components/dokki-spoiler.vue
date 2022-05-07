@@ -53,7 +53,7 @@ Displays its contents when the user expands the element.
     Hello there.
 </dokki-spoiler>
 
-## Markup
+## HTML syntax
 
     <dokki-spoiler expanded headerless inline-class>
 
@@ -62,7 +62,7 @@ Displays its contents when the user expands the element.
 
     </dokki-spoiler>
 
-## Templates
+## HTML templates
 
 ### #caption
 
@@ -85,7 +85,7 @@ The template's children will be displayed as the \<dokki-spoiler\> element's cap
     </dokki-spoiler>
 </x-example>
     
-## Attributes
+## HTML attributes
 
 ### expanded
 

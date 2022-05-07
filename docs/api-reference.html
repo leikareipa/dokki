@@ -70,10 +70,6 @@
                 margin: 0;
             }
 
-            .dokki-output.example > .dokki0-animated-expander > .content {
-                background-color: var(--dokkiCSS-embedded-auxiliary-color);
-            }
-
             .dokki-output.example .dokki-area.for-embedded {
                 padding: 0;
             }
@@ -151,7 +147,45 @@
     </dokki-area>
     <p>No nesting</p>
 </dokki-area>
-<h2>Markdown</h2>
+<h2>Markdown syntax</h2>
+<p>You can produce a &lt;dokki-area&gt; element in Markdown by prefixing its intended content
+with the &gt; symbol, as shown below:</p>
+<x-example>
+    <dokki-code headerless>
+        <template #code>
+            <pre>
+                > Lorem ipsum dolor sit amet,
+                > consectetur
+                >> ...
+            </pre>
+        </template>
+    </dokki-code>
+    <dokki-area>
+        Lorem ipsum dolor sit amet,<br>
+        consectetur ...
+        <dokki-area>
+            ...
+        </dokki-area>
+    </dokki-area>
+</x-example>
+<p>Text prefixed with the &gt; symbol directly preceding a dokki element (defined using
+either HTML or Markdown syntax) will be shown as the element's caption:</p>
+<x-example>
+    <dokki-code headerless code="
+        > Secret information
+        <dokki-spoiler>
+        </dokki-spoiler>
+    ">
+    </dokki-code>
+    <dokki-area>
+        <dokki-spoiler>
+            <template #caption>
+                Secret information
+            </template>
+        </dokki-spoiler>
+    </dokki-area>
+</x-example>
+<h2>HTML syntax</h2>
 <pre><code>&lt;dokki-area&gt;
 &lt;/dokki-area&gt;
 </code></pre>
@@ -188,7 +222,42 @@
         </pre>
     </template>
 </dokki-code>
-<h2>Markup</h2>
+<h2>Markdown syntax</h2>
+<p>You can produce a &lt;dokki-code&gt; element in Markdown by using the ``` block syntax, as
+shown below; where <em>language</em> identifies the language of the code using one of
+<a href="https://github.com/highlightjs/highlight.js/blob/main/SUPPORTED_LANGUAGES.md">the language aliases of highlight.js</a>
+(for more information about syntax highlighting, see the <strong>syntax</strong> HTML attribute).</p>
+<pre><code>```language
+Code
+```
+</code></pre>
+<x-example>
+    <dokki-code headerless>
+        <template #code>
+            <pre>
+                ```c
+                int main(void)
+                {
+                    printf("Hello there.");
+                    return 0;
+                }
+                ```
+            </pre>
+        </template>
+    </dokki-code>
+    <dokki-code syntax="c">
+        <template #code>
+            <pre>
+                int main(void)
+                {
+                    printf("Hello there.");
+                    return 0;
+                }
+            </pre>
+        </template>
+    </dokki-code>
+</x-example>
+<h2>HTML syntax</h2>
 <pre><code>&lt;dokki-code code expanded headerless inline-class syntax&gt;
 
     &lt;template #caption&gt;
@@ -202,7 +271,7 @@
 
 &lt;/dokki-code&gt;
 </code></pre>
-<h2>Templates</h2>
+<h2>HTML templates</h2>
 <h3>#caption</h3>
 <p>The template's children will be displayed as the &lt;dokki-code&gt; element's caption.</p>
 <x-example>
@@ -241,7 +310,7 @@ element's code.</p>
         <template #code>
             <pre>
                 void main(void) {
-                    printf(``Hello there.\n``);
+                    printf(´´Hello there.\n´´`);
                 }
             </pre>
         </template>
@@ -285,7 +354,7 @@ element's code. The child element should be one of dokki's embeddables, like
         </template>
     </dokki-code>
 </x-example>
-<h2>Attributes</h2>
+<h2>HTML attributes</h2>
 <h3>code</h3>
 <p>If the <strong>#code</strong> template isn't provided, the value of this attribute
 (a string) will be used in place of the template to populate the &lt;dokki-code&gt;
@@ -295,13 +364,13 @@ if your code string includes characters that cause problems with HTML parsers, l
 &lt;&gt; brackets.</p>
 <dokki-warning>
     If you want to include double quote characters (") in your code string, you must
-    represent them using two backticks (``). Dokki will convert double backticks into
+    represent them using two forward ticks (´´). Dokki will convert double forward ticks into
     double quotes for display.
 </dokki-warning>
 <x-example>
     <dokki-code headerless
         code="
-        <dokki-code code=``console.log('Hello there')``>
+        <dokki-code code=´´console.log('Hello there')´´>
         </dokki-code>
         ">
     </dokki-code>
@@ -375,7 +444,7 @@ various syntactic classes (e.g. &quot;hljs-string&quot;).</p>
         }
     </template>
 </dokki-directory>
-<h2>Markup</h2>
+<h2>HTML syntax</h2>
 <pre><code>&lt;dokki-directory expanded headerless inline-class&gt;
 
     &lt;template #caption&gt;
@@ -386,7 +455,7 @@ various syntactic classes (e.g. &quot;hljs-string&quot;).</p>
 
 &lt;/dokki-directory&gt;
 </code></pre>
-<h2>Templates</h2>
+<h2>HTML templates</h2>
 <h3>#caption</h3>
 <p>The template's children will be displayed as the &lt;dokki-directory&gt;
 element's caption.</p>
@@ -419,7 +488,7 @@ with &quot;/&quot; are interpreted as metadata.</p>
         <tr>
             <td>/content</td>
             <td>
-                Determines the name of the Font Awesome icon used for the file (&lt;i&gt;fa-file-&lt;/i&gt;xxxx).
+                Determines the name of the Font Awesome icon used for the file (<i>fa-file</i>-xxxx).
             </td>
         </tr>
         <tr>
@@ -478,7 +547,7 @@ with &quot;/&quot; are interpreted as metadata.</p>
         </template>
     </dokki-directory>
 </x-example>
-<h2>Attributes</h2>
+<h2>HTML attributes</h2>
 <h3>expanded</h3>
 <p>If present, the &lt;dokki-directory&gt; element's directory listing will be visible
 initially, rather than requiring the user to reveal it.</p>
@@ -532,7 +601,7 @@ extensions.</p>
         Wikipedia.org
     </template>
 </dokki-iframe>
-<h2>Markup</h2>
+<h2>HTML syntax</h2>
 <pre><code>&lt;dokki-iframe autofocus expanded headerless height inline-class src srcdoc&gt;
 
     &lt;template #caption&gt;
@@ -540,7 +609,7 @@ extensions.</p>
 
 &lt;/dokki-iframe&gt;
 </code></pre>
-<h2>Templates</h2>
+<h2>HTML templates</h2>
 <h3>#caption</h3>
 <p>The template's children will be displayed as the &lt;dokki-iframe&gt; element's caption.</p>
 <x-example>
@@ -559,7 +628,7 @@ extensions.</p>
         </template>
     </dokki-iframe>
 </x-example>
-<h2>Attributes</h2>
+<h2>HTML attributes</h2>
 <h3>autofocus</h3>
 <p>If present, the &lt;dokki-iframe&gt; element's inline frame will be given focus when
 the frame is expanded.</p>
@@ -684,7 +753,7 @@ extensions.</p>
         Eublepharis macularius
     </template>
 </dokki-image>
-<h2>Markup</h2>
+<h2>HTML syntax</h2>
 <pre><code>&lt;dokki-image expanded headerless height inline-class pixelated-scale src upscale-to-fit width&gt;
 
     &lt;template #caption&gt;
@@ -692,7 +761,7 @@ extensions.</p>
 
 &lt;/dokki-image&gt;
 </code></pre>
-<h2>Templates</h2>
+<h2>HTML templates</h2>
 <h3>#caption</h3>
 <p>The template's children will be displayed as the &lt;dokki-image&gt; element's caption.</p>
 <x-example>
@@ -710,7 +779,7 @@ extensions.</p>
         </template>
     </dokki-image>
 </x-example>
-<h2>Attributes</h2>
+<h2>HTML attributes</h2>
 <h3>expanded</h3>
 <p>If present, the &lt;dokki-image&gt; element's image container will be visible initially,
 rather than requiring the user to reveal it.</p>
@@ -776,7 +845,7 @@ five unique such paragraphs.</p>
 </dokki-lorem>
 <dokki-lorem>
 </dokki-lorem>
-<h2>Markup</h2>
+<h2>HTML syntax</h2>
 <pre><code>&lt;dokki-lorem&gt;
 &lt;/dokki-lorem&gt;
 </code></pre>
@@ -805,7 +874,7 @@ five unique such paragraphs.</p>
     </template>
     Hello there.
 </dokki-spoiler>
-<h2>Markup</h2>
+<h2>HTML syntax</h2>
 <pre><code>&lt;dokki-spoiler expanded headerless inline-class&gt;
 
     &lt;template #caption&gt;
@@ -813,7 +882,7 @@ five unique such paragraphs.</p>
 
 &lt;/dokki-spoiler&gt;
 </code></pre>
-<h2>Templates</h2>
+<h2>HTML templates</h2>
 <h3>#caption</h3>
 <p>The template's children will be displayed as the &lt;dokki-spoiler&gt; element's caption.</p>
 <x-example>
@@ -832,7 +901,7 @@ five unique such paragraphs.</p>
         </template>
     </dokki-spoiler>
 </x-example>
-<h2>Attributes</h2>
+<h2>HTML attributes</h2>
 <h3>expanded</h3>
 <p>If present, the &lt;dokki-spoiler&gt; element's content container will be visible
 initially, rather than requiring the user to reveal it.</p>
@@ -917,7 +986,7 @@ with certain dokki-specific extensions.</p>
         </tr>
     </template>
 </dokki-table>
-<h2>Markup</h2>
+<h2>HTML syntax</h2>
 <pre><code>&lt;dokki-table expanded headerless inline-class&gt;
 
     &lt;template #caption&gt;
@@ -928,7 +997,7 @@ with certain dokki-specific extensions.</p>
 
 &lt;/dokki-table&gt;
 </code></pre>
-<h2>Templates</h2>
+<h2>HTML templates</h2>
 <h3>#caption</h3>
 <p>The template's children will be displayed as the &lt;dokki-table&gt; element's caption.</p>
 <x-example>
@@ -978,7 +1047,7 @@ as the &lt;dokki-table&gt; element's table.</p>
         </template>
     </dokki-table>
 </x-example>
-<h2>Attributes</h2>
+<h2>HTML attributes</h2>
 <h3>expanded</h3>
 <p>If present, the &lt;dokki-table&gt; element's code listing will be visible initially,
 rather than requiring the user to reveal it.</p>
@@ -1039,11 +1108,11 @@ element's class list.</p>
 <dokki-tip>
     Keep that in mind.
 </dokki-tip>
-<h2>Markup</h2>
+<h2>HTML syntax</h2>
 <pre><code>&lt;dokki-tip inline-class&gt;
 &lt;/dokki-tip&gt;
 </code></pre>
-<h2>Attributes</h2>
+<h2>HTML attributes</h2>
 <h3>inline-class</h3>
 <p>The class name(s) given in this string will be appended to the &lt;dokki-tip&gt; element's
 class list.</p>
@@ -1077,7 +1146,7 @@ class list.</p>
         Shitty MS-DOS Games
     </template>
 </dokki-video>
-<h2>Markup</h2>
+<h2>HTML syntax</h2>
 <pre><code>&lt;dokki-video expanded headerless inline-class src&gt;
 
     &lt;template #caption&gt;
@@ -1085,7 +1154,7 @@ class list.</p>
 
 &lt;/dokki-video&gt;
 </code></pre>
-<h2>Templates</h2>
+<h2>HTML templates</h2>
 <h3>#caption</h3>
 <p>The template's children will be displayed as the &lt;dokki-video&gt; element's caption.</p>
 <x-example>
@@ -1104,7 +1173,7 @@ class list.</p>
         </template>
     </dokki-video>
 </x-example>
-<h2>Attributes</h2>
+<h2>HTML attributes</h2>
 <h3>expanded</h3>
 <p>If present, the &lt;dokki-video&gt; element's video container will be visible initially,
 rather than requiring the user to reveal it.</p>
@@ -1139,11 +1208,11 @@ be &quot;Pjx1B7Kt9xs&quot;.</p>
 <dokki-warning>
     This isn't recommended.
 </dokki-warning>
-<h2>Markup</h2>
+<h2>HTML syntax</h2>
 <pre><code>&lt;dokki-warning inline-class&gt;
 &lt;/dokki-warning&gt;
 </code></pre>
-<h2>Attributes</h2>
+<h2>HTML attributes</h2>
 <h3>inline-class</h3>
 <p>The class name(s) given in this string will be appended to the &lt;dokki-warning&gt;
 element's class list.</p>

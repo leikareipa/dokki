@@ -90,12 +90,6 @@
             transform: translateY(-0.5ch);
         }
     }
-
-    .dokkiCSS-container
-    {
-        padding-top: calc(var(--dokkiCSS-embedded-vertical-padding) - 4px);
-        padding-bottom: calc(var(--dokkiCSS-embedded-vertical-padding) - 4px);
-    }
 }
 </style>
 
@@ -203,7 +197,7 @@ Displays a nested listing of files and folders.
     </template>
 </dokki-directory>
 
-## Markup
+## HTML syntax
 
     <dokki-directory expanded headerless inline-class>
 
@@ -215,7 +209,7 @@ Displays a nested listing of files and folders.
 
     </dokki-directory>
 
-## Templates
+## HTML templates
 
 ### #caption
 
@@ -254,7 +248,7 @@ with "/" are interpreted as metadata.
         <tr>
             <td>/content</td>
             <td>
-                Determines the name of the Font Awesome icon used for the file (&lt;i&gt;fa-file-&lt;/i&gt;xxxx).
+                Determines the name of the Font Awesome icon used for the file (<i>fa-file</i>-xxxx).
             </td>
         </tr>
         <tr>
@@ -315,7 +309,7 @@ with "/" are interpreted as metadata.
     </dokki-directory>
 </x-example>
 
-## Attributes
+## HTML attributes
 
 ### expanded
 

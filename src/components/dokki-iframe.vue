@@ -105,7 +105,7 @@ extensions.
     </template>
 </dokki-iframe>
 
-## Markup
+## HTML syntax
 
     <dokki-iframe autofocus expanded headerless height inline-class src srcdoc>
 
@@ -114,7 +114,7 @@ extensions.
 
     </dokki-iframe>
 
-## Templates
+## HTML templates
 
 ### #caption
 
@@ -137,7 +137,7 @@ The template's children will be displayed as the \<dokki-iframe\> element's capt
     </dokki-iframe>
 </x-example>
 
-## Attributes
+## HTML attributes
 
 ### autofocus
     

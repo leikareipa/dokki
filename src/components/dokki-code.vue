@@ -60,23 +60,6 @@
                 box-shadow: none;
                 border: none;
             }
-
-        }
-    }
-
-    body[data-dokki-layout^="vertical"] &
-    {
-        .dokki0-text-block-with-line-numbers .line
-        {
-            .number
-            {
-                display: none;
-            }
-
-            .content
-            {
-                padding-left: 0;
-            }
         }
     }
 }
@@ -131,7 +114,45 @@ Displays a source code snippet, with optional syntax highlighting and sample out
     </template>
 </dokki-code>
 
-## Markup
+## Markdown syntax
+
+You can produce a \<dokki-code\> element in Markdown by using the ``` block syntax, as
+shown below; where *language* identifies the language of the code using one of
+[the language aliases of highlight.js](https://github.com/highlightjs/highlight.js/blob/main/SUPPORTED_LANGUAGES.md)
+(for more information about syntax highlighting, see the **syntax** HTML attribute).
+
+    ```language
+    Code
+    ```
+
+<x-example>
+    <dokki-code headerless>
+        <template #code>
+            <pre>
+                ```c
+                int main(void)
+                {
+                    printf("Hello there.");
+                    return 0;
+                }
+                ```
+            </pre>
+        </template>
+    </dokki-code>
+    <dokki-code syntax="c">
+        <template #code>
+            <pre>
+                int main(void)
+                {
+                    printf("Hello there.");
+                    return 0;
+                }
+            </pre>
+        </template>
+    </dokki-code>
+</x-example>
+
+## HTML syntax
 
     <dokki-code code expanded headerless inline-class syntax>
 
@@ -146,7 +167,7 @@ Displays a source code snippet, with optional syntax highlighting and sample out
 
     </dokki-code>
 
-## Templates
+## HTML templates
 
 ### #caption
 
@@ -192,7 +213,7 @@ element's code.
         <template #code>
             <pre>
                 void main(void) {
-                    printf(``Hello there.\n``);
+                    printf(´´Hello there.\n´´`);
                 }
             </pre>
         </template>
@@ -240,7 +261,7 @@ element's code. The child element should be one of dokki's embeddables, like
     </dokki-code>
 </x-example>
 
-## Attributes
+## HTML attributes
 
 ### code
 
@@ -254,14 +275,14 @@ if your code string includes characters that cause problems with HTML parsers, l
 
 <dokki-warning>
     If you want to include double quote characters (") in your code string, you must
-    represent them using two backticks (``). Dokki will convert double backticks into
+    represent them using two forward ticks (´´). Dokki will convert double forward ticks into
     double quotes for display.
 </dokki-warning>
 
 <x-example>
     <dokki-code headerless
         code="
-        <dokki-code code=``console.log('Hello there')``>
+        <dokki-code code=´´console.log('Hello there')´´>
         </dokki-code>
         ">
     </dokki-code>
@@ -314,4 +335,5 @@ If this attribute is set, the HTML document includes highlight.js, and highlight
 is configured to include support for the given language alias, the \<dokki-code\>
 element's code will be parsed for syntax and you can apply custom CSS to the
 various syntactic classes (e.g. "hljs-string").
+
 </api-reference>

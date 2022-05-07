@@ -109,7 +109,7 @@ extensions.
     </template>
 </dokki-image>
 
-## Markup
+## HTML syntax
 
     <dokki-image expanded headerless height inline-class pixelated-scale src upscale-to-fit width>
 
@@ -120,7 +120,7 @@ extensions.
 
 </dokki-code>
 
-## Templates
+## HTML templates
 
 ### #caption
 
@@ -142,7 +142,7 @@ The template's children will be displayed as the \<dokki-image\> element's capti
     </dokki-image>
 </x-example>
 
-## Attributes
+## HTML attributes
 
 ### expanded
 

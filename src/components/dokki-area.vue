@@ -51,7 +51,50 @@ A visually emphasized region for highlighting content.
     <p>No nesting</p>
 </dokki-area>
 
-## Markdown
+## Markdown syntax
+
+You can produce a \<dokki-area\> element in Markdown by prefixing its intended content
+with the > symbol, as shown below:
+
+<x-example>
+    <dokki-code headerless>
+        <template #code>
+            <pre>
+                > Lorem ipsum dolor sit amet,
+                > consectetur
+                >> ...
+            </pre>
+        </template>
+    </dokki-code>
+    <dokki-area>
+        Lorem ipsum dolor sit amet,<br/>
+        consectetur ...
+        <dokki-area>
+            ...
+        </dokki-area>
+    </dokki-area>
+</x-example>
+
+Text prefixed with the > symbol directly preceding a dokki element (defined using
+either HTML or Markdown syntax) will be shown as the element's caption:
+
+<x-example>
+    <dokki-code headerless code="
+        > Secret information
+        <dokki-spoiler>
+        </dokki-spoiler>
+    ">
+    </dokki-code>
+    <dokki-area>
+        <dokki-spoiler>
+            <template #caption>
+                Secret information
+            </template>
+        </dokki-spoiler>
+    </dokki-area>
+</x-example>
+
+## HTML syntax
 
     <dokki-area>
     </dokki-area>

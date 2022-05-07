@@ -87,7 +87,7 @@ Displays a video from YouTube.
     </template>
 </dokki-video>
 
-## Markup
+## HTML syntax
 
     <dokki-video expanded headerless inline-class src>
 
@@ -96,7 +96,7 @@ Displays a video from YouTube.
 
     </dokki-video>
 
-## Templates
+## HTML templates
 
 ### #caption
 
@@ -119,7 +119,7 @@ The template's children will be displayed as the \<dokki-video\> element's capti
     </dokki-video>
 </x-example>
 
-## Attributes
+## HTML attributes
 
 ### expanded
 

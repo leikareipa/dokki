@@ -60,6 +60,17 @@
             &:last-child
             {
                 width: 100%;
+                white-space: normal;
+            }
+
+            &:first-child
+            {
+                padding-left: 0;
+            }
+
+            &:last-child
+            {
+                padding-right: 0;
             }
         }
 
@@ -138,7 +149,7 @@ with certain dokki-specific extensions.
     </template>
 </dokki-table>
 
-## Markup
+## HTML syntax
 
     <dokki-table expanded headerless inline-class>
 
@@ -152,7 +163,7 @@ with certain dokki-specific extensions.
 
 </dokki-code>
 
-## Templates
+## HTML templates
 
 ### #caption
 
@@ -209,7 +220,7 @@ as the \<dokki-table\> element's table.
     </dokki-table>
 </x-example>
 
-## Attributes
+## HTML attributes
 
 ### expanded
 
