@@ -42,10 +42,12 @@ const captionableDokkiTags = [
     assert(dstHtmlFilename, "No destination HTML file specified.");
 
     const srcDOM = htmlParser.parse(fs.readFileSync(srcHtmlFilename, "utf-8"));
+    const htmlEl = srcDOM.querySelector("html");
     const dokkiEl = srcDOM.querySelector("dokki");
     const topicsEl = srcDOM.querySelector("topics");
     const titleEl = srcDOM.querySelector("title");
     const widgetsEl = srcDOM.querySelector("widgets");
+    assert(htmlEl, "The source HTML is missing a <html> block.");
     assert(dokkiEl, "The source HTML is missing a <dokki> block.");
     assert(topicsEl, "The source HTML's <dokki> block is missing a <topics> child.");
     assert(titleEl, "The source HTML's <dokki> block is missing a <title> child.");
@@ -53,7 +55,7 @@ const captionableDokkiTags = [
     const bodyEl = (()=>{
         if (!srcDOM.querySelector("body"))
         {
-            dokkiEl.insertAdjacentHTML("afterend", "<body></body>");
+            htmlEl.insertAdjacentHTML("beforeend", "<body></body>");
         }
         return srcDOM.querySelector("body");
     })();
