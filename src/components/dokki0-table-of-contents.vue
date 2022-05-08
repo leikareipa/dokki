@@ -16,7 +16,7 @@
                 class="navi-link topic">
                 
                 <span class="label">
-                    {{topic.title}}
+                    {{topicIdx+1}}&nbsp; {{topic.title}}
                 </span>
 
             </a>
@@ -26,7 +26,7 @@
             class="navi-link subtopic">
 
                 <span class="label">
-                    {{subtopic.title}}
+                    {{topicIdx+1}}.{{subtopicIdx+1}}&nbsp; {{subtopic.title}}
                 </span>
                 
             </a>
@@ -73,16 +73,10 @@
                 text-decoration: underline;
             }
 
-            &.viewing,
-            &.subtopic.viewing
-            {
-                background-color: var(--dokkiCSS-navi-clickable-hover-bg-color);
-            }
 
             &.subtopic
             {
-                padding-left: calc(1.5 * var(--dokkiCSS-navibar-item-padding-horizontal) + 1.25ch);;
-                color: var(--dokkiCSS-page-inert-fg-color);
+                padding-left: calc(var(--dokkiCSS-navibar-item-padding-horizontal) + 1em);
             }
         }
     }
@@ -96,23 +90,6 @@ export default {
         {
             return this.$store.state.topics;
         },
-    },
-    created() {
-        // Have the table of contents highlight the topics that are currently inside the viewport.
-        window.addEventListener("dokki-topics-ready", ()=>{
-            window.addEventListener("scroll", ()=>{
-                const observer = new IntersectionObserver(entries=>{
-                    for (const entry of entries) {
-                        const id = entry.target.getAttribute("id");
-                        const tocEl = this.$refs["toc"].querySelector(`a[href="#${id}"]`);
-                        tocEl?.classList[entry.intersectionRatio? "add" : "remove"]("viewing");
-                    }
-                });
-                
-                const targetEls = document.querySelectorAll(".dokki-topic, .dokki-subtopic");
-                targetEls.forEach(el=>observer.observe(el));
-            }, {once: true});
-        });
     },
 }
 </script>

@@ -2,7 +2,7 @@
 <transition name="vue-fade" appear>
     <dokki0-topic-skeleton v-if="!areTopicsReady"/>
 </transition>
-<dokki0-topic v-if="reveal" :title="title" :id="id">
+<dokki0-topic v-if="reveal" :title="title" :id="id" :idx="idx">
     <slot/>
 </dokki0-topic>
 </template>
@@ -15,6 +15,7 @@ export default {
     },
     data() {
         return {
+            idx: 0,
             reveal: false,
         }
     },
@@ -28,6 +29,8 @@ export default {
         this.$store.commit("queue_topic_reveal", ()=>{
             this.reveal = true;
         });
+        
+        this.idx = this.$store.state.dokkiTopic.lifetimeCount;
     },
 }
 </script>

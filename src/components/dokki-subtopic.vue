@@ -6,10 +6,23 @@
  */
 
 <template>
-    <section class="dokki-subtopic" :id="anchor_id">
-        <h2>{{this.title}}</h2>
-        <slot/>
-    </section>
+<section class="dokki-subtopic" :id="anchor_id">
+
+    <h2>
+
+        <span class="idx">
+
+            {{parentIdx}}.{{idx}}
+
+        </span>
+
+        {{this.title}}
+
+    </h2>
+
+    <slot/>
+    
+</section>
 </template>
 
 <style lang="scss">
@@ -25,7 +38,15 @@ import {topicAnchorIdMixin} from "../component-mixins.js";
 
 export default {
     mixins: [topicAnchorIdMixin],
-    props: ["title"],
+    props: {
+        title: {required: true, type: String},
+    },
+    data() {
+        return {
+            idx: {type: Number},
+            parentIdx: {type: Number},
+        }
+    },
     created()
     {
         // We assume that this subtopic belongs to the most recently created topic;
@@ -41,6 +62,9 @@ export default {
             title: this.title,
             anchorId: this.anchor_id,
         });
+
+        this.idx = parentTopic.subtopics.length;
+        this.parentIdx = parentTopic.idx;
     },
 }
 </script>

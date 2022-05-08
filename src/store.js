@@ -116,6 +116,7 @@ export default Vuex.createStore({
             {
                 state.topics.push({
                     ...topic,
+                    idx: (state.topics.length + 1),
                     subtopics: [],
                     url: `#${topic.anchorId}`,
                 });

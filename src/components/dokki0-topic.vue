@@ -9,7 +9,15 @@
 <section class="dokki-topic" :id="anchor_id">
 
     <h1 class="dokkiCSS-topic-title">
+
+        <span class="idx">
+
+            {{this.idx}}&nbsp;
+            
+        </span>
+        
         {{this.title}}
+
     </h1>
 
     <dokki-hr/>
@@ -96,12 +104,12 @@
     h2
     {
         margin-top: var(--dokkiCSS-topic-header-top-margin) !important;
-        font-size: 135%;
+        font-size: 130%;
     }
 
     h3
     {
-        font-size: 110%;
+        font-size: 105%;
         font-weight: var(--dokkiCSS-bold-text-weight);
         margin-top: 25px;
         margin-bottom: 16px;
@@ -150,11 +158,7 @@ export default {
     mixins: [topicAnchorIdMixin],
     props: {
         title: {required: true, type: String},
-    },
-    data() {
-        return {
-            globalTopicIdx: {default: -1},
-        }
+        idx: {required: true, type: Number},
     },
     created()
     {
@@ -164,8 +168,6 @@ export default {
             title: this.title,
             anchorId: this.anchor_id,
         });
-
-        this.globalTopicIdx = this.$store.state.topics.length;
     },
     /// TODO: Remove the topic from the store on deletion.
 }

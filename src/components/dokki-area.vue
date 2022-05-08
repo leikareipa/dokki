@@ -85,13 +85,11 @@ either HTML or Markdown syntax) will be shown as the element's caption:
         </dokki-spoiler>
     ">
     </dokki-code>
-    <dokki-area>
-        <dokki-spoiler>
-            <template #caption>
-                Secret information
-            </template>
-        </dokki-spoiler>
-    </dokki-area>
+    <dokki-spoiler>
+        <template #caption>
+            Secret information
+        </template>
+    </dokki-spoiler>
 </x-example>
 
 ## HTML syntax
