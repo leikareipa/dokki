@@ -134,6 +134,9 @@ const captionableDokkiTags = [
     {
         const docTitle = titleEl.textContent;
         const topicsHtml = dokkiTopicsDOM.reduce((html, dom)=>(html + dom.outerHTML), "");
+        const widgetsTemplate = widgetsEl
+            ? `<template #widgets>${widgetsEl.innerHTML}</template>`
+            : "";
 
         bodyEl.insertAdjacentHTML("beforeend", `
             <template id="dokki-document">
@@ -141,9 +144,7 @@ const captionableDokkiTags = [
                     <template #caption>
                         ${docTitle}
                     </template>
-                    <template #widgets>
-                        ${widgetsEl.innerHTML}
-                    </template>
+                    ${widgetsTemplate}
                 </dokki-toolbar>
                 <dokki-topics>
                     ${topicsHtml}
