@@ -30,7 +30,8 @@ const captionableDokkiTags = [
     "dokki-spoiler",
     "dokki-output",
     "dokki-table",
-    "dokki-video"
+    "dokki-video",
+    "dokki-tag-cloud",
 ];
 
 // Run.
