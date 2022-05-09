@@ -12,7 +12,7 @@
 
         <span class="idx">
 
-            {{parentIdx}}.{{idx}}
+            {{parentIdx}}.{{idx}}.
 
         </span>
 

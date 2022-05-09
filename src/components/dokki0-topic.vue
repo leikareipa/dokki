@@ -12,15 +12,13 @@
 
         <span class="idx">
 
-            {{this.idx}}&nbsp;
+            {{this.idx}}.
 
         </span>
         
         {{this.title}}
 
     </h1>
-
-    <dokki-hr/>
 
     <slot/>
 
@@ -34,9 +32,7 @@
     padding: var(--dokkiCSS-topic-vertical-padding) var(--dokkiCSS-topic-horizontal-padding);
     box-sizing: border-box;
     margin: 0;
-    margin-bottom: var(--dokkiCSS-topic-bottom-margin);
     width: 100%;
-    border: 1px solid var(--dokkiCSS-page-secondary-line-color);
     border-radius: 0;
 
     p
@@ -89,14 +85,13 @@
 
     h1
     {
-        font-size: 170%;
-        font-weight: var(--dokkiCSS-bold-text-weight);
+        font-size: 160%;
         margin-top: var(--dokkiCSS-topic-header-top-margin);
 
         &.dokkiCSS-topic-title
         {
             margin-top: 0;
-            margin-bottom: 0;
+            margin-bottom: 40px;
             padding: 0;
         }
     }

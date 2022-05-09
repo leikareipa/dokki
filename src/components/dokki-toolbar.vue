@@ -45,6 +45,8 @@
     overflow-y: auto;
     height: 100%;
     border-right: 1px solid var(--dokkiCSS-page-secondary-line-color);
+    background-color: var(--dokkiCSS-embedded-auxiliary-color);
+    color: var(--dokkiCSS-page-secondary-fg-color);
 
     header
     {
@@ -59,8 +61,6 @@
 
     .widgets
     {
-        border-top: 1px solid var(--dokkiCSS-page-secondary-line-color);
-        border-bottom: 1px solid var(--dokkiCSS-page-secondary-line-color);
         padding: 10px 0;
 
         .dokki-user-element
@@ -68,11 +68,9 @@
             align-items: center;
             margin: 0;
             padding: 12px 20px;
-            background-color: var(--dokkiCSS-page-inert-bg-color);
             text-align: left;
             position: relative;
             text-overflow: ellipsis;
-            color: var(--dokkiCSS-page-secondary-fg-color);
             box-sizing: border-box;
             display: flex;
             align-items: center;
@@ -85,7 +83,7 @@
 
         .dokki-user-element.clickable:hover
         {
-            background-color: var(--dokkiCSS-navi-clickable-hover-bg-color);
+            background-color: var(--dokkiCSS-embedded-auxiliary-color);
         }
     }
 

@@ -79,7 +79,7 @@ body
     --dokkiCSS-header-height: 40px;
     --dokkiCSS-header-bottom-margin: 23px;
 
-    --dokkiCSS-side-panel-width: 300px;
+    --dokkiCSS-side-panel-width: 330px;
     --dokkiCSS-topics-container-width: 49%;
     --dokkiCSS-document-width: calc(var(--dokkiCSS-side-panel-width) + var(--dokkiCSS-topics-container-width));
 
@@ -224,7 +224,7 @@ code .hljs-comment
 {
     body
     {
-        --dokkiCSS-side-panel-width: 260px;
+        --dokkiCSS-side-panel-width: 280px;
         --dokkiCSS-document-horizontal-left-start: 0px;
         --dokkiCSS-topic-bottom-margin: 25px;
         --dokkiCSS-topic-horizontal-padding: 25px;
@@ -272,7 +272,7 @@ code .hljs-comment
 {
     body
     {
-        --dokkiCSS-side-panel-width: 240px;
+        --dokkiCSS-side-panel-width: 250px;
     }
 
     .dokki-topics

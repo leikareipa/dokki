@@ -15,16 +15,16 @@
 <style lang="scss">
 .dokki-topics
 {
-    top: var(--dokkiCSS-topic-bottom-margin);
+    top: 0;
     padding-bottom: 100vh;
-    width: var(--dokkiCSS-topics-container-width);
+    width: calc(100% - var(--dokkiCSS-side-panel-width));
     background-color: transparent;
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: left;
     position: relative;
-    left: calc(var(--dokkiCSS-document-horizontal-left-start) + var(--dokkiCSS-side-panel-width));
+    left: var(--dokkiCSS-side-panel-width);
     z-index: 1;
     box-sizing: border-box;
 
