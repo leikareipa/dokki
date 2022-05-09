@@ -16,7 +16,15 @@
                 class="navi-link topic">
                 
                 <span class="label">
-                    {{topicIdx+1}}&nbsp; {{topic.title}}
+                    
+                    <span class="idx">
+                        
+                        {{topicIdx+1}}&nbsp;&nbsp;
+                        
+                    </span>
+                    
+                    {{topic.title}}
+
                 </span>
 
             </a>
@@ -26,7 +34,15 @@
             class="navi-link subtopic">
 
                 <span class="label">
-                    {{topicIdx+1}}.{{subtopicIdx+1}}&nbsp; {{subtopic.title}}
+                    
+                    <span class="idx">
+                        
+                        {{topicIdx+1}}.{{subtopicIdx+1}}&nbsp;&nbsp;
+                        
+                    </span>
+                    
+                    {{subtopic.title}}
+                
                 </span>
                 
             </a>
@@ -55,7 +71,7 @@
         .label
         {
             display: flex;
-            align-items: center;
+            align-items: baseline;
         }
 
         .navi-link
@@ -72,7 +88,6 @@
             {
                 text-decoration: underline;
             }
-
 
             &.subtopic
             {

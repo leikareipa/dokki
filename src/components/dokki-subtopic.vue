@@ -21,7 +21,7 @@
     </h2>
 
     <slot/>
-    
+
 </section>
 </template>
 

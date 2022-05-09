@@ -129,6 +129,7 @@
     .dokki0-expansion-indicator
     {
         margin-left: auto;
+        padding-left: 10px;
     }
 
     header
