@@ -18,6 +18,7 @@
     top: 0;
     padding-bottom: 100vh;
     width: calc(100% - var(--dokkiCSS-side-panel-width));
+    max-width: 1300px;
     background-color: transparent;
     display: flex;
     flex-direction: column;
