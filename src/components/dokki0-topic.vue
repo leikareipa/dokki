@@ -6,7 +6,13 @@
  */
 
 <template>
-<section class="dokki-topic" :id="anchor_id">
+<section
+    class="dokki-topic"
+    :class="{
+       [inlineClass]: true,
+   }"
+   :id="anchor_id"
+>
 
     <h1 class="dokkiCSS-topic-title">
 
@@ -154,6 +160,7 @@ export default {
     props: {
         title: {required: true, type: String},
         idx: {required: true, type: Number},
+        inlineClass: {type: String, default: undefined},
     },
     created()
     {
