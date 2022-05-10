@@ -16,6 +16,12 @@
 
     <h1 class="dokkiCSS-topic-title">
 
+        <span v-if="faIcon" class="icon">
+
+            <i :class="faIcon"/>&nbsp;
+
+        </span>
+
         <span class="idx">
 
             {{this.idx}}.
@@ -161,6 +167,7 @@ export default {
         title: {required: true, type: String},
         idx: {required: true, type: Number},
         inlineClass: {type: String, default: undefined},
+        faIcon: {type: String, default: undefined},
     },
     created()
     {

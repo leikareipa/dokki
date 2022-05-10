@@ -1,5 +1,12 @@
 <template>
-<dokki0-topic v-if="reveal" :title="title" :id="id" :idx="idx" :inline-class="inlineClass">
+<dokki0-topic
+    v-if="reveal"
+    :title="title"
+    :id="id"
+    :idx="idx"
+    :inline-class="inlineClass"
+    :fa-icon="faIcon"
+>
 
     <slot/>
 
@@ -12,6 +19,7 @@ export default {
         title: {required: true, type: String},
         id: {type: String, default: undefined},
         inlineClass: {type: String, default: undefined},
+        faIcon: {type: String, default: undefined},
     },
     data() {
         return {
