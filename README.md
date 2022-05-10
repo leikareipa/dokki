@@ -5,7 +5,7 @@ A documentation framework for creating single-page end-user-oriented docs.
 Dokki is currently work in progress.
 
 ![](./media/screenshots/beta-1.png)\
-*Viewing a blog post (dokki being used as a blogging platform).*
+*Viewing a document created with dokki (dokki being used as a blogging platform).*
 
 ## Where's the rest?
 
