@@ -7,17 +7,18 @@
 
 <template>
 <p class="dokki0-embedded-expandable dokkiCSS-embedded"
-:class="{
-    [inlineClass]: true,
-    [className]: true,
-    'has-content': hasContent,
-    'groupbox': (headerWidget == 'groupbox'),
-    'headerless': isHeaderless,
-    'unpadded': isUnpadded,
-    'has-after': hasAfter,
-    'dokkiCSS-expanded': isExpanded,
-    'dokkiCSS-transitioning': isTransitioning,
-}">
+   :class="{
+       [inlineClass]: true,
+       [className]: true,
+       'has-content': hasContent,
+       'groupbox': (headerWidget == 'groupbox'),
+       'headerless': isHeaderless,
+       'unpadded': isUnpadded,
+       'has-after': hasAfter,
+       'dokkiCSS-expanded': isExpanded,
+       'dokkiCSS-transitioning': isTransitioning,
+   }"
+>
 
     <header v-if="!isHeaderless"
             @click="hasContent? this.$refs['expander'].toggle_expansion() : 0">
