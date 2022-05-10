@@ -15,11 +15,12 @@
 {
     position: absolute;
     z-index: 9999999;
-    bottom: 0;
+    top: 0;
     left: 0;
     width: 0;
     height: 3px;
     background-color: var(--dokkiCSS-page-link-color);
+    border-bottom: 1px solid black;
     pointer-events: none;
     opacity: 0;
     transition: opacity 0.5s ease-out, width 0.1s linear;

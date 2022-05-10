@@ -12,8 +12,6 @@
             
         {{caption}}
 
-        <dokki0-page-load-progress-bar/>
-
     </header>
 
     <div class="widgets" ref="widgets">
@@ -24,11 +22,7 @@
 
     </div>
 
-    <transition name="vue-fade" appear>
-
-        <dokki0-table-of-contents v-if="areTopicsReady"/>
-
-    </transition>
+    <dokki0-table-of-contents v-if="areTopicsReady"/>
 
 </aside>
 </template>
@@ -61,6 +55,8 @@
 
     .widgets
     {
+        border-top: 1px solid var(--dokkiCSS-page-secondary-line-color);
+        border-bottom: 1px solid var(--dokkiCSS-page-secondary-line-color);
         padding: 10px 0;
 
         .dokki-user-element
