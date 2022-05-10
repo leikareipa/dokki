@@ -58,6 +58,10 @@
             object-fit: contain;
             object-position: left;
 
+            /* Work around poor-quality image downscaling in Chrome 100.*/
+            -webkit-filter: blur(0);
+            -webkit-transform: translateZ(0);
+
             &.dokkiCSS-upscale-to-fit
             {
                 width: 100%;
