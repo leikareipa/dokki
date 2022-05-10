@@ -52,7 +52,11 @@
         & > img
         {
             max-width: 100%;
+            max-height: 70vh;
             height: auto;
+
+            object-fit: contain;
+            object-position: left;
 
             &.dokkiCSS-upscale-to-fit
             {
