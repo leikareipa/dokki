@@ -19,7 +19,7 @@
                     
                     <span class="idx">
                         
-                        {{topicIdx+1}}&nbsp;&nbsp;
+                        {{topicIdx+1}}.&nbsp;
                         
                     </span>
                     
@@ -37,7 +37,7 @@
                     
                     <span class="idx">
                         
-                        {{topicIdx+1}}.{{subtopicIdx+1}}&nbsp;&nbsp;
+                        {{topicIdx+1}}.{{subtopicIdx+1}}.&nbsp;
                         
                     </span>
                     
