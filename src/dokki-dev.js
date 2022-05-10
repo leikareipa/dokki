@@ -40,7 +40,6 @@ import dokki0TableOfContents from "./components/dokki0-table-of-contents.vue";
 import dokki0TextBlockWithLineNumbers from "./components/dokki0-text-block-with-line-numbers.vue";
 import dokki0ThemeSelector from "./components/dokki0-theme-selector.vue";
 import dokki0Topic from "./components/dokki0-topic.vue";
-import dokki0TopicSkeleton from "./components/dokki0-topic-skeleton.vue";
 
 export function start(args = {})
 {
@@ -51,6 +50,8 @@ export function start(args = {})
     };
 
     console.assert(args.container instanceof HTMLElement, "Invalid document container");
+
+    args.container.appendChild(document.createElement("dokki0-page-load-progress-bar"));
 
     if (args.template instanceof HTMLTemplateElement)
     {
@@ -136,7 +137,6 @@ export function start(args = {})
     .component("dokki0-table-of-contents", dokki0TableOfContents)
     .component("dokki0-text-block-with-line-numbers", dokki0TextBlockWithLineNumbers)
     .component("dokki0-topic", dokki0Topic)
-    .component("dokki0-topic-skeleton", dokki0TopicSkeleton);
 
     // Register any user-provided custom components.
     if (Array.isArray(parent.window.dokkiUserComponents))

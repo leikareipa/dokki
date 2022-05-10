@@ -1,9 +1,8 @@
 <template>
-<transition name="vue-fade" appear>
-    <dokki0-topic-skeleton v-if="!areTopicsReady"/>
-</transition>
-<dokki0-topic v-if="reveal" :title="title" :id="id" :idx="idx">
+<dokki0-topic v-if="reveal" :title="title" :id="id" :idx="idx" :inline-class="inlineClass">
+
     <slot/>
+
 </dokki0-topic>
 </template>
 
@@ -12,6 +11,7 @@ export default {
     props: {
         title: {required: true, type: String},
         id: {type: String, default: undefined},
+        inlineClass: {type: String, default: undefined},
     },
     data() {
         return {
@@ -19,17 +19,12 @@ export default {
             reveal: false,
         }
     },
-    computed: {
-        areTopicsReady() {
-            return this.$store.state.areTopicsReady;
-        },
-    },
     mounted()
     {
         this.$store.commit("queue_topic_reveal", ()=>{
             this.reveal = true;
         });
-        
+
         this.idx = this.$store.state.dokkiTopic.lifetimeCount;
     },
 }
