@@ -252,11 +252,6 @@ code .hljs-comment
         margin-bottom: 32px !important;
     }
 
-    .dokki-topic h1 + .dokki-hr
-    {
-        display: none;
-    }
-
     .dokkiCSS-header-container
     {
         padding: 0 10px;

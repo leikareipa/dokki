@@ -29,7 +29,6 @@ import dokkiToolbar from "./components/dokki-toolbar.vue";
 import dokkiTopic from "./components/dokki-topic.vue";
 import dokkiTopics from "./components/dokki-topics.vue";
 import dokkiVideo from "./components/dokki-video.vue";
-import dokkiHr from "./components/dokki-hr.vue";
 import dokkiWarning from "./components/dokki-warning.vue";
 import dokki0AnimatedExpander from "./components/dokki0-animated-expander.vue";
 import dokki0EmbeddedExpandable from "./components/dokki0-embedded-expandable.vue";
@@ -128,7 +127,6 @@ export function start(args = {})
     .component("dokki-topics", dokkiTopics)
     .component("dokki-video", dokkiVideo)
     .component("dokki-warning", dokkiWarning)
-    .component("dokki-hr", dokkiHr)
     .component("dokki0-animated-expander", dokki0AnimatedExpander)
     .component("dokki0-embedded-expandable", dokki0EmbeddedExpandable)
     .component("dokki0-expansion-indicator", dokki0ExpansionIndicator)

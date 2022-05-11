@@ -29,8 +29,6 @@
 
     <template #after v-if="this.$slots['output'] || this.$slots['default']">
 
-        <dokki-hr/>
-        
         <slot name="output"/>
 
     </template>
@@ -48,6 +46,8 @@
 
     &.has-after > footer
     {
+        border-top: 1px solid var(--dokkiCSS-page-primary-line-color);
+        
         & > .dokki-area
         {
             background-color: unset;

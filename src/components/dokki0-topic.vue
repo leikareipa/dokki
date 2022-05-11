@@ -130,14 +130,6 @@
         font-style: italic;
     }
 
-    & > .dokki-hr
-    {
-        border: none;
-        border-bottom: 1px solid var(--dokkiCSS-page-secondary-line-color);
-        width: calc(100% + calc(2 * var(--dokkiCSS-topic-horizontal-padding)));
-        transform: translateX(calc(-1 * var(--dokkiCSS-topic-horizontal-padding)));
-    }
-
     body[data-dokki-layout="vertical-narrow"] &
     {
         border-radius: 0;
@@ -147,11 +139,6 @@
         {
             hyphens: auto;
             margin-bottom: 0;
-
-            & + .dokki-hr
-            {
-                display: none;
-            }
         }
     }
 }
