@@ -384,19 +384,31 @@ function dokkify_blockquotes(dom)
 //   </dokki-code>
 function dokkify_code_blocks(dom)
 {
-    const codeEls = dom.querySelectorAll("pre").filter(el=>el.textContent);
+    const codeEls = dom.querySelectorAll("pre").filter(el=>el.rawText);
 
     for (const el of codeEls)
     {
-        const code = htmlParser
+        // "<code class='...'>xxxxx</code>" => "xxxxx".
+        const codeString = el.rawText.substring((el.rawText.indexOf(">") + 1), (el.rawText.length - "</code>".length));
+
+        const codeEl = htmlParser
             .parse(el.textContent)
             .querySelector("code");
 
-        if (code)
+        if (codeEl)
         {
-            const codeSyntax = code.classList.value[0]?.substring("language-".length);
-            const codeText = code.innerHTML.replaceAll("\"", "``");
-            el.insertAdjacentHTML("beforebegin", `<dokki-code syntax="${codeSyntax}" code="${codeText}"></dokki-code>`);
+            const codeSyntax = codeEl.classList.value[0]?.substring("language-".length);
+            const codeSyntaxAttribute = (codeSyntax !== undefined)
+                ? `syntax="${codeSyntax}"`
+                : "";
+
+            el.insertAdjacentHTML("beforebegin", `
+                <dokki-code
+                    ${codeSyntaxAttribute}
+                    code="${codeString}">
+                </dokki-code>
+            `);
+
             el.remove();
         }
     }

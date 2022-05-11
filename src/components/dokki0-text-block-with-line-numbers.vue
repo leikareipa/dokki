@@ -101,7 +101,6 @@ export default {
             for (let i = 0; i < lines.length; i++)
             {
                 lines[i] = lines[i].slice(numPreSpaces);
-                lines[i] = lines[i].replace(/´´/g, "\"");
                 lines[i] = lines[i].replace(/\\\\/g, "\\");
             }
 

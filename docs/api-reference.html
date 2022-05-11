@@ -298,21 +298,21 @@ element's code.</p>
         </li>
         <li>
             If the code includes characters that clash with HTML parsers (e.g. &lt;&gt;
-            braces), use the <strong>code</strong> attribute instead.
+            braces), you can use the <strong>code</strong> attribute instead.
         </li>
     </ul>
 </dokki-tip>
 <x-example>
     <dokki-code headerless
-        code="
+        code='
         <template #code>
             <pre>
                 void main(void) {
-                    printf(´´Hello there.\n´´`);
+                    printf("Hello there.\n");
                 }
             </pre>
         </template>
-        ">
+        '>
     </dokki-code>
     <dokki-code>
         <template #code>
@@ -360,21 +360,6 @@ element's code listing.</p>
 <p>You might generally use this attribute instead of the <strong>#code</strong> template
 if your code string includes characters that cause problems with HTML parsers, like
 &lt;&gt; brackets.</p>
-<dokki-warning>
-    If you want to include double quote characters (") in your code string, you must
-    represent them using two forward ticks (´´). Dokki will convert double forward ticks into
-    double quotes for display.
-</dokki-warning>
-<x-example>
-    <dokki-code headerless
-        code="
-        <dokki-code code=´´console.log('Hello there')´´>
-        </dokki-code>
-        ">
-    </dokki-code>
-    <dokki-code code="console.log('Hello there')">
-    </dokki-code>
-</x-example>
 <h3>expanded</h3>
 <p>If present, the &lt;dokki-code&gt; element's code listing will be visible initially,
 rather than requiring the user to reveal it.</p>
