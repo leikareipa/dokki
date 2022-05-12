@@ -403,9 +403,10 @@ function dokkify_code_blocks(dom)
                 : "";
 
             el.insertAdjacentHTML("beforebegin", `
-                <dokki-code
-                    ${codeSyntaxAttribute}
-                    code="${codeString}">
+                <dokki-code ${codeSyntaxAttribute}>
+                    <template #code>
+                        <pre>${codeString}</pre>
+                    </template #code>
                 </dokki-code>
             `);
 
