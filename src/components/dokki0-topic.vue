@@ -153,7 +153,7 @@ export default {
     props: {
         title: {required: true, type: String},
         idx: {required: true, type: Number},
-        inlineClass: {type: String, default: undefined},
+        inlineClass: {type: String, default: ""},
         faIcon: {type: String, default: undefined},
     },
     created()
