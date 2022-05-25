@@ -44,9 +44,7 @@
 
     header
     {
-        color: var(--dokkiCSS-page-primary-fg-color);
         position: relative;
-        font-weight: var(--dokkiCSS-bold-text-weight);
         width: 100%;
         padding: 20px;
         box-sizing: border-box;

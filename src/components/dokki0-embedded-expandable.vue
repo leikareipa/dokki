@@ -29,7 +29,7 @@
 
                 <span class="icon" v-if="icon !== undefined" :title="title">
                 
-                    <i :class="icon"/>&nbsp;
+                    <i :class="icon"/>
                 
                 </span>
 
@@ -150,14 +150,9 @@
             font-weight: var(--dokkiCSS-bold-text-weight);
         }
 
-        .type
+        .caption .icon
         {
-            color: var(--dokkiCSS-page-inert-fg-color);
-        }
-
-        &:hover .type
-        {
-            color: inherit;
+            margin-right: 0.25em;
         }
     }
 
