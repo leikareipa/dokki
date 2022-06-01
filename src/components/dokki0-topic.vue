@@ -97,7 +97,7 @@
 
     h1
     {
-        font-size: 160%;
+        font-size: 150%;
         margin-top: var(--dokkiCSS-topic-header-top-margin);
 
         &.dokkiCSS-topic-title
