@@ -21,6 +21,7 @@
 
         <a v-for="tagName of tagNames"
            class="tag"
+           :title="`Count: ${this.tags[tagName]}`"
            :style="{
                fontSize: tag_css_font_size_percent(tagName),
                lineHeight: `${this.maxSize / 100}rem`
