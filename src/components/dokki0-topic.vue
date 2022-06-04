@@ -111,7 +111,7 @@
     h2
     {
         margin-top: var(--dokkiCSS-topic-header-top-margin) !important;
-        font-size: 130%;
+        font-size: 125%;
     }
 
     h3
