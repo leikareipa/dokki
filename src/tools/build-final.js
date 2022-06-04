@@ -44,10 +44,10 @@ const captionableDokkiTags = [
 
     const srcDOM = htmlParser.parse(fs.readFileSync(srcHtmlFilename, "utf-8"));
     const htmlEl = srcDOM.querySelector("html");
-    const dokkiEl = srcDOM.querySelector("dokki");
-    const topicsEl = srcDOM.querySelector("topics");
-    const titleEl = srcDOM.querySelector("title");
-    const widgetsEl = srcDOM.querySelector("widgets");
+    const dokkiEl = htmlEl.querySelector("template[dokki-document]");
+    const topicsEl = dokkiEl.querySelector("section[content]");
+    const titleEl = dokkiEl.querySelector("section[title]");
+    const widgetsEl = dokkiEl.querySelector("section[widgets]");
     assert(htmlEl, "The source HTML is missing a <html> block.");
     assert(dokkiEl, "The source HTML is missing a <dokki> block.");
     assert(topicsEl, "The source HTML's <dokki> block is missing a <topics> child.");
@@ -62,7 +62,6 @@ const captionableDokkiTags = [
     })();
     assert(bodyEl, "Could not find or create a <body> block in the source HTML.");
 
-    // Load the contents of <topics></topics> and convert them into DOM trees.
     const topicsDOM = (()=>{
         // The source HTML code is provided inline.
         if (topicsEl.getAttribute("inline") !== undefined)
