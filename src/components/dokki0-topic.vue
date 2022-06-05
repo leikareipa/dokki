@@ -40,6 +40,7 @@
 <style lang="scss">
 .dokki-topic
 {
+    border-bottom: 1px solid var(--dokkiCSS-page-secondary-line-color);
     background-color: var(--dokkiCSS-page-primary-bg-color);
     padding: var(--dokkiCSS-topic-vertical-padding) var(--dokkiCSS-topic-horizontal-padding);
     box-sizing: border-box;
