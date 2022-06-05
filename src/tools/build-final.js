@@ -35,8 +35,7 @@ const captionableDokkiTags = [
 ];
 
 // Run.
-(function()
-{
+(function() {
     const srcHtmlFilename = process.argv[2];
     const dstHtmlFilename = process.argv[3];
     assert(srcHtmlFilename, "No source HTML file specified.");
@@ -45,76 +44,44 @@ const captionableDokkiTags = [
     const srcDOM = htmlParser.parse(fs.readFileSync(srcHtmlFilename, "utf-8"));
     const htmlEl = srcDOM.querySelector("html");
     const dokkiEl = htmlEl.querySelector("template[dokki-document]");
-    const topicsEl = dokkiEl.querySelector("section[content]");
+    const contentEl = dokkiEl.querySelector("section[content]");
     const titleEl = dokkiEl.querySelector("section[title]");
     const widgetsEl = dokkiEl.querySelector("section[widgets]");
     assert(htmlEl, "The source HTML is missing a <html> block.");
     assert(dokkiEl, "The source HTML is missing a <dokki> block.");
-    assert(topicsEl, "The source HTML's <dokki> block is missing a <topics> child.");
+    assert(contentEl, "The source HTML's <dokki> block is missing a <topics> child.");
     assert(titleEl, "The source HTML's <dokki> block is missing a <title> child.");
 
     const bodyEl = (()=>{
-        if (!srcDOM.querySelector("body"))
-        {
+        if (!srcDOM.querySelector("body")) {
             htmlEl.insertAdjacentHTML("beforeend", "<body></body>");
         }
         return srcDOM.querySelector("body");
     })();
     assert(bodyEl, "Could not find or create a <body> block in the source HTML.");
 
+    // Load the document contents from article files and convert them into DOM trees.
     const topicsDOM = (()=>{
-        // The source HTML code is provided inline.
-        if (topicsEl.getAttribute("inline") !== undefined)
-        {
-            const lang = (topicsEl.getAttribute("lang") || "html");
-            const content = topicsEl.innerHTML;
+        const articleFilenames =
+            Array.from(contentEl.querySelectorAll("article"))
+            .map(a=>a.getAttribute("src"))
+            .filter(filename=>(typeof filename === "string"));
 
-            switch (lang)
-            {
-                case "md": {
-                    const html = markdownIt.render(content);
-                    return [htmlParser.parse(html)];
+        return articleFilenames.map(filename=>{
+            const fileExtension = path.extname(filename);
+            const fileContents = fs.readFileSync(filename, "utf-8");
+
+            switch (fileExtension) {
+                case ".md": {
+                    const html = markdownIt.render(fileContents);
+                    return htmlParser.parse(html);
                 }
-                case "html": {
-                    return [htmlParser.parse(content)];
+                case ".html": {
+                    return htmlParser.parse(fileContents);
                 }
-                default: assert.fail(`Unrecognized source öanguage ${lang}.`);
+                default: assert.fail(`Unrecognized source file type ${fileExtension}.`);
             }
-        }
-        // The source HTML provides a list of files containing the code.
-        else
-        {
-            const topicsFilenameList = (()=>{
-                try {
-                    return topicsEl.innerHTML.split("\n").map(name=>name.trim()).filter(name=>name.length);
-                }
-                catch (error) {
-                    return undefined;
-                }
-            })();
-
-            assert(
-                (Array.isArray(topicsFilenameList) && topicsFilenameList.length),
-                "The <topics> block contains an invalid source file array."
-            );
-            
-            return topicsFilenameList.map(filename=>{
-                const fileExtension = path.extname(filename);
-                const fileContents = fs.readFileSync(filename, "utf-8");
-
-                switch (fileExtension)
-                {
-                    case ".md": {
-                        const html = markdownIt.render(fileContents);
-                        return htmlParser.parse(html);
-                    }
-                    case ".html": {
-                        return htmlParser.parse(fileContents);
-                    }
-                    default: assert.fail(`Unrecognized source file type ${fileExtension}.`);
-                }
-            });
-        }
+        });
     })();
 
     // Modify the DOM trees loaded from <topics></topics> to use the dokki API (e.g.
@@ -164,8 +131,7 @@ const captionableDokkiTags = [
 
 // Merges adjacent <dokki-code> and <dokki-xxxx inline> elements, whereby the
 // latter element becomes the <dokki-code> element's output.
-function merge_code_and_output(dom)
-{
+function merge_code_and_output(dom) {
     const embeddableWithCode = [
         "dokki-image",
         "dokki-iframe",
@@ -178,8 +144,7 @@ function merge_code_and_output(dom)
 
     const els = dom.querySelectorAll(embeddableWithCode.map(tag=>`dokki-code + ${tag}[inline]`).join(","));
 
-    for (const el of els)
-    {
+    for (const el of els) {
         const codeEl = el.previousElementSibling;
         codeEl.insertAdjacentHTML("beforeend", `<template #output>${el.outerHTML}</template>`);
         el.remove();
@@ -200,8 +165,7 @@ function merge_code_and_output(dom)
 //
 // (<dokki-xxxx> elements are converted into <p> elements by dokki at run-time,
 // so it doesn't make sense to have them wrapped in a duplicate <p> by Markdown).
-function move_dokki_elements_out_of_p(dom)
-{
+function move_dokki_elements_out_of_p(dom) {
     const dokkiElTags = [
         "dokki-image",
         "dokki-code",
@@ -215,8 +179,7 @@ function move_dokki_elements_out_of_p(dom)
 
     const els = dom.querySelectorAll(dokkiElTags.map(tag=>`p > ${tag}`).join(","));
 
-    for (const el of els)
-    {
+    for (const el of els) {
         el.parentNode.insertAdjacentHTML("afterend", el);
         el.parentNode.remove();
     }
@@ -235,12 +198,10 @@ function move_dokki_elements_out_of_p(dom)
 //       Abcd
 //     </template>
 //   </dokki-table>
-function dokkify_tables(dom)
-{
+function dokkify_tables(dom) {
     const tableEls = dom.querySelectorAll("table");
     
-    for (const el of tableEls)
-    {
+    for (const el of tableEls) {
         el.insertAdjacentHTML("beforebegin", `<dokki-table><template #table>${el.innerHTML}</template></dokki-table>`);
         el.remove();
     }
@@ -257,19 +218,16 @@ function dokkify_tables(dom)
 //       Efgh
 //     </template>
 //   </dokki-image>
-function dokkify_media(dom)
-{
+function dokkify_media(dom) {
     const mediaEls = dom.querySelectorAll("img");
     
-    for (const el of mediaEls)
-    {
+    for (const el of mediaEls) {
         const src = el.getAttribute("src");
 
         // E.g. "{a}{b}{c}" => ["a", "b", "c"].
         const optionString = el.getAttribute("alt").trim();
         const optionBlocks = (optionString?.match(/{.*?}/g)?.map(match=>match.replace(/{(.*?)}/g, "$1")) || []);
-        if (optionBlocks.map(opt=>`{${opt}}`).join("").length != optionString.length)
-        {
+        if (optionBlocks.map(opt=>`{${opt}}`).join("").length != optionString.length) {
             console.warn(`Warning: The option string "${optionString}" includes one or more characters outside of {} blocks. Any text not inside {} will be ignored.`);
         }
 
@@ -320,8 +278,7 @@ function dokkify_media(dom)
         ].reduce((str, attr)=>`${str} ${options[attr]? attr : ""}`, "");
 
         const dokkifiedMediaElString = (()=>{
-            switch (options.type)
-            {
+            switch (options.type) {
                 case "image": return `
                     <dokki-image src=${src} width=${options.width} height=${options.height} ${attributesString}>
                     </dokki-image>
@@ -354,15 +311,12 @@ function dokkify_media(dom)
 //   <dokki-area>
 //     Abcd
 //   </dokki-area>
-function dokkify_blockquotes(dom)
-{
+function dokkify_blockquotes(dom) {
     // We loop over the quoteSelectorAll() result to ensure we convert all nested
     // blockquotes as well.
     let quoteEls;
-    while ((quoteEls = dom.querySelectorAll("blockquote")).length)
-    {
-        for (const el of quoteEls)
-        {
+    while ((quoteEls = dom.querySelectorAll("blockquote")).length) {
+        for (const el of quoteEls) {
             el.insertAdjacentHTML("beforebegin", `<dokki-area>${el.innerHTML}</dokki-area>`);
             el.remove();
         }
@@ -381,12 +335,10 @@ function dokkify_blockquotes(dom)
 //
 //   <dokki-code code="Abcd">
 //   </dokki-code>
-function dokkify_code_blocks(dom)
-{
+function dokkify_code_blocks(dom) {
     const codeEls = dom.querySelectorAll("pre").filter(el=>el.rawText);
 
-    for (const el of codeEls)
-    {
+    for (const el of codeEls) {
         // "<code class='...'>xxxxx</code>" => "xxxxx".
         const codeString = el.rawText.substring((el.rawText.indexOf(">") + 1), (el.rawText.length - "</code>".length));
 
@@ -394,8 +346,7 @@ function dokkify_code_blocks(dom)
             .parse(el.textContent)
             .querySelector("code");
 
-        if (codeEl)
-        {
+        if (codeEl) {
             const codeSyntax = codeEl.classList.value[0]?.substring("language-".length);
             const codeSyntaxAttribute = (codeSyntax !== undefined)
                 ? `syntax="${codeSyntax}"`
@@ -432,12 +383,10 @@ function dokkify_code_blocks(dom)
 //   > Caption text
 //
 //   <dokki-image></dokki-image>
-function dokkify_adjacent_blockquote_captions(dom)
-{
+function dokkify_adjacent_blockquote_captions(dom) {
     const captionableEls = dom.querySelectorAll(captionableDokkiTags.join(",")).filter(el=>el.previousElementSibling?.rawTagName === "blockquote");
 
-    for (const el of captionableEls)
-    {
+    for (const el of captionableEls) {
         const captionEl = el.previousElementSibling;
 
         if (captionEl) {
@@ -467,12 +416,10 @@ function dokkify_adjacent_blockquote_captions(dom)
 //
 //   > Caption text
 //   <dokki-image></dokki-image>
-function dokkify_nested_blockquote_captions(dom)
-{
+function dokkify_nested_blockquote_captions(dom) {
     const els = dom.querySelectorAll(captionableDokkiTags.map(tag=>`blockquote > p > ${tag}`).join(","));
 
-    for (const dokkiEl of els)
-    {
+    for (const dokkiEl of els) {
         const pEl = dokkiEl.parentNode;
         const blockquoteEl = pEl.parentNode;
         const caption = pEl.childNodes[0].textContent.trim();
@@ -486,19 +433,15 @@ function dokkify_nested_blockquote_captions(dom)
     }
 }
 
-function convert_h1_h2_to_dokki_topic_subtopic(dom)
-{
+function convert_h1_h2_to_dokki_topic_subtopic(dom) {
     const html = dom.innerHTML.split("\n");
 
     let isInsideTopic = false;
     let isInsideSubtopic = false;
 
-    for (let i = 0; i < html.length; i++)
-    {
-        if (html[i].startsWith("<h1>"))
-        {
-            if (isInsideSubtopic)
-            {
+    for (let i = 0; i < html.length; i++) {
+        if (html[i].startsWith("<h1>")) {
+            if (isInsideSubtopic) {
                 html[i] = ("</dokki-subtopic>" + html[i]);
                 isInsideSubtopic = false;
             }
@@ -507,20 +450,17 @@ function convert_h1_h2_to_dokki_topic_subtopic(dom)
             html[i] = html[i].replace(/<h1>(.*)<\/h1>/, "</dokki-topic><dokki-topic title='$1'>");
             isInsideTopic = true;
         }
-        else if (html[i].startsWith("<h2>"))
-        {
+        else if (html[i].startsWith("<h2>")) {
             html[i] = html[i].replace(/<h2>(.*)<\/h2>/, "</dokki-subtopic><dokki-subtopic title='$1'>");
             isInsideSubtopic = true;
         }
     }
 
-    if (isInsideSubtopic)
-    {
+    if (isInsideSubtopic) {
         html[html.length-1] += "</dokki-subtopic>";
     }
 
-    if (isInsideTopic)
-    {
+    if (isInsideTopic) {
         html[html.length-1] += "</dokki-topic>";
     }
 
