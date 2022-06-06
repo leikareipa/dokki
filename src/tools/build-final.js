@@ -60,49 +60,36 @@ const captionableDokkiTags = [
     })();
     assert(bodyEl, "Could not find or create a <body> block in the source HTML.");
 
-    // Load the document contents from article files and convert them into DOM trees.
-    const topicsDOM = (()=>{
-        const articleFilenames =
-            Array.from(contentEl.querySelectorAll("article"))
-            .map(a=>a.getAttribute("src"))
-            .filter(filename=>(typeof filename === "string"));
+    const contentTree = contentEl.childNodes;
 
-        return articleFilenames.map(filename=>{
-            const fileExtension = path.extname(filename);
-            const fileContents = fs.readFileSync(filename, "utf-8");
+    // Convert dokki Markdown articles (<article src='….md'></article>) into dokkified HTML.
+    for (const el of contentTree) {
+        const isMdArticle = (
+            (el.tagName === "ARTICLE") &&
+            el.getAttribute("src").endsWith(".md")
+        );
 
-            switch (fileExtension) {
-                case ".md": {
-                    const html = markdownIt.render(fileContents);
-                    return htmlParser.parse(html);
-                }
-                case ".html": {
-                    return htmlParser.parse(fileContents);
-                }
-                default: assert.fail(`Unrecognized source file type ${fileExtension}.`);
-            }
-        });
-    })();
+        if (isMdArticle) {
+            const fileContents = fs.readFileSync(el.getAttribute("src"), "utf-8");
+            const html = markdownIt.render(fileContents);
+            el.set_content(html);
 
-    // Modify the DOM trees loaded from <topics></topics> to use the dokki API (e.g.
-    // <dokki-table> instead of <table>).
-    const dokkiTopicsDOM = topicsDOM.map(topicDOM=>{
-        convert_h1_h2_to_dokki_topic_subtopic(topicDOM);
-        dokkify_code_blocks(topicDOM);
-        dokkify_tables(topicDOM);
-        dokkify_media(topicDOM);
-        dokkify_nested_blockquote_captions(topicDOM);
-        move_dokki_elements_out_of_p(topicDOM);
-        dokkify_adjacent_blockquote_captions(topicDOM);
-        dokkify_blockquotes(topicDOM);
-        merge_code_and_output(topicDOM);
-        return topicDOM;
-    });
+            // Process the HTML to transform certain regular HTML elements into dokki elements.
+            convert_h1_h2_to_dokki_topic_subtopic(el);
+            dokkify_code_blocks(el);
+            dokkify_tables(el);
+            dokkify_media(el);
+            dokkify_nested_blockquote_captions(el);
+            move_dokki_elements_out_of_p(el);
+            dokkify_adjacent_blockquote_captions(el);
+            dokkify_blockquotes(el);
+            merge_code_and_output(el);
+        }
+    }
 
-    // Inject dokki's element tree into the source HTML.
+    // Inject the processed intermediate elements into the final HTML.
     {
         const docTitle = titleEl.textContent;
-        const topicsHtml = dokkiTopicsDOM.reduce((html, dom)=>(html + dom.outerHTML), "");
         const widgetsTemplate = widgetsEl
             ? `<template #widgets>${widgetsEl.innerHTML}</template>`
             : "";
@@ -116,7 +103,7 @@ const captionableDokkiTags = [
                     ${widgetsTemplate}
                 </dokki-toolbar>
                 <dokki-topics>
-                    ${topicsHtml}
+                    ${contentTree.map(el=>el.outerHTML).join("\n")}
                 </dokki-topics>
             </template>
         `);
