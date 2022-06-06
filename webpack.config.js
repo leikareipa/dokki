@@ -7,10 +7,12 @@ module.exports = {
         rules: [
             {
                 test: /\.vue$/i,
-                use: [
-                    "vue-loader",
-                    path.resolve("./src/sfc-api-reference.loader.js"),
-                ],
+                resourceQuery: /blockType=api-reference/,
+                loader: path.resolve("./src/sfc-api-reference.loader.js"),
+            },
+            {
+                test: /\.vue$/i,
+                use: "vue-loader",
             },
             {
                 test: /\.s?css$/i,

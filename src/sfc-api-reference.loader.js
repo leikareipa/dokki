@@ -12,11 +12,8 @@
  * Usage in webpack.config.js:
  * 
  * {
- *   test: /\.vue$/i,
- *   use: [
- *     "vue-loader",
- *     path.resolve("./src/sfc-api-reference.loader.js"),
- *   ]
+ *   resourceQuery: /blockType=api-reference/,
+ *   loader: path.resolve("./src/sfc-api-reference.loader.js"),
  * }
  * 
  */
@@ -28,11 +25,10 @@ const fs = require("fs");
 const topics = {};
 let templateDoc, topicsContainerEl;
 
-module.exports = function(source) {
+module.exports = function(apiReferenceMarkdown) {
     const basePath = this.rootContext;
     const srcFilename = this.resourcePath;
     const dstFilename = `${basePath}/docs/api-reference.html`;
-    const sfcContents = htmlParser.parse(source);
 
     // Load the API reference HTML template as soon as we know the base path.
     if (!templateDoc) {
@@ -43,32 +39,19 @@ module.exports = function(source) {
         topicsContainerEl = templateDoc.querySelector("dokki-topics");
     }
 
-    // Vue SFC files store their data inside HTML-like tag blocks, like <style></style> and
-    // <script></script>; the custom documentation we're interested in is stored inside an
-    // <api-reference></api-reference> block. So we'll parse the SFC file as HTML and extract
-    // the doc block's contents.
-    const docEl = sfcContents.querySelector("api-reference"); 
-    if (docEl) {
+    // Convert the block's Markdown contents into HTML, and save it into the output document.
+    {
         const componentName = srcFilename.match(/components\/(.*)\.vue$/)[1];
-        const docMarkdown = docEl.innerHTML;
-        const docHtml = markdownIt.render(docMarkdown);
 
-        topics[componentName] = topic_html_string(componentName, docHtml);
+        topics[componentName] = `
+            <dokki-topic title='${componentName}'>
+                ${markdownIt.render(apiReferenceMarkdown)}
+            </dokki-topic>
+        `;
+
         topicsContainerEl.innerHTML = Object.keys(topics).sort().map(key=>topics[key]).join("\n");
         fs.writeFileSync(dstFilename, templateDoc.toString(), "utf-8");
-
-        // Don't pass the custom block to other loaders.
-        docEl.remove();
     }
 
-    return sfcContents.toString();
-
-    function topic_html_string(componentName = "", content = "")
-    {
-        return `
-        <dokki-topic title='${componentName}'>
-            ${content}
-        </dokki-topic>
-        `;
-    }
+    return "";
 }
