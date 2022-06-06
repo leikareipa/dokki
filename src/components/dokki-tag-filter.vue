@@ -32,8 +32,8 @@
 <style lang="scss">
 .dokki-tag-filter
 {
+    margin-bottom: 0;
     border-radius: 0;
-    margin: var(--dokkiCSS-topic-bottom-margin) 0;
     position: sticky;
     top: 0;
     z-index: 1;
