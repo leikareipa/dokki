@@ -16,7 +16,6 @@
  */
 
 const fs = require("fs");
-const path = require("path");
 const assert = require("node:assert");
 const htmlParser = require("node-html-parser");
 const markdownIt = require("markdown-it")({html: true});
@@ -60,10 +59,8 @@ const captionableDokkiTags = [
     })();
     assert(bodyEl, "Could not find or create a <body> block in the source HTML.");
 
-    const contentTree = contentEl.childNodes;
-
     // Convert dokki Markdown articles (<article src='….md'></article>) into dokkified HTML.
-    for (const el of contentTree) {
+    for (const el of contentEl.childNodes) {
         const isMdArticle = (
             (el.tagName === "ARTICLE") &&
             el.getAttribute("src").endsWith(".md")
@@ -71,19 +68,21 @@ const captionableDokkiTags = [
 
         if (isMdArticle) {
             const fileContents = fs.readFileSync(el.getAttribute("src"), "utf-8");
-            const html = markdownIt.render(fileContents);
-            el.set_content(html);
+            const articleContentsEl = htmlParser.parse(markdownIt.render(fileContents));
+            el.replaceWith(articleContentsEl);
 
             // Process the HTML to transform certain regular HTML elements into dokki elements.
-            convert_h1_h2_to_dokki_topic_subtopic(el);
-            dokkify_code_blocks(el);
-            dokkify_tables(el);
-            dokkify_media(el);
-            dokkify_nested_blockquote_captions(el);
-            move_dokki_elements_out_of_p(el);
-            dokkify_adjacent_blockquote_captions(el);
-            dokkify_blockquotes(el);
-            merge_code_and_output(el);
+            [
+                convert_h1_h2_to_dokki_topic_subtopic,
+                dokkify_code_blocks,
+                dokkify_tables,
+                dokkify_media,
+                dokkify_nested_blockquote_captions,
+                move_dokki_elements_out_of_p,
+                dokkify_adjacent_blockquote_captions,
+                dokkify_blockquotes,
+                merge_code_and_output,
+            ].forEach(transform=>transform(articleContentsEl));
         }
     }
 
@@ -103,7 +102,7 @@ const captionableDokkiTags = [
                     ${widgetsTemplate}
                 </dokki-toolbar>
                 <dokki-topics>
-                    ${contentTree.map(el=>el.outerHTML).join("\n")}
+                    ${contentEl.childNodes.map(el=>el.outerHTML).join("\n")}
                 </dokki-topics>
             </template>
         `);
