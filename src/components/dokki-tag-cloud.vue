@@ -8,7 +8,7 @@
 <template>
 <dokki0-embedded-expandable
     class-name="dokki-tag-cloud"
-    icon="fas fa-tags"
+    icon="fas fa-hashtag"
     title="Tag cloud">
 
     <template #caption>
@@ -21,14 +21,23 @@
 
         <a v-for="tagName of tagNames"
            class="tag"
-           :title="`Count: ${this.tags[tagName]}`"
-           :style="{
-               fontSize: tag_css_font_size_percent(tagName),
-               lineHeight: `${this.maxSize / 100}rem`
+           :class="{
+               'common': (tag_css_font_size_scalar(tagName) > 0.75),
+               'uncommon': (tag_css_font_size_scalar(tagName) < 0.25)
            }"
            @click="on_tag_click(tagName)">
 
-            {{tagName}}
+            <span class="name">
+
+                {{tagName}}
+
+            </span>
+
+            <span class="count">
+
+                {{this.tags[tagName]}}
+
+            </span>
 
         </a>
 
@@ -49,8 +58,29 @@
 {
     .tag
     {
-        margin: 0 0.8rem;
+        margin: 6px;
         margin-left: 0;
+        margin-bottom: 0;
+        padding: 4px 13px;
+        border-radius: 4px;
+
+        body[data-dokki-theme="light"] &
+        {
+            background-color: rgba(0, 100, 255, 0.09);
+        }
+
+        body[data-dokki-theme="dark"] &
+        {
+            background-color: rgba(255, 255, 0, 0.065);
+        }
+
+        .count
+        {
+            margin-left: 1ch;
+            opacity: 0.35;
+            font-size: 1rem;
+            display: inline-block; /* Prevent underline on hover.*/
+        }
     }
 
     .content.first-level
@@ -78,7 +108,7 @@ export default {
                 })
             );
         },
-        tag_css_font_size_percent(tagName) {
+        tag_css_font_size_scalar(tagName) {
             if (!this.tags.hasOwnProperty(tagName)) {
                 console.warn("Unknown tag", tagName);
                 return "100%";
@@ -92,8 +122,7 @@ export default {
             const tagCount = this.tags[tagName];
             const [minCount, maxCount] = this.minMaxTagCount;
             const ratio = ((tagCount - minCount) / Math.max(1, (maxCount - minCount)));
-            const fontSize = Math.ceil(minSize + (maxSize - minSize) * ratio);
-            return `${Math.max(minSize, Math.min(maxSize, fontSize))}%`;
+            return ratio;
         },
     },
     computed: {

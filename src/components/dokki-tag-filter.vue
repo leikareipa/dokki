@@ -63,14 +63,14 @@
     .button
     {
         cursor: pointer;
-        background: linear-gradient(#256eff, #1d59d1);
-        color: white;
-        padding: 4px 6px;
-        border-radius: 4px;
+        background-color: var(--dokkiCSS-page-link-color);
+        color: var(--dokkiCSS-page-primary-bg-color);
+        padding: 5px 8px;
+        border-radius: 3px;
         display: inline-flex;
         align-items: center;
         text-transform: uppercase;
-        font-size: 90%;
+        font-size: 95%;
         margin: 4px 0px;
 
         &:not(:last-of-type)
@@ -85,7 +85,6 @@
             content: "\f55a";
             margin-left: 6px;
             font-size: 95%;
-            opacity: 0.8;
         }
 
         &:hover::after
