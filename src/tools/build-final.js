@@ -88,7 +88,12 @@ const captionableDokkiTags = [
 
     // Inject the processed intermediate elements into the final HTML.
     {
-        const docTitle = titleEl.textContent;
+        const docTitle = (
+            titleEl.textContent
+            .replace("<", "&lt;")
+            .replace(">", "&gt;")
+        );
+        
         const widgetsTemplate = widgetsEl
             ? `<template #widgets>${widgetsEl.innerHTML}</template>`
             : "";
