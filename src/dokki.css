@@ -148,12 +148,12 @@ body,
 
 [data-dokki-theme="dark"]
 {
-    --dokkiCSS-page-link-color: #ffe210;
-    --dokkiCSS-page-primary-bg-color: #272727;
+    --dokkiCSS-page-link-color: #ffc04d;
+    --dokkiCSS-page-primary-bg-color: #222222;
     --dokkiCSS-page-secondary-bg-color: #222222;
-    --dokkiCSS-page-inert-bg-color: #272727;
-    --dokkiCSS-page-primary-fg-color: #e4e4e4;
-    --dokkiCSS-page-secondary-fg-color: #afafaf;
+    --dokkiCSS-page-inert-bg-color: #222222;
+    --dokkiCSS-page-primary-fg-color: #e6e6e6;
+    --dokkiCSS-page-secondary-fg-color: #b5b5b5;
     --dokkiCSS-page-inert-fg-color: #8f8f8f;
     --dokkiCSS-page-primary-line-color: black;
     --dokkiCSS-page-secondary-line-color: black;
