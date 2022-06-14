@@ -70,7 +70,7 @@
         display: inline-flex;
         align-items: center;
         text-transform: uppercase;
-        font-size: 95%;
+        font-size: 90%;
         margin: 4px 0px;
 
         &:not(:last-of-type)

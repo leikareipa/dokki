@@ -63,6 +63,7 @@
         margin-bottom: 0;
         padding: 4px 13px;
         border-radius: 4px;
+        font-size: 95%;
 
         body[data-dokki-theme="light"] &
         {
@@ -78,7 +79,6 @@
         {
             margin-left: 1ch;
             opacity: 0.35;
-            font-size: 1rem;
             display: inline-block; /* Prevent underline on hover.*/
         }
     }
@@ -87,6 +87,11 @@
     {
         display: flex;
         flex-wrap: wrap;
+
+        body[data-dokki-layout^="vertical"] &
+        {
+            justify-content: center;
+        }
     }
 }
 </style>
