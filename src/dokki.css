@@ -36,7 +36,7 @@ body
     --dokkiCSS-regular-font-size: 16px;
     --dokkiCSS-monospace-font-family: monospace-ui, monospace;
     --dokkiCSS-monospace-font-size: 14.5px;
-    --dokkiCSS-bold-text-weight: bold;
+    --dokkiCSS-bold-text-weight: 500;
     --dokkiCSS-content-line-height: 1.4;
 }
 
