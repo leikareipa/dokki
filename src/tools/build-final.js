@@ -67,7 +67,15 @@ const captionableDokkiTags = [
         );
 
         if (isMdArticle) {
-            const fileContents = fs.readFileSync(el.getAttribute("src"), "utf-8");
+            const fileContents = (
+                fs.readFileSync(el.getAttribute("src"), "utf-8")
+                // Extra metadata about code blocks may be provided via "```lang [{option},{option},...]".
+                // To allow an IDE to display the correct syntax highlighting, the metadata are separated
+                // from the language name with a space, but that results in the metadata being discarded
+                // when rendering into Markdown using markdown-it. So let's remove the space before rendering.
+                .replace(/(\n```.+) (\[.*\])/ig, "$1$2")
+            );
+
             const articleContentsEl = htmlParser.parse(markdownIt.render(fileContents));
             el.replaceWith(articleContentsEl);
 
@@ -193,9 +201,62 @@ function dokkify_tables(dom) {
     const tableEls = dom.querySelectorAll("table");
     
     for (const el of tableEls) {
-        el.insertAdjacentHTML("beforebegin", `<dokki-table><template #table>${el.innerHTML}</template></dokki-table>`);
+        el.insertAdjacentHTML("beforebegin", `
+            <dokki-table>
+                <template #table>
+                    ${el.innerHTML}
+                </template>
+                </dokki-table>`);
         el.remove();
     }
+}
+
+// Converts a string of the form "{a}{b:5}{c}" into an object of the form "{a, b:5, c}".
+function parse_metadata_string(string) {
+    if (typeof string !== "string") {
+        throw new Error("Expected a string.");
+    }
+
+    string = string.trim();
+
+    const metadataBlocks = (string.match(/{.*?}/g)?.map(match=>match.replace(/{(.*?)}/g, "$1")) || []);
+    
+    if (metadataBlocks.map(opt=>`{${opt}}`).join("").length != string.length) {
+        console.warn(`Warning: The option string "${string}" includes one or more characters outside of {} blocks. Any text not inside {} will be ignored.`);
+    }
+
+    return metadataBlocks.reduce((parsedObj, option)=>{
+        if (option.startsWith("image:")) {
+            const [width, height] = option.split(":")[1].split("x");
+            assert(width && height);
+            parsedObj.type = "image";
+            parsedObj.width = width;
+            parsedObj.height = height;
+        }
+        else if (option === "image") {
+            parsedObj.type = "image";
+        }
+        else if (option === "inline") {
+            parsedObj.inline = true;
+        }
+        else if (option === "autofocus") {
+            parsedObj.autofocus = true;
+        }
+        else if (option === "expanded") {
+            parsedObj.expanded = true;
+        }
+        else if (option === "headerless") {
+            parsedObj.headerless = true;
+        }
+        else if (option === "youtube") {
+            parsedObj.type = "video";
+            parsedObj.platform = "youtube";
+        }
+        else if (option === "iframe") {
+            parsedObj.type = "iframe";
+        }
+        return parsedObj;
+    }, {});
 }
 
 // Converts
@@ -214,51 +275,11 @@ function dokkify_media(dom) {
     
     for (const el of mediaEls) {
         const src = el.getAttribute("src");
-
-        // E.g. "{a}{b}{c}" => ["a", "b", "c"].
-        const optionString = el.getAttribute("alt").trim();
-        const optionBlocks = (optionString?.match(/{.*?}/g)?.map(match=>match.replace(/{(.*?)}/g, "$1")) || []);
-        if (optionBlocks.map(opt=>`{${opt}}`).join("").length != optionString.length) {
-            console.warn(`Warning: The option string "${optionString}" includes one or more characters outside of {} blocks. Any text not inside {} will be ignored.`);
-        }
+        const metadata = parse_metadata_string(el.getAttribute("alt"));
 
         const options = {
-            // Default values.
             type: "image",
-
-            // User-supplied options.
-            ...optionBlocks.reduce((parsedObj, option)=>{
-                if (option.startsWith("image:")) {
-                    const [width, height] = option.split(":")[1].split("x");
-                    assert(width && height);
-                    parsedObj.type = "image";
-                    parsedObj.width = width;
-                    parsedObj.height = height;
-                }
-                else if (option === "image") {
-                    parsedObj.type = "image";
-                }
-                else if (option === "inline") {
-                    parsedObj.inline = true;
-                }
-                else if (option === "autofocus") {
-                    parsedObj.autofocus = true;
-                }
-                else if (option === "expanded") {
-                    parsedObj.expanded = true;
-                }
-                else if (option === "headerless") {
-                    parsedObj.headerless = true;
-                }
-                else if (option === "youtube") {
-                    parsedObj.type = "video";
-                    parsedObj.platform = "youtube";
-                }
-                else if (option === "iframe") {
-                    parsedObj.type = "iframe";
-                }
-                return parsedObj;
-            }, {})
+            ...metadata,
         };
 
         const attributesString = [
@@ -338,13 +359,24 @@ function dokkify_code_blocks(dom) {
             .querySelector("code");
 
         if (codeEl) {
-            const codeSyntax = codeEl.classList.value[0]?.substring("language-".length);
-            const codeSyntaxAttribute = (codeSyntax !== undefined)
-                ? `syntax="${codeSyntax}"`
+            const syntaxString = codeEl.classList.value[0];
+            const [, syntaxName, metadataString] = (
+                /^(.+?)\[(.*)\]/.exec(codeEl.classList.value[0]) ||
+                [, syntaxString,]
+            );
+            const metadata = parse_metadata_string(metadataString || "");
+            const shortSyntaxName = syntaxName.substring("language-".length);
+            const codeSyntaxAttribute = (syntaxName !== undefined)
+                ? `syntax="${shortSyntaxName}"`
                 : "";
 
+            const extraAttributesString = [
+                "expanded",
+                "headerless"
+            ].reduce((str, attr)=>`${str} ${metadata[attr]? attr : ""}`, "");
+
             el.insertAdjacentHTML("beforebegin", `
-                <dokki-code ${codeSyntaxAttribute}>
+                <dokki-code ${codeSyntaxAttribute} ${extraAttributesString}>
                     <template #code>
                         <pre>${codeString}</pre>
                     </template #code>
