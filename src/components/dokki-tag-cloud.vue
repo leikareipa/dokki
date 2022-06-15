@@ -61,9 +61,9 @@
         margin: 6px;
         margin-left: 0;
         margin-bottom: 0;
-        padding: 4px 12px;
+        padding: 3px 10px;
         border-radius: 4px;
-        font-size: 95%;
+        font-size: 98%;
 
         body[data-dokki-theme="light"] &
         {

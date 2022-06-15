@@ -58,6 +58,7 @@
     .label
     {
         margin-right: 8px;
+        font-size: 98%;
     }
 
     .button
