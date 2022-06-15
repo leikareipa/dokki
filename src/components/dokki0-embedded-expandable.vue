@@ -143,16 +143,23 @@
         align-items: center;
         box-sizing: border-box;
 
-        .label
+        .caption
         {
-            display: block;
-            margin-top: 3px;
-            font-weight: var(--dokkiCSS-bold-text-weight);
-        }
+            .type
+            {
+                font-size: 95%;
+            
+                .icon
+                {
+                    margin-right: 0.25em;
+                }
+            }
 
-        .caption .icon
-        {
-            margin-right: 0.25em;
+            .label
+            {
+                display: block;
+                margin-top: 6px;
+            }
         }
     }
 

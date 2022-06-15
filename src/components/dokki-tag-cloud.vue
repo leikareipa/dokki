@@ -61,7 +61,7 @@
         margin: 6px;
         margin-left: 0;
         margin-bottom: 0;
-        padding: 4px 13px;
+        padding: 4px 12px;
         border-radius: 4px;
         font-size: 95%;
 

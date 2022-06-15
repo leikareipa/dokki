@@ -98,7 +98,7 @@
 
     h1
     {
-        font-size: 155%;
+        font-size: 180%;
         margin-top: var(--dokkiCSS-topic-header-top-margin);
 
         &.dokkiCSS-topic-title
@@ -111,16 +111,15 @@
 
     h2
     {
-        margin-top: var(--dokkiCSS-topic-header-top-margin) !important;
-        font-size: 125%;
+        margin: var(--dokkiCSS-topic-header-top-margin) 0 !important;
+        font-size: 150%;
     }
 
     h3
     {
         font-size: 105%;
         font-weight: var(--dokkiCSS-bold-text-weight);
-        margin-top: 25px;
-        margin-bottom: 16px;
+        margin: 25px 0;
     }
 
     h4
