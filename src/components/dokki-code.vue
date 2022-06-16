@@ -20,10 +20,14 @@
 
     <template #content>
 
-        <dokki0-text-block-with-line-numbers
-            :syntax="syntax"
-            :text="codeFromSlot || code"
-        />
+        <dokki-area>
+
+            <dokki0-text-block-with-line-numbers
+                :syntax="syntax"
+                :text="codeFromSlot || code"
+            />
+
+        </dokki-area>
 
     </template>
 
@@ -60,6 +64,62 @@
                 box-shadow: none;
                 border: none;
             }
+        }
+    }
+
+    body[data-dokki-theme="light"] &
+    {
+        .hljs-comment
+        {
+            font-style: italic;
+            color: #737373;
+        }
+
+        .hljs-title.function_,
+        .hljs-built_in
+        {
+            color: #035ae1;
+        }
+
+        .hljs-keyword,
+        .hljs-tag > .hljs-name
+        {
+            background-color: #d6f6ea;
+            border-radius: 2px;
+        }
+
+        .hljs-attr
+        {
+            font-style: italic;
+        }
+
+        .hljs-string
+        {
+            background-color: #fff2ad;
+            border-radius: 2px;
+        }
+
+        .hljs-literal
+        {
+            color: crimson;
+        }
+
+        .hljs-number
+        {
+            color: #b3309e;
+        }
+
+        .hljs-property
+        {
+            font-style: italic;
+        }
+    }
+
+    body[data-dokki-theme="dark"] &
+    {
+        .hljs-comment
+        {
+            color: #00aeae;
         }
     }
 }

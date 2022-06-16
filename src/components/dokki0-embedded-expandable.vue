@@ -187,6 +187,11 @@
         {
             padding: 0 !important;
         }
+
+        & > .dokki-area
+        {
+            overflow: auto;
+        }
     }
 
     &:not(.headerless) > .dokki0-animated-expander > .content.first-level

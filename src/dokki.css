@@ -65,7 +65,6 @@ body,
     --dokkiCSS-page-secondary-line-color: lightgray;
     --dokkiCSS-embedded-header-bg-color: var(--dokkiCSS-page-inert-bg-color);
     --dokkiCSS-embedded-footer-bg-color: var(--dokkiCSS-page-inert-bg-color);
-    --dokkiCSS-embedded-code-comment-fg-color: #317b10;
     --dokkiCSS-embedded-auxiliary-color: rgba(0, 0, 0, 0.04);
     --dokkiCSS-navi-clickable-hover-bg-color: #f5f5f5;
 }
@@ -83,7 +82,6 @@ body,
     --dokkiCSS-page-secondary-line-color: black;
     --dokkiCSS-embedded-header-bg-color: var(--dokkiCSS-page-inert-bg-color);
     --dokkiCSS-embedded-footer-bg-color: var(--dokkiCSS-page-inert-bg-color);
-    --dokkiCSS-embedded-code-comment-fg-color: #00aeae;
     --dokkiCSS-embedded-auxiliary-color: rgba(0, 0, 0, 0.2);
     --dokkiCSS-navi-clickable-hover-bg-color: #1f1f1f;
 }
@@ -109,11 +107,6 @@ samp
 ul
 {
     margin: 16px 0;
-}
-
-code .hljs-comment
-{
-    color: var(--dokkiCSS-embedded-code-comment-fg-color);
 }
 
 .dokkiCSS-anchor

@@ -77,7 +77,7 @@
 
         .count
         {
-            margin-left: 1ch;
+            margin-left: 0.4em;
             opacity: 0.35;
             display: inline-block; /* Prevent underline on hover.*/
         }

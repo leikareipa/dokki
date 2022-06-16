@@ -49,6 +49,7 @@
         padding: 20px;
         box-sizing: border-box;
         line-height: var(--dokkiCSS-content-line-height);
+        font-weight: var(--dokkiCSS-bold-text-weight);
     }
 
     .widgets
