@@ -95,7 +95,7 @@
 
         .hljs-string
         {
-            background-color: #fff2ad;
+            background-color: #f2e1ff;
             border-radius: 2px;
         }
 
@@ -107,6 +107,11 @@
         .hljs-number
         {
             color: #b3309e;
+        }
+
+        .hljs-regexp
+        {
+            color: #0d7181;
         }
 
         .hljs-property
