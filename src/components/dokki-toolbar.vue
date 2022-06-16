@@ -39,7 +39,7 @@
     overflow-y: auto;
     height: 100%;
     border-right: 1px solid var(--dokkiCSS-page-secondary-line-color);
-    background-color: var(--dokkiCSS-embedded-auxiliary-color);
+    background-color: var(--dokkiCSS-page-inert-bg-color);
     color: var(--dokkiCSS-page-secondary-fg-color);
 
     header
