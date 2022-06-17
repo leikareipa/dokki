@@ -71,52 +71,62 @@
     {
         .hljs-comment
         {
+            color: forestgreen;
             font-style: italic;
-            color: #737373;
         }
 
-        .hljs-title.function_,
+        .hljs-title.function_
+        {
+            color: #8000ff;
+        }
+
         .hljs-built_in
         {
-            color: #035ae1;
+            font-style: italic;
+        }
+
+        .hljs-title.class_
+        {
+            color: #8000ff;
         }
 
         .hljs-keyword,
         .hljs-tag > .hljs-name
         {
+            color: #8000ff;
             background-color: #d6f6ea;
             border-radius: 2px;
+            padding: 0px 1px;
+            margin: 0 -1px;
         }
 
         .hljs-attr
         {
-            font-style: italic;
+            color: #606060;
         }
 
         .hljs-string
         {
-            background-color: #f2e1ff;
+            background-color: #e7e7e7;
             border-radius: 2px;
+            padding: 0px 1px;
+            margin: 0 -1px;
         }
 
         .hljs-literal
         {
-            color: crimson;
+            font-style: italic;
         }
-
-        .hljs-number
+        
+        .hljs-params
         {
-            color: #b3309e;
-        }
-
-        .hljs-regexp
-        {
-            color: #0d7181;
+            color: #606060;
+            font-style: italic;
         }
 
         .hljs-property
         {
-            font-style: italic;
+            color: #606060;
         }
     }
 
