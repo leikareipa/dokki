@@ -366,7 +366,7 @@ function dokkify_code_blocks(dom) {
             );
             const metadata = parse_metadata_string(metadataString || "");
             const shortSyntaxName = syntaxName.substring("language-".length);
-            const codeSyntaxAttribute = (syntaxName !== undefined)
+            const codeSyntaxAttribute = shortSyntaxName.length
                 ? `syntax="${shortSyntaxName}"`
                 : "";
 
