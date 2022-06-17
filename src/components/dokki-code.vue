@@ -67,66 +67,43 @@
         }
     }
 
+    .hljs-literal
+    {
+        font-style: italic;
+    }
+
+    .hljs-keyword
+    {
+        border-bottom: 1px solid;
+    }
+
+    .hljs-variable.language_
+    {
+        font-weight: bold;
+    }
+
     body[data-dokki-theme="light"] &
     {
         .hljs-comment
         {
             color: forestgreen;
-            font-style: italic;
         }
 
-        .hljs-title.function_
-        {
-            color: #8000ff;
-        }
-
-        .hljs-built_in
-        {
-            font-style: italic;
-        }
-
-        .hljs-title.class_
-        {
-            color: #8000ff;
-        }
-
-        .hljs-keyword,
+        .hljs-selector-id,
+        .hljs-built_in,
+        .hljs-title.function_,
         .hljs-tag > .hljs-name
         {
-            color: #8000ff;
-            background-color: #d6f6ea;
-            border-radius: 2px;
+            background-color: #e3e3e3;
             padding: 0px 1px;
             margin: 0 -1px;
-        }
-
-        .hljs-attr
-        {
-            color: #606060;
         }
 
         .hljs-string
         {
-            background-color: #e7e7e7;
-            border-radius: 2px;
+            background-color: #d6f6ea;
             padding: 0px 1px;
             margin: 0 -1px;
-        }
-
-        .hljs-literal
-        {
-            font-style: italic;
-        }
-        
-        .hljs-params
-        {
-            color: #606060;
-            font-style: italic;
-        }
-
-        .hljs-property
-        {
-            color: #606060;
         }
     }
 
