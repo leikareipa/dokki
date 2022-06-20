@@ -119,15 +119,15 @@
     {
         font-size: 105%;
         font-weight: var(--dokkiCSS-bold-text-weight);
-        margin: 25px 0;
+        margin: var(--dokkiCSS-topic-header-top-margin) 0 !important;
     }
 
     h4
     {
         font-size: 100%;
-        display: inline;
         font-weight: normal;
         font-style: italic;
+        margin: var(--dokkiCSS-topic-header-top-margin) 0 !important;
     }
 
     body[data-dokki-layout="vertical-narrow"] &
