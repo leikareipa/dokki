@@ -120,6 +120,14 @@ ul
     padding-top: var(--dokkiCSS-topic-bottom-margin);
 }
 
+@media only screen and (min-width: 2200px)
+{
+    body
+    {
+        --dokkiCSS-side-panel-width: 400px;
+    }
+}
+
 @media only screen and (max-width: 1700px)
 {
     body

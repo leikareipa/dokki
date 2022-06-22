@@ -55,7 +55,7 @@
 
     body[data-dokki-layout="horizontal-wide"] &
     {
-        left: calc(var(--dokkiCSS-side-panel-width) * 0.5 + 50%);
+        left: 50%;
         transform: translateX(-50%);
     }
 
