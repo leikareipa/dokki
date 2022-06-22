@@ -73,7 +73,7 @@ export function start(args = {})
 
         // ?layout
         {
-            const layoutModes = ["horizontal", "vertical", "vertical-narrow"];
+            const layoutModes = ["horizontal", "horizontal-wide", "vertical", "vertical-narrow"];
             const defaultLayoutMode = layoutModes[0];
             const mode = (modeName)=>layoutModes.find(mode=>mode==modeName);
 
@@ -88,13 +88,15 @@ export function start(args = {})
                     function set_mode()
                     {
                         const screenWidth = document.documentElement.clientWidth;
-                        const targetMode = 
-                            (screenWidth < 500)?
-                                mode("vertical-narrow")
-                            : (screenWidth < 860)?
-                                mode("vertical")
-                            : mode("horizontal");
-
+                        const targetMode = (()=>{
+                            switch (true) {
+                                case screenWidth < 500: return "vertical-narrow";
+                                case screenWidth < 860: return "vertical";
+                                case screenWidth > 1920: return "horizontal-wide";
+                                default: return "horizontal";
+                            }
+                        })();
+                        
                         store.commit("set_layout_mode", (targetMode || defaultLayoutMode));
                         return set_mode;
                     })()

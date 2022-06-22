@@ -113,6 +113,16 @@
         {
             color: #00aeae;
         }
+
+        .hljs-selector-id,
+        .hljs-built_in,
+        .hljs-title.function_,
+        .hljs-tag > .hljs-name
+        {
+            background-color: #2a2a2a;
+            padding: 0px 1px;
+            margin: 0 -1px;
+        }
     }
 }
 </style>
