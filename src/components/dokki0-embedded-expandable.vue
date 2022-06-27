@@ -76,6 +76,14 @@
     
     </footer>
 
+    <p v-if="isHeaderless && hasCaption" style="font-size: small;">
+
+        {{title}}:
+
+        <slot name="caption"/>
+        
+    </p>
+
 </p>
 </template>
 
