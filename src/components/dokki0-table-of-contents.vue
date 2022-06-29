@@ -57,6 +57,8 @@
 <style lang="scss">
 .dokki0-table-of-contents
 {
+    font-size: 95%;
+    
     .contents
     {
         list-style-type: none;

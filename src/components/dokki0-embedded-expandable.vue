@@ -76,12 +76,12 @@
     
     </footer>
 
-    <p v-if="isHeaderless && hasCaption" style="font-size: small;">
+    <p v-if="isHeaderless && hasCaption" class="aside-caption">
 
         {{title}}:
 
         <slot name="caption"/>
-        
+
     </p>
 
 </p>
@@ -237,6 +237,12 @@
                 transform: none;
             }
         }
+    }
+
+    .aside-caption
+    {
+        font-size: 0.875em;
+        margin-top: 1ex;
     }
 }
 </style>
