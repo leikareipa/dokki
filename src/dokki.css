@@ -15,7 +15,7 @@ body
     --dokkiCSS-topic-bottom-margin: 25px;
     --dokkiCSS-topic-vertical-padding: 34px;
     --dokkiCSS-topic-horizontal-padding: 34px;
-    --dokkiCSS-topic-header-top-margin: 42px;
+    --dokkiCSS-topic-heading-vertical-margin: 1.5em;
 
     --dokkiCSS-topics-container-vertical-top-start: calc(35px - var(--dokkiCSS-header-bottom-margin));
     --dokkiCSS-topics-container-bottom-margin: calc(2 * var(--dokkiCSS-topic-bottom-margin));
@@ -33,9 +33,9 @@ body
     --dokkiCSS-navibar-item-padding-horizontal: 20px;
 
     --dokkiCSS-regular-font-family: system-ui, sans-serif;
-    --dokkiCSS-regular-font-size: 16px;
+    --dokkiCSS-regular-font-size: initial;
     --dokkiCSS-monospace-font-family: monospace-ui, monospace;
-    --dokkiCSS-monospace-font-size: 14px;
+    --dokkiCSS-monospace-font-size: 87.5%;
     --dokkiCSS-bold-text-weight: 500;
     --dokkiCSS-content-line-height: 1.4;
 }
@@ -218,7 +218,7 @@ body[data-dokki-layout="vertical-narrow"]
     --dokkiCSS-topic-bottom-margin: 12px;
     --dokkiCSS-topic-horizontal-padding: 15px;
     --dokkiCSS-topic-vertical-padding: 25px;
-    --dokkiCSS-topic-header-top-margin: 25px;
+    --dokkiCSS-topic-heading-vertical-margin: 1em;
     --dokkiCSS-header-bottom-margin: 0px;
     --dokkiCSS-embedded-header-padding: 18px 13px;
     --dokkiCSS-embedded-horizontal-padding: 13px;

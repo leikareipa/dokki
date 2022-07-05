@@ -91,27 +91,23 @@
         font-size: 100%;
         font-weight: normal;
         padding: 0;
-        margin: 0;
-        margin-bottom: var(--dokkiCSS-topic-bottom-margin);
+        margin: var(--dokkiCSS-topic-heading-vertical-margin) 0 !important;
         color: var(--dokkiCSS-page-primary-fg-color);
     }
 
     h1
     {
         font-size: 180%;
-        margin-top: var(--dokkiCSS-topic-header-top-margin);
 
         &.dokkiCSS-topic-title
         {
-            margin-top: 0;
-            margin-bottom: 40px;
+            margin-top: 0 !important;
             padding: 0;
         }
     }
 
     h2
     {
-        margin: var(--dokkiCSS-topic-header-top-margin) 0 !important;
         font-size: 150%;
     }
 
@@ -119,7 +115,6 @@
     {
         font-size: 105%;
         font-weight: var(--dokkiCSS-bold-text-weight);
-        margin: var(--dokkiCSS-topic-header-top-margin) 0 !important;
     }
 
     h4
@@ -127,7 +122,6 @@
         font-size: 100%;
         font-weight: normal;
         font-style: italic;
-        margin: var(--dokkiCSS-topic-header-top-margin) 0 !important;
     }
 
     body[data-dokki-layout="vertical-narrow"] &
