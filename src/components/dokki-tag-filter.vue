@@ -174,11 +174,10 @@ export default {
                 this.update_hash(tags);
                     
                 const topicEls = this.unhide_all_topic_elements();
-                this.numResults = topicEls.length;
 
                 if (this.activeTags.length) {
                     for (const topic of topicEls) {
-                        const topicTags = Array.from(topic.querySelectorAll(".dokki-topic .dokki-tag")).map(el=>el.textContent.toLowerCase());
+                        const topicTags = Array.from(topic.querySelectorAll(".dokki-topic .dokki-tag .name")).map(el=>el.textContent.toLowerCase());
                         if (!this.activeTags.every(tag=>topicTags.includes(tag))) {
                             topic.style.display = "none";
                         }
@@ -186,7 +185,7 @@ export default {
                 }
 
                 this.showHeader = Boolean(this.activeTags.length);
-                this.numResults = topicEls.reduce((count, el)=>(count + ~~(el.style.display !== "none")), 0);
+                this.numResults = topicEls.filter(el=>!el.hasAttribute("dokki-ignore")).reduce((count, el)=>(count + ~~(el.style.display !== "none")), 0);
             }
 
             this.showHeader = true;
