@@ -27,12 +27,6 @@
         
             <span class="type">
 
-                <span class="icon" v-if="icon !== undefined" :title="title">
-                
-                    <i :class="icon"/>
-                
-                </span>
-
                 <span class="text">
 
                     {{title}}
@@ -155,6 +149,7 @@
         {
             .type
             {
+                color: var(--dokkiCSS-page-inert-fg-color);
                 font-size: 95%;
             
                 .icon
@@ -166,7 +161,7 @@
             .label
             {
                 display: block;
-                margin-top: 6px;
+                margin-top: 5px;
             }
         }
     }
