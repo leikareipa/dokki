@@ -48,7 +48,6 @@
     padding: 15px;
     width: 100%;
     justify-content: left;
-    font-weight: 500;
     flex-wrap: wrap;
     box-sizing: border-box;
     background-color: var(--dokkiCSS-page-inert-bg-color); 
@@ -58,7 +57,6 @@
     .label
     {
         margin-right: 8px;
-        font-size: 98%;
     }
 
     .button
