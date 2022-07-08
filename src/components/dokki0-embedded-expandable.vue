@@ -161,7 +161,16 @@
             var(--dokkiCSS-embedded-auxiliary-color),
             var(--dokkiCSS-page-inert-bg-color)
         );
-        border-top: 1px solid var(--dokkiCSS-page-inert-bg-color);
+
+        body[data-dokki-theme="light"] &
+        {
+            border-top: 1px solid white;
+        }
+
+        body[data-dokki-theme="dark"] &
+        {
+            border-top: 1px solid #292929;
+        }
 
         .caption
         {

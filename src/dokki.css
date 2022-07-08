@@ -220,19 +220,10 @@ body[data-dokki-layout="vertical-narrow"]
     --dokkiCSS-topic-vertical-padding: 25px;
     --dokkiCSS-topic-heading-vertical-margin: 1em;
     --dokkiCSS-header-bottom-margin: 0px;
-    --dokkiCSS-embedded-header-padding: 18px 13px;
     --dokkiCSS-embedded-horizontal-padding: 13px;
 }
 
 body[data-dokki-layout="vertical-narrow"] .dokkiCSS-anchor:first-child
 {
     padding-top: 0;
-}
-
-.vue-fade-enter-active,
-.vue-fade-leave-active {
-  transition: opacity 0.25s ease;
-}
-.vue-fade-enter-from {
-  opacity: 0;
 }
