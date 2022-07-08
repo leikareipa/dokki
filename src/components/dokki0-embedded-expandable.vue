@@ -265,6 +265,7 @@
     {
         font-size: 0.875em;
         margin-top: 1ex;
+        color: var(--dokkiCSS-page-inert-fg-color);
     }
 }
 </style>
