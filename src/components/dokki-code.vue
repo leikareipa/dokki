@@ -48,6 +48,11 @@
         overflow: auto;
     }
 
+    &:not(.headerless) .dokki-area
+    {
+        border-radius: 0;
+    }
+
     &.has-after > footer
     {
         border-top: 1px solid var(--dokkiCSS-page-primary-line-color);
