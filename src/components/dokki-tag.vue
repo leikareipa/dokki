@@ -32,7 +32,7 @@
     margin: 6px 6px 0 0 !important;
     padding: 4px 10px;
     border-radius: 4px;
-    font-size: 98%;
+    font-size: 90%;
     white-space: nowrap;
 
     body[data-dokki-theme="light"] &
