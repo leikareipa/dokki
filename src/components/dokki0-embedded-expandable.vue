@@ -27,6 +27,12 @@
         
             <span class="type">
 
+                <span class="icon" v-if="icon !== undefined" :title="title">
+                
+                    <i :class="icon"/>
+                
+                </span>
+
                 <span class="text">
 
                     {{title}}
@@ -97,6 +103,12 @@
         border: 1px solid var(--dokkiCSS-page-primary-line-color);
     }
 
+    &.has-after > footer > .dokkiCSS-embedded > header
+    {
+        background: var(--dokkiCSS-page-inert-bg-color);
+        border: none;
+    }
+
     &.headerless
     {
         border-radius: 0;
@@ -144,6 +156,12 @@
         display: flex;
         align-items: center;
         box-sizing: border-box;
+        background: linear-gradient(
+            to bottom,
+            var(--dokkiCSS-embedded-auxiliary-color),
+            var(--dokkiCSS-page-inert-bg-color)
+        );
+        border-top: 1px solid var(--dokkiCSS-page-inert-bg-color);
 
         .caption
         {
