@@ -86,10 +86,10 @@
     {
         width: 100%;
         height: unset;
-        position: unset;
+        position: relative;
         box-sizing: border-box;
         border: none;
-        border-bottom: 1px solid var(--dokkiCSS-page-secondary-line-color);
+        z-index: 0;
 
         .widgets,
         .dokki0-table-of-contents

@@ -10,8 +10,11 @@
     class="dokki-topic"
     :class="{
        [inlineClass]: true,
-   }"
-   :id="anchor_id"
+    }"
+    :style="{
+        zIndex: this.idx,
+    }"
+    :id="anchor_id"
 >
 
     <h1 class="dokkiCSS-topic-title">
@@ -124,6 +127,12 @@
         font-style: italic;
     }
 
+    @media only screen and (max-width: 1500px)
+    {
+        box-shadow: 0 0 18px rgba(0, 0, 0, 0.3);
+        border-bottom: none;
+    }
+
     body[data-dokki-layout="vertical-narrow"] &
     {
         border-radius: 0;
@@ -152,6 +161,8 @@ export default {
     },
     created()
     {
+        console.assert(this.idx < window.getComputedStyle(document.body).getPropertyValue("--dokkiCSS-maximum-z-index"));
+
         this.anchorableId = simplified_topic_title(this.title);
 
         this.$store.commit("add_topic", {

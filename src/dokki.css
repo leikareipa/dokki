@@ -1,5 +1,7 @@
 body
 {
+    --dokkiCSS-maximum-z-index: 2147483647;
+
     --dokkiCSS-header-height: 40px;
     --dokkiCSS-header-bottom-margin: 23px;
 
@@ -137,6 +139,16 @@ ul
     }
 }
 
+@media only screen and (max-width: 1500px)
+{
+    body
+    {
+        --dokkiCSS-topic-vertical-padding: 38px;
+        background-color: var(--dokkiCSS-embedded-auxiliary-color);
+    }
+}
+
+
 @media only screen and (max-width: 1400px)
 {
     body
@@ -153,7 +165,6 @@ ul
         --dokkiCSS-document-horizontal-left-start: 0px;
         --dokkiCSS-topic-bottom-margin: 25px;
         --dokkiCSS-topic-horizontal-padding: 25px;
-        --dokkiCSS-topic-vertical-padding: 25px;
         --dokkiCSS-topics-container-width: calc(100% - var(--dokkiCSS-side-panel-width));
     }
 
@@ -208,7 +219,6 @@ body[data-dokki-layout^="vertical"]
     --dokkiCSS-document-width: 100%;
     --dokkiCSS-topic-bottom-margin: 20px;
     --dokkiCSS-topic-horizontal-padding: 20px;
-    --dokkiCSS-topic-vertical-padding: 20px;
     --dokkiCSS-header-bottom-margin: 15px;
 }
 
@@ -217,10 +227,15 @@ body[data-dokki-layout="vertical-narrow"]
     --dokkiCSS-header-height: 60px;
     --dokkiCSS-topic-bottom-margin: 12px;
     --dokkiCSS-topic-horizontal-padding: 15px;
-    --dokkiCSS-topic-vertical-padding: 25px;
     --dokkiCSS-topic-heading-vertical-margin: 1em;
+    --dokkiCSS-topic-vertical-padding: 34px;
     --dokkiCSS-header-bottom-margin: 0px;
     --dokkiCSS-embedded-horizontal-padding: 13px;
+}
+
+body[data-dokki-layout^="vertical"]
+{
+    background-color: var(--dokkiCSS-embedded-auxiliary-color);
 }
 
 body[data-dokki-layout="vertical-narrow"] .dokkiCSS-anchor:first-child
