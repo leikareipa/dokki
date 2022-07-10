@@ -93,7 +93,7 @@
     width: 100%;
     box-sizing: border-box;
     border-radius: var(--dokkiCSS-embedded-border-radius);
-    background-color: var(--dokkiCSS-page-inert-bg-color);
+    background-color: var(--dokkiCSS-page-secondary-bg-color);
     overflow: hidden;
     margin: 20px 0;
 
@@ -105,7 +105,7 @@
 
     &.has-after > footer > .dokkiCSS-embedded > header
     {
-        background: var(--dokkiCSS-page-inert-bg-color);
+        background: var(--dokkiCSS-page-secondary-bg-color);
         border: none;
     }
 
@@ -159,7 +159,7 @@
         background: linear-gradient(
             to bottom,
             var(--dokkiCSS-embedded-auxiliary-color),
-            var(--dokkiCSS-page-inert-bg-color)
+            var(--dokkiCSS-page-secondary-bg-color)
         );
 
         body[data-dokki-theme="light"] &
@@ -247,17 +247,6 @@
             text-transform: uppercase;
             transform: translateY(-50%);
             padding: 3px;
-
-            &.blocker
-            {
-                padding: 3px 5px;
-                left: calc(var(--dokkiCSS-embedded-horizontal-padding) - 5px);
-                top: -1px;
-                background-color: var(--dokkiCSS-embedded-footer-bg-color);
-                color: transparent;
-                height: 0;
-                transform: none;
-            }
         }
     }
 

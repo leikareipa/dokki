@@ -53,7 +53,7 @@
 {
     padding: 0;
     overflow: hidden;
-    background-color: var(--dokkiCSS-page-inert-bg-color);
+    background-color: var(--dokkiCSS-page-secondary-bg-color);
 
     iframe
     {

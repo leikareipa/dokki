@@ -50,7 +50,7 @@
     justify-content: left;
     flex-wrap: wrap;
     box-sizing: border-box;
-    background-color: var(--dokkiCSS-page-inert-bg-color); 
+    background-color: var(--dokkiCSS-page-secondary-bg-color); 
     border-radius: var(--dokkiCSS-embedded-border-radius);
     box-shadow: 0 0px 8px -2px rgba(0, 0, 0, 0.5);
 
