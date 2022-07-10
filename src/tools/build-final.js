@@ -275,7 +275,7 @@ function dokkify_media(dom) {
     
     for (const el of mediaEls) {
         const src = el.getAttribute("src");
-        const metadata = parse_metadata_string(el.getAttribute("alt"));
+        const metadata = parse_metadata_string(el.getAttribute("alt") || "");
 
         const options = {
             type: "image",
@@ -457,35 +457,50 @@ function dokkify_nested_blockquote_captions(dom) {
 }
 
 function convert_h1_h2_to_dokki_topic_subtopic(dom) {
-    const html = dom.innerHTML.split("\n");
+    const htmlLines = dom.innerHTML.split("\n");
 
     let isInsideTopic = false;
     let isInsideSubtopic = false;
 
-    for (let i = 0; i < html.length; i++) {
-        if (html[i].startsWith("<h1>")) {
+    for (let i = 0; i < htmlLines.length; i++) {
+        if (htmlLines[i].startsWith("<h1>")) {
             if (isInsideSubtopic) {
-                html[i] = ("</dokki-subtopic>" + html[i]);
+                htmlLines[i] = ("</dokki-subtopic>" + htmlLines[i]);
                 isInsideSubtopic = false;
             }
 
             // Note: We rely on the HTML parser to clean up unneeded closing tags.
-            html[i] = html[i].replace(/<h1>(.*)<\/h1>/, "</dokki-topic><dokki-topic title='$1'>");
+            const title = htmlLines[i].match(/<h1>(.*)<\/h1>/)?.[1];
+            htmlLines[i] = htmlLines[i].replace(/<h1>(.*)<\/h1>/, `</dokki-topic><dokki-topic title="${escaped_title(title)}">`);
             isInsideTopic = true;
         }
-        else if (html[i].startsWith("<h2>")) {
-            html[i] = html[i].replace(/<h2>(.*)<\/h2>/, "</dokki-subtopic><dokki-subtopic title='$1'>");
+        else if (htmlLines[i].startsWith("<h2>")) {
+            const title = htmlLines[i].match(/<h2>(.*)<\/h2>/)?.[1];
+            htmlLines[i] = htmlLines[i].replace(/<h2>(.*)<\/h2>/, `</dokki-subtopic><dokki-subtopic title="${escaped_title(title)}">`);
             isInsideSubtopic = true;
+        }
+
+        function escaped_title(title) {
+            if (typeof title !== "string" || !title.trim().length) {
+                console.warn(`Warning: Encountered an undefined topic title on line ${i+1}: ${htmlLines[i]}`);
+                return "[Untitled]";
+            }
+    
+            return (
+                title
+                .replace("'", "&apos;")
+                .replace("\"", "&quot;")
+            );
         }
     }
 
     if (isInsideSubtopic) {
-        html[html.length-1] += "</dokki-subtopic>";
+        htmlLines[htmlLines.length-1] += "</dokki-subtopic>";
     }
 
     if (isInsideTopic) {
-        html[html.length-1] += "</dokki-topic>";
+        htmlLines[htmlLines.length-1] += "</dokki-topic>";
     }
 
-    dom.innerHTML = html.join("\n");
+    dom.innerHTML = htmlLines.join("\n");
 }
