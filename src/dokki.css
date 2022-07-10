@@ -19,6 +19,7 @@ body
     --dokkiCSS-topic-horizontal-padding: 34px;
     --dokkiCSS-topic-heading-vertical-margin: 1.5em;
 
+    --dokkiCSS-topics-container-max-width: 1300px;
     --dokkiCSS-topics-container-vertical-top-start: calc(35px - var(--dokkiCSS-header-bottom-margin));
     --dokkiCSS-topics-container-bottom-margin: calc(2 * var(--dokkiCSS-topic-bottom-margin));
 

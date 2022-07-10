@@ -94,6 +94,13 @@
             &.subtopic
             {
                 padding-left: calc(var(--dokkiCSS-navibar-item-padding-horizontal) + 1em);
+                font-size: 95%;
+            }
+
+            .idx
+            {
+                display: none !important;
+                color: var(--dokkiCSS-page-inert-fg-color);
             }
         }
     }

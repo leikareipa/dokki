@@ -38,7 +38,6 @@
     text-align: left;
     overflow-y: auto;
     height: 100%;
-    border-right: 1px solid var(--dokkiCSS-page-secondary-line-color);
     background-color: var(--dokkiCSS-page-secondary-bg-color);
     color: var(--dokkiCSS-page-secondary-fg-color);
 
@@ -54,8 +53,6 @@
 
     .widgets
     {
-        border-top: 1px solid var(--dokkiCSS-page-secondary-line-color);
-        border-bottom: 1px solid var(--dokkiCSS-page-secondary-line-color);
         padding: 10px 0;
 
         .dokki-user-element
@@ -80,6 +77,11 @@
         {
             background-color: var(--dokkiCSS-embedded-auxiliary-color);
         }
+    }
+
+    body[data-dokki-layout="horizontal-wide"] &
+    {
+        left: calc(50% - var(--dokkiCSS-topics-container-max-width)*0.5 - var(--dokkiCSS-side-panel-width));
     }
 
     body[data-dokki-layout^="vertical"] &
