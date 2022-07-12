@@ -32,6 +32,7 @@
     border: none;
     border-radius: var(--dokkiCSS-embedded-border-radius);
     margin: 20px 0;
+    border-left: 8px solid;
 
     footer,
     header
