@@ -191,6 +191,17 @@
                 margin-top: 5px;
             }
         }
+
+        &:hover
+        {
+            .caption
+            {
+                .type
+                {
+                    color: inherit;
+                }
+            }
+        }
     }
 
     hr
