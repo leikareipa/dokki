@@ -17,7 +17,7 @@ body
     --dokkiCSS-topic-vertical-padding: 34px;
     --dokkiCSS-topic-horizontal-padding: 34px;
     --dokkiCSS-topic-heading-vertical-margin: 1.5em;
-
+ 
     --dokkiCSS-topics-container-max-width: 1300px;
     --dokkiCSS-topics-container-vertical-top-start: calc(35px - var(--dokkiCSS-header-bottom-margin));
     --dokkiCSS-topics-container-bottom-margin: calc(2 * var(--dokkiCSS-topic-bottom-margin));
@@ -32,12 +32,12 @@ body
     --dokkiCSS-embedded-horizontal-padding: 16px;
     --dokkiCSS-embedded-vertical-padding: 16px;
     --dokkiCSS-navibar-item-padding-vertical: 4px;
-    --dokkiCSS-navibar-item-padding-horizontal: 20px;
+    --dokkiCSS-navibar-item-padding-horizontal: 1rem;
 
     --dokkiCSS-regular-font-family: system-ui, sans-serif;
     --dokkiCSS-regular-font-size: initial;
     --dokkiCSS-monospace-font-family: monospace-ui, monospace;
-    --dokkiCSS-monospace-font-size: 87.5%;
+    --dokkiCSS-monospace-font-size: 90%;
     --dokkiCSS-bold-text-weight: 500;
     --dokkiCSS-content-line-height: 1.4;
 }

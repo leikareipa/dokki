@@ -62,7 +62,7 @@
     .contents
     {
         list-style-type: none;
-        padding: 15px 0;
+        padding: 1rem 0;
         margin: 0;
 
         li

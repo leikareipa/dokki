@@ -52,6 +52,7 @@
 
     .idx
     {
+        display: none;
         color: var(--dokkiCSS-page-inert-fg-color);
     }
 
@@ -115,8 +116,6 @@
 
     h2
     {
-        margin-top: 0 !important;
-        padding-top: calc(var(--dokkiCSS-topic-heading-vertical-margin) - 1rem) !important;
         font-size: 150%;
     }
 

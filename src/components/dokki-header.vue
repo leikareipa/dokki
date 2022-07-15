@@ -30,42 +30,48 @@
 <style lang="scss">
 .dokki-header
 {
-    gap: 0 1.85em;
+    gap: 0 1.85rem;
     position: relative;
     display: flex;
     align-items: center;
     font-weight: var(--dokkiCSS-bold-text-weight);
-    padding: 1em;
+    padding: 1rem;
     border-bottom: 1px solid var(--dokkiCSS-page-primary-line-color);
     background-color: var(--dokkiCSS-page-secondary-bg-color);
     flex-wrap: wrap;
-    margin-top: -1em !important;
+    margin-top: -1rem !important;
 
     @media only screen and (max-width: 1500px)
     {
         border-bottom: none;
     }
+    
+    body[data-dokki-layout^="vertical"] &
+    {
+        padding: 2rem;
+    }
 
     .title
     {
-        margin-top: 1em;
-        padding-right: 1.85em;
+        margin-top: 1rem;
+        padding-right: 1.85rem;
         margin-right: auto;
         font-size: 105%;
     }
 
     .widgets
     {
-        gap: 1em 1.85em;
-        margin-top: 1em;
+        gap: 1rem 1.85rem;
+        margin-top: 1rem;
         display: flex;
         flex-wrap: wrap;
         font-weight: normal;
         color: var(--dokkiCSS-page-inert-fg-color);
+        font-size: 95%;
 
-        body[data-dokki-layout="vertical-narrow"] &
+        body[data-dokki-layout^="vertical"] &
         {
-            margin-bottom: 0.5em;
+            font-size: 90%;
         }
 
         .dokki-user-element

@@ -35,6 +35,7 @@
 {
     .idx
     {
+        display: none;
         color: var(--dokkiCSS-page-inert-fg-color);
     }
 }
