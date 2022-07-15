@@ -61,7 +61,7 @@
 
     .widgets
     {
-        gap: 1rem 1.85rem;
+        gap: 1rem 1.5rem;
         margin-top: 1rem;
         display: flex;
         flex-wrap: wrap;
@@ -83,8 +83,13 @@
             text-overflow: ellipsis;
             box-sizing: border-box;
             display: flex;
-            align-items: center;
+            align-items: baseline;
             white-space: nowrap;
+        }
+
+        .dokki-user-element > i
+        {
+            font-size: 0.875em;
         }
 
         *:first-letter
