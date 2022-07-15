@@ -2,7 +2,6 @@ body
 {
     --dokkiCSS-maximum-z-index: 2147483647;
 
-    --dokkiCSS-header-height: 40px;
     --dokkiCSS-header-bottom-margin: 23px;
 
     --dokkiCSS-side-panel-width: 330px;
@@ -220,7 +219,6 @@ ul
 
 body[data-dokki-layout^="vertical"]
 {
-    --dokkiCSS-header-height: 50px;
     --dokkiCSS-side-panel-width: 0;
     --dokkiCSS-document-width: 100%;
     --dokkiCSS-topic-bottom-margin: 20px;
@@ -230,7 +228,6 @@ body[data-dokki-layout^="vertical"]
 
 body[data-dokki-layout="vertical-narrow"]
 {
-    --dokkiCSS-header-height: 60px;
     --dokkiCSS-topic-bottom-margin: 12px;
     --dokkiCSS-topic-horizontal-padding: 15px;
     --dokkiCSS-topic-heading-vertical-margin: 1em;

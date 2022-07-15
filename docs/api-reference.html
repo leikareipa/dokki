@@ -122,17 +122,19 @@
         </style>
     </head>
     <body>
-        <template id="dokki-document">
+        <template id="dokki">
 
-            <dokki-toolbar>
-                <template #caption>
-                    dokki &bull; API reference
-                </template>
-            </dokki-toolbar>
-        
-            <dokki-topics>
-        <dokki-topic title='dokki-area'>
-            <p>A visually emphasized region for highlighting content.</p>
+            <dokki-document>
+                    
+                <dokki-header>
+                    <template #caption>
+                        dokki &bull; API reference
+                    </template>
+                </dokki-header>
+            
+                <dokki-topics>
+            <dokki-topic title='dokki-area'>
+                <p>A visually emphasized region for highlighting content.</p>
 <h2>Samples</h2>
 <dokki-area>
     <p>Fortune favours the bold.</p>
@@ -188,11 +190,11 @@ either HTML or Markdown syntax) will be shown as the element's caption:</p>
 &lt;/dokki-area&gt;
 </code></pre>
 
-        </dokki-topic>
+            </dokki-topic>
         
 
-        <dokki-topic title='dokki-code'>
-            <p>Displays a source code snippet, with optional syntax highlighting and sample output.</p>
+            <dokki-topic title='dokki-code'>
+                <p>Displays a source code snippet, with optional syntax highlighting and sample output.</p>
 <h2>Samples</h2>
 <dokki-code>
     <template #caption>
@@ -395,11 +397,11 @@ is configured to include support for the given language alias, the &lt;dokki-cod
 element's code will be parsed for syntax and you can apply custom CSS to the
 various syntactic classes (e.g. &quot;hljs-string&quot;).</p>
 
-        </dokki-topic>
+            </dokki-topic>
         
 
-        <dokki-topic title='dokki-directory'>
-            <p>Displays a nested listing of files and folders.</p>
+            <dokki-topic title='dokki-directory'>
+                <p>Displays a nested listing of files and folders.</p>
 <h2>Samples</h2>
 <dokki-directory>
     <template #caption>
@@ -566,11 +568,23 @@ as well.</p>
 <p>The class name(s) given in this string will be appended to the &lt;dokki-directory&gt;
 element's class list.</p>
 
-        </dokki-topic>
+            </dokki-topic>
         
 
-        <dokki-topic title='dokki-iframe'>
-            <p>Provides the general functionality of a standard &lt;iframe&gt;, with some dokki-specific
+            <dokki-topic title='dokki-document'>
+                <p>TODO</p>
+
+            </dokki-topic>
+        
+
+            <dokki-topic title='dokki-header'>
+                <p>TODO</p>
+
+            </dokki-topic>
+        
+
+            <dokki-topic title='dokki-iframe'>
+                <p>Provides the general functionality of a standard &lt;iframe&gt;, with some dokki-specific
 extensions.</p>
 <h2>Samples</h2>
 <dokki-iframe src="https://www.wikipedia.org">
@@ -713,11 +727,11 @@ rather than requiring the user to reveal it.</p>
     ></dokki-iframe>
 </x-example>
 
-        </dokki-topic>
+            </dokki-topic>
         
 
-        <dokki-topic title='dokki-image'>
-            <p>Provides the general functionality of a standard &lt;img&gt;, with some dokki-specific
+            <dokki-topic title='dokki-image'>
+                <p>Provides the general functionality of a standard &lt;img&gt;, with some dokki-specific
 extensions.</p>
 <h2>Samples</h2>
 <dokki-image width="1280" height="720" src='https://upload.wikimedia.org/wikipedia/commons/thumb/7/7f/Eublepharis_macularius_2009_G6.jpg/1280px-Eublepharis_macularius_2009_G6.jpg'>
@@ -738,6 +752,7 @@ extensions.</p>
 
 &lt;/dokki-image&gt;
 </code></pre>
+
 <h2>HTML templates</h2>
 <h3>#caption</h3>
 <p>The template's children will be displayed as the &lt;dokki-image&gt; element's caption.</p>
@@ -804,17 +819,17 @@ will be upscaled to fit the container.</p>
 <h3>width</h3>
 <p>Corresponds to the <strong>width</strong> attribute of the standard &lt;img&gt; element.</p>
 
-        </dokki-topic>
+            </dokki-topic>
         
 
-        <dokki-topic title='dokki-item'>
-            <p>TODO</p>
+            <dokki-topic title='dokki-item'>
+                <p>TODO</p>
 
-        </dokki-topic>
+            </dokki-topic>
         
 
-        <dokki-topic title='dokki-lorem'>
-            <p>Provides a generator of placeholder text.</p>
+            <dokki-topic title='dokki-lorem'>
+                <p>Provides a generator of placeholder text.</p>
 <p>Each instance of this element produces one paragraph of lorem ipsum, out of about
 five unique such paragraphs.</p>
 <h2>Samples</h2>
@@ -827,11 +842,11 @@ five unique such paragraphs.</p>
 &lt;/dokki-lorem&gt;
 </code></pre>
 
-        </dokki-topic>
+            </dokki-topic>
         
 
-        <dokki-topic title='dokki-output'>
-            <p>TODO</p>
+            <dokki-topic title='dokki-output'>
+                <p>TODO</p>
 <h2>Samples</h2>
 <dokki-output>
     <template #output>
@@ -839,11 +854,11 @@ five unique such paragraphs.</p>
     </template>
 </dokki-output>
 
-        </dokki-topic>
+            </dokki-topic>
         
 
-        <dokki-topic title='dokki-spoiler'>
-            <p>Displays its contents when the user expands the element.</p>
+            <dokki-topic title='dokki-spoiler'>
+                <p>Displays its contents when the user expands the element.</p>
 <h2>Samples</h2>
 <dokki-spoiler>
     <template #caption>
@@ -902,17 +917,17 @@ initially, rather than requiring the user to reveal it.</p>
 <p>The class name(s) given in this string will be appended to the &lt;dokki-spoiler&gt;
 element's class list.</p>
 
-        </dokki-topic>
+            </dokki-topic>
         
 
-        <dokki-topic title='dokki-subtopic'>
-            <p>TODO</p>
+            <dokki-topic title='dokki-subtopic'>
+                <p>TODO</p>
 
-        </dokki-topic>
+            </dokki-topic>
         
 
-        <dokki-topic title='dokki-table'>
-            <p>A dokki wapper for the standard &lt;table&gt; element, providing the features of &lt;table&gt;
+            <dokki-topic title='dokki-table'>
+                <p>A dokki wapper for the standard &lt;table&gt; element, providing the features of &lt;table&gt;
 with certain dokki-specific extensions.</p>
 <h2>Samples</h2>
 <dokki-table>
@@ -974,6 +989,7 @@ with certain dokki-specific extensions.</p>
 
 &lt;/dokki-table&gt;
 </code></pre>
+
 <h2>HTML templates</h2>
 <h3>#caption</h3>
 <p>The template's children will be displayed as the &lt;dokki-table&gt; element's caption.</p>
@@ -1058,29 +1074,29 @@ rather than requiring the user to reveal it.</p>
 <p>The class name(s) given in this string will be appended to the &lt;dokki-table&gt;
 element's class list.</p>
 
-        </dokki-topic>
+            </dokki-topic>
         
 
-        <dokki-topic title='dokki-tag'>
-            <p>TODO</p>
+            <dokki-topic title='dokki-tag'>
+                <p>TODO</p>
 
-        </dokki-topic>
+            </dokki-topic>
         
 
-        <dokki-topic title='dokki-tag-cloud'>
-            <p>TODO</p>
+            <dokki-topic title='dokki-tag-cloud'>
+                <p>TODO</p>
 
-        </dokki-topic>
+            </dokki-topic>
         
 
-        <dokki-topic title='dokki-tag-filter'>
-            <p>TODO</p>
+            <dokki-topic title='dokki-tag-filter'>
+                <p>TODO</p>
 
-        </dokki-topic>
+            </dokki-topic>
         
 
-        <dokki-topic title='dokki-tip'>
-            <p>Displays its contents as a tip to the reader.</p>
+            <dokki-topic title='dokki-tip'>
+                <p>Displays its contents as a tip to the reader.</p>
 <h2>Samples</h2>
 <dokki-tip>
     Keep that in mind.
@@ -1094,29 +1110,23 @@ element's class list.</p>
 <p>The class name(s) given in this string will be appended to the &lt;dokki-tip&gt; element's
 class list.</p>
 
-        </dokki-topic>
+            </dokki-topic>
         
 
-        <dokki-topic title='dokki-toolbar'>
-            <p>TODO</p>
+            <dokki-topic title='dokki-topic'>
+                <p>TODO</p>
 
-        </dokki-topic>
+            </dokki-topic>
         
 
-        <dokki-topic title='dokki-topic'>
-            <p>TODO</p>
+            <dokki-topic title='dokki-topics'>
+                <p>TODO</p>
 
-        </dokki-topic>
+            </dokki-topic>
         
 
-        <dokki-topic title='dokki-topics'>
-            <p>TODO</p>
-
-        </dokki-topic>
-        
-
-        <dokki-topic title='dokki-video'>
-            <p>Displays a video from YouTube.</p>
+            <dokki-topic title='dokki-video'>
+                <p>Displays a video from YouTube.</p>
 <h2>Samples</h2>
 <dokki-video src="Pjx1B7Kt9xs">
     <template #caption>
@@ -1176,11 +1186,11 @@ element's class list.</p>
 <p>For example, if the video's URL is &quot;youtube.com/watch?v=Pjx1B7Kt9xs&quot;, the ID would
 be &quot;Pjx1B7Kt9xs&quot;.</p>
 
-        </dokki-topic>
+            </dokki-topic>
         
 
-        <dokki-topic title='dokki-warning'>
-            <p>Displays its contents in a cautionary tone.</p>
+            <dokki-topic title='dokki-warning'>
+                <p>Displays its contents in a cautionary tone.</p>
 <h2>Sample</h2>
 <dokki-warning>
     This isn't recommended.
@@ -1194,56 +1204,64 @@ be &quot;Pjx1B7Kt9xs&quot;.</p>
 <p>The class name(s) given in this string will be appended to the &lt;dokki-warning&gt;
 element's class list.</p>
 
-        </dokki-topic>
+            </dokki-topic>
         
 
-        <dokki-topic title='dokki0-animated-expander'>
-            <p>TODO</p>
+            <dokki-topic title='dokki0-animated-expander'>
+                <p>TODO</p>
 
-        </dokki-topic>
+            </dokki-topic>
         
 
-        <dokki-topic title='dokki0-embedded-expandable'>
-            <p>TODO</p>
+            <dokki-topic title='dokki0-embedded-expandable'>
+                <p>TODO</p>
 
-        </dokki-topic>
+            </dokki-topic>
         
 
-        <dokki-topic title='dokki0-expansion-indicator'>
-            <p>TODO</p>
+            <dokki-topic title='dokki0-expansion-indicator'>
+                <p>TODO</p>
 
-        </dokki-topic>
+            </dokki-topic>
         
 
-        <dokki-topic title='dokki0-hash-router'>
-            <p>TODO</p>
+            <dokki-topic title='dokki0-hash-router'>
+                <p>TODO</p>
 
-        </dokki-topic>
+            </dokki-topic>
         
 
-        <dokki-topic title='dokki0-page-load-progress-bar'>
-            <p>TODO</p>
+            <dokki-topic title='dokki0-page-load-progress-bar'>
+                <p>TODO</p>
 
-        </dokki-topic>
+            </dokki-topic>
         
 
-        <dokki-topic title='dokki0-table-of-contents'>
-            <p>TODO</p>
+            <dokki-topic title='dokki0-table-of-contents'>
+                <p>TODO</p>
 
-        </dokki-topic>
+            </dokki-topic>
         
 
-        <dokki-topic title='dokki0-text-block-with-line-numbers'>
-            <p>TODO</p>
+            <dokki-topic title='dokki0-text-block-with-line-numbers'>
+                <p>TODO</p>
 
-        </dokki-topic>
+            </dokki-topic>
         
 
-        <dokki-topic title='dokki0-topic'>
-            <p>TODO</p>
+            <dokki-topic title='dokki0-toolbar'>
+                <p>TODO</p>
 
-        </dokki-topic>
+            </dokki-topic>
+        
+
+            <dokki-topic title='dokki0-topic'>
+                <p>TODO</p>
+
+            </dokki-topic>
         </dokki-topics>
+
+            </dokki-document>
 
         </template>
 

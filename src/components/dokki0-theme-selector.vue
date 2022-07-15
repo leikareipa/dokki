@@ -12,7 +12,7 @@
 
     <i :class="themes[currentThemeIdx].icon"/>
     <span style="margin-left: 1ch">
-        Switch to {{themes[((currentThemeIdx + 1) % themes.length)].name}} mode
+        {{themes[((currentThemeIdx + 1) % themes.length)].name}} mode
     </span>
 
 </a>

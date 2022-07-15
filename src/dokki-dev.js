@@ -13,6 +13,8 @@ import dokkiArea from "./components/dokki-area.vue";
 import dokkiCode from "./components/dokki-code.vue";
 import dokkiConsole from "./components/dokki-console.vue";
 import dokkiDirectory from "./components/dokki-directory.vue";
+import dokkiDocument from "./components/dokki-document.vue";
+import dokkiHeader from "./components/dokki-header.vue";
 import dokkiIframe from "./components/dokki-iframe.vue";
 import dokkiImage from "./components/dokki-image.vue";
 import dokkiItem from "./components/dokki-item.vue";
@@ -25,7 +27,6 @@ import dokkiTag from "./components/dokki-tag.vue";
 import dokkiTagCloud from "./components/dokki-tag-cloud.vue";
 import dokkiTagFilter from "./components/dokki-tag-filter.vue";
 import dokkiTip from "./components/dokki-tip.vue";
-import dokkiToolbar from "./components/dokki-toolbar.vue";
 import dokkiTopic from "./components/dokki-topic.vue";
 import dokkiTopics from "./components/dokki-topics.vue";
 import dokkiVideo from "./components/dokki-video.vue";
@@ -38,19 +39,18 @@ import dokki0PageLoadProgressBar from "./components/dokki0-page-load-progress-ba
 import dokki0TableOfContents from "./components/dokki0-table-of-contents.vue";
 import dokki0TextBlockWithLineNumbers from "./components/dokki0-text-block-with-line-numbers.vue";
 import dokki0ThemeSelector from "./components/dokki0-theme-selector.vue";
+import dokki0Toolbar from "./components/dokki0-toolbar.vue";
 import dokki0Topic from "./components/dokki0-topic.vue";
 
 export function start(args = {})
 {
     args = {
         container: document.body,
-        template: document.querySelector("#dokki-document"),
+        template: document.querySelector("#dokki"),
         ...args,
     };
 
     console.assert(args.container instanceof HTMLElement, "Invalid document container");
-
-    args.container.appendChild(document.createElement("dokki0-page-load-progress-bar"));
 
     if (args.template instanceof HTMLTemplateElement)
     {
@@ -111,6 +111,8 @@ export function start(args = {})
     .component("dokki-code", dokkiCode)
     .component("dokki-console", dokkiConsole)
     .component("dokki-directory", dokkiDirectory)
+    .component("dokki-document", dokkiDocument)
+    .component("dokki-header", dokkiHeader)
     .component("dokki-iframe", dokkiIframe)
     .component("dokki-image", dokkiImage)
     .component("dokki-item", dokkiItem)
@@ -122,9 +124,7 @@ export function start(args = {})
     .component("dokki-tag", dokkiTag)
     .component("dokki-tag-cloud", dokkiTagCloud)
     .component("dokki-tag-filter", dokkiTagFilter)
-    .component("dokki0-theme-selector", dokki0ThemeSelector)
     .component("dokki-tip", dokkiTip)
-    .component("dokki-toolbar", dokkiToolbar)
     .component("dokki-topic", dokkiTopic)
     .component("dokki-topics", dokkiTopics)
     .component("dokki-video", dokkiVideo)
@@ -136,6 +136,8 @@ export function start(args = {})
     .component("dokki0-page-load-progress-bar", dokki0PageLoadProgressBar)
     .component("dokki0-table-of-contents", dokki0TableOfContents)
     .component("dokki0-text-block-with-line-numbers", dokki0TextBlockWithLineNumbers)
+    .component("dokki0-theme-selector", dokki0ThemeSelector)
+    .component("dokki0-toolbar", dokki0Toolbar)
     .component("dokki0-topic", dokki0Topic)
 
     // Register any user-provided custom components.

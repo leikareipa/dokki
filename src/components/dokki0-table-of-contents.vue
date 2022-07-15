@@ -19,7 +19,7 @@
                     
                     <span class="idx">
                         
-                        {{topicIdx+1}}.&nbsp;
+                        {{topicIdx+1}}&nbsp;
                         
                     </span>
                     
@@ -37,7 +37,7 @@
                     
                     <span class="idx">
                         
-                        {{topicIdx+1}}.{{subtopicIdx+1}}.&nbsp;
+                        {{topicIdx+1}}.{{subtopicIdx+1}}&nbsp;
                         
                     </span>
                     
@@ -82,7 +82,7 @@
             padding: var(--dokkiCSS-navibar-item-padding-vertical) var(--dokkiCSS-navibar-item-padding-horizontal);
             white-space: normal;
             text-decoration: none;
-            color: var(--dokkiCSS-page-secondary-fg-color);
+            color: var(--dokkiCSS-page-link-color);
             display: flex;
             position: relative;
 
@@ -93,13 +93,12 @@
 
             &.subtopic
             {
-                padding-left: calc(var(--dokkiCSS-navibar-item-padding-horizontal) + 1em);
+                padding-left: calc(var(--dokkiCSS-navibar-item-padding-horizontal) + 0.75rem);
                 font-size: 95%;
             }
 
             .idx
             {
-                display: none !important;
                 color: var(--dokkiCSS-page-inert-fg-color);
             }
         }

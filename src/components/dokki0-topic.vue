@@ -27,7 +27,7 @@
 
         <span class="idx">
 
-            {{this.idx}}.
+            {{this.idx}}
 
         </span>
         
@@ -49,6 +49,11 @@
     margin: 0;
     width: 100%;
     border-radius: 0;
+
+    .idx
+    {
+        color: var(--dokkiCSS-page-inert-fg-color);
+    }
 
     p
     {
@@ -110,6 +115,8 @@
 
     h2
     {
+        margin-top: 0 !important;
+        padding-top: calc(var(--dokkiCSS-topic-heading-vertical-margin) - 1rem) !important;
         font-size: 150%;
     }
 

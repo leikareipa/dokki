@@ -13,9 +13,8 @@
 <style lang="scss">
 .dokki0-page-load-progress-bar
 {
-    position: fixed;
-    z-index: 9999999;
-    top: 0;
+    position: absolute;
+    bottom: 0;
     left: 0;
     width: 0;
     height: 3px;

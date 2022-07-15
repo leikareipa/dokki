@@ -1,18 +1,20 @@
 /*
- * 2021 Tarpeeksi Hyvae Soft
+ * 2022 Tarpeeksi Hyvae Soft
  *
  * Software: dokki
  *
  */
 
 <template>
-<aside class="dokki-toolbar">
+<header class="dokki-header">
 
-    <header>
-            
-        {{caption}}
+    <dokki0-page-load-progress-bar/>
 
-    </header>
+    <div class="title">
+
+        <slot name="caption"/>
+    
+    </div>
 
     <div class="widgets" ref="widgets">
 
@@ -22,50 +24,66 @@
 
     </div>
 
-    <dokki0-table-of-contents v-if="areTopicsReady"/>
-
-</aside>
+</header>
 </template>
 
 <style lang="scss">
-.dokki-toolbar
+.dokki-header
 {
-    box-sizing: border-box;
-    position: fixed;
-    z-index: 3;
-    left: 0;
-    width: var(--dokkiCSS-side-panel-width);
-    text-align: left;
-    overflow-y: auto;
-    height: 100%;
+    gap: 0 1.85em;
+    position: relative;
+    display: flex;
+    align-items: center;
+    font-weight: var(--dokkiCSS-bold-text-weight);
+    padding: 1em;
+    border-bottom: 1px solid var(--dokkiCSS-page-primary-line-color);
     background-color: var(--dokkiCSS-page-secondary-bg-color);
-    color: var(--dokkiCSS-page-secondary-fg-color);
+    flex-wrap: wrap;
+    margin-top: -1em !important;
 
-    header
+    @media only screen and (max-width: 1500px)
     {
-        position: relative;
-        width: 100%;
-        padding: 20px;
-        box-sizing: border-box;
-        line-height: var(--dokkiCSS-content-line-height);
-        font-weight: var(--dokkiCSS-bold-text-weight);
+        border-bottom: none;
+    }
+
+    .title
+    {
+        margin-top: 1em;
+        padding-right: 1.85em;
+        margin-right: auto;
+        font-size: 105%;
     }
 
     .widgets
     {
-        padding: 10px 0;
+        gap: 1em 1.85em;
+        margin-top: 1em;
+        display: flex;
+        flex-wrap: wrap;
+        font-weight: normal;
+        color: var(--dokkiCSS-page-inert-fg-color);
+
+        body[data-dokki-layout="vertical-narrow"] &
+        {
+            margin-bottom: 0.5em;
+        }
 
         .dokki-user-element
         {
             align-items: center;
             margin: 0;
-            padding: 12px 20px;
             text-align: left;
             position: relative;
             text-overflow: ellipsis;
             box-sizing: border-box;
             display: flex;
             align-items: center;
+            white-space: nowrap;
+        }
+
+        *:first-letter
+        {
+            text-transform: uppercase;
         }
 
         .dokki-user-element.clickable
@@ -75,29 +93,13 @@
 
         .dokki-user-element.clickable:hover
         {
-            background-color: var(--dokkiCSS-embedded-auxiliary-color);
+            color: var(--dokkiCSS-page-primary-fg-color) !important;
         }
     }
 
-    body[data-dokki-layout="horizontal-wide"] &
+    .hamburger-icon
     {
-        left: calc(50% - var(--dokkiCSS-topics-container-max-width)*0.5 - var(--dokkiCSS-side-panel-width));
-    }
-
-    body[data-dokki-layout^="vertical"] &
-    {
-        width: 100%;
-        height: unset;
-        position: relative;
-        box-sizing: border-box;
-        border: none;
-        z-index: 0;
-
-        .widgets,
-        .dokki0-table-of-contents
-        {
-            display: none;
-        }
+        margin-left: auto;
     }
 }
 </style>
@@ -105,9 +107,6 @@
 <script>
 export default {
     computed: {
-        areTopicsReady() {
-            return this.$store.state.areTopicsReady;
-        },
         caption() {
             return (
                 this.$slots["caption"]?.()[0]?.children ||
@@ -115,10 +114,9 @@ export default {
             );
         },
     },
-    created() {
-        document.title = this.caption;
-    },
     mounted() {
+        document.title = this.caption;
+
         const widgetEls = (this.$refs["widgets"]?.children || []);
         for (let i = 0; i < widgetEls.length; i++)
         {

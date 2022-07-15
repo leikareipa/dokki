@@ -122,16 +122,20 @@
         </style>
     </head>
     <body>
-        <template id="dokki-document">
+        <template id="dokki">
 
-            <dokki-toolbar>
-                <template #caption>
-                    dokki &bull; API reference
-                </template>
-            </dokki-toolbar>
-        
-            <dokki-topics>
-            </dokki-topics>
+            <dokki-document>
+                    
+                <dokki-header>
+                    <template #caption>
+                        dokki &bull; API reference
+                    </template>
+                </dokki-header>
+            
+                <dokki-topics>
+                </dokki-topics>
+
+            </dokki-document>
 
         </template>
 

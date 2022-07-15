@@ -107,16 +107,18 @@ const captionableDokkiTags = [
             : "";
 
         bodyEl.insertAdjacentHTML("beforeend", `
-            <template id="dokki-document">
-                <dokki-toolbar>
-                    <template #caption>
-                        ${docTitle}
-                    </template>
-                    ${widgetsTemplate}
-                </dokki-toolbar>
-                <dokki-topics>
-                    ${contentEl.childNodes.map(el=>el.outerHTML).join("\n")}
-                </dokki-topics>
+            <template id="dokki">
+                <dokki-document>
+                    <dokki-header>
+                        <template #caption>
+                            ${docTitle}
+                        </template>
+                        ${widgetsTemplate}
+                    </dokki-header>
+                    <dokki-topics>
+                        ${contentEl.childNodes.map(el=>el.outerHTML).join("\n")}
+                    </dokki-topics>
+                </dokki-document>
             </template>
         `);
 

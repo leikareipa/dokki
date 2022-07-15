@@ -7,10 +7,28 @@
 
 <template>
 <dokki0-hash-router/>
-<main class="dokki-topics" :class="{'skeletonized': !areTopicsReady}">
-    <slot/>
-</main>
+
+<div class="container">
+
+    <dokki0-toolbar/>
+
+    <main class="dokki-topics" :class="{'skeletonized': !areTopicsReady}">
+
+        <slot/>
+
+    </main>
+
+</div>
 </template>
+
+<style scoped lang="scss">
+.container
+{
+    display: flex;
+    position: relative;
+    flex: 1;
+}
+</style>
 
 <style lang="scss">
 .dokki-topics
@@ -25,9 +43,9 @@
     align-items: center;
     text-align: left;
     position: relative;
-    left: var(--dokkiCSS-side-panel-width);
     z-index: 1;
     box-sizing: border-box;
+    flex: 1;
 
     &.skeletonized
     {
@@ -53,15 +71,8 @@
         }
     }
 
-    body[data-dokki-layout="horizontal-wide"] &
-    {
-        left: 50%;
-        transform: translateX(-50%);
-    }
-
     body[data-dokki-layout^="vertical"] &
     {
-        left: var(--dokkiCSS-document-horizontal-left-start);
         padding-left: var(--dokkiCSS-header-bottom-margin);
         padding-right: var(--dokkiCSS-header-bottom-margin);
         padding-bottom: 16px;
@@ -70,7 +81,6 @@
 
     body[data-dokki-layout="vertical-narrow"] &
     {
-        left: var(--dokkiCSS-document-horizontal-left-start);
         border: none;
         border-radius: 0;
     }
@@ -82,7 +92,7 @@ export default {
     computed: {
         areTopicsReady() {
             return this.$store.state.areTopicsReady;
-        }
+        },
     },
     watch: {
         areTopicsReady(are) {

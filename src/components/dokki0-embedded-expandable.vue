@@ -176,7 +176,6 @@
         {
             .type
             {
-                color: var(--dokkiCSS-page-inert-fg-color);
                 font-size: 95%;
             
                 .icon

@@ -30,300 +30,304 @@
         </style>
     </head>
     <body>
-        <template id="dokki-document">
-            
-            <dokki-toolbar>
-                <template #caption>
-                    Sample dokki manual
-                </template>
-            </dokki-toolbar>
-        
-            <dokki-topics>
+        <template id="dokki">
 
-                <dokki-tag-filter>
-                </dokki-tag-filter>
+            <dokki-document>
 
-                <dokki-topic title="Topic">
-                    The <em>dokki-topic</em> element generates a <em>h1</em> heading and
-                    appends its title to the navbar.
-                    <dokki-lorem>
-                    </dokki-lorem>
+                <dokki-header>
+                    <template #caption>
+                        Sample dokki manual
+                    </template>
+                    <template #widgets>
+                    </template>
+                </dokki-header>
 
-                    <dokki-subtopic title="Subtopic">
-                        The <em>dokki-subtopic</em> element generates a <em>h2</em> heading
-                        and appends its title to the navbar as a child of the parent
-                        <em>dokki-topic</em> element.
+                <dokki-topics>
+                    <dokki-tag-filter>
+                    </dokki-tag-filter>
+    
+                    <dokki-topic title="Topic">
+                        The <em>dokki-topic</em> element generates a <em>h1</em> heading and
+                        appends its title to the navbar.
                         <dokki-lorem>
                         </dokki-lorem>
-                    </dokki-subtopic>
-
-                    <dokki-item>
-                        Item
-                    </dokki-item>
-
-                    <span>
-                        The <em>dokki-item</em> element generates an inline <em>h3</em> heading.
-                        Its title will not be appended to the navbar.
-                    </span>
-                    
-                    <dokki-lorem>
-                    </dokki-lorem>
-
-                    <h1>Plain &lt;h1&gt;</h1>
-                    Lorem ipsum.
-                    <dokki-lorem>
-                    </dokki-lorem>
-
-                    <h2>Plain &lt;h2&gt;</h2>
-                    Lorem ipsum.
-                    <dokki-lorem>
-                    </dokki-lorem>
-
-                    <h3>Plain &lt;h3&gt;</h3>
-                    Lorem ipsum.
-                    <dokki-lorem>
-                    </dokki-lorem>
-
-                    <ul>
-                        <li>Lorem</li>
-                        <li>Ipsum</li>
-                        <li>Lorem ipsum</li>
-                    </ul>
-
-                    <dokki-lorem>
-                    </dokki-lorem>
-                </dokki-topic>
-
-                <dokki-topic title="Long title. Phasellus viverra ipsum id turpis pretium suscipit.
-                                    Suspendisse potenti. Nullam a bibendum dui. Pellentesque sem nunc,
-                                    feugiat sed enim ut, vestibulum sollicitudin nulla.">
-                    <dokki-lorem>
-                    </dokki-lorem>
-
-                    <dokki-lorem>
-                    </dokki-lorem>
-                </dokki-topic>
-
-                <dokki-topic title="Interjections">
-                    <dokki-lorem>
-                    </dokki-lorem>
-
-                    <dokki-tip>
-                        Phasellus viverra ipsum id turpis pretium suscipit. Suspendisse potenti. Nullam a bibendum dui.
-                        Integer lacinia posuere massa, id aliquet leo finibus in. Proin fringilla, risus sit amet maximus
-                        facilisis, risus lorem egestas augue, id mattis mauris lectus nec dui.
-                    </dokki-tip>
-
-                    <dokki-lorem>
-                    </dokki-lorem>
-
-                    <dokki-warning>
-                        Praesent blandit augue orci, vitae fringilla dui semper vel. Aliquam molestie porta quam, nec
-                        faucibus ex efficitur ut. Pellentesque sem nunc, feugiat sed enim ut, vestibulum sollicitudin nulla.
-                        Proin placerat arcu non varius tristique.
-                    </dokki-warning>
-
-                    <dokki-lorem>
-                    </dokki-lorem>
-                </dokki-topic>
-
-                <dokki-topic title="Embeddables">
-                    <dokki-lorem>
-                    </dokki-lorem>
-
-                    <dokki-image
-                        width="634"
-                        height="480"
-                        src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ab/William_Merritt_Chase_-_Seaside_Flowers%2C_1890s.jpg/634px-William_Merritt_Chase_-_Seaside_Flowers%2C_1890s.jpg"
-                    >
-
-                        <template #caption>
-                            "Seaside Flowers" (William Merritt Chase, 1890s)
-                        </template>
-
-                    </dokki-image>
-
-                    <dokki-lorem>
-                    </dokki-lorem>
-
-                    <dokki-code syntax="c">
-                        <template #caption>
-                            A sample program listing
-                        </template>
-                        <template #code>
-                            <pre>
-                                int main(void)
-                                {
-                                    const char *str = "Hello there.";
-                                    printf("%s\n", str);
-                                    return 0;
-                                }
-                            </pre>
-                        </template>
-                        <template #output>
-                            <dokki-output>
-                                Hello there.
-                            </dokki-output>
-                        </template>
-                    </dokki-code>
-                    
-                    <dokki-lorem>
-                    </dokki-lorem>
-
-                    <dokki-code syntax="c">
-                        <template #caption>
-                            A sample program listing
-                        </template>
-                        <template #code>
-                            <pre>
-                                int main(void)
-                                {
-                                    const char *str = "Hello there.";
-                                    printf("%s\n", str);
-                                    return 0;
-                                }
-                            </pre>
-                        </template>
-                    </dokki-code>
-                    
-                    <dokki-lorem>
-                    </dokki-lorem>
-
-                    <dokki-code headerless>
-                        <template #code>
-                            <pre>
-                                int main(void)
-                                {
-                                    const char *str = "Hello there.";
-                                    printf("%s\n", str);
-                                    return 0;
-                                }
-                            </pre>
-                        </template>
-                    </dokki-code>
-
-                    <dokki-lorem>
-                    </dokki-lorem>
-
-                    <dokki-spoiler>
-                        <template #caption>
-                            Secret information
-                        </template>
-                        Hello there.
-                    </dokki-spoiler>
-
-                    <dokki-lorem>
-                    </dokki-lorem>
-
-                    <dokki-directory>
-                        <template #caption>
-                            Kelpo's interface code files
-                        </template>
-                        <template #structure>
-                            'src': {
-                                'kelpo_interface': {
-                                    'interface.c': {
-                                        '/content': 'code',
-                                        '/href': 'https://github.com/leikareipa/kelpo/blob/master/src/kelpo_interface/interface.c',
-                                    },
-                                    'interface.h': {
-                                        '/content': 'code',
-                                        '/href': 'https://github.com/leikareipa/kelpo/blob/master/src/kelpo_interface/interface.h',
-                                    },
-                                },
-                            }
-                        </template>
-                    </dokki-directory>
-
-                    <dokki-lorem>
-                    </dokki-lorem>
-
-                    <dokki-iframe src='https://www.wikipedia.org'
-                                  height="400px">
-                    </dokki-iframe>
-
-                    <dokki-lorem>
-                    </dokki-lorem>
-
-                    <dokki-area>
+    
+                        <dokki-subtopic title="Subtopic">
+                            The <em>dokki-subtopic</em> element generates a <em>h2</em> heading
+                            and appends its title to the navbar as a child of the parent
+                            <em>dokki-topic</em> element.
+                            <dokki-lorem>
+                            </dokki-lorem>
+                        </dokki-subtopic>
+    
+                        <dokki-item>
+                            Item
+                        </dokki-item>
+    
+                        <span>
+                            The <em>dokki-item</em> element generates an inline <em>h3</em> heading.
+                            Its title will not be appended to the navbar.
+                        </span>
+                        
                         <dokki-lorem>
                         </dokki-lorem>
+    
+                        <h1>Plain &lt;h1&gt;</h1>
+                        Lorem ipsum.
+                        <dokki-lorem>
+                        </dokki-lorem>
+    
+                        <h2>Plain &lt;h2&gt;</h2>
+                        Lorem ipsum.
+                        <dokki-lorem>
+                        </dokki-lorem>
+    
+                        <h3>Plain &lt;h3&gt;</h3>
+                        Lorem ipsum.
+                        <dokki-lorem>
+                        </dokki-lorem>
+    
+                        <ul>
+                            <li>Lorem</li>
+                            <li>Ipsum</li>
+                            <li>Lorem ipsum</li>
+                        </ul>
+    
+                        <dokki-lorem>
+                        </dokki-lorem>
+                    </dokki-topic>
+    
+                    <dokki-topic title="Long title. Phasellus viverra ipsum id turpis pretium suscipit.
+                                        Suspendisse potenti. Nullam a bibendum dui. Pellentesque sem nunc,
+                                        feugiat sed enim ut, vestibulum sollicitudin nulla.">
+                        <dokki-lorem>
+                        </dokki-lorem>
+    
+                        <dokki-lorem>
+                        </dokki-lorem>
+                    </dokki-topic>
+    
+                    <dokki-topic title="Interjections">
+                        <dokki-lorem>
+                        </dokki-lorem>
+    
+                        <dokki-tip>
+                            Phasellus viverra ipsum id turpis pretium suscipit. Suspendisse potenti. Nullam a bibendum dui.
+                            Integer lacinia posuere massa, id aliquet leo finibus in. Proin fringilla, risus sit amet maximus
+                            facilisis, risus lorem egestas augue, id mattis mauris lectus nec dui.
+                        </dokki-tip>
+    
+                        <dokki-lorem>
+                        </dokki-lorem>
+    
+                        <dokki-warning>
+                            Praesent blandit augue orci, vitae fringilla dui semper vel. Aliquam molestie porta quam, nec
+                            faucibus ex efficitur ut. Pellentesque sem nunc, feugiat sed enim ut, vestibulum sollicitudin nulla.
+                            Proin placerat arcu non varius tristique.
+                        </dokki-warning>
+    
+                        <dokki-lorem>
+                        </dokki-lorem>
+                    </dokki-topic>
+    
+                    <dokki-topic title="Embeddables">
+                        <dokki-lorem>
+                        </dokki-lorem>
+    
+                        <dokki-image
+                            width="634"
+                            height="480"
+                            src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ab/William_Merritt_Chase_-_Seaside_Flowers%2C_1890s.jpg/634px-William_Merritt_Chase_-_Seaside_Flowers%2C_1890s.jpg"
+                        >
+    
+                            <template #caption>
+                                "Seaside Flowers" (William Merritt Chase, 1890s)
+                            </template>
+    
+                        </dokki-image>
+    
+                        <dokki-lorem>
+                        </dokki-lorem>
+    
+                        <dokki-code syntax="c">
+                            <template #caption>
+                                A sample program listing
+                            </template>
+                            <template #code>
+                                <pre>
+                                    int main(void)
+                                    {
+                                        const char *str = "Hello there.";
+                                        printf("%s\n", str);
+                                        return 0;
+                                    }
+                                </pre>
+                            </template>
+                            <template #output>
+                                <dokki-output>
+                                    Hello there.
+                                </dokki-output>
+                            </template>
+                        </dokki-code>
+                        
+                        <dokki-lorem>
+                        </dokki-lorem>
+    
+                        <dokki-code syntax="c">
+                            <template #caption>
+                                A sample program listing
+                            </template>
+                            <template #code>
+                                <pre>
+                                    int main(void)
+                                    {
+                                        const char *str = "Hello there.";
+                                        printf("%s\n", str);
+                                        return 0;
+                                    }
+                                </pre>
+                            </template>
+                        </dokki-code>
+                        
+                        <dokki-lorem>
+                        </dokki-lorem>
+    
+                        <dokki-code headerless>
+                            <template #code>
+                                <pre>
+                                    int main(void)
+                                    {
+                                        const char *str = "Hello there.";
+                                        printf("%s\n", str);
+                                        return 0;
+                                    }
+                                </pre>
+                            </template>
+                        </dokki-code>
+    
+                        <dokki-lorem>
+                        </dokki-lorem>
+    
+                        <dokki-spoiler>
+                            <template #caption>
+                                Secret information
+                            </template>
+                            Hello there.
+                        </dokki-spoiler>
+    
+                        <dokki-lorem>
+                        </dokki-lorem>
+    
+                        <dokki-directory>
+                            <template #caption>
+                                Kelpo's interface code files
+                            </template>
+                            <template #structure>
+                                'src': {
+                                    'kelpo_interface': {
+                                        'interface.c': {
+                                            '/content': 'code',
+                                            '/href': 'https://github.com/leikareipa/kelpo/blob/master/src/kelpo_interface/interface.c',
+                                        },
+                                        'interface.h': {
+                                            '/content': 'code',
+                                            '/href': 'https://github.com/leikareipa/kelpo/blob/master/src/kelpo_interface/interface.h',
+                                        },
+                                    },
+                                }
+                            </template>
+                        </dokki-directory>
+    
+                        <dokki-lorem>
+                        </dokki-lorem>
+    
+                        <dokki-iframe src='https://www.wikipedia.org'
+                                        height="400px">
+                        </dokki-iframe>
+    
+                        <dokki-lorem>
+                        </dokki-lorem>
+    
+                        <dokki-area>
+                            <dokki-lorem>
+                            </dokki-lorem>
+                            <p>
+                                &mdash; Lorem ipsum
+                            </p>
+                        </dokki-area>
+    
+                        <dokki-lorem>
+                        </dokki-lorem>
+    
                         <p>
-                            &mdash; Lorem ipsum
+                            Tags:
+                            <dokki-tag>sample</dokki-tag>
+                            <dokki-tag>result</dokki-tag>
                         </p>
-                    </dokki-area>
+    
+                        <dokki-lorem>
+                        </dokki-lorem>
+    
+                        <dokki-tag-cloud>
+                            <template #caption>
+                                The tags in this document
+                            </template>
+                        </dokki-tag-cloud>
+    
+                        <dokki-lorem>
+                        </dokki-lorem>
+    
+                        <dokki-video platform="youtube" src="ZgWGmggi5Xo">
+                            <template #caption>
+                                Sriracha Mayoo & Curly Fries
+                            </template>
+                        </dokki-video>
+                        
+                        <dokki-lorem>
+                        </dokki-lorem>
+    
+                        <dokki-table>
+                            <template #caption>
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit
+                            </template>
+                            <template #table>
+                                <tr>
+                                    <th>One</th>
+                                    <th>Two</th>
+                                    <th>Three</th>
+                                </tr>
+                                <tr>
+                                    <td>1st</td>
+                                    <td>2nd</td>
+                                    <td>3rd</td>
+                                </tr>
+                                <tr>
+                                    <td>1nd</td>
+                                    <td>2rd</td>
+                                    <td>3st</td>
+                                </tr>
+                            </template>
+                        </dokki-table>
+    
+                        <dokki-lorem>
+                        </dokki-lorem>
+                    </dokki-topic>
+    
+                    <dokki-topic title="Credits">
+                        <p>
+                            Dokki is being developed by <a href="https://www.tarpeeksihyvaesoft.com">Tarpeeksi Hyvae Soft</a>
+                            and can be found on <a href="https://github.com/leikareipa/dokki">GitHub</a>.
+                        </p>
+    
+                        <dokki-lorem>
+                        </dokki-lorem>
+    
+                        <dokki-lorem>
+                        </dokki-lorem>
+                    </dokki-topic>
+                </dokki-topics>
 
-                    <dokki-lorem>
-                    </dokki-lorem>
-
-                    <p>
-                        Tags:
-                        <dokki-tag>sample</dokki-tag>
-                        <dokki-tag>result</dokki-tag>
-                    </p>
-
-                    <dokki-lorem>
-                    </dokki-lorem>
-
-                    <dokki-tag-cloud>
-                        <template #caption>
-                            The tags in this document
-                        </template>
-                    </dokki-tag-cloud>
-
-                    <dokki-lorem>
-                    </dokki-lorem>
-
-                    <dokki-video platform="youtube" src="ZgWGmggi5Xo">
-                        <template #caption>
-                            Sriracha Mayoo & Curly Fries
-                        </template>
-                    </dokki-video>
-                    
-                    <dokki-lorem>
-                    </dokki-lorem>
-
-                    <dokki-table>
-                        <template #caption>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit
-                        </template>
-                        <template #table>
-                            <tr>
-                                <th>One</th>
-                                <th>Two</th>
-                                <th>Three</th>
-                            </tr>
-                            <tr>
-                                <td>1st</td>
-                                <td>2nd</td>
-                                <td>3rd</td>
-                            </tr>
-                            <tr>
-                                <td>1nd</td>
-                                <td>2rd</td>
-                                <td>3st</td>
-                            </tr>
-                        </template>
-                    </dokki-table>
-
-                    <dokki-lorem>
-                    </dokki-lorem>
-                </dokki-topic>
-
-                <dokki-topic title="Credits">
-                    <p>
-                        Dokki is being developed by <a href="https://www.tarpeeksihyvaesoft.com">Tarpeeksi Hyvae Soft</a>
-                        and can be found on <a href="https://github.com/leikareipa/dokki">GitHub</a>.
-                    </p>
-
-                    <dokki-lorem>
-                    </dokki-lorem>
-
-                    <dokki-lorem>
-                    </dokki-lorem>
-                </dokki-topic>
-
-            </dokki-topics>
+            </dokki-document>
 
         </template>
 

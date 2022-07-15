@@ -12,7 +12,7 @@
 
         <span class="idx">
 
-            {{parentIdx}}.{{idx}}.
+            {{parentIdx}}.{{idx}}
 
         </span>
 
@@ -29,6 +29,14 @@
 .dokkiCSS-anchor.subtopic
 {
     top: calc(-2 * var(--dokkiCSS-topic-vertical-padding));
+}
+
+.dokki-subtopic
+{
+    .idx
+    {
+        color: var(--dokkiCSS-page-inert-fg-color);
+    }
 }
 </style>
 
