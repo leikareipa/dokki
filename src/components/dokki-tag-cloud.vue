@@ -50,11 +50,6 @@
     {
         display: flex;
         flex-wrap: wrap;
-
-        body[data-dokki-layout^="vertical"] &
-        {
-            justify-content: center;
-        }
     }
 }
 </style>
