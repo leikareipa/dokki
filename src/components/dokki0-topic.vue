@@ -145,8 +145,16 @@
 
         .dokkiCSS-topic-title
         {
-            hyphens: auto;
             margin-bottom: 0;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4
+        {
+            hyphens: auto;
+            overflow-wrap: break-word;
         }
     }
 }

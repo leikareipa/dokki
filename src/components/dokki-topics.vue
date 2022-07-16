@@ -36,6 +36,7 @@
     top: 0;
     padding-bottom: 100vh;
     width: calc(100% - var(--dokkiCSS-side-panel-width));
+    min-width: 0;
     max-width: var(--dokkiCSS-topics-container-max-width);
     background-color: transparent;
     display: flex;

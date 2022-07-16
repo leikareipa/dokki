@@ -40,6 +40,7 @@
     background-color: var(--dokkiCSS-page-secondary-bg-color);
     flex-wrap: wrap;
     margin-top: -1rem !important;
+    overflow: auto;
 
     @media only screen and (max-width: 1500px)
     {

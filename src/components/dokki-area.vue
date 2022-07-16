@@ -16,6 +16,7 @@
 .dokki-area
 {
     width: 100%;
+    overflow: auto;
     box-sizing: border-box;
     padding: var(--dokkiCSS-embedded-vertical-padding) var(--dokkiCSS-embedded-horizontal-padding);
     background-color: var(--dokkiCSS-embedded-auxiliary-color);
