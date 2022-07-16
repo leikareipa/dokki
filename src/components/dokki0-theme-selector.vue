@@ -6,17 +6,39 @@
  */
 
 <template>
-<a class="dokki0-theme-selector"
-   ref="themeSelector"
-   @click="set_current_theme(themes[(currentThemeIdx + 1) % themes.length].name)">
+<dokki-user-widget clickable>
 
-    <i :class="themes[currentThemeIdx].icon"/>
-    <span style="margin-left: 1ch">
-        {{themes[((currentThemeIdx + 1) % themes.length)].name}} mode
-    </span>
+    <a class="theme-selector"
+       ref="themeSelector"
+       @click="set_current_theme(themes[(currentThemeIdx + 1) % themes.length])"
+    >
 
-</a>
+        <i class="widget-icon far fa-lightbulb"/>
+
+        <span class="label">
+
+            {{themes[((currentThemeIdx + 1) % themes.length)]}} mode
+
+        </span>
+
+    </a>
+</dokki-user-widget>
 </template>
+
+<style scoped lang="scss">
+.theme-selector
+{
+    .label
+    {
+        display: inline-block;
+
+        &::first-letter
+        {
+            text-transform: uppercase;
+        }
+    }
+}
+</style>
 
 <script>
 export default {
@@ -24,10 +46,7 @@ export default {
     {
         return {
             currentThemeIdx: 0,
-            themes: [
-                {name: "dark", icon: "fas fa-lightbulb"},
-                {name: "light", icon: "far fa-lightbulb"},
-            ],
+            themes: ["dark", "light"],
         }
     },
     created()
@@ -39,8 +58,8 @@ export default {
     {
         set_current_theme(themeName = "")
         {
-            this.currentThemeIdx = Math.max(0, this.themes.findIndex(theme=>theme.name == themeName));
-            const newThemeName = this.themes[this.currentThemeIdx].name;
+            this.currentThemeIdx = Math.max(0, this.themes.findIndex(theme=>theme == themeName));
+            const newThemeName = this.themes[this.currentThemeIdx];
             document.body.dataset.dokkiTheme = newThemeName;
             window.sessionStorage.setItem("dokki:theme", newThemeName);
         },

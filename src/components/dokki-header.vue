@@ -75,7 +75,7 @@
             font-size: 90%;
         }
 
-        .dokki-user-element
+        .dokki-user-widget
         {
             align-items: center;
             margin: 0;
@@ -86,26 +86,22 @@
             display: flex;
             align-items: baseline;
             white-space: nowrap;
-        }
 
-        .dokki-user-element > i
-        {
-            font-size: 0.875em;
-        }
+            .widget-icon
+            {
+                margin-right: 0.6em;
+                font-size: 0.875em;
+            }
 
-        *:first-letter
-        {
-            text-transform: uppercase;
-        }
-
-        .dokki-user-element.clickable
-        {
-            cursor: pointer;
-        }
-
-        .dokki-user-element.clickable:hover
-        {
-            color: var(--dokkiCSS-page-primary-fg-color) !important;
+            &.clickable
+            {
+                cursor: pointer;
+                
+                &:hover
+                {
+                    color: var(--dokkiCSS-page-primary-fg-color) !important;
+                }
+            }
         }
     }
 
@@ -128,17 +124,6 @@ export default {
     },
     mounted() {
         document.title = this.caption;
-
-        const widgetEls = (this.$refs["widgets"]?.children || []);
-        for (let i = 0; i < widgetEls.length; i++)
-        {
-            const el = widgetEls[i];
-            el.style.zIndex = `${widgetEls.length-i}`;
-            el.classList.add("dokki-user-element");
-            if (el.tagName === "A") {
-                el.classList.add("clickable");
-            }
-        }
     },
 }
 </script>

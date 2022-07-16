@@ -29,6 +29,7 @@ import dokkiTagFilter from "./components/dokki-tag-filter.vue";
 import dokkiTip from "./components/dokki-tip.vue";
 import dokkiTopic from "./components/dokki-topic.vue";
 import dokkiTopics from "./components/dokki-topics.vue";
+import dokkiUserWidget from "./components/dokki-user-widget.vue";
 import dokkiVideo from "./components/dokki-video.vue";
 import dokkiWarning from "./components/dokki-warning.vue";
 import dokki0AnimatedExpander from "./components/dokki0-animated-expander.vue";
@@ -127,6 +128,7 @@ export function start(args = {})
     .component("dokki-tip", dokkiTip)
     .component("dokki-topic", dokkiTopic)
     .component("dokki-topics", dokkiTopics)
+    .component("dokki-user-widget", dokkiUserWidget)
     .component("dokki-video", dokkiVideo)
     .component("dokki-warning", dokkiWarning)
     .component("dokki0-animated-expander", dokki0AnimatedExpander)
