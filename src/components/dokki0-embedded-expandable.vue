@@ -29,7 +29,7 @@
 
                 <span class="icon" v-if="icon !== undefined" :title="title">
                 
-                    <i :class="icon"/>
+                    <i class="fa-sm" :class="icon"/>
                 
                 </span>
 
@@ -95,7 +95,7 @@
     border-radius: var(--dokkiCSS-embedded-border-radius);
     background-color: var(--dokkiCSS-page-secondary-bg-color);
     overflow: hidden;
-    margin: 20px 0;
+    margin: 22px 0;
 
     &:not(.headerless),
     &.has-after
@@ -164,19 +164,24 @@
 
         body[data-dokki-theme="light"] &
         {
-            border-top: 1px solid white;
+            /* We're using 'box-shadow' to create a top border - I've seen Firefox's rendering
+               screwing up with 'border-top' here, so let's avoid it.*/
+            box-shadow: inset 0 1px 0 white;
         }
 
         body[data-dokki-theme="dark"] &
         {
-            border-top: 1px solid #292929;
+            /* We're using 'box-shadow' to create a top border - I've seen Firefox's rendering
+               screwing up with 'border-top' here, so let's avoid it.*/
+            box-shadow: inset 0 1px 0 #292929;
         }
 
         .caption
         {
             .type
             {
-                font-size: 95%;
+                font-size: 90%;
+                color: var(--dokkiCSS-page-inert-fg-color);
             
                 .icon
                 {
@@ -187,7 +192,7 @@
             .label
             {
                 display: block;
-                margin-top: 2px;
+                margin-top: 3px;
             }
         }
 
