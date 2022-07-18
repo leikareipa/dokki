@@ -29,7 +29,7 @@
 
                 <span class="icon" v-if="icon !== undefined" :title="title">
                 
-                    <i class="fa-sm" :class="icon"/>
+                    <i :class="icon"/>
                 
                 </span>
 
