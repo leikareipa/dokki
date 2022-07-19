@@ -12,7 +12,7 @@
    }">
 
     <header>
-        
+
         <div class="bar"/>
 
         <i class="fas fa-exclamation-triangle"/>
@@ -34,7 +34,7 @@
 .bar
 {
     height: 100%;
-    background-color: indianred;
+    background-color: firebrick;
     width: 0.6em;
     position: absolute;
     top: 0;
@@ -46,6 +46,7 @@
 <style lang="scss">
 .dokki-warning
 {
+    color: firebrick;
     display: flex;
     align-items: stretch;
     background-color: var(--dokkiCSS-embedded-auxiliary-color);
@@ -66,7 +67,6 @@
 
     header
     {
-        color: indianred;
         position: relative;
         padding-left: calc(16px + 0.6em);
         line-height: var(--dokkiCSS-content-line-height);
