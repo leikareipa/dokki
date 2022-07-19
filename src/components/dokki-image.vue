@@ -8,7 +8,7 @@
 <template>
 <dokki0-embedded-expandable
     class-name="dokki-image"
-    :has-content="(src !== '//about:blank')"
+    :has-content="(hasSrc || hasContent)"
     icon="fas fa-image"
     title="Image"
 >
@@ -21,7 +21,7 @@
 
     <template #content>
 
-        <img
+        <img v-if="hasSrc"
             :width="width"
             :height="height"
             :src="src"
@@ -30,6 +30,8 @@
                 'dokkiCSS-pixelated-scale': hasPixelated,
             }"
         >
+
+        <slot v-else-if="hasContent" name="content"/>
 
     </template>
     
@@ -94,7 +96,17 @@ export default {
         hasPixelated()
         {
             return (this.$props.pixelatedScale !== undefined);
-        }
+        },
+        hasSrc()
+        {
+            return (this.$props.src !== "//about:blank");
+        },
+        hasContent() {
+            return (
+                (typeof this.$slots["content"] === "function") &&
+                this.$slots["content"]().some(c=>c.children.length)
+            );
+        },
     },
 }
 </script>
