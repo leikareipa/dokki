@@ -63,8 +63,8 @@ body,
     --dokkiCSS-page-primary-fg-color: #202020;
     --dokkiCSS-page-secondary-fg-color: #404040;
     --dokkiCSS-page-inert-fg-color: #757575;
-    --dokkiCSS-page-primary-line-color: #c4c4c4;
-    --dokkiCSS-page-secondary-line-color: #c4c4c4;
+    --dokkiCSS-page-primary-line-color: lightgray;
+    --dokkiCSS-page-secondary-line-color: lightgray;
     --dokkiCSS-embedded-auxiliary-color: rgba(0, 0, 0, 0.04);
     --dokkiCSS-navi-clickable-hover-bg-color: #f5f5f5;
 }
@@ -84,12 +84,12 @@ body,
     --dokkiCSS-navi-clickable-hover-bg-color: #181818;
 }
 
-body :first-child
+.dokki-document :first-child
 {
     margin-top: 0;
 }
 
-body :last-child
+.dokki-document :last-child
 {
     margin-bottom: 0;
 }
