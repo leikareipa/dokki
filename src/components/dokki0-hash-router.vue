@@ -19,7 +19,7 @@ export default {
             if ((hash.length > 1) && !hash.startsWith(this.tagMarker)) {
                 const targetEl = document.querySelector(hash);
                 if (targetEl) {
-                    targetEl.scrollIntoView();
+                    targetEl.scrollIntoView({behavior: "smooth"});
                 }
             }
         });

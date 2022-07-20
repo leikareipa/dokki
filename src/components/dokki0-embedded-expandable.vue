@@ -100,13 +100,7 @@
     &:not(.headerless),
     &.has-after
     {
-        border: 1px solid var(--dokkiCSS-page-primary-line-color);
-    }
-
-    &.has-after > footer > .dokkiCSS-embedded > header
-    {
-        background: var(--dokkiCSS-page-secondary-bg-color);
-        border: none;
+        background-color: var(--dokkiCSS-embedded-auxiliary-color);
     }
 
     &.headerless
@@ -156,32 +150,13 @@
         display: flex;
         align-items: center;
         box-sizing: border-box;
-        background: linear-gradient(
-            to bottom,
-            var(--dokkiCSS-embedded-auxiliary-color),
-            var(--dokkiCSS-page-secondary-bg-color)
-        );
-
-        body[data-dokki-theme="light"] &
-        {
-            /* We're using 'box-shadow' to create a top border - I've seen Firefox's rendering
-               screwing up with 'border-top' here, so let's avoid it.*/
-            box-shadow: inset 0 1px 0 white;
-        }
-
-        body[data-dokki-theme="dark"] &
-        {
-            /* We're using 'box-shadow' to create a top border - I've seen Firefox's rendering
-               screwing up with 'border-top' here, so let's avoid it.*/
-            box-shadow: inset 0 1px 0 #292929;
-        }
 
         .caption
         {
             .type
             {
                 font-size: 90%;
-                color: var(--dokkiCSS-page-inert-fg-color);
+                color: var(--dokkiCSS-page-link-color);
             
                 .icon
                 {

@@ -51,6 +51,12 @@
         opacity: 0.35;
         display: inline-block; /* Prevent underline on hover.*/
     }
+
+    &:hover
+    {
+        text-decoration: none !important;
+        color: inherit;
+    }
 }
 </style>
 

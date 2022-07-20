@@ -31,7 +31,7 @@ body
     --dokkiCSS-embedded-header-padding: 12px 16px;
     --dokkiCSS-embedded-horizontal-padding: 16px;
     --dokkiCSS-embedded-vertical-padding: 16px;
-    --dokkiCSS-navibar-item-padding-vertical: 4px;
+    --dokkiCSS-navibar-item-padding-vertical: 0.3rem;
     --dokkiCSS-navibar-item-padding-horizontal: 1rem;
 
     --dokkiCSS-regular-font-family: system-ui, sans-serif;

@@ -33,8 +33,6 @@
 
     <template #after v-if="this.$slots['output'] || this.$slots['default']">
 
-        <hr class="output-separator">
-
         <slot name="output"/>
 
     </template>
@@ -53,14 +51,8 @@
     &:not(.headerless) .dokki-area
     {
         border-radius: 0;
-    }
-
-    .output-separator
-    {
-        border: none;
-        border-bottom: 1px solid var(--dokkiCSS-page-primary-line-color);
-        width: calc(100% - 16px);
-        margin: auto;
+        padding: 0;
+        background-color: unset;
     }
 
     &.has-after > footer

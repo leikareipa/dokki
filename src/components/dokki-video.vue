@@ -31,7 +31,7 @@
 <style lang="scss">
 .dokki0-embedded-expandable.dokki-video
 {
-    .content.content.first-level
+    .content.first-level
     {
         padding: 0;
         display: flex;

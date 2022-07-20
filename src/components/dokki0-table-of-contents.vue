@@ -19,7 +19,7 @@
                     
                     <span class="idx">
                         
-                        {{topicIdx+1}}&nbsp;
+                        {{topicIdx+1}}
                         
                     </span>
                     
@@ -37,7 +37,7 @@
                     
                     <span class="idx">
                         
-                        {{topicIdx+1}}.{{subtopicIdx+1}}&nbsp;
+                        {{topicIdx+1}}.{{subtopicIdx+1}}
                         
                     </span>
                     
@@ -57,23 +57,20 @@
 <style lang="scss">
 .dokki0-table-of-contents
 {
-    font-size: 95%;
-    
     .contents
     {
         list-style-type: none;
-        padding: 1rem 0;
+        padding: 1.5rem 0;
         margin: 0;
 
-        li
+        @media only screen and (max-width: 1500px)
         {
             padding: 0;
         }
 
-        .label
+        li
         {
-            display: flex;
-            align-items: baseline;
+            padding: 0;
         }
 
         .navi-link
@@ -88,18 +85,27 @@
 
             &:hover
             {
-                text-decoration: underline;
+                color: inherit;
             }
 
             &.subtopic
             {
-                padding-left: calc(var(--dokkiCSS-navibar-item-padding-horizontal) + 0.75rem);
+                padding-left: calc(var(--dokkiCSS-navibar-item-padding-horizontal) + 1rem);
                 font-size: 95%;
             }
 
-            .idx
+            .label
             {
-                color: var(--dokkiCSS-page-inert-fg-color);
+                display: flex;
+                align-items: baseline;
+                    
+                .idx
+                {
+                    color: var(--dokkiCSS-page-secondary-fg-color);
+                    margin-right: 0.4em;
+                    text-decoration: none;
+                    display: inline-block;
+                }
             }
         }
     }

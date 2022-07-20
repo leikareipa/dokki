@@ -35,21 +35,24 @@
     display: flex;
     align-items: center;
     font-weight: var(--dokkiCSS-bold-text-weight);
-    padding: 1rem;
-    border-bottom: 1px solid var(--dokkiCSS-page-primary-line-color);
-    background-color: var(--dokkiCSS-page-secondary-bg-color);
+    padding: 1.5rem;
+    padding-top: 0.5rem;
+    background-color: var(--dokkiCSS-embedded-auxiliary-color);
+    border-radius: var(--dokkiCSS-embedded-border-radius);
     flex-wrap: wrap;
-    margin-top: -1rem !important;
     overflow: auto;
 
     @media only screen and (max-width: 1500px)
     {
         border-bottom: none;
+        background-color: var(--dokkiCSS-page-primary-bg-color);
+        border-radius: 0;
     }
     
     body[data-dokki-layout^="vertical"] &
     {
         padding: 2rem;
+        padding-top: 1rem;
     }
 
     .title
@@ -67,8 +70,7 @@
         display: flex;
         flex-wrap: wrap;
         font-weight: normal;
-        color: var(--dokkiCSS-page-inert-fg-color);
-        font-size: 95%;
+        color: var(--dokkiCSS-page-link-color);
 
         body[data-dokki-layout^="vertical"] &
         {
@@ -89,8 +91,7 @@
 
             .widget-icon
             {
-                margin-right: 0.6em;
-                font-size: 0.875em;
+                margin-right: 0.5em;
             }
 
             &.clickable
@@ -99,7 +100,7 @@
                 
                 &:hover
                 {
-                    color: var(--dokkiCSS-page-primary-fg-color) !important;
+                    color: var(--dokkiCSS-page-secondary-fg-color) !important;
                 }
             }
         }
