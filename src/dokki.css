@@ -4,6 +4,8 @@ body
 
     --dokkiCSS-header-bottom-margin: 23px;
 
+    --dokkiCSS-document-container-margin: 1rem;
+
     --dokkiCSS-side-panel-width: 330px;
     --dokkiCSS-topics-container-width: 49%;
     --dokkiCSS-document-width: calc(var(--dokkiCSS-side-panel-width) + var(--dokkiCSS-topics-container-width));
@@ -26,12 +28,12 @@ body
     --dokkiCSS-subtopic-anchor-top-margin: 30px;
     --dokkiCSS-text-block-line-anchor-top-margin: 20vh;
 
-    --dokkiCSS-embedded-border-radius: 5px;
+    --dokkiCSS-embedded-border-radius: 0;
     --dokkiCSS-embedded-vertical-margin: 16px;
     --dokkiCSS-embedded-header-padding: 12px 16px;
     --dokkiCSS-embedded-horizontal-padding: 16px;
     --dokkiCSS-embedded-vertical-padding: 16px;
-    --dokkiCSS-navibar-item-padding-vertical: 0.3rem;
+    --dokkiCSS-navibar-item-padding-vertical: 0.225rem;
     --dokkiCSS-navibar-item-padding-horizontal: 1rem;
 
     --dokkiCSS-regular-font-family: system-ui, sans-serif;
@@ -63,8 +65,8 @@ body,
     --dokkiCSS-page-primary-fg-color: #202020;
     --dokkiCSS-page-secondary-fg-color: #404040;
     --dokkiCSS-page-inert-fg-color: #757575;
-    --dokkiCSS-page-primary-line-color: lightgray;
-    --dokkiCSS-page-secondary-line-color: lightgray;
+    --dokkiCSS-page-primary-line-color: #c4c4c4;
+    --dokkiCSS-page-secondary-line-color: #c4c4c4;
     --dokkiCSS-embedded-auxiliary-color: rgba(0, 0, 0, 0.04);
     --dokkiCSS-navi-clickable-hover-bg-color: #f5f5f5;
 }
@@ -140,6 +142,7 @@ ul
     body
     {
         --dokkiCSS-topic-vertical-padding: 38px;
+        --dokkiCSS-document-container-margin: 0rem;
     }
 
     [data-dokki-theme="light"]

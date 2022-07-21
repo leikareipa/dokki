@@ -101,7 +101,22 @@
     &.has-after
     {
         background-color: var(--dokkiCSS-embedded-auxiliary-color);
-        border: 1px solid var(--dokkiCSS-page-secondary-line-color);
+        border: 1px solid var(--dokkiCSS-page-primary-line-color);
+
+        &:hover
+        {
+            border: 1px solid var(--dokkiCSS-page-secondary-fg-color);
+        }
+        
+        body[data-dokki-theme="light"] &
+        {
+            box-shadow: inset 0 0 0 2px white;
+        }
+
+        body[data-dokki-theme="dark"] &
+        {
+            box-shadow: inset 0 0 0 2px #292929;
+        }
     }
 
     &.headerless
@@ -154,21 +169,10 @@
         align-items: center;
         box-sizing: border-box;
 
-        body[data-dokki-theme="light"] &
-        {
-            box-shadow: inset 0 1px 0 white;
-        }
-
-        body[data-dokki-theme="dark"] &
-        {
-            box-shadow: inset 0 1px 0 #292929;
-        }
-
         .caption
         {
             .type
             {
-                font-size: 90%;
                 color: var(--dokkiCSS-page-link-color);
             
                 .icon
@@ -181,17 +185,6 @@
             {
                 display: block;
                 margin-top: 3px;
-            }
-        }
-
-        &:hover
-        {
-            .caption
-            {
-                .type
-                {
-                    color: inherit;
-                }
             }
         }
     }

@@ -13,8 +13,6 @@
 
     <header>
 
-        <div class="bar"/>
-
         <i class="fas fa-info-circle"/>
 
         &nbsp;Tip
@@ -30,28 +28,17 @@
 </p>
 </template>
 
-<style scoped lang="scss">
-.bar
-{
-    height: 100%;
-    background-color: currentColor;
-    width: 0.6em;
-    position: absolute;
-    top: 0;
-    left: 0;
-    border-radius: 1em;
-}
-</style>
-
 <style lang="scss">
 .dokki-tip
 {
+    position: relative;
     display: flex;
     align-items: stretch;
     background-color: var(--dokkiCSS-embedded-auxiliary-color);
     border: none;
     border-radius: var(--dokkiCSS-embedded-border-radius);
     margin: 20px 0;
+    border-left: 11px solid currentColor;
 
     footer,
     header
@@ -66,8 +53,6 @@
 
     header
     {
-        position: relative;
-        padding-left: calc(16px + 0.6em);
         line-height: var(--dokkiCSS-content-line-height);
         display: flex;
         align-items: baseline;

@@ -16,17 +16,12 @@
 <style lang="scss">
 .dokki-document
 {
-    margin-top: 2rem;
+    margin: var(--dokkiCSS-document-container-margin);
     width: calc(var(--dokkiCSS-topics-container-max-width) + var(--dokkiCSS-side-panel-width));
-    max-width: 100%;
+    max-width: calc(100% - var(--dokkiCSS-document-container-margin)*2);
     display: flex;
     flex-direction: column;
     position: relative;
-
-    @media only screen and (max-width: 1500px)
-    {
-        margin-top: 0;
-    }
 
     body[data-dokki-layout="horizontal-wide"] &
     {

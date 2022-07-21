@@ -31,7 +31,7 @@
     cursor: pointer;
     margin: 6px 6px 0 0 !important;
     padding: 4px 10px;
-    border-radius: 4px;
+    border-radius: var(--dokkiCSS-embedded-border-radius);
     font-size: 90%;
     white-space: nowrap;
 

@@ -13,8 +13,6 @@
 
     <header>
 
-        <div class="bar"/>
-
         <i class="fas fa-exclamation-triangle"/>
 
         &nbsp;Warning
@@ -30,19 +28,6 @@
 </p>
 </template>
 
-<style scoped lang="scss">
-.bar
-{
-    height: 100%;
-    background-color: firebrick;
-    width: 0.6em;
-    position: absolute;
-    top: 0;
-    left: 0;
-    border-radius: 1em;
-}
-</style>
-
 <style lang="scss">
 .dokki-warning
 {
@@ -53,6 +38,7 @@
     border: none;
     border-radius: var(--dokkiCSS-embedded-border-radius);
     margin: 20px 0;
+    border-left: 11px solid currentColor;
 
     footer,
     header
