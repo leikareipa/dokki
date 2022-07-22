@@ -21,15 +21,17 @@
 
     <template #content>
 
-        <img v-if="hasSrc"
+        <dokki0-lazy-loading-image
+            v-if="hasSrc"    
             :width="width"
             :height="height"
             :src="src"
+            :thumbnail-src="thumbnailSrc"
             :class="{
                 'dokkiCSS-upscale-to-fit': hasUpscaleToFit,
                 'dokkiCSS-pixelated-scale': hasPixelated,
             }"
-        >
+        />
 
         <slot v-else-if="hasContent" name="content"/>
 
@@ -56,8 +58,6 @@
             max-width: 100%;
             max-height: 70vh;
             height: auto;
-
-            object-fit: contain;
             object-position: left;
 
             &.dokkiCSS-upscale-to-fit
@@ -79,6 +79,7 @@
 export default {
     props: {
         src: {default: "//about:blank"},
+        thumbnailSrc: {default: "//about:blank"},
         upscaleToFit: {default: undefined},
         pixelatedScale: {default: undefined},
         width: {default: undefined},

@@ -36,6 +36,7 @@ import dokki0AnimatedExpander from "./components/dokki0-animated-expander.vue";
 import dokki0EmbeddedExpandable from "./components/dokki0-embedded-expandable.vue";
 import dokki0ExpansionIndicator from "./components/dokki0-expansion-indicator.vue";
 import dokki0HashRouter from "./components/dokki0-hash-router.vue";
+import dokki0LazyLoadingImage from "./components/dokki0-lazy-loading-image.vue";
 import dokki0PageLoadProgressBar from "./components/dokki0-page-load-progress-bar.vue";
 import dokki0TableOfContents from "./components/dokki0-table-of-contents.vue";
 import dokki0TextBlockWithLineNumbers from "./components/dokki0-text-block-with-line-numbers.vue";
@@ -135,6 +136,7 @@ export function start(args = {})
     .component("dokki0-embedded-expandable", dokki0EmbeddedExpandable)
     .component("dokki0-expansion-indicator", dokki0ExpansionIndicator)
     .component("dokki0-hash-router", dokki0HashRouter)
+    .component("dokki0-lazy-loading-image", dokki0LazyLoadingImage)
     .component("dokki0-page-load-progress-bar", dokki0PageLoadProgressBar)
     .component("dokki0-table-of-contents", dokki0TableOfContents)
     .component("dokki0-text-block-with-line-numbers", dokki0TextBlockWithLineNumbers)

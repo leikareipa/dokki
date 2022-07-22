@@ -17,6 +17,7 @@
 
 const fs = require("fs");
 const assert = require("node:assert");
+const sharp = require('sharp');
 const htmlParser = require("node-html-parser");
 const markdownIt = require("markdown-it")({html: true});
 
@@ -34,7 +35,7 @@ const captionableDokkiTags = [
 ];
 
 // Run.
-(function() {
+(async function() {
     const srcHtmlFilename = process.argv[2];
     const dstHtmlFilename = process.argv[3];
     assert(srcHtmlFilename, "No source HTML file specified.");
@@ -80,17 +81,23 @@ const captionableDokkiTags = [
             el.replaceWith(articleContentsEl);
 
             // Process the HTML to transform certain regular HTML elements into dokki elements.
-            [
-                convert_h1_h2_to_dokki_topic_subtopic,
-                dokkify_code_blocks,
-                dokkify_tables,
-                dokkify_media,
-                dokkify_nested_blockquote_captions,
-                move_dokki_elements_out_of_p,
-                dokkify_adjacent_blockquote_captions,
-                dokkify_blockquotes,
-                merge_code_and_output,
-            ].forEach(transform=>transform(articleContentsEl));
+            {
+                const transforms = [
+                    convert_h1_h2_to_dokki_topic_subtopic,
+                    dokkify_code_blocks,
+                    dokkify_tables,
+                    dokkify_media,
+                    dokkify_nested_blockquote_captions,
+                    move_dokki_elements_out_of_p,
+                    dokkify_adjacent_blockquote_captions,
+                    dokkify_blockquotes,
+                    merge_code_and_output,
+                ];
+
+                for (const fn of transforms) {
+                    await fn(articleContentsEl, el.getAttribute("src"));
+                }
+            }
         }
     }
 
@@ -129,6 +136,24 @@ const captionableDokkiTags = [
 
     process.exit(0);
 })();
+
+// Given the 'src' attribute of an <img> element that points to a local image source, generates a
+// thumbnail image and returns it as a data URL.
+async function thumbnail_data_url(imageSrc) {
+    if (typeof imageSrc !== "string") {
+        return ""
+    }
+
+    const isLocalFile = !/^https?:\/\//.test(imageSrc); /// <- TODO: Better checking of local vs. non-local src.
+    if (!isLocalFile) {
+        console.warn(`Thumbnail generation skipped for non-local image file: ${imageSrc}`);
+        return ""
+    }
+
+    const imageData = fs.readFileSync(imageSrc, null);
+    const resizedImageData = await sharp(imageData).resize(20).toBuffer();
+    return `data:image/png;base64,${resizedImageData.toString('base64')}`;
+}
 
 // Merges adjacent <dokki-code> and <dokki-xxxx inline> elements, whereby the
 // latter element becomes the <dokki-code> element's output.
@@ -272,7 +297,7 @@ function parse_metadata_string(string) {
 //       Efgh
 //     </template>
 //   </dokki-image>
-function dokkify_media(dom) {
+async function dokkify_media(dom) {
     const mediaEls = dom.querySelectorAll("img");
     
     for (const el of mediaEls) {
@@ -291,10 +316,10 @@ function dokkify_media(dom) {
             "headerless"
         ].reduce((str, attr)=>`${str} ${options[attr]? attr : ""}`, "");
 
-        const dokkifiedMediaElString = (()=>{
+        const dokkifiedMediaElString = await (async ()=>{
             switch (options.type) {
                 case "image": return `
-                    <dokki-image src=${src} width=${options.width} height=${options.height} ${attributesString}>
+                    <dokki-image src=${src} width=${options.width} height=${options.height} ${attributesString} thumbnail-src="${await thumbnail_data_url(src)}">
                     </dokki-image>
                 `;
                 case "video": return `
