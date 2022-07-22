@@ -57,6 +57,16 @@
 
     &.has-after > footer
     {
+        & > .dokki0-embedded-expandable
+        {
+            background-color: unset;
+
+            &:hover
+            {
+                border-color: var(--dokkiCSS-page-primary-line-color);
+            }
+        }
+
         & > .dokki-area
         {
             background-color: unset;
