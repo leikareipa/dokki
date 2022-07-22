@@ -62,16 +62,6 @@
                 width: 100%;
                 white-space: normal;
             }
-
-            &:first-child
-            {
-                padding-left: 0;
-            }
-
-            &:last-child
-            {
-                padding-right: 0;
-            }
         }
 
         th
