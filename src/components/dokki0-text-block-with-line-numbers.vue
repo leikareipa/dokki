@@ -50,7 +50,6 @@
             white-space: normal;
             padding-right: 2ch;
             text-align: right;
-            font-family: var(--dokkiCSS-regular-font-family);
         }
     }
 }

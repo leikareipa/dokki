@@ -91,7 +91,6 @@
             &.subtopic
             {
                 padding-left: calc(var(--dokkiCSS-navibar-item-padding-horizontal) + 1rem);
-                font-size: 95%;
             }
 
             .label

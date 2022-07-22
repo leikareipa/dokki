@@ -54,7 +54,6 @@
     header
     {
         position: relative;
-        padding-left: calc(16px + 0.6em);
         line-height: var(--dokkiCSS-content-line-height);
         display: flex;
         align-items: baseline;

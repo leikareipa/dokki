@@ -79,16 +79,24 @@
 
     .hljs-keyword
     {
-        border-bottom: 1px solid;
-    }
-
-    .hljs-variable.language_
-    {
         font-weight: bold;
     }
 
-    body[data-dokki-theme="light"] &
+    .hljs-comment
     {
+        font-style: italic;
+    }
+
+    body[data-dokki-theme="light"] &
+    {    
+        .hljs-variable.language_
+        {
+            background-color: gold;
+            padding: 0px 1px;
+            margin: 0 -1px;
+            border-radius: 4px;
+        }
+
         .hljs-comment
         {
             color: forestgreen;
@@ -100,8 +108,10 @@
         .hljs-tag > .hljs-name
         {
             background-color: #e3e3e3;
+            color: black;
             padding: 0px 1px;
             margin: 0 -1px;
+            border-radius: 4px;
         }
 
         .hljs-string
@@ -109,6 +119,7 @@
             background-color: #d6f6ea;
             padding: 0px 1px;
             margin: 0 -1px;
+            border-radius: 4px;
         }
     }
 
@@ -127,6 +138,16 @@
             background-color: #2a2a2a;
             padding: 0px 1px;
             margin: 0 -1px;
+            border-radius: 4px;
+        }
+
+        .hljs-variable.language_
+        {
+            background-color: #b0b0b0;
+            color: black;
+            padding: 0px 1px;
+            margin: 0 -1px;
+            border-radius: 4px;
         }
     }
 }
