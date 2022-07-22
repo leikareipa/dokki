@@ -138,16 +138,16 @@ const captionableDokkiTags = [
 })();
 
 // Given the 'src' attribute of an <img> element that points to a local image source, generates a
-// thumbnail image and returns it as a data URL.
+// thumbnail image and returns it as a data URL. Returns undefined if an error occurred.
 async function thumbnail_data_url(imageSrc) {
     if (typeof imageSrc !== "string") {
-        return ""
+        return undefined
     }
 
     const isLocalFile = !/^https?:\/\//.test(imageSrc); /// <- TODO: Better checking of local vs. non-local src.
     if (!isLocalFile) {
         console.warn(`Thumbnail generation skipped for non-local image file: ${imageSrc}`);
-        return ""
+        return undefined
     }
 
     const imageData = fs.readFileSync(imageSrc, null);
@@ -318,10 +318,17 @@ async function dokkify_media(dom) {
 
         const dokkifiedMediaElString = await (async ()=>{
             switch (options.type) {
-                case "image": return `
-                    <dokki-image src=${src} width=${options.width} height=${options.height} ${attributesString} thumbnail-src="${await thumbnail_data_url(src)}">
-                    </dokki-image>
-                `;
+                case "image": {
+                    const thumbnailDataUrl = await thumbnail_data_url(src);
+                    const thumbnailString = thumbnailDataUrl
+                        ? `thumbnail-src="${thumbnailDataUrl}"`
+                        : "";
+
+                    return `
+                        <dokki-image src=${src} width=${options.width} height=${options.height} ${attributesString} ${thumbnailString}>
+                        </dokki-image>
+                    `;
+                }
                 case "video": return `
                     <dokki-video platform="youtube" src=${src} ${attributesString}>
                     </dokki-video>
