@@ -42,7 +42,8 @@
     flex-wrap: wrap;
     overflow: auto;
 
-    @media only screen and (max-width: 1500px)
+    body[data-dokki-layout="horizontal-narrow"] &,
+    body[data-dokki-layout^="vertical"] &
     {
         border-bottom: none;
         background-color: var(--dokkiCSS-page-primary-bg-color);

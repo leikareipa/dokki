@@ -94,6 +94,7 @@ export function start(args = {})
                             switch (true) {
                                 case screenWidth < 500: return "vertical-narrow";
                                 case screenWidth < 860: return "vertical";
+                                case screenWidth < 1500: return "horizontal-narrow";
                                 case screenWidth > 1960: return "horizontal-wide";
                                 default: return "horizontal";
                             }

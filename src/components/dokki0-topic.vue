@@ -132,7 +132,8 @@
         font-style: italic;
     }
 
-    @media only screen and (max-width: 1500px)
+    body[data-dokki-layout="horizontal-narrow"] &,
+    body[data-dokki-layout^="vertical"] &
     {
         box-shadow: 0 0 18px rgba(0, 0, 0, 0.3);
         border-bottom: none;
