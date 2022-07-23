@@ -40,6 +40,16 @@
         padding: 0;
     }
 
+    &.headerless
+    {
+        border: 1px solid var(--dokkiCSS-page-primary-line-color);
+    }
+
+    .aside-caption
+    {
+        display: none;
+    }
+
     table
     {
         width: 100%;
