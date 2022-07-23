@@ -40,7 +40,8 @@
         padding: 0;
     }
 
-    &.headerless
+    &.headerless,
+    &:not(.headerless) > .dokki0-animated-expander > .content
     {
         border: 1px solid var(--dokkiCSS-page-primary-line-color);
     }
