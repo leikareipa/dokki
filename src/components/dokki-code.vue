@@ -48,13 +48,6 @@
         overflow: auto;
     }
 
-    &:not(.headerless) .dokki-area
-    {
-        border-radius: 0;
-        padding: 0;
-        background-color: unset;
-    }
-
     &.has-after > footer
     {
         & > .dokki0-embedded-expandable
