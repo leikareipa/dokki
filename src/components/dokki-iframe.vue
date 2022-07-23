@@ -45,6 +45,11 @@
         padding: 0;
         margin: var(--dokkiCSS-embedded-vertical-padding) var(--dokkiCSS-embedded-horizontal-padding);
     }
+
+    .aside-caption
+    {
+        display: none;
+    }
 }
 </style>
 
