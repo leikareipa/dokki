@@ -63,11 +63,6 @@
         padding: 1.5rem 0;
         margin: 0;
 
-        @media only screen and (max-width: 1500px)
-        {
-            padding: 0;
-        }
-
         li
         {
             padding: 0;
@@ -106,6 +101,12 @@
                     display: inline-block;
                 }
             }
+        }
+
+        body[data-dokki-layout="horizontal-narrow"] &,
+        body[data-dokki-layout^="vertical"] &
+        {
+            padding: 0.5rem 0
         }
     }
 }
