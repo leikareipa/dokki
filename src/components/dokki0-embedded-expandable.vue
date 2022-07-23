@@ -100,7 +100,6 @@
     &:not(.headerless),
     &.has-after
     {
-        background-color: var(--dokkiCSS-embedded-auxiliary-color);
         border: 1px solid var(--dokkiCSS-page-primary-line-color);
 
         &:hover
@@ -187,6 +186,17 @@
                 margin-top: 3px;
             }
         }
+
+        &:hover
+        {
+            .caption
+            {
+                .type
+                {
+                    color: var(--dokkiCSS-page-secondary-fg-color);
+                }
+            }
+        }
     }
 
     hr
@@ -222,7 +232,7 @@
 
     &:not(.headerless) > .dokki0-animated-expander > .content.first-level
     {
-        margin-top: 0;
+        margin-top: calc(0.5 * var(--dokkiCSS-embedded-vertical-padding));
     }
 
     &.headerless > .dokki0-animated-expander > .content.first-level
