@@ -33,22 +33,31 @@
     white-space: pre;
     border-collapse: collapse;
     line-height: var(--dokkiCSS-content-line-height);
+    font-size: var(--dokkiCSS-monospace-font-size);
+    font-family: var(--dokkiCSS-monospace-font-family);
+    font-variant-ligatures: none;
 
     .line
     {
         height: 1em;
-        font-size: var(--dokkiCSS-monospace-font-size);
-        font-family: var(--dokkiCSS-monospace-font-family);
-        font-variant-ligatures: none;
 
         .number
         {
-            color: var(--dokkiCSS-page-inert-fg-color);
+            body[data-dokki-theme="light"] &
+            {
+                color: #939393;
+            }
+
+            body[data-dokki-theme="dark"] &
+            {
+                color: #606060;
+            }
+    
             user-select: none;
             width: 1ch; /* Shrink to minimum width required by the widest line number <td>.*/
             padding: 0;
             white-space: normal;
-            padding-right: 2ch;
+            padding-right: 1.5ch;
             text-align: right;
         }
     }
