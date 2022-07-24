@@ -17,6 +17,7 @@
 .dokki-document
 {
     margin: var(--dokkiCSS-document-container-margin);
+    margin-bottom: 0;
     width: calc(var(--dokkiCSS-topics-container-max-width) + var(--dokkiCSS-side-panel-width));
     max-width: calc(100% - var(--dokkiCSS-document-container-margin)*2);
     display: flex;
