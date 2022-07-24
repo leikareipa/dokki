@@ -95,10 +95,7 @@
                     
                 .idx
                 {
-                    color: var(--dokkiCSS-page-secondary-fg-color);
-                    margin-right: 0.4em;
-                    text-decoration: none;
-                    display: inline-block;
+                    margin-right: 0.5em;
                 }
             }
         }
