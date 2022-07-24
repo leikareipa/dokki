@@ -40,17 +40,11 @@
         padding: 0;
     }
 
-    &.headerless,
-    &:not(.headerless) > .dokki0-animated-expander > .content
+    & > .dokki0-animated-expander > .content
     {
-        border: 1px solid var(--dokkiCSS-page-primary-line-color);
+        border: 1px solid var(--dokkiCSS-page-primary-line-color) !important;
     }
-
-    .aside-caption
-    {
-        display: none;
-    }
-
+    
     table
     {
         width: 100%;
