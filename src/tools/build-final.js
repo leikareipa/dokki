@@ -325,16 +325,16 @@ async function dokkify_media(dom) {
                         : "";
 
                     return `
-                        <dokki-image src=${src} width=${options.width} height=${options.height} ${attributesString} ${thumbnailString}>
+                        <dokki-image src="${src}" width="${options.width}" height="${options.height}" ${attributesString} ${thumbnailString}>
                         </dokki-image>
                     `;
                 }
                 case "video": return `
-                    <dokki-video platform="youtube" src=${src} ${attributesString}>
+                    <dokki-video platform="youtube" src="${src}" ${attributesString}>
                     </dokki-video>
                 `;
                 case "iframe": return `
-                    <dokki-iframe src=${src} ${attributesString}>
+                    <dokki-iframe src="${src}" ${attributesString}>
                     </dokki-iframe>
                 `;
                 default: assert.fail(`Unrecognized media type "${options.type}".`);
