@@ -106,16 +106,6 @@
         {
             border: 1px solid var(--dokkiCSS-page-secondary-fg-color);
         }
-        
-        body[data-dokki-theme="light"] &
-        {
-            box-shadow: inset 0 0 0 2px white;
-        }
-
-        body[data-dokki-theme="dark"] &
-        {
-            box-shadow: inset 0 0 0 2px #292929;
-        }
     }
 
     &.headerless
