@@ -38,7 +38,7 @@
     border: none;
     border-radius: var(--dokkiCSS-embedded-border-radius);
     margin: 20px 0;
-    border-left: 11px solid currentColor;
+    box-shadow: -10px 0px 0px currentColor;
 
     footer,
     header
@@ -61,6 +61,7 @@
 
     body[data-dokki-layout="vertical-narrow"] &
     {
+        box-shadow: calc(-1 * var(--dokkiCSS-topic-vertical-padding)) 0px 0px currentColor;
         flex-direction: column;
         align-items: stretch;
 
