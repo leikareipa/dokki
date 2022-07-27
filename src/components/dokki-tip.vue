@@ -43,7 +43,7 @@
     footer,
     header
     {
-        padding: 16px;
+        padding: 1em;
     }
     
     footer
