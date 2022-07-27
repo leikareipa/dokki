@@ -6,78 +6,28 @@
  */
 
 <template>
-<p class="dokkiCSS-embedded dokki-warning"
-   :class="{
-       [inlineClass]: true,
-   }">
+<dokki0-interjection
+    class-name="dokki-warning"
+    icon="fas fa-exclamation-triangle"
+    title="Warning"
+    :inline-class="inlineClass"
+>
+ 
+    <slot/>
 
-    <header>
-
-        <i class="fas fa-exclamation-triangle"/>
-
-        &nbsp;Warning
-
-    </header>
-    
-    <footer>
-
-        <slot/>
-
-    </footer>
-
-</p>
+</dokki0-interjection>
 </template>
 
 <style lang="scss">
-.dokki-warning
+.dokki0-interjection.dokki-warning
 {
     color: firebrick;
     background-color: rgba(178, 34, 34, 0.1);
-    display: flex;
-    align-items: stretch;
-    border: none;
-    border-radius: var(--dokkiCSS-embedded-border-radius);
-    margin: 20px 0;
-    box-shadow: -10px 0px 0px currentColor;
 
     body[data-dokki-theme="dark"] &
     {
         color: salmon;
         background-color: var(--dokkiCSS-embedded-auxiliary-color);
-    }
-
-    footer,
-    header
-    {
-        padding: 1em;
-    }
-
-    footer
-    {
-        line-height: var(--dokkiCSS-content-line-height);
-    }
-
-    header
-    {
-        position: relative;
-        line-height: var(--dokkiCSS-content-line-height);
-        display: flex;
-        align-items: baseline;
-        font-weight: var(--dokkiCSS-bold-text-weight);
-    }
-
-    body[data-dokki-layout="vertical-narrow"] &
-    {
-        box-shadow: calc(-1 * var(--dokkiCSS-topic-vertical-padding)) 0px 0px currentColor;
-        flex-direction: column;
-        align-items: stretch;
-
-        header
-        {
-            border: none;
-            line-height: normal;
-            padding-bottom: 0;
-        }
     }
 }
 </style>

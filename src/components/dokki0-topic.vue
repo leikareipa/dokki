@@ -132,15 +132,6 @@
         font-style: italic;
     }
 
-    /* Disable the left border on <dokki-tip> and <dokki-warning> when they're not direct
-       children of their parent topic. This is to prevent some visual inconsistencies that
-       could otherwise occur.*/
-    & > *:not(.dokki-subtopic) .dokki-tip,
-    & > *:not(.dokki-subtopic) .dokki-warning
-    {
-        box-shadow: none !important;
-    }
-
     body[data-dokki-layout="horizontal-narrow"] &,
     body[data-dokki-layout^="vertical"] &
     {
