@@ -109,6 +109,11 @@ ul
     margin: 16px 0;
 }
 
+strong
+{
+    font-weight: var(--dokkiCSS-bold-text-weight);
+}
+
 .dokkiCSS-anchor
 {
     visibility: hidden;
